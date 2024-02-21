@@ -6,7 +6,7 @@ import se.liu.arvra591.view.AbstractObjectView;
 /**
  * Superclass for all controller classes
  */
-public abstract class AbstractObjectController
+public abstract class AbstractObjectController implements Controller
 {
     protected AbstractObject model;
     protected AbstractObjectView view;

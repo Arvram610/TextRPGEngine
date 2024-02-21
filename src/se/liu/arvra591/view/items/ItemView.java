@@ -1,5 +1,6 @@
 package se.liu.arvra591.view.items;
 
+import se.liu.arvra591.models.AbstractObject;
 import se.liu.arvra591.view.AbstractObjectView;
 /**
  * Class to print out and view items
