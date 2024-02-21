@@ -1,8 +1,10 @@
-package se.liu.arvra591.models.item;
+package se.liu.arvra591.models.items;
 
-import se.liu.arvra591.models.Object;
-
-public class Item extends Object
+import se.liu.arvra591.models.AbstractObject;
+/**
+ * Superclass for items
+ */
+public class Item extends AbstractObject
 {
     private int weight;  // Limits how many items can be carried at a time
 
