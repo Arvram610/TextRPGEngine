@@ -11,7 +11,7 @@ public abstract class AbstractObjectController
     protected AbstractObject model;
     protected AbstractObjectView view;
 
-    public AbstractObjectController(AbstractObject model, AbstractObjectView view){
+    protected AbstractObjectController(AbstractObject model, AbstractObjectView view){
         this.model = model;
         this.view = view;
     }
