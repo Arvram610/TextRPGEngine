@@ -1,4 +1,4 @@
-package se.liu.arvra591.Models;
+package se.liu.arvra591.models;
 
 public abstract class Object
 {
