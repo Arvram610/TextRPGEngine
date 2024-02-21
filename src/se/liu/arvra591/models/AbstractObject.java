@@ -6,8 +6,8 @@ package se.liu.arvra591.models;
  */
 public abstract class AbstractObject
 {
-    private String name;
-    private String description;
+    protected String name;
+    protected String description;
 
     protected AbstractObject(String name, String description){
         this.name = name;
