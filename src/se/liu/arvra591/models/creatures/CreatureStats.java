@@ -1,9 +1,9 @@
 package se.liu.arvra591.models.creatures;
 
 
-import se.liu.arvra591.models.AbstractObject;
+import se.liu.arvra591.models.Model;
 
-public class CreatureStats extends AbstractObject
+public class CreatureStats implements Model
 {
     private int maxHealth;
     private int attack;
@@ -16,7 +16,6 @@ public class CreatureStats extends AbstractObject
     public CreatureStats(final int maxHealth, final int attack, final int defense, final int carryWeight, final int maxEnergy,
                          final int energyRegenRate)
     {
-        super("CreatureStats", "CreatureStats");
         this.maxHealth = maxHealth;
         this.attack = attack;
         this.defense = defense;

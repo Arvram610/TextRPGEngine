@@ -9,7 +9,7 @@ import se.liu.arvra591.view.AbstractObjectView;
 public class CreatureView extends AbstractObjectView
 {
     CreatureStatsView creatureStatsView = new CreatureStatsView();
-    @Override public void printModel(AbstractObject model) {
+    @Override public void printModel(Creature model) {
 	super.printModel(model);
 	Creature creatureModel = (Creature) model;
 	System.out.println("Health: " + creatureModel.getHealth());
