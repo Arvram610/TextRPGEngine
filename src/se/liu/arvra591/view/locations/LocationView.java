@@ -38,7 +38,7 @@ public class LocationView extends AbstractObjectView
     private void printItems(Location locationModel) {
 
 	for (Item item : locationModel.getItemList()) {
-	    System.out.print(item.getName() + " ");
+	    System.out.print(item.getName() + " "); //TODO: use itemView instead
 	}
     }
 
@@ -46,14 +46,14 @@ public class LocationView extends AbstractObjectView
     private void printCreatures(Location locationModel) {
 
 	for (Creature creature : locationModel.getCreatureList()) {
-	    System.out.println(creature.getName() + " ");
+	    System.out.println(creature.getName() + " "); //TODO: use creatureView instead
 	}
     }
 
     private void printExits(Location locationModel) {
 	for (Location exit : locationModel.getExitList()) {
 
-	    System.out.println(exit.getName() + " ");
+	    System.out.println(exit.getName() + " "); //TODO: use locationView instead
 	}
     }
 

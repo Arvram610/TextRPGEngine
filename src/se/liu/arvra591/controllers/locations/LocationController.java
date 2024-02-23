@@ -12,7 +12,7 @@ import java.util.List;
 
 public class LocationController extends AbstractObjectController
 {
-    private LocationController(final Location model, final LocationView view) {
+    public LocationController(final Location model, final LocationView view) {
 
 	super(model, view);
     }
