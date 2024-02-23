@@ -24,7 +24,7 @@ public class CreatureView extends AbstractObjectView
     public static void main(String[] args) {
 
 	Creature c = new Creature("H", "j", 10,
-				  new CreatureStats(10,10,10,10,10, 10));
+				  new CreatureStats(10,10,10,10,10));
 	CreatureView v = new CreatureView(c);
     	v.printModel();
     }
