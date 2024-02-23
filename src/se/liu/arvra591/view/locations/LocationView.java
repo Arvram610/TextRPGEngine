@@ -21,6 +21,7 @@ public class LocationView extends AbstractObjectView
     @Override public void printModel() {
 	super.printModel();
 	Location locationModel = (Location) model;
+
 	System.out.print("Items in location: ");
     	printItems(locationModel);
 	System.out.println();
@@ -35,12 +36,15 @@ public class LocationView extends AbstractObjectView
     }
 
     private void printItems(Location locationModel) {
+
 	for (Item item : locationModel.getItemList()) {
 	    System.out.print(item.getName() + " ");
 	}
     }
 
+
     private void printCreatures(Location locationModel) {
+
 	for (Creature creature : locationModel.getCreatureList()) {
 	    System.out.println(creature.getName() + " ");
 	}
@@ -48,6 +52,7 @@ public class LocationView extends AbstractObjectView
 
     private void printExits(Location locationModel) {
 	for (Location exit : locationModel.getExitList()) {
+
 	    System.out.println(exit.getName() + " ");
 	}
     }
@@ -55,6 +60,7 @@ public class LocationView extends AbstractObjectView
     public static void main(String[] args) {
 	List<Creature> creatureList = new ArrayList<>();
 	List<Item> itemList = new ArrayList<>();
+
 	List<Location> exitList = new ArrayList<>();
 	creatureList.add(new Creature("TestCreature", "TestDescription", 10,
 			  new CreatureStats(10, 10, 10, 10, 10)));
@@ -69,5 +75,6 @@ public class LocationView extends AbstractObjectView
 					 creatureList, itemList, exitList);
 	LocationView locationView = new LocationView(location);
 	locationView.printModel();
+
     }
 }

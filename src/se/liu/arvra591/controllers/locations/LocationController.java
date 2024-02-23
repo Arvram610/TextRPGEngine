@@ -13,6 +13,7 @@ import java.util.List;
 public class LocationController extends AbstractObjectController
 {
     private LocationController(final Location model, final LocationView view) {
+
 	super(model, view);
     }
 
@@ -27,6 +28,7 @@ public class LocationController extends AbstractObjectController
 	Location location = new Location("TestLocation", "TestDescription", creatureList, itemList, exitList);
 
 	LocationController locationController = new LocationController(location, new LocationView(location));
+
 	locationController.updateView();
     }
 }
