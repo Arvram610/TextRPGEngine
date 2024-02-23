@@ -17,6 +17,6 @@ public abstract class AbstractObjectController implements Controller
     }
 
     public void updateView(){
-        view.printModel(model);
+        view.printModel();
     }
 }

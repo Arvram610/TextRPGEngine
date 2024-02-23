@@ -8,18 +8,24 @@ import se.liu.arvra591.view.AbstractObjectView;
 
 public class CreatureView extends AbstractObjectView
 {
-    CreatureStatsView creatureStatsView = new CreatureStatsView();
-    @Override public void printModel(Creature model) {
-	super.printModel(model);
-	Creature creatureModel = (Creature) model;
-	System.out.println("Health: " + creatureModel.getHealth());
-	creatureStatsView.printModel(creatureModel.getStats());
+    CreatureStatsView creatureStatsView;
+    public CreatureView(final AbstractObject model) {
+	super(model);
+	creatureStatsView = new CreatureStatsView(((Creature) model).getStats());
+    }
+
+    @Override public void printModel() {
+	super.printModel();
+	Creature model = (Creature) this.model;
+	System.out.println("Health: " + model.getHealth());
+	creatureStatsView.printModel();
     }
 
     public static void main(String[] args) {
-	CreatureView v = new CreatureView();
+
 	Creature c = new Creature("H", "j", 10,
 				  new CreatureStats(10,10,10,10,10, 10));
-    	v.printModel(c);
+	CreatureView v = new CreatureView(c);
+    	v.printModel();
     }
 }
