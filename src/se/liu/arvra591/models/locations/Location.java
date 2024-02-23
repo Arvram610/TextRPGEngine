@@ -4,19 +4,18 @@ import se.liu.arvra591.models.AbstractObject;
 import se.liu.arvra591.models.creatures.Creature;
 import se.liu.arvra591.models.items.Item;
 
-import java.util.ArrayList;
 import java.util.List;
 
-public class Locations extends AbstractObject
+public class Location extends AbstractObject
 {
     private List<Creature> creatureList; //might be divided into enemies and players
     private List<Item> itemList;
-    private List<Locations> exitList;
+    private List<Location> exitList;
 
     //private List<interactables> interactablesList; //might be added later
 
 
-    public Locations(String name, String description, List<Creature> creatureList, List<Item> itemList, List<Locations> exitList) {
+    public Location(String name, String description, List<Creature> creatureList, List<Item> itemList, List<Location> exitList) {
 	super(name, description);
 	this.creatureList = creatureList;
 	this.itemList = itemList;
@@ -31,7 +30,7 @@ public class Locations extends AbstractObject
 	return itemList;
     }
 
-    public List<Locations> getExitList() {
+    public List<Location> getExitList() {
 	return exitList;
     }
 }
