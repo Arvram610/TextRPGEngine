@@ -4,7 +4,7 @@ package se.liu.arvra591.models;
 /**
  * Superclass for all objects
  */
-public abstract class AbstractObject
+public abstract class AbstractObject implements Model
 {
     protected String name;
     protected String description;

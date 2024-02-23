@@ -1,22 +1,23 @@
 package se.liu.arvra591.models.creatures;
 
-public class CreatureStats
+
+import se.liu.arvra591.models.Model;
+
+public class CreatureStats implements Model
 {
     private int maxHealth;
     private int attack;
     private int defense;
-    private int carryWeight;
     private int maxEnergy;
     private int energyRegenRate;
 
 
-    public CreatureStats(final int maxHealth, final int attack, final int defense, final int carryWeight, final int maxEnergy,
+    public CreatureStats(final int maxHealth, final int attack, final int defense, final int maxEnergy,
                          final int energyRegenRate)
     {
         this.maxHealth = maxHealth;
         this.attack = attack;
         this.defense = defense;
-        this.carryWeight = carryWeight;
         this.maxEnergy = maxEnergy;
         this.energyRegenRate = energyRegenRate;
     }
@@ -31,10 +32,6 @@ public class CreatureStats
 
     public int getDefense() {
         return defense;
-    }
-
-    public int getCarryWeight() {
-        return carryWeight;
     }
 
     public int getMaxEnergy() {
