@@ -1,5 +1,6 @@
 package se.liu.arvra591.objects.creatures;
 
+import se.liu.arvra591.objects.itemContainers.PlayerInventory;
 import se.liu.arvra591.objects.locations.Location;
 
 public class Player extends Creature
@@ -8,17 +9,15 @@ public class Player extends Creature
 
     public Player(final String name, final String description, int health, int level,
 		  PlayerStats stats, int carryWeight, int currentWeight, Location currentLocation,
-		  int experience) {
+		  int experience, PlayerInventory inventory) {
 	super(name, description, health, level,  stats);
 	this.currentLocation = currentLocation;
-
     }
 
     @Override public void printObject() {
 	super.printObject();
 	PlayerStats stats = (PlayerStats) getStats();
-	System.out.println("Carry Weight: " + stats.getCarryWeight());
-	System.out.println("Current Weight: " + stats.getCurrentWeight());
+	stats.printStats();
 	System.out.println("Current Location: " + getCurrentLocation().getName());
     }
 

@@ -36,6 +36,12 @@ public class PlayerInventory extends AbstractInventory
 
 
     public void removeItem(Item item){
+	//TODO: Loop through inventory and check if item exists
 	itemList.remove(item);
+    }
+
+    public Item getItem(Item item){
+	//TODO: Loop through inventory and check if item exists
+	return item;
     }
 }
