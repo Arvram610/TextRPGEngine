@@ -11,6 +11,8 @@ public class CreatureStats implements Object
     private int maxEnergy;
     private int energyRegenRate;
 
+    public static CreatureStats basic = new CreatureStats(10,10,10,10,10);
+
 
     public CreatureStats(final int maxHealth, final int attack, final int defense, final int maxEnergy,
                          final int energyRegenRate)
