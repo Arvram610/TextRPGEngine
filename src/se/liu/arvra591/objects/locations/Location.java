@@ -57,7 +57,7 @@ public class Location extends AbstractObject
 	AbstractObject object;
 
 	for (List<? extends AbstractObject> list : lists) {
-	    object = findObjectInList(npcList, name);
+	    object = findObjectInList(list, name);
 	    if (object != null){
 		return object;
 	    }
@@ -66,10 +66,11 @@ public class Location extends AbstractObject
     }
 
     public AbstractObject findObjectInList(List<? extends AbstractObject> list, String name){
-	return list.stream().filter(object -> object.getName().equals(name)).findFirst().get();
+	return list.stream().filter(object -> object.getName().equals(name)).findFirst().orElse(null);
     }
 
     public Location getLocation(final String name) {
+	return null;
     }
 
     private void printList(List<? extends AbstractObject> list) {
@@ -112,6 +113,8 @@ public class Location extends AbstractObject
 
 	Location location = new Location("TestLocation", "TestDescription", npcList, itemList, exitList);
 	location.printObject();
+
+	location.inspect("TestItem");
 
     }
 }
