@@ -25,7 +25,9 @@ public class Player extends Creature
 	System.out.println("Current Location: " + getCurrentLocation().getName());
     }
 
-
+    private void interact(String name){
+	currentLocation.interact(name);
+    }
 
     public int getCarryWeight() {
 	return carryWeight;

@@ -38,7 +38,28 @@ public class Location extends AbstractObject
 	return exitList;
     }
 
+    public void interact(String name){
+	for (Creature creature : creatureList) {
+	    if (creature.getName().equals(name)) {
+		creature.printObject();
+		return;
+	    }
+	}
+	for (Item item : itemList) {
+	    if (item.getName().equals(name)) {
+		item.printObject();
+		return;
+	    }
+	}
+	for (Location location : exitList) {
+	    if (location.getName().equals(name)) {
+		location.printObject();
+		return;
+	    }
+	}
+	System.out.println("Couldn't find " + name + " in location.");
 
+    }
 
     private void printList(List<? extends AbstractObject> list) {
 	for (AbstractObject item : list) {
