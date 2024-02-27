@@ -39,9 +39,9 @@ public class Location extends AbstractObject
     }
 
     public void interact(String name){
-	for (Creature creature : creatureList) {
-	    if (creature.getName().equals(name)) {
-		creature.printObject();
+	for (Npc npc : npcList) {
+	    if (npc.getName().equals(name)) {
+		npc.printObject();
 		return;
 	    }
 	}
@@ -93,7 +93,7 @@ public class Location extends AbstractObject
 	List<Item> itemList = new ArrayList<>();
 
 	List<Location> exitList = new ArrayList<>();
-	npcList.add(new Npc("TestCreature", "TestDescription", 10,
+	npcList.add(new Npc("TestCreature", "TestDescription", 10, 10,
 				 new CreatureStats(10, 10, 10, 10, 10),
 				 NpcDialogue.emptyDialogue));
 	itemList.add(new Item("TestItem", "TestDescription", 10));
