@@ -1,4 +1,4 @@
-package se.liu.arvra591.models.items;
+package se.liu.arvra591.objects.items;
 /**
  * class for equippable items
  */
