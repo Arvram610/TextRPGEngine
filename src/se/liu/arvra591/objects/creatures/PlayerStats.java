@@ -21,8 +21,4 @@ public class PlayerStats extends CreatureStats
     public int getExperience() {
 	return experience;
     }
-
-    public int getCurrentWeight() {
-	return currentWeight;
-    }
 }
