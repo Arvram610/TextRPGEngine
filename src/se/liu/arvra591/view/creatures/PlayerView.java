@@ -8,7 +8,7 @@ import se.liu.arvra591.view.AbstractObjectView;
 
 public class PlayerView extends AbstractObjectView
 {
-    CreatureStatsView creatureStatsView;
+    protected CreatureStatsView creatureStatsView;
 
     public PlayerView(final AbstractObject model){
 	super(model);
