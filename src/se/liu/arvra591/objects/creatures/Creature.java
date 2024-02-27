@@ -5,9 +5,12 @@ import se.liu.arvra591.objects.AbstractObject;
 public class Creature extends AbstractObject
 {
     protected int health;
+
+    protected int level;
+
     protected CreatureStats stats;
 
-    public Creature(String name, String description, int health, CreatureStats stats){
+    public Creature(String name, String description, int health, int level, CreatureStats stats){
 	super(name, description);
 	this.health = health;
         this.stats = stats;
@@ -22,6 +25,10 @@ public class Creature extends AbstractObject
 
     public int getHealth(){
         return health;
+    }
+
+    public int getLevel(){
+        return level;
     }
 
     public CreatureStats getStats() {
