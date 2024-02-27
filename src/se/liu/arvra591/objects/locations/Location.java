@@ -1,5 +1,6 @@
 package se.liu.arvra591.objects.locations;
 
+import se.liu.arvra591.ListHelper;
 import se.liu.arvra591.objects.AbstractObject;
 import se.liu.arvra591.objects.creatures.CreatureStats;
 import se.liu.arvra591.objects.creatures.Npc;
@@ -44,29 +45,13 @@ public class Location extends AbstractObject
 		itemList,
 		exitList
 	);
-	AbstractObject object = findObjectInLists(lists, name);
+	AbstractObject object = ListHelper.findObjectInLists(lists, name);
 
 	if (object != null){
 	    object.printObject();
 	    return;
 	}
 	System.out.println("Couldn't find " + name + " in location.");
-    }
-
-    public AbstractObject findObjectInLists(List<List<? extends AbstractObject>> lists, String name){
-	AbstractObject object;
-
-	for (List<? extends AbstractObject> list : lists) {
-	    object = findObjectInList(list, name);
-	    if (object != null){
-		return object;
-	    }
-	}
-	return null;
-    }
-
-    public AbstractObject findObjectInList(List<? extends AbstractObject> list, String name){
-	return list.stream().filter(object -> object.getName().equals(name)).findFirst().orElse(null);
     }
 
     public Location getLocation(final String name) {
