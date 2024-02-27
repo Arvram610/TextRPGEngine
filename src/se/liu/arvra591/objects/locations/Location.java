@@ -1,13 +1,14 @@
 package se.liu.arvra591.objects.locations;
 
+import se.liu.arvra591.ListHelper;
 import se.liu.arvra591.objects.AbstractObject;
-import se.liu.arvra591.objects.creatures.Creature;
 import se.liu.arvra591.objects.creatures.CreatureStats;
 import se.liu.arvra591.objects.creatures.Npc;
 import se.liu.arvra591.objects.creatures.NpcDialogue;
 import se.liu.arvra591.objects.items.Item;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
 public class Location extends AbstractObject
@@ -38,27 +39,23 @@ public class Location extends AbstractObject
 	return exitList;
     }
 
-    public void interact(String name){
-	for (Npc npc : npcList) {
-	    if (npc.getName().equals(name)) {
-		npc.printObject();
-		return;
-	    }
-	}
-	for (Item item : itemList) {
-	    if (item.getName().equals(name)) {
-		item.printObject();
-		return;
-	    }
-	}
-	for (Location location : exitList) {
-	    if (location.getName().equals(name)) {
-		location.printObject();
-		return;
-	    }
+    public void inspect(String name){
+	List<List<? extends AbstractObject>> lists = Arrays.asList(
+		npcList,
+		itemList,
+		exitList
+	);
+	AbstractObject object = ListHelper.findObjectInLists(lists, name);
+
+	if (object != null){
+	    object.printObject();
+	    return;
 	}
 	System.out.println("Couldn't find " + name + " in location.");
+    }
 
+    public Location getLocation(final String name) {
+	return null;
     }
 
     private void printList(List<? extends AbstractObject> list) {
@@ -93,19 +90,20 @@ public class Location extends AbstractObject
 	List<Item> itemList = new ArrayList<>();
 
 	List<Location> exitList = new ArrayList<>();
+
 	npcList.add(new Npc("TestCreature", "TestDescription", 10, 10,
 				 new CreatureStats(10, 10, 10, 10, 10),
 				 NpcDialogue.emptyDialogue, null));
+
 	itemList.add(new Item("TestItem", "TestDescription", 10));
 	itemList.add(new Item("TestItem2", "TestDescription2", 20));
-	exitList.add(new Location("TestLocation", "TestDescription",
-				  new ArrayList<>(), new ArrayList<>(), new ArrayList<>()));
+	exitList.add(new Location("TestLocation", "TestDescription", new ArrayList<>(), new ArrayList<>(), new ArrayList<>()));
 
 
-
-	Location location = new Location("TestLocation", "TestDescription",
-					 npcList, itemList, exitList);
+	Location location = new Location("TestLocation", "TestDescription", npcList, itemList, exitList);
 	location.printObject();
+
+	location.inspect("TestItem");
 
     }
 }
