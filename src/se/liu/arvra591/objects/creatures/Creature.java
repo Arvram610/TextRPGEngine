@@ -27,6 +27,10 @@ public class Creature extends AbstractObject
         return health;
     }
 
+    public int getLevel(){
+        return level;
+    }
+
     public CreatureStats getStats() {
         return stats;
     }

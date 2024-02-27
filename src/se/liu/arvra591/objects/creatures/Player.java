@@ -11,11 +11,13 @@ public class Player extends Creature
     protected Location currentLocation;
 
     public Player(final String name, final String description, int health, int level,
-		  CreatureStats stats, int carryWeight, int currentWeight, Location currentLocation) {
+		  CreatureStats stats, int carryWeight, int currentWeight, Location currentLocation,
+		  int experience) {
 	super(name, description, health, level,  stats);
 	this.carryWeight = carryWeight;
 	this.currentWeight = currentWeight;
 	this.currentLocation = currentLocation;
+	this.experience = 0;
     }
 
     @Override public void printObject() {
@@ -25,12 +27,16 @@ public class Player extends Creature
 	System.out.println("Current Location: " + getCurrentLocation().getName());
     }
 
-    private void interact(String name){
+    public void interact(String name){
 	currentLocation.interact(name);
     }
 
     public int getCarryWeight() {
 	return carryWeight;
+    }
+
+    public int getExperience() {
+	return experience;
     }
 
     public int getCurrentWeight() {
