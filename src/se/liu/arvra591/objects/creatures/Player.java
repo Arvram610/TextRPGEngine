@@ -7,10 +7,11 @@ public class Player extends Creature
 {
     protected Location currentLocation;
 
+
     public Player(final String name, final String description, int health, int level,
 		  PlayerStats stats, int carryWeight, int currentWeight, Location currentLocation,
 		  int experience, PlayerInventory inventory) {
-	super(name, description, health, level,  stats);
+	super(name, description, health, level, stats, inventory);
 	this.currentLocation = currentLocation;
     }
 
@@ -24,8 +25,6 @@ public class Player extends Creature
     public void interact(String name){
 	currentLocation.interact(name);
     }
-
-
 
     public Location getCurrentLocation() {
 	return currentLocation;
