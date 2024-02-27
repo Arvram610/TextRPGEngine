@@ -1,4 +1,4 @@
-package se.liu.arvra591.models.creatures;
+package se.liu.arvra591.objects.creatures;
 
 public class Player extends Creature
 {
@@ -10,6 +10,12 @@ public class Player extends Creature
 	super(name, description, health, stats);
 	this.carryWeight = carryWeight;
 	this.currentWeight = currentWeight;
+    }
+
+    @Override public void printObject() {
+	super.printObject();
+	System.out.println("Carry Weight: " + getCarryWeight());
+	System.out.println("Current Weight: " + getCurrentWeight());
     }
 
     public int getCarryWeight() {

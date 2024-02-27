@@ -1,6 +1,6 @@
-package se.liu.arvra591.models.creatures;
+package se.liu.arvra591.objects.creatures;
 
-import se.liu.arvra591.models.AbstractObject;
+import se.liu.arvra591.objects.AbstractObject;
 
 public class Creature extends AbstractObject
 {
@@ -11,6 +11,13 @@ public class Creature extends AbstractObject
 	super(name, description);
 	this.health = health;
         this.stats = stats;
+    }
+
+    @Override
+    public void printObject(){
+        super.printObject();
+        System.out.println("Health: " + getHealth());
+        stats.printStats();
     }
 
     public int getHealth(){

@@ -1,6 +1,6 @@
-package se.liu.arvra591.models.items;
+package se.liu.arvra591.objects.items;
 
-import se.liu.arvra591.models.AbstractObject;
+import se.liu.arvra591.objects.AbstractObject;
 /**
  * Superclass for items
  */

@@ -1,9 +1,9 @@
-package se.liu.arvra591.models.creatures;
+package se.liu.arvra591.objects.creatures;
 
 
-import se.liu.arvra591.models.Model;
+import se.liu.arvra591.objects.Object;
 
-public class CreatureStats implements Model
+public class CreatureStats implements Object
 {
     private int maxHealth;
     private int attack;
@@ -40,5 +40,13 @@ public class CreatureStats implements Model
 
     public int getEnergyRegenRate() {
         return energyRegenRate;
+    }
+
+    public void printStats(){
+        System.out.println("Attack: " + getAttack());
+        System.out.println("Defense: " + getDefense());
+        System.out.println("Max Health: " + getMaxHealth());
+        System.out.println("Max Energy: " + getMaxEnergy());
+        System.out.println("Energy Regen: " + getEnergyRegenRate());
     }
 }
