@@ -1,5 +1,7 @@
 package se.liu.arvra591.objects.itemContainers;
 
+import se.liu.arvra591.ListHelper;
+import se.liu.arvra591.objects.AbstractObject;
 import se.liu.arvra591.objects.creatures.Player;
 import se.liu.arvra591.objects.creatures.PlayerStats;
 import se.liu.arvra591.objects.items.Item;
@@ -39,14 +41,25 @@ public class PlayerInventory extends AbstractInventory
     }
 
 
-    public void removeItem(Item item){
-	//TODO: Loop through inventory and check if item exists
-	itemList.remove(item);
+    public boolean removeItem(Item item){
+	AbstractObject object = ListHelper.findObjectInList(itemList, item.getName());
+	if (object != null) {
+	    itemList.remove(item);
+	    System.out.println(item.getName() + " has been removed from inventory.");
+	    return true;
+	}
+	System.out.println("Item doesn not exist in inventory.");
+	return false;
     }
 
     public Item getItem(Item item){
-	//TODO: Loop through inventory and check if item exists
-	return item;
+	AbstractObject object = ListHelper.findObjectInList(itemList, item.getName());
+	if (object != null) {
+	    return item;
+	    //TODO: give feedback?
+	}
+	System.out.println(item.getName() + " does not exist in inventory.");
+	return null; //TODO: Return null or throw exception?
     }
 
     public static void main(String[] args) {
@@ -61,6 +74,8 @@ public class PlayerInventory extends AbstractInventory
 	inventory.removeItem(sword);
 	inventory.addItem(shield);
 	inventory.printInventory();
+	inventory.getItem(sword);
+	inventory.getItem(shield);
 
     }
 }
