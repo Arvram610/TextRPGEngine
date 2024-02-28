@@ -58,12 +58,6 @@ public class Location extends AbstractObject
 	return null;
     }
 
-    private void printList(List<? extends AbstractObject> list) {
-	for (AbstractObject item : list) {
-	    System.out.println("\t" + item.getName());
-	}
-    }
-
     @Override public void printObject() {
 
 	System.out.print("Location: ");
@@ -72,15 +66,15 @@ public class Location extends AbstractObject
 	printDescription();
 
 	System.out.println("Items in location: ");
-	printList(itemList);
+	ListHelper.printList(itemList, true);
 	System.out.println();
 
 	System.out.println("Creatures in location: ");
-	printList(npcList);
+	ListHelper.printList(npcList, true);
 	System.out.println();
 
 	System.out.println("Exits in location: ");
-	printList(exitList);
+	ListHelper.printList(exitList, true);
 	System.out.println();
     }
 
