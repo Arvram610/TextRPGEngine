@@ -5,7 +5,7 @@ import java.util.List;
 
 public class NpcDialogue
 {
-    List<String> dialogue;
+    private List<String> dialogue;
 
     public static NpcDialogue emptyDialogue = new NpcDialogue(new ArrayList<>());
 
