@@ -6,7 +6,7 @@ import se.liu.arvra591.objects.AbstractObject;
  * A class representing all creatures, all creatures have some basic stats as well as health and level
  * All creatures such as {@link Player} and {@link Npc} inherit from this class
  */
-public class Creature extends AbstractObject
+public abstract class Creature extends AbstractObject
 {
     protected int health;
 
