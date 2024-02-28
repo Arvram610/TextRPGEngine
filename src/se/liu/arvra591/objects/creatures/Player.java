@@ -10,10 +10,10 @@ public class Player extends Creature
     protected Location currentLocation;
 
 
-    public Player(final String name, final String description, int health, int level,
-		  PlayerStats stats, int carryWeight, int currentWeight, Location currentLocation,
+    public Player(final String name, final String description, int health,
+		  PlayerStats stats, Location currentLocation,
 		  int experience, PlayerInventory inventory) {
-	super(name, description, health, level, stats, inventory);
+	super(name, description, health, stats, inventory);
 	this.currentLocation = currentLocation;
     }
 
@@ -41,9 +41,9 @@ public class Player extends Creature
     public static void main(String[] args) {
 	Location l1 = new Location("Room 1", "Första rummet du vaknar i",
 				   new ArrayList<>(), new ArrayList<>(), new ArrayList<>());
-	CreatureStats c1 = new CreatureStats(10, 10, 10, 10, 10);
-	Player p1 = new Player("Kalle", "Redigt kool", 10, 1,
-			       c1, 10, 0, l1, 0);
+	PlayerStats c1 = new PlayerStats(10, 10, 10, 10, 10, 10, 10, 10);
+	Player p1 = new Player("Kalle", "Redigt kool", 10,
+			       c1, l1, 0, null);
 
 	Location l2 = new Location("Room 2", "Andra rummet",
 				   new ArrayList<>(), new ArrayList<>(), new ArrayList<>());
