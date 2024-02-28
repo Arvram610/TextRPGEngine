@@ -27,6 +27,14 @@ public class Location extends AbstractObject
 	this.exitList = exitList;
     }
 
+    public void addExit(Location location){
+	exitList.add(location);
+    }
+
+    public void removeExit(Location location){
+	exitList.remove(location);
+    }
+
     public List<Npc> getNpcList() {
 	return npcList;
     }
@@ -54,8 +62,8 @@ public class Location extends AbstractObject
 	System.out.println("Couldn't find " + name + " in location.");
     }
 
-    public Location getLocation(final String name) {
-	return null;
+    public Location getExit(final String name) {
+	return (Location) ListHelper.findObjectInList(exitList, name);
     }
 
     @Override public void printObject() {

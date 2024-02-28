@@ -2,6 +2,8 @@ package se.liu.arvra591.objects.creatures;
 
 import se.liu.arvra591.objects.locations.Location;
 
+import java.util.ArrayList;
+
 public class Player extends Creature
 {
 
@@ -32,7 +34,7 @@ public class Player extends Creature
     }
 
     public void move(String name){
-	Location location = currentLocation.getLocation(name);
+	Location location = currentLocation.getExit(name);
 	if (location != null)
 	    currentLocation = location;
     }
@@ -51,5 +53,21 @@ public class Player extends Creature
 
     public Location getCurrentLocation() {
 	return currentLocation;
+    }
+
+    public static void main(String[] args) {
+	Location l1 = new Location("Room 1", "Första rummet du vaknar i",
+				   new ArrayList<>(), new ArrayList<>(), new ArrayList<>());
+	CreatureStats c1 = new CreatureStats(10, 10, 10, 10, 10);
+	Player p1 = new Player("Kalle", "Redigt kool", 10, 1,
+			       c1, 10, 0, l1, 0);
+
+	Location l2 = new Location("Room 2", "Andra rummet",
+				   new ArrayList<>(), new ArrayList<>(), new ArrayList<>());
+	l1.addExit(l2);
+
+	p1.getCurrentLocation().printObject();
+	p1.move("Room 2");
+	p1.getCurrentLocation().printObject();
     }
 }
