@@ -60,7 +60,7 @@ public class Location extends AbstractObject
 
     private void printList(List<? extends AbstractObject> list) {
 	for (AbstractObject item : list) {
-	    System.out.println("\t" + item.getName());
+	    System.out.println("\t" + item.getObjectName());
 	}
     }
 

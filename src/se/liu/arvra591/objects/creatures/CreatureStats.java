@@ -1,9 +1,7 @@
 package se.liu.arvra591.objects.creatures;
 
 
-import se.liu.arvra591.objects.Object;
-
-public class CreatureStats implements Object
+public class CreatureStats
 {
     private int maxHealth;
     private int attack;

@@ -12,7 +12,7 @@ public class Npc extends Creature
     }
 
     public void talk(){
-	dialogue.printDialogue(getName());
+	dialogue.printDialogue(getObjectName());
     }
 
     public static void main(String[] args) {

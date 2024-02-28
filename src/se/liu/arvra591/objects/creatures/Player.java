@@ -2,6 +2,10 @@ package se.liu.arvra591.objects.creatures;
 
 import se.liu.arvra591.objects.locations.Location;
 
+/**
+ * A class representing a player
+ * A player has a location where pointing to where the player currently is
+ */
 public class Player extends Creature
 {
 
@@ -24,7 +28,7 @@ public class Player extends Creature
 	super.printObject();
 	System.out.println("Carry Weight: " + getCarryWeight());
 	System.out.println("Current Weight: " + getCurrentWeight());
-	System.out.println("Current Location: " + getCurrentLocation().getName());
+	System.out.println("Current Location: " + getCurrentLocation().getObjectName());
     }
 
     public void inspect(String name){
