@@ -25,7 +25,6 @@ public class PlayerInventory extends CreatureInventory
 	if (maxWeight >= weight + getCurrentWeight()){
 	    return super.addItem(item);
 	}
-	System.out.println("You can't carry that much weight");
 	return false;
     }
 
@@ -36,6 +35,7 @@ public class PlayerInventory extends CreatureInventory
 	}
 	return currentWeight;
     }
+
 
     public static void main(String[] args) {
 	List<Item> itemList = new ArrayList<>();

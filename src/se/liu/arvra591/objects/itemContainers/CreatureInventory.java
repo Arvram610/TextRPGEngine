@@ -24,13 +24,13 @@ public abstract class CreatureInventory
 	}
     }
 
-    public boolean removeItem(String name){
+    public Item removeItem(String name){
 	AbstractObject object = ListHelper.findObjectInList(itemList, name);
 	if (object != null) {
 	    itemList.remove((Item) object);
-	    return true;
+	    return (Item) object;
 	}
-	return false;
+	return null;
     }
 
     public Item getItem(String name){
@@ -41,12 +41,15 @@ public abstract class CreatureInventory
 	return null;
     }
 
+    public void forceAddItem(Item item){
+	itemList.add(item);
+    }
+
     public boolean addItem(final Item item) {
 	if (itemList.contains(item)) {
-	    System.out.println("Item already in inventory");
 	    return false;
 	}
-	itemList.add(item);
+	forceAddItem(item);
 	return true;
     }
 }

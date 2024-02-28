@@ -1,12 +1,14 @@
 package se.liu.arvra591.objects.creatures;
 
+import se.liu.arvra591.objects.itemContainers.CreatureInventory;
+
 import java.util.Arrays;
 
 public class Npc extends Creature
 {
     protected NpcDialogue dialogue;
     public Npc(final String name, final String description, final int level,
-	       final int health, final CreatureStats stats, final NpcDialogue dialogue, NpcInventory inventory) {
+	       final int health, final CreatureStats stats, final NpcDialogue dialogue, CreatureInventory inventory) {
 	super(name, description, health, level,  stats, inventory);
 	this.dialogue = dialogue;
     }
