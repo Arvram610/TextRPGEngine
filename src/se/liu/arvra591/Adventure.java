@@ -17,6 +17,10 @@ public class Adventure
 	player.move(location);
     }
 
+    public void pickUp(String item){
+	player.pickUpItem(item);
+    }
+
     public void parseInput(String input){
 	parser.parseInput(input);
     }
@@ -25,6 +29,7 @@ public class Adventure
     {
 	private Parser(){
 	    parseInputs.put("move", Adventure.this::move);
+	    parseInputs.put("pickUp", Adventure.this::pickUp);
 	}
     }
 

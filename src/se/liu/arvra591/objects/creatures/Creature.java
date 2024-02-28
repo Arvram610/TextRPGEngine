@@ -30,7 +30,7 @@ public class Creature extends AbstractObject
     }
 
     public void pickUpItem(Item item){
-        inventory.addItem(item);
+        inventory.addObject(item);
     }
 
     public CreatureStats getStats() {

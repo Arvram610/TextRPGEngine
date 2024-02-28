@@ -19,18 +19,18 @@ public class PlayerInventory extends CreatureInventory
     }
 
     @Override
-    public boolean addItem(Item item){
+    public boolean addObject(Item item){
 	int maxWeight = playerStats.getCarryWeight();
 	int weight = item.getWeight();
 	if (maxWeight >= weight + getCurrentWeight()){
-	    return super.addItem(item);
+	    return super.addObject(item);
 	}
 	return false;
     }
 
     public int getCurrentWeight() {
 	currentWeight = 0;
-	for (Item item : itemList) {
+	for (Item item : objectList) {
 	    currentWeight += item.getWeight();
 	}
 	return currentWeight;
@@ -43,14 +43,14 @@ public class PlayerInventory extends CreatureInventory
 	PlayerInventory inventory = new PlayerInventory(itemList, basicStats);
 	Item sword = new Item("Sword", "A sword", 10);
 	Item shield = new Item("Shield", "A shield", 10);
-	inventory.addItem(sword);
-	inventory.addItem(shield);
-	inventory.addItem(sword);
-	inventory.removeItem("Sword");
-	inventory.addItem(shield);
-	inventory.printInventory();
-	inventory.getItem("Sword");
-	inventory.getItem("Shield");
+	inventory.addObject(sword);
+	inventory.addObject(shield);
+	inventory.addObject(sword);
+	inventory.removeObject("Sword");
+	inventory.addObject(shield);
+	inventory.printContainer();
+	inventory.getObject("Sword");
+	inventory.getObject("Shield");
 
     }
 }

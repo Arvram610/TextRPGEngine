@@ -1,6 +1,7 @@
 package se.liu.arvra591.objects.creatures;
 
 import se.liu.arvra591.objects.itemContainers.PlayerInventory;
+import se.liu.arvra591.objects.items.Item;
 import se.liu.arvra591.objects.locations.Location;
 
 import java.util.ArrayList;
@@ -28,10 +29,22 @@ public class Player extends Creature
 	currentLocation.inspect(name);
     }
 
-    public void move(String name){
+    public boolean move(String name){
 	Location location = currentLocation.getExit(name);
-	if (location != null)
+	if (location != null) {
 	    currentLocation = location;
+	    return true;
+	}
+	return false;
+    }
+
+    public boolean pickUpItem(String name){
+	Item item = currentLocation.removeItem(name);
+	if (item != null) {
+	    inventory.addObject(item);
+	    return true;
+	}
+	return false;
     }
 
     public Location getCurrentLocation() {

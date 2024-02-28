@@ -5,6 +5,7 @@ import se.liu.arvra591.objects.AbstractObject;
 import se.liu.arvra591.objects.creatures.CreatureStats;
 import se.liu.arvra591.objects.creatures.Npc;
 import se.liu.arvra591.objects.creatures.NpcDialogue;
+import se.liu.arvra591.objects.itemContainers.ObjectContainer;
 import se.liu.arvra591.objects.items.Item;
 
 import java.util.ArrayList;
@@ -13,46 +14,37 @@ import java.util.List;
 
 public class Location extends AbstractObject
 {
-    private List<Npc> npcList; //might be divided into enemies and players
-    private List<Item> itemList;
-    private List<Location> exitList;
+    private ObjectContainer<Npc> npcContainer; //might be divided into enemies and players
+    private ObjectContainer<Item> itemContainer;
+    private ObjectContainer<Location> exitContainer;
 
     //private List<interactables> interactablesList; //might be added later
 
 
     public Location(String name, String description, List<Npc> npcList, List<Item> itemList, List<Location> exitList) {
 	super(name, description);
-	this.npcList = npcList;
-	this.itemList = itemList;
-	this.exitList = exitList;
+	this.npcContainer = new ObjectContainer<>(npcList);
+	this.itemContainer = new ObjectContainer<>(itemList);
+	this.exitContainer = new ObjectContainer<>(exitList);
     }
 
     public void addExit(Location location){
-	exitList.add(location);
+	exitContainer.forceAddObject(location);
     }
 
     public void removeExit(Location location){
-	exitList.remove(location);
+	exitContainer.removeObject(location);
     }
 
-    public List<Npc> getNpcList() {
-	return npcList;
+    public Item removeItem(String name){
+	return itemContainer.removeObject(name);
     }
 
-    public List<Item> getItemList() {
-	return itemList;
-    }
-
-    public List<Location> getExitList() {
-	return exitList;
-    }
 
     public void inspect(String name){
-	List<List<? extends AbstractObject>> lists = Arrays.asList(
-		npcList,
-		itemList,
-		exitList
-	);
+	List<List<? extends AbstractObject>> lists = Arrays.asList(npcContainer.getObjectList(),
+								   itemContainer.getObjectList(),
+								   exitContainer.getObjectList());
 	AbstractObject object = ListHelper.findObjectInLists(lists, name);
 
 	if (object != null){
@@ -63,7 +55,7 @@ public class Location extends AbstractObject
     }
 
     public Location getExit(final String name) {
-	return (Location) ListHelper.findObjectInList(exitList, name);
+	return (Location) ListHelper.findObjectInList(exitContainer.getObjectList(), name);
     }
 
     @Override public void printObject() {
@@ -74,15 +66,15 @@ public class Location extends AbstractObject
 	printDescription();
 
 	System.out.println("Items in location: ");
-	ListHelper.printList(itemList, true);
+	ListHelper.printList(itemContainer.getObjectList(), true);
 	System.out.println();
 
 	System.out.println("Creatures in location: ");
-	ListHelper.printList(npcList, true);
+	ListHelper.printList(npcContainer.getObjectList(), true);
 	System.out.println();
 
 	System.out.println("Exits in location: ");
-	ListHelper.printList(exitList, true);
+	ListHelper.printList(exitContainer.getObjectList(), true);
 	System.out.println();
     }
 
