@@ -25,7 +25,7 @@ public class ListHelper
     public static void printList(List<? extends AbstractObject> list, boolean tab) {
 	for (AbstractObject item : list) {
 	    if (tab)
-		System.out.print("\t");
+		System.out.print("  ");
 	    System.out.println(item.getName());
 	}
     }
