@@ -92,7 +92,11 @@ public class Location extends AbstractObject
 	List<Item> itemList = new ArrayList<>();
 
 	List<Location> exitList = new ArrayList<>();
-	npcList.add(new Npc("TestCreature", "TestDescription", 10, 10, new CreatureStats(10, 10, 10, 10, 10), NpcDialogue.emptyDialogue));
+
+	npcList.add(new Npc("TestCreature", "TestDescription", 10, 10,
+				 new CreatureStats(10, 10, 10, 10, 10),
+				 NpcDialogue.emptyDialogue, null));
+
 	itemList.add(new Item("TestItem", "TestDescription", 10));
 	itemList.add(new Item("TestItem2", "TestDescription2", 20));
 	exitList.add(new Location("TestLocation", "TestDescription", new ArrayList<>(), new ArrayList<>(), new ArrayList<>()));
