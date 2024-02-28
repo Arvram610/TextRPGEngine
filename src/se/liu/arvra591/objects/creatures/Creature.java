@@ -1,7 +1,7 @@
 package se.liu.arvra591.objects.creatures;
 
 import se.liu.arvra591.objects.AbstractObject;
-import se.liu.arvra591.objects.itemContainers.AbstractInventory;
+import se.liu.arvra591.objects.itemContainers.CreatureInventory;
 import se.liu.arvra591.objects.items.Item;
 
 public class Creature extends AbstractObject
@@ -11,9 +11,9 @@ public class Creature extends AbstractObject
     protected int level;
 
     protected CreatureStats stats;
-    protected AbstractInventory inventory;
+    protected CreatureInventory inventory;
 
-    public Creature(String name, String description, int health, int level, CreatureStats stats, AbstractInventory inventory){
+    public Creature(String name, String description, int health, int level, CreatureStats stats, CreatureInventory inventory){
 	super(name, description);
 	this.health = health;
         this.stats = stats;

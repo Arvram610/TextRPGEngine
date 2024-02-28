@@ -1,15 +1,12 @@
 package se.liu.arvra591.objects.itemContainers;
 
-import se.liu.arvra591.ListHelper;
-import se.liu.arvra591.objects.AbstractObject;
-import se.liu.arvra591.objects.creatures.Player;
 import se.liu.arvra591.objects.creatures.PlayerStats;
 import se.liu.arvra591.objects.items.Item;
 
 import java.util.ArrayList;
 import java.util.List;
 
-public class PlayerInventory extends AbstractInventory
+public class PlayerInventory extends CreatureInventory
 {
     protected PlayerStats playerStats;
 
@@ -40,28 +37,6 @@ public class PlayerInventory extends AbstractInventory
 	return currentWeight;
     }
 
-
-    public boolean removeItem(Item item){
-	AbstractObject object = ListHelper.findObjectInList(itemList, item.getName());
-	if (object != null) {
-	    itemList.remove(item);
-	    System.out.println(item.getName() + " has been removed from inventory.");
-	    return true;
-	}
-	System.out.println("Item doesn not exist in inventory.");
-	return false;
-    }
-
-    public Item getItem(Item item){
-	AbstractObject object = ListHelper.findObjectInList(itemList, item.getName());
-	if (object != null) {
-	    return item;
-	    //TODO: give feedback?
-	}
-	System.out.println(item.getName() + " does not exist in inventory.");
-	return null; //TODO: Return null or throw exception?
-    }
-
     public static void main(String[] args) {
 	List<Item> itemList = new ArrayList<>();
 	PlayerStats basicStats = new PlayerStats(10, 10, 10, 10, 30, 10, 10, 10);
@@ -71,11 +46,11 @@ public class PlayerInventory extends AbstractInventory
 	inventory.addItem(sword);
 	inventory.addItem(shield);
 	inventory.addItem(sword);
-	inventory.removeItem(sword);
+	inventory.removeItem("Sword");
 	inventory.addItem(shield);
 	inventory.printInventory();
-	inventory.getItem(sword);
-	inventory.getItem(shield);
+	inventory.getItem("Sword");
+	inventory.getItem("Shield");
 
     }
 }

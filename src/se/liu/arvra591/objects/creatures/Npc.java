@@ -1,7 +1,5 @@
 package se.liu.arvra591.objects.creatures;
 
-import se.liu.arvra591.objects.itemContainers.NpcInventory;
-
 import java.util.Arrays;
 
 public class Npc extends Creature
