@@ -8,12 +8,10 @@ public class Creature extends AbstractObject
 {
     protected int health;
 
-    protected int level;
-
     protected CreatureStats stats;
     protected CreatureInventory inventory;
 
-    public Creature(String name, String description, int health, int level, CreatureStats stats, CreatureInventory inventory){
+    public Creature(String name, String description, int health, CreatureStats stats, CreatureInventory inventory){
 	super(name, description);
 	this.health = health;
         this.stats = stats;
@@ -29,10 +27,6 @@ public class Creature extends AbstractObject
 
     public int getHealth(){
         return health;
-    }
-
-    public int getLevel(){
-        return level;
     }
 
     public void pickUpItem(Item item){

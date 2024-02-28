@@ -9,7 +9,7 @@ public class Npc extends Creature
     protected NpcDialogue dialogue;
     public Npc(final String name, final String description, final int level,
 	       final int health, final CreatureStats stats, final NpcDialogue dialogue, CreatureInventory inventory) {
-	super(name, description, health, level,  stats, inventory);
+	super(name, description, health, stats, inventory);
 	this.dialogue = dialogue;
     }
 
