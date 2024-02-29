@@ -1,10 +1,9 @@
 package se.liu.arvra591.generators;
 
 import com.google.gson.JsonArray;
-import com.google.gson.JsonElement;
 import com.google.gson.JsonObject;
 import se.liu.arvra591.factories.Factory;
-import se.liu.arvra591.jsonParser.JsonParser;
+import se.liu.arvra591.objects.AbstractObject;
 import se.liu.arvra591.objects.creatures.Npc;
 import se.liu.arvra591.objects.items.Item;
 import se.liu.arvra591.objects.locations.Location;
@@ -15,58 +14,62 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-public class LocationGenerator
-{
-    protected JsonParser jsonParser = new JsonParser();
-
-    protected Map<String, Location> locations;
+public class LocationGenerator extends ObjectGenerator<Location>{
 
     protected Map<String, Factory<Item>> items;
     protected Map<String, Factory<Npc>> npcs;
 
     public LocationGenerator(Map<String, Factory<Item>> items, Map<String, Factory<Npc>> npcs) {
-	jsonParser = new JsonParser();
-	locations = new HashMap<>();
+	super();
+	this.items = items;
+	this.npcs = npcs;
     }
 
-    public void genLocations(String fileName) throws IOException {
-	JsonArray jsonArray = jsonParser.parseFile(ClassLoader.getSystemResource("locatons/" + fileName).getPath());
-	for (JsonElement jsonElement : jsonArray) {
-	    genLocation(jsonElement.getAsJsonObject());
-	}
-    }
-
-    protected void genLocation(JsonObject object){
+    @Override protected void genObject(JsonObject object){
 	String name = object.get("name").getAsString();
 	String description = object.get("description").getAsString();
-	List<Npc> npcList = genNpcList(object.get("npcs").getAsJsonArray());
-	List<Item> itemList = genItemList(object.get("items").getAsJsonArray());
-	List<String> stringLocationList = genStringLocationsList(object.get("exits").getAsJsonArray());
+	List<Npc> npcList = genObjectListFromFactory(object.get("npcs").getAsJsonArray(), npcs);
+	List<Item> itemList = genObjectListFromFactory(object.get("items").getAsJsonArray(), items);
+	List<String> stringLocationList = genStringListFromJson(object.get("exits").getAsJsonArray());
 
-	locations.put(name, new Location(name, description, npcList, itemList, stringLocationList));
+	objects.put(name, new Location(name, description, npcList, itemList, stringLocationList));
     }
 
-    protected List<Npc> genNpcList(JsonArray npcArray){
-	List<Npc> list = new ArrayList<>();
-	npcArray.forEach((npc) -> {
-	    list.add(npcs.get(npc.getAsString()).gen());
+
+    public void connectRooms(){
+	objects.forEach((name, location) -> {
+	    List<String> exitStringList = location.getExitStringList();
+	    List<Location> exits = genObjectListFromName(exitStringList, objects);
+	    exits.forEach(location::addExit);
 	});
-	return list;
     }
 
-    protected List<Item> genItemList(JsonArray itemArray){
-	List<Item> list = new ArrayList<>();
-	itemArray.forEach((item) -> {
-	    list.add(items.get(item.getAsString()).gen());
-	});
-	return list;
+    @Override
+    public void genObjects(String fileName) throws IOException {
+	JsonArray jsonArray = jsonParser.parseFile(ClassLoader.getSystemResource("locations/" + fileName).getPath());
+	genObjects(jsonArray);
     }
 
-    protected List<String> genStringLocationsList(JsonArray itemArray){
-	List<String> list = new ArrayList<>();
-	itemArray.forEach((location) -> {
-	    list.add(location.getAsString());
-	});
-	return list;
+    public static void main(String[] args) {
+	Item item = new Item("svärd", "Ett svärd", 10);
+	Npc npc = new Npc("gubbe1", "en gube", 1, 1, null, null, null);
+	Factory<Npc> npcFactory = new Factory<>(npc);
+	Factory<Item> itemFactory = new Factory<>(item);
+	Map<String, Factory<Item>> items = new HashMap<>();
+	Map<String, Factory<Npc>> npcs = new HashMap<>();
+	items.put("svärd", itemFactory);
+	npcs.put("gubbe1", npcFactory);
+	LocationGenerator generator = new LocationGenerator(items, npcs);
+	try {
+	    generator.genObjects("testRooms.json");
+	} catch (IOException e) {
+	    throw new RuntimeException(e);
+	}
+
+	generator.connectRooms();
+
+	Map<String, Location> locations = generator.getObjects();
+	locations.get("Rum1").printObject();
+	locations.get("Rum1").getExit("Rum2").printObject();
     }
 }

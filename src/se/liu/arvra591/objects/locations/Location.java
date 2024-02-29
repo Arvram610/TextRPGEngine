@@ -29,6 +29,10 @@ public class Location extends AbstractObject
 	this.exitList = new ArrayList<>();
     }
 
+    public List<String> getExitStringList(){
+	return exitStringList;
+    }
+
     public void addExit(Location location){
 	exitList.add(location);
     }

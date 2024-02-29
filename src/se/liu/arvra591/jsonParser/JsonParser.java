@@ -17,15 +17,14 @@ public class JsonParser
     }
 
     public JsonArray parseFile(String path) throws IOException {
-	String json;
+	StringBuilder json = new StringBuilder();
 
 	try (BufferedReader br = new BufferedReader(
 		new FileReader(path))){
-	    json = br.readLine();
+	    br.lines().forEach(json::append);
 	} catch (IOException e) {
 	    throw e;
 	}
-
-	return gson.fromJson(json, JsonArray.class);
+	return gson.fromJson(json.toString(), JsonArray.class);
     }
 }

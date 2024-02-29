@@ -1,0 +1,24 @@
+[
+  {
+    "name": "Rum1",
+    "description": "Rum1 desc",
+    "npcs": [
+      "gubbe1"
+    ],
+    "items": [
+      "svärd"
+    ],
+    "exits": [
+      "Rum2"
+    ]
+  },
+  {
+    "name": "Rum2",
+    "description": "Rum2 desc",
+    "npcs": [],
+    "items": [],
+    "exits": [
+      "Rum2"
+    ]
+  }
+]
