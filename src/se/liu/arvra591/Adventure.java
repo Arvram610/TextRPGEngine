@@ -25,14 +25,38 @@ public class Adventure
      * @param location The location to move to
      */
     public void move(String location){
-	player.move(location);
+	boolean success = player.move(location);
+	if (!success) {
+	    System.out.println("You cannot move to " + location);
+	}
+	else {
+	    player.getCurrentLocation().printObject();
+	    }
     }
 
     /**
      * @param item The item to pick up
      */
     public void pickUp(String item){
-	player.pickUpItem(item);
+	boolean success = player.pickUpItem(item);
+	if (!success) {
+	    System.out.println("You cannot pick up " + item);
+	}
+	else {
+	    System.out.println("You picked up " + item);
+	}
+    }
+
+    public void inspect(String name){
+	boolean success = player.inspect(name);
+	if (!success) {
+	    System.out.println("You cannot inspect " + name);
+	}
+    }
+
+    public void printLocation(String input){ //input kommer vara tom? Man kommer bara skriva "location"
+	player.getCurrentLocation().printObject(); //vill vi printa hela objektet eller bara namnet?
+	System.out.println("Current location: " + player.getCurrentLocation().getName());
     }
 
     /**
@@ -47,6 +71,8 @@ public class Adventure
 	private Parser(){
 	    parseInputs.put("move", Adventure.this::move);
 	    parseInputs.put("pickUp", Adventure.this::pickUp);
+	    parseInputs.put("inspect", Adventure.this::inspect);
+	    parseInputs.put("location", Adventure.this::printLocation);
 	    //TODO: Add more commands
 	}
     }

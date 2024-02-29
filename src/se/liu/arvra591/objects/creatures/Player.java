@@ -48,8 +48,8 @@ public class Player extends Creature
     /**
      * @param name is the name of the item to inspect
      */
-    public void inspect(String name){
-	currentLocation.inspect(name);
+    public boolean inspect(String name){
+	return currentLocation.inspect(name);
     }
 
     /**

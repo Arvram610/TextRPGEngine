@@ -66,7 +66,7 @@ public class Location extends AbstractObject
      * @param name Name of the item to inspect
      * Prints information about the item
      */
-    public void inspect(String name){
+    public boolean inspect(String name){
 	List<List<? extends AbstractObject>> lists = Arrays.asList(npcContainer.getObjects(),
 								   itemContainer.getObjects(),
 								   exitContainer.getObjects());
@@ -74,9 +74,9 @@ public class Location extends AbstractObject
 
 	if (object != null){
 	    object.printObject();
-	    return;
+	    return true;
 	}
-	System.out.println("Couldn't find " + name + " in location.");
+	return false;
     }
 
     /**
