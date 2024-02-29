@@ -2,6 +2,12 @@ package se.liu.arvra591.objects.creatures;
 
 import java.util.Arrays;
 
+/**
+ * Class for non-player characters such as enemies, pets or vendors. All npcs have a dialogue but this can be empty for creatures
+ *  that cant talk exs pets.
+ *  Npcs are a subclass of {@link Creature}
+ *
+ */
 public class Npc extends Creature
 {
     protected NpcDialogue dialogue;

@@ -1,16 +1,13 @@
 package se.liu.arvra591.objects.items;
 /**
- * class for consumable items
+ * class for consumable items which inherit from the item class. Consumable items are items that when
+ * used is consumed and removed from the inventory.
  */
 public class Consumables extends Item
 {
-    private int stacksize; //how many of the item can be stacked in one slot
-    private int amount; //how many of the item is in the slot ex 5 healthpotions
-
-    public Consumables(final String name, final String description, final int weight, final int stacksize, final int amount) {
+    public Consumables(final String name, final String description, final int weight) {
 	super(name, description, weight);
-	this.stacksize = stacksize;
-	this.amount = amount;
+
     }
 
     private void use(){

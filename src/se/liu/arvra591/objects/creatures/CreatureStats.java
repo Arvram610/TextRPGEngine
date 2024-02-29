@@ -1,5 +1,9 @@
 package se.liu.arvra591.objects.creatures;
-
+/**
+ * class for creature stats such as health, attack, defense, energy, and energy regen
+ * Used by {@link Npc} and {@link Player} to store stats
+ * This class is used to make it easier to create players and npcs with different stats
+ */
 
 public class CreatureStats
 {

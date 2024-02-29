@@ -3,6 +3,7 @@ package se.liu.arvra591.objects;
 
 /**
  * All objects in the game inherit from this class, objects includes locations as they are physical
+ * All objects have a name and a description
  */
 public abstract class AbstractObject
 {

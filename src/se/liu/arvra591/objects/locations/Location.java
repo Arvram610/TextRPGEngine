@@ -10,7 +10,10 @@ import se.liu.arvra591.objects.items.Item;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
-
+/**
+ * Class for locations in the game. Locations are places where the player can be and can contain npcs, items and exits
+ * Location can print information about itself and inspect items and npcs in the location
+ */
 public class Location extends AbstractObject
 {
     private List<Npc> npcList; //might be divided into enemies and players
