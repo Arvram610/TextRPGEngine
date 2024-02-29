@@ -3,6 +3,7 @@ package se.liu.arvra591.generators;
 import com.google.gson.JsonArray;
 import com.google.gson.JsonElement;
 import com.google.gson.JsonObject;
+import se.liu.arvra591.factories.Factory;
 import se.liu.arvra591.jsonParser.JsonParser;
 import se.liu.arvra591.objects.creatures.Npc;
 import se.liu.arvra591.objects.items.Item;
@@ -20,10 +21,10 @@ public class LocationGenerator
 
     protected Map<String, Location> locations;
 
-    protected Map<String, ItemFactory> items;
-    protected Map<String, NpcFactory> npcs;
+    protected Map<String, Factory<Item>> items;
+    protected Map<String, Factory<Npc>> npcs;
 
-    public LocationGenerator(Map<String, ItemFactory> items, Map<String, NpcFactory> npcs) {
+    public LocationGenerator(Map<String, Factory<Item>> items, Map<String, Factory<Npc>> npcs) {
 	jsonParser = new JsonParser();
 	locations = new HashMap<>();
     }
