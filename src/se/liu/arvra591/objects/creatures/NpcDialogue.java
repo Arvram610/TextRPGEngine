@@ -1,6 +1,5 @@
 package se.liu.arvra591.objects.creatures;
 
-import java.util.ArrayList;
 import java.util.List;
 
 /**

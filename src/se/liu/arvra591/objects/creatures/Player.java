@@ -74,7 +74,7 @@ public class Player extends Creature
     public boolean pickUpItem(String name){
 	Item item = currentLocation.removeItem(name);
 	if (item != null) {
-	    inventory.addObject(item);
+	    pickUpItem(item); //use super method or remove super method?
 	    return true;
 	}
 	return false;
