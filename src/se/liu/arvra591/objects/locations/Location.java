@@ -61,6 +61,10 @@ public class Location extends AbstractObject
 	return itemContainer.removeObject(name);
     }
 
+    public boolean addItem(Item item){
+	return itemContainer.addObject(item);
+    }
+
 
     /**
      * @param name Name of the item to inspect

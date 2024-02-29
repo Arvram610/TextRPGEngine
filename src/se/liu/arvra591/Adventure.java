@@ -74,6 +74,16 @@ public class Adventure
 	parser.parseInput(input);
     }
 
+    public void dropItem(String item){
+	boolean success = player.dropItem(item);
+	if (!success) {
+	    System.out.println("Couldnt find " + item + " in your inventory");
+	}
+	else{
+	    System.out.println("You dropped " + item);
+	}
+    }
+
     private class Parser extends InputParser
     {
 	private Parser(){
@@ -82,7 +92,7 @@ public class Adventure
 	    parseInputs.put("inspect", Adventure.this::inspect);
 	    parseInputs.put("location", Adventure.this::printLocation);
 	    parseInputs.put("checkInventory", Adventure.this::checkInventory);
-	    //drop items
+	    parseInputs.put("drop", Adventure.this::dropItem);
 	    //TODO: Add more commands
 	}
     }

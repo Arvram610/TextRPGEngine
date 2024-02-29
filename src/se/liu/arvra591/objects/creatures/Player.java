@@ -80,8 +80,20 @@ public class Player extends Creature
 	return false;
     }
 
+    /**
+     * Prints the players inventory
+     */
     public void printInventory(){
 	inventory.printContainer();
+    }
+
+    public boolean dropItem(String name){
+	Item item = inventory.removeObject(name);
+	if (item != null) {
+	    currentLocation.addItem(item);
+	    return true;
+	}
+	return false;
     }
 
     /**
