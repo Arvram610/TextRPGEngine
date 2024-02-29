@@ -47,6 +47,9 @@ public class Adventure
 	}
     }
 
+    /**
+     * @param name The name of the object to inspect
+     */
     public void inspect(String name){
 	boolean success = player.inspect(name);
 	if (!success) {
@@ -54,6 +57,10 @@ public class Adventure
 	}
     }
 
+    /**
+     * @param input The input from the player will be empty
+     * Prints the current location of the player
+     */
     public void printLocation(String input){ //input kommer vara tom? Man kommer bara skriva "location"
 	player.getCurrentLocation().printObject(); //vill vi printa hela objektet eller bara namnet?
 	System.out.println("Current location: " + player.getCurrentLocation().getName());

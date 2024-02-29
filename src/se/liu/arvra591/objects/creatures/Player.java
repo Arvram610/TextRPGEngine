@@ -87,6 +87,11 @@ public class Player extends Creature
 	inventory.printContainer();
     }
 
+    /**
+     * @param name is the name of the item to dropq
+     *
+     * @return true if the player can drop the item, false if the item does not exist
+     */
     public boolean dropItem(String name){
 	Item item = inventory.removeObject(name);
 	if (item != null) {

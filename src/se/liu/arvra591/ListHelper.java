@@ -37,6 +37,10 @@ public class ListHelper
 	return list.stream().filter(object -> object.getName().equals(name)).findFirst().orElse(null); //Kodgranskning complains aboput type check but is wrong
     }
 
+    /**
+     * @param list A list containing {@link AbstractObject} items
+     * @param tab, a boolean that decides if the list should be tabbed or not
+     */
     public static void printList(List<? extends AbstractObject> list, boolean tab) {
 	for (AbstractObject item : list) {
 	    if (tab)
