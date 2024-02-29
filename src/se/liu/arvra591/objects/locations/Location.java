@@ -24,6 +24,13 @@ public class Location extends AbstractObject
     //private List<interactables> interactablesList; //might be added later
 
 
+    /**
+     * @param name Name of the location
+     * @param description Description of the location
+     * @param npcList List of npcs in the location
+     * @param itemList List of items in the location
+     * @param exitList List of exits in the location
+     */
     public Location(String name, String description, List<Npc> npcList, List<Item> itemList, List<Location> exitList) {
 	super(name, description);
 	this.npcContainer = new ObjectContainer<>(npcList);
@@ -31,19 +38,34 @@ public class Location extends AbstractObject
 	this.exitContainer = new ObjectContainer<>(exitList);
     }
 
+    /**
+     * @param location Location to add to the exit list
+     */
     public void addExit(Location location){
 	exitContainer.forceAddObject(location);
     }
 
+    /**
+     * @param location Location to remove from the exit list
+     */
     public void removeExit(Location location){
 	exitContainer.removeObject(location);
     }
 
+    /**
+     * @param name Name of the item to add
+     *
+     * @return The item that was added
+     */
     public Item removeItem(String name){
 	return itemContainer.removeObject(name);
     }
 
 
+    /**
+     * @param name Name of the item to inspect
+     * Prints information about the item
+     */
     public void inspect(String name){
 	List<List<? extends AbstractObject>> lists = Arrays.asList(npcContainer.getObjectList(),
 								   itemContainer.getObjectList(),
@@ -57,10 +79,18 @@ public class Location extends AbstractObject
 	System.out.println("Couldn't find " + name + " in location.");
     }
 
+    /**
+     * @param name Name of the exit to get
+     *
+     * @return The name of the exit
+     */
     public Location getExit(final String name) {
 	return (Location) ListHelper.findObjectInList(exitContainer.getObjectList(), name);
     }
 
+    /**
+     * Prints the the location and its contents such as npcs, items and exits
+     */
     @Override public void printObject() {
 
 	System.out.print("Location: ");

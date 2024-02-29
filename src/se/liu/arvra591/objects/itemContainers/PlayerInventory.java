@@ -17,12 +17,21 @@ public class PlayerInventory extends CreatureInventory
 
     protected int currentWeight;
 
+    /**
+     * @param itemList is the list of items in the inventory
+     * @param stats is the stats of the player which contains the carry weight
+     */
     public PlayerInventory(List<Item> itemList, PlayerStats stats){
 	super(itemList);
 	this.playerStats = stats;
 	this.currentWeight = 0;
     }
 
+    /**
+     * @param item is the object to add to the inventory
+     *
+     * @return true if the item was added to the inventory, false if the item was not added to the inventory
+     */
     @Override
     public boolean addObject(Item item){
 	int maxWeight = playerStats.getCarryWeight();
@@ -33,6 +42,9 @@ public class PlayerInventory extends CreatureInventory
 	return false;
     }
 
+    /**
+     * @return Returns the current weight of the items in the inventory
+     */
     public int getCurrentWeight() {
 	currentWeight = 0;
 	for (Item item : objectList) {

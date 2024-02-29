@@ -11,6 +11,9 @@ import java.util.List;
  */
 public class CreatureInventory extends ObjectContainer<Item>
 {
+    /**
+     * @param itemList is the list of items in the inventory
+     */
     public CreatureInventory(final List<Item> itemList) {
 	super(itemList);
     }

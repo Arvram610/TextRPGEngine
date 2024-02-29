@@ -8,6 +8,12 @@ package se.liu.arvra591.objects.items;
 public class Equippables extends Item //Kodgranskning does not reqognize the word Equippables, I do not agree
 {
     private int stats; //might be changed later, ex armor, damage, etc
+
+    /**
+     * @param name What the item is called
+     * @param description What the item does
+     * @param weight How much the item weighs
+     */
     public Equippables(final String name, final String description, final int weight) {
 	super(name, description, weight);
     }

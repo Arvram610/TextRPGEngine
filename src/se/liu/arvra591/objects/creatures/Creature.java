@@ -40,6 +40,9 @@ public abstract class Creature extends AbstractObject
         return health;
     }
 
+    /**
+     * @param item is the item that the creature picks up
+     */
     public void pickUpItem(Item item){
         inventory.addObject(item);
     }

@@ -6,12 +6,16 @@ import se.liu.arvra591.ParseAction;
 import java.util.HashMap;
 import java.util.Map;
 
-public abstract class AbstractInputParser
+/**
+ * Abstract class for input parsers. All input parsers inherit from this class.
+ * The class has a map of all available commands and a method to parse the input and call the corresponding action
+ */
+public abstract class AbstractInputParser implements InputParser
 {
 
     protected Map<String, ParseAction> parseInputs;
 
-    public AbstractInputParser(){
+    protected AbstractInputParser(){
 	parseInputs = new HashMap<>();
 	parseInputs.put("help", this::printActions);
     }
@@ -20,6 +24,10 @@ public abstract class AbstractInputParser
 	return input.replace(action+" ", "");
     }
 
+    /**
+     * @param input The input from the user
+     * Prints all available commands
+     */
     public void printActions(String input){
 	System.out.println("Available commands:");
 	parseInputs.forEach((key, value) -> {
@@ -27,15 +35,16 @@ public abstract class AbstractInputParser
 	});
     }
 
+    /**
+     * @param input The input from the user
+     * Parses the input and calls the corresponding action
+     */
     public void parseInput(String input){
 	String[] inputs = input.split(" ");
 	parseInputs.forEach((key, value) -> {
 	    if (inputs[0].toLowerCase().equals(key))
 		value.action(inputParemeter(input, key));
 	});
-	/*
-//	 ska också skriva en funktion printActions som skriver ut alla actions som finns
-	 */
     }
 
 }

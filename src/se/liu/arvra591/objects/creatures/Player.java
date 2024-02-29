@@ -19,6 +19,15 @@ public class Player extends Creature
     protected Location currentLocation;
 
 
+    /**
+     * @param name is the name of the player
+     * @param description is the description of the player
+     * @param health is the health of the player
+     * @param stats is the stats of the player such as attack, defense, level, energy
+     * @param currentLocation is the location of the player
+     * @param experience is the experience points of the player, this determines the level of the player
+     * @param inventory is the inventory of the player which contains items
+     */
     public Player(final String name, final String description, int health,
 		  PlayerStats stats, Location currentLocation,
 		  int experience, PlayerInventory inventory) {
@@ -26,6 +35,9 @@ public class Player extends Creature
 	this.currentLocation = currentLocation;
     }
 
+    /**
+     * Prints the players stats and location
+     */
     @Override public void printObject() {
 	super.printObject();
 	PlayerStats stats = (PlayerStats) getStats();
@@ -33,10 +45,18 @@ public class Player extends Creature
 	System.out.println("Current Location: " + getCurrentLocation().getName());
     }
 
+    /**
+     * @param name is the name of the item to inspect
+     */
     public void inspect(String name){
 	currentLocation.inspect(name);
     }
 
+    /**
+     * @param name is the name of the exit to move to
+     *
+     * @return true if the player can move to the exit, false if the exit does not exist
+     */
     public boolean move(String name){
 	Location location = currentLocation.getExit(name);
 	if (location != null) {
@@ -46,6 +66,11 @@ public class Player extends Creature
 	return false;
     }
 
+    /**
+     * @param name is the name of the item to pick up
+     *
+     * @return true if the player can pick up the item, false if the item does not exist
+     */
     public boolean pickUpItem(String name){
 	Item item = currentLocation.removeItem(name);
 	if (item != null) {
@@ -55,6 +80,9 @@ public class Player extends Creature
 	return false;
     }
 
+    /**
+     * @return Returns the current location of the player
+     */
     public Location getCurrentLocation() {
 	return currentLocation;
     }
