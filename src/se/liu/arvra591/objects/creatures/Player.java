@@ -1,6 +1,9 @@
 package se.liu.arvra591.objects.creatures;
 
+import se.liu.arvra591.objects.itemContainers.PlayerInventory;
 import se.liu.arvra591.objects.locations.Location;
+
+import java.util.ArrayList;
 
 /**
  * A class representing a player
@@ -25,20 +28,18 @@ public class Player extends Creature
     protected int experience;
     protected Location currentLocation;
 
+
     public Player(final String name, final String description, int health,
-		  CreatureStats stats, int carryWeight, int currentWeight, Location currentLocation,
-		  int experience) {
-	super(name, description, health, stats);
-	this.carryWeight = carryWeight;
-	this.currentWeight = currentWeight;
+		  PlayerStats stats, Location currentLocation,
+		  int experience, PlayerInventory inventory) {
+	super(name, description, health, stats, inventory);
 	this.currentLocation = currentLocation;
-	this.experience = 0;
     }
 
     @Override public void printObject() {
 	super.printObject();
-	System.out.println("Carry Weight: " + getCarryWeight());
-	System.out.println("Current Weight: " + getCurrentWeight());
+	PlayerStats stats = (PlayerStats) getStats();
+	stats.printStats();
 	System.out.println("Current Location: " + getCurrentLocation().getName());
     }
 
@@ -47,21 +48,9 @@ public class Player extends Creature
     }
 
     public void move(String name){
-	Location location = currentLocation.getLocation(name);
+	Location location = currentLocation.getExit(name);
 	if (location != null)
 	    currentLocation = location;
-    }
-
-    public int getCarryWeight() {
-	return carryWeight;
-    }
-
-    public int getExperience() {
-	return experience;
-    }
-
-    public int getCurrentWeight() {
-	return currentWeight;
     }
 
     public Location getCurrentLocation() {
@@ -69,10 +58,18 @@ public class Player extends Creature
     }
 
     public static void main(String[] args) {
-	CreatureStats stats = new CreatureStats(10, 10, 10, 10, 10);
-	Location location = new Location("Test", "Test", null, null, null);
-	Player player = new Player("Test", "Test", 10, stats, 10, 10, location, 0);
-	player.printObject();
+	Location l1 = new Location("Room 1", "Första rummet du vaknar i",
+				   new ArrayList<>(), new ArrayList<>(), new ArrayList<>());
+	PlayerStats c1 = new PlayerStats(10, 10, 10, 10, 10, 10, 10, 10);
+	Player p1 = new Player("Kalle", "Redigt kool", 10,
+			       c1, l1, 0, null);
 
+	Location l2 = new Location("Room 2", "Andra rummet",
+				   new ArrayList<>(), new ArrayList<>(), new ArrayList<>());
+	l1.addExit(l2);
+
+	p1.getCurrentLocation().printObject();
+	p1.move("Room 2");
+	p1.getCurrentLocation().printObject();
     }
 }

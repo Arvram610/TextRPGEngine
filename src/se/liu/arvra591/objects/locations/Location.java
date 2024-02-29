@@ -30,6 +30,14 @@ public class Location extends AbstractObject
 	this.exitList = exitList;
     }
 
+    public void addExit(Location location){
+	exitList.add(location);
+    }
+
+    public void removeExit(Location location){
+	exitList.remove(location);
+    }
+
     public List<Npc> getNpcList() {
 	return npcList;
     }
@@ -57,14 +65,8 @@ public class Location extends AbstractObject
 	System.out.println("Couldn't find " + name + " in location.");
     }
 
-    public Location getLocation(final String name) {
-	return null;
-    }
-
-    private void printList(List<? extends AbstractObject> list) {
-	for (AbstractObject item : list) {
-	    System.out.println("\t" + item.getName());
-	}
+    public Location getExit(final String name) {
+	return (Location) ListHelper.findObjectInList(exitList, name);
     }
 
     @Override public void printObject() {
@@ -75,15 +77,15 @@ public class Location extends AbstractObject
 	printDescription();
 
 	System.out.println("Items in location: ");
-	printList(itemList);
+	ListHelper.printList(itemList, true);
 	System.out.println();
 
 	System.out.println("Creatures in location: ");
-	printList(npcList);
+	ListHelper.printList(npcList, true);
 	System.out.println();
 
 	System.out.println("Exits in location: ");
-	printList(exitList);
+	ListHelper.printList(exitList, true);
 	System.out.println();
     }
 
@@ -93,7 +95,9 @@ public class Location extends AbstractObject
 	List<Item> itemList = new ArrayList<>();
 
 	List<Location> exitList = new ArrayList<>();
-	npcList.add(new Npc("TestCreature", "TestDescription", 10, new CreatureStats(10, 10, 10, 10, 10), NpcDialogue.emptyDialogue));
+	npcList.add(new Npc("TestCreature", "TestDescription", 10,
+				 new CreatureStats(10, 10, 10, 10, 10),
+				 NpcDialogue.emptyDialogue, null));
 	itemList.add(new Item("TestItem", "TestDescription", 10));
 	itemList.add(new Item("TestItem2", "TestDescription2", 20));
 	exitList.add(new Location("TestLocation", "TestDescription", new ArrayList<>(), new ArrayList<>(), new ArrayList<>()));

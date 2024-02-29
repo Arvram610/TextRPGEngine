@@ -7,7 +7,6 @@ public class Consumables extends Item //Kodgranskning complains that the word Co
 {
     public Consumables(final String name, final String description, final int weight) {
 	super(name, description, weight);
-
     }
 
     private void use(){

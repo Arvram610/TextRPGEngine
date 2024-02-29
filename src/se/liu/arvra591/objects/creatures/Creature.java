@@ -1,6 +1,8 @@
 package se.liu.arvra591.objects.creatures;
 
 import se.liu.arvra591.objects.AbstractObject;
+import se.liu.arvra591.objects.itemContainers.CreatureInventory;
+import se.liu.arvra591.objects.items.Item;
 
 /**
  * A class representing all creatures, all creatures have some basic stats as well as health and level
@@ -11,11 +13,14 @@ public abstract class Creature extends AbstractObject
     protected int health;
 
     protected CreatureStats stats;
+    protected CreatureInventory inventory;
 
-    protected Creature(String name, String description, int health, CreatureStats stats){
+    protected Creature(String name, String description, int health, CreatureStats stats, CreatureInventory inventory){
+
 	super(name, description);
 	this.health = health;
         this.stats = stats;
+        this.inventory = inventory;
     }
 
     /**
@@ -33,6 +38,10 @@ public abstract class Creature extends AbstractObject
      */
     public int getHealth(){
         return health;
+    }
+
+    public void pickUpItem(Item item){
+        inventory.addItem(item);
     }
 
 
