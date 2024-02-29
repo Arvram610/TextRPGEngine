@@ -27,15 +27,15 @@ public class Location extends AbstractObject
     /**
      * @param name Name of the location
      * @param description Description of the location
-     * @param npcList List of npcs in the location
-     * @param itemList List of items in the location
-     * @param exitList List of exits in the location
+     * @param npcs List of npcs in the location
+     * @param items List of items in the location
+     * @param exits List of exits in the location
      */
-    public Location(String name, String description, List<Npc> npcList, List<Item> itemList, List<Location> exitList) {
+    public Location(String name, String description, List<Npc> npcs, List<Item> items, List<Location> exits) {
 	super(name, description);
-	this.npcContainer = new ObjectContainer<>(npcList);
-	this.itemContainer = new ObjectContainer<>(itemList);
-	this.exitContainer = new ObjectContainer<>(exitList);
+	this.npcContainer = new ObjectContainer<>(npcs);
+	this.itemContainer = new ObjectContainer<>(items);
+	this.exitContainer = new ObjectContainer<>(exits);
     }
 
     /**
@@ -67,9 +67,9 @@ public class Location extends AbstractObject
      * Prints information about the item
      */
     public void inspect(String name){
-	List<List<? extends AbstractObject>> lists = Arrays.asList(npcContainer.getObjectList(),
-								   itemContainer.getObjectList(),
-								   exitContainer.getObjectList());
+	List<List<? extends AbstractObject>> lists = Arrays.asList(npcContainer.getObjects(),
+								   itemContainer.getObjects(),
+								   exitContainer.getObjects());
 	AbstractObject object = ListHelper.findObjectInLists(lists, name);
 
 	if (object != null){
@@ -85,7 +85,7 @@ public class Location extends AbstractObject
      * @return The name of the exit
      */
     public Location getExit(final String name) {
-	return (Location) ListHelper.findObjectInList(exitContainer.getObjectList(), name);
+	return (Location) ListHelper.findObjectInList(exitContainer.getObjects(), name);
     }
 
     /**
@@ -99,33 +99,33 @@ public class Location extends AbstractObject
 	printDescription();
 
 	System.out.println("Items in location: ");
-	ListHelper.printList(itemContainer.getObjectList(), true);
+	ListHelper.printList(itemContainer.getObjects(), true);
 	System.out.println();
 
 	System.out.println("Creatures in location: ");
-	ListHelper.printList(npcContainer.getObjectList(), true);
+	ListHelper.printList(npcContainer.getObjects(), true);
 	System.out.println();
 
 	System.out.println("Exits in location: ");
-	ListHelper.printList(exitContainer.getObjectList(), true);
+	ListHelper.printList(exitContainer.getObjects(), true);
 	System.out.println();
     }
 
 
     public static void main(String[] args) {
-	List<Npc> npcList = new ArrayList<>();
-	List<Item> itemList = new ArrayList<>();
-
-	List<Location> exitList = new ArrayList<>();
-	npcList.add(new Npc("TestCreature", "TestDescription", 10,
+	List<Npc> npcs = new ArrayList<>();
+	List<Item> items = new ArrayList<>();
+	NpcDialogue emptyDialogue = new NpcDialogue(new ArrayList<>());
+	List<Location> exits = new ArrayList<>();
+	npcs.add(new Npc("TestCreature", "TestDescription", 10,
 				 new CreatureStats(10, 10, 10, 10, 10),
-				 NpcDialogue.emptyDialogue, null));
-	itemList.add(new Item("TestItem", "TestDescription", 10));
-	itemList.add(new Item("TestItem2", "TestDescription2", 20));
-	exitList.add(new Location("TestLocation", "TestDescription", new ArrayList<>(), new ArrayList<>(), new ArrayList<>()));
+				 emptyDialogue, null));
+	items.add(new Item("TestItem", "TestDescription", 10));
+	items.add(new Item("TestItem2", "TestDescription2", 20));
+	exits.add(new Location("TestLocation", "TestDescription", new ArrayList<>(), new ArrayList<>(), new ArrayList<>()));
 
 
-	Location location = new Location("TestLocation", "TestDescription", npcList, itemList, exitList);
+	Location location = new Location("TestLocation", "TestDescription", npcs, items, exits);
 	location.printObject();
 
 	location.inspect("TestItem");

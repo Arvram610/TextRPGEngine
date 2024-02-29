@@ -34,7 +34,7 @@ public class ListHelper
      * @return It returns either the object if it is found or null
      */
     public static AbstractObject findObjectInList(List<? extends AbstractObject> list, String name){//name includes type but that is what it is, dont knmow better name
-	return list.stream().filter(object -> object.getName().equals(name)).findFirst().orElse(null);
+	return list.stream().filter(object -> object.getName().equals(name)).findFirst().orElse(null); //Kodgranskning complains aboput type check but is wrong
     }
 
     public static void printList(List<? extends AbstractObject> list, boolean tab) {

@@ -9,9 +9,6 @@ import java.util.List;
 public class NpcDialogue
 {
     private List<String> dialogue;
-
-    public static NpcDialogue emptyDialogue = new NpcDialogue(new ArrayList<>()); //to be removed
-
     /**
      * @param dialogue is the dialogue of the npc
      */

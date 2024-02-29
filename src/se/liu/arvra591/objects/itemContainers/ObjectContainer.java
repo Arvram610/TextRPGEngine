@@ -2,7 +2,6 @@ package se.liu.arvra591.objects.itemContainers;
 
 import se.liu.arvra591.ListHelper;
 import se.liu.arvra591.objects.AbstractObject;
-import se.liu.arvra591.objects.items.Item;
 
 import java.util.List;
 
@@ -12,27 +11,27 @@ import java.util.List;
  */
 public class ObjectContainer <T extends AbstractObject>
 {
-    protected List<T> objectList;
+    protected List<T> objects;
 
     /**
-     * @param itemList is the list of items in the Container
+     * @param items is the list of items in the Container
      */
-    public ObjectContainer(List<T> itemList){
-	this.objectList = itemList;
+    public ObjectContainer(List<T> items){
+	this.objects = items;
     }
 
     /**
      * @return Returns the list of items in the Container
      */
-    public List<T> getObjectList() {
-	return objectList;
+    public List<T> getObjects() {
+	return objects;
     }
 
     /**
      * Prints the items in the Container
      */
     public void printContainer(){
-	for (T object : objectList) {
+	for (T object : objects) {
 	    object.printObject();
 	}
     }
@@ -43,9 +42,9 @@ public class ObjectContainer <T extends AbstractObject>
      * @return Returns the Object removed from the container
      */
     public T removeObject(String name){
-	AbstractObject object = ListHelper.findObjectInList(objectList, name);
+	AbstractObject object = ListHelper.findObjectInList(objects, name);
 	if (object != null) {
-	    objectList.remove(object);
+	    objects.remove(object);
 	    return (T) object;
 	}
 	return null;
@@ -68,7 +67,7 @@ public class ObjectContainer <T extends AbstractObject>
      * @return Returns the object from the inventory
      */
     public T getObject(String name){
-	AbstractObject object = ListHelper.findObjectInList(objectList, name);
+	AbstractObject object = ListHelper.findObjectInList(objects, name);
 	if (object != null) {
 	    return (T) object;
 	}
@@ -80,7 +79,7 @@ public class ObjectContainer <T extends AbstractObject>
      * adds the object to the inventory
      */
     public void forceAddObject(T object){
-	objectList.add(object);
+	objects.add(object);
     }
 
     /**
@@ -89,7 +88,7 @@ public class ObjectContainer <T extends AbstractObject>
      * @return true if the object was added, false if the object already exists in the inventory
      */
     public boolean addObject(final T object) {
-	if (objectList.contains(object)) {
+	if (objects.contains(object)) {
 	    return false;
 	}
 	forceAddObject(object);

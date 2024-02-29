@@ -1,6 +1,6 @@
 package se.liu.arvra591;
 
-import se.liu.arvra591.inputParsers.AbstractInputParser;
+import se.liu.arvra591.inputParsers.InputParser;
 import se.liu.arvra591.objects.creatures.Player;
 
 /**
@@ -11,7 +11,7 @@ public class Adventure
 {
     private Player player;
 
-    Parser parser = new Parser();
+    private Parser parser;
 
     /**
      * @param player The player that is playing the game
@@ -42,7 +42,7 @@ public class Adventure
 	parser.parseInput(input);
     }
 
-    private class Parser extends AbstractInputParser
+    private class Parser extends InputParser
     {
 	private Parser(){
 	    parseInputs.put("move", Adventure.this::move);
