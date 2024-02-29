@@ -11,19 +11,19 @@ import java.util.Arrays;
 public class Npc extends Creature
 {
     protected NpcDialogue dialogue;
-    public Npc(final String name, final String description, final int level,
+    public Npc(final String name, final String description,
 	       final int health, final CreatureStats stats, final NpcDialogue dialogue) {
-	super(name, description, health, level,  stats);
+	super(name, description, health, stats);
 	this.dialogue = dialogue;
     }
 
     public void talk(){
-	dialogue.printDialogue(getObjectName());
+	dialogue.printDialogue(getName());
     }
 
     public static void main(String[] args) {
 	NpcDialogue npcDialogue = new NpcDialogue(Arrays.asList("Hej!", "Hoppas du mår bra", "Ha en trevlig dag"));
-	Npc npc = new Npc("Carl", "A friendly human", 10, 10, CreatureStats.basic, npcDialogue);
+	Npc npc = new Npc("Carl", "A friendly human", 10, CreatureStats.basic, npcDialogue);
 	npc.talk();
     }
 }

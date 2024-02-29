@@ -10,8 +10,6 @@ public class NpcDialogue
 {
     private List<String> dialogue;
 
-    public static NpcDialogue emptyDialogue = new NpcDialogue(new ArrayList<>());
-
     public NpcDialogue(List<String> dialogue){
 	this.dialogue = dialogue;
     }

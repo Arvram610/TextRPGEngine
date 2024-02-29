@@ -18,10 +18,8 @@ public class ListHelper
      * @return It returns either the object if it is found or null
      */
     public static AbstractObject findObjectInLists(List<List<? extends AbstractObject>> lists, String name){
-	AbstractObject object;
-
-	for (List<? extends AbstractObject> list : lists) {
-	    object = findObjectInList(list, name);
+	for (List<? extends AbstractObject> list : lists) { // For each list in the list of lists kodgranskning complains on variablename but its good?
+	    AbstractObject object = findObjectInList(list, name);
 	    if (object != null){
 		return object;
 	    }
@@ -35,7 +33,7 @@ public class ListHelper
      *
      * @return It returns either the object if it is found or null
      */
-    public static AbstractObject findObjectInList(List<? extends AbstractObject> list, String name){
-	return list.stream().filter(object -> object.getObjectName().equals(name)).findFirst().orElse(null);
+    public static AbstractObject findObjectInList(List<? extends AbstractObject> list, String name){//name includes type but that is what it is, dont knmow better name
+	return list.stream().filter(object -> object.getName().equals(name)).findFirst().orElse(null);
     }
 }

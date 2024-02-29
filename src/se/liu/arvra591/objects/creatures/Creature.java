@@ -10,15 +10,12 @@ public abstract class Creature extends AbstractObject
 {
     protected int health;
 
-    protected int level;
-
     protected CreatureStats stats;
 
-    public Creature(String name, String description, int health, int level, CreatureStats stats){
+    protected Creature(String name, String description, int health, CreatureStats stats){
 	super(name, description);
 	this.health = health;
         this.stats = stats;
-        this.level = level;
     }
 
     /**
@@ -38,13 +35,6 @@ public abstract class Creature extends AbstractObject
         return health;
     }
 
-
-    /**
-     * @return Returns the current level of the creature
-     */
-    public int getLevel(){
-        return level;
-    }
 
     /**
      * @return Returns the stats of the creature

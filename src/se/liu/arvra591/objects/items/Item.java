@@ -11,7 +11,10 @@ import se.liu.arvra591.objects.AbstractObject;
  */
 public class Item extends AbstractObject
 {
-    private int weight;  // Limits how many items can be carried at a time
+    /**
+    * Limits how many items can be carried at a time
+     */
+    private int weight;
 
     public Item(final String name, final String description, final int weight) {
 	super(name, description);

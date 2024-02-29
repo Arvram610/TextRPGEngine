@@ -18,7 +18,7 @@ public abstract class AbstractObject
     /**
      * @return Returns the name of the object
      */
-    public String getObjectName(){
+    public String getName(){
         return name;
     }
 
@@ -33,7 +33,7 @@ public abstract class AbstractObject
      * Prints the objects info
      */
     public void printObject(){
-        System.out.println("Name: " + getObjectName());
+        System.out.println("Name: " + getName());
         System.out.println("Type: " + getClass().getSimpleName());
         System.out.println("Description: " + getDescription());
     }
@@ -42,7 +42,7 @@ public abstract class AbstractObject
      * Prints the name of the object
      */
     public void printName(){
-        System.out.println(getObjectName());
+        System.out.println(getName());
     }
 
     /**
