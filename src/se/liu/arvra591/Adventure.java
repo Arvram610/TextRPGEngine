@@ -60,6 +60,14 @@ public class Adventure
     }
 
     /**
+     * @param input The input from the player will be empty
+     * Prints the players inventory
+     */
+    public void checkInventory(String input){
+	player.printInventory();
+    }
+
+    /**
      * @param input The input from the player
      */
     public void parseInput(String input){
@@ -73,6 +81,8 @@ public class Adventure
 	    parseInputs.put("pickUp", Adventure.this::pickUp);
 	    parseInputs.put("inspect", Adventure.this::inspect);
 	    parseInputs.put("location", Adventure.this::printLocation);
+	    parseInputs.put("checkInventory", Adventure.this::checkInventory);
+	    //drop items
 	    //TODO: Add more commands
 	}
     }

@@ -80,6 +80,10 @@ public class Player extends Creature
 	return false;
     }
 
+    public void printInventory(){
+	inventory.printContainer();
+    }
+
     /**
      * @return Returns the current location of the player
      */
