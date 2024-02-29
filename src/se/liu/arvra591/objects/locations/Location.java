@@ -16,15 +16,17 @@ public class Location extends AbstractObject
     private List<Npc> npcList; //might be divided into enemies and players
     private List<Item> itemList;
     private List<Location> exitList;
+    private List<String> exitStringList;
 
     //private List<interactables> interactablesList; //might be added later
 
 
-    public Location(String name, String description, List<Npc> npcList, List<Item> itemList, List<Location> exitList) {
+    public Location(String name, String description, List<Npc> npcList, List<Item> itemList, List<String> exitStringList) {
 	super(name, description);
 	this.npcList = npcList;
 	this.itemList = itemList;
-	this.exitList = exitList;
+	this.exitStringList = exitStringList;
+	this.exitList = new ArrayList<>();
     }
 
     public void addExit(Location location){
@@ -99,10 +101,9 @@ public class Location extends AbstractObject
 
 	itemList.add(new Item("TestItem", "TestDescription", 10));
 	itemList.add(new Item("TestItem2", "TestDescription2", 20));
-	exitList.add(new Location("TestLocation", "TestDescription", new ArrayList<>(), new ArrayList<>(), new ArrayList<>()));
 
 
-	Location location = new Location("TestLocation", "TestDescription", npcList, itemList, exitList);
+	Location location = new Location("TestLocation", "TestDescription", npcList, itemList, new ArrayList<>());
 	location.printObject();
 
 	location.inspect("TestItem");

@@ -1,10 +1,10 @@
 package se.liu.arvra591.jsonParser;
 
 import com.google.gson.Gson;
+import com.google.gson.JsonArray;
 import com.google.gson.JsonObject;
 
 import java.io.BufferedReader;
-import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.IOException;
 
@@ -16,7 +16,7 @@ public class JsonParser
 	gson = new Gson();
     }
 
-    public JsonObject parseFile(String path) throws IOException {
+    public JsonArray parseFile(String path) throws IOException {
 	String json;
 
 	try (BufferedReader br = new BufferedReader(
@@ -26,6 +26,6 @@ public class JsonParser
 	    throw e;
 	}
 
-	return gson.fromJson(json, JsonObject.class);
+	return gson.fromJson(json, JsonArray.class);
     }
 }
