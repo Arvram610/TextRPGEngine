@@ -26,6 +26,8 @@ public abstract class ObjectGenerator<T>
 
     public abstract void genObjects(String fileName) throws IOException;
 
+    protected abstract void genObject(JsonObject object);
+
     protected void genObjects(JsonArray jsonArray){
 	for (JsonElement jsonElement : jsonArray) {
 	    genObject(jsonElement.getAsJsonObject());
@@ -59,6 +61,4 @@ public abstract class ObjectGenerator<T>
     public Map<String, T> getObjects(){
 	return objects;
     }
-
-    protected abstract void genObject(JsonObject object);
 }
