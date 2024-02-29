@@ -3,9 +3,12 @@ package se.liu.arvra591.objects.creatures;
 import java.util.ArrayList;
 import java.util.List;
 
+/**
+ * A class that holds the dialogue for an npc and can print it
+ */
 public class NpcDialogue
 {
-    List<String> dialogue;
+    private List<String> dialogue;
 
     public static NpcDialogue emptyDialogue = new NpcDialogue(new ArrayList<>());
 

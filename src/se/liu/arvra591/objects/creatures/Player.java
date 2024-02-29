@@ -5,6 +5,14 @@ import se.liu.arvra591.objects.locations.Location;
 
 import java.util.ArrayList;
 
+/**
+ * A class representing a player
+ * A player has a location where pointing to where the player currently is
+ * A player has an inventory which uses the {@link Inventory} class and has a carry weight for max weight it can carry
+ * A player has a current weight for the current weight of items it is carrying
+ * A player has experience to level up
+ * Player extends {@link Creature}
+ */
 public class Player extends Creature
 {
     protected Location currentLocation;

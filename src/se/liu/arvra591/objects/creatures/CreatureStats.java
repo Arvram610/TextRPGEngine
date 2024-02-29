@@ -1,16 +1,21 @@
 package se.liu.arvra591.objects.creatures;
+/**
+ * class for creature stats such as health, attack, defense, energy, and energy regen
+ * Used by {@link Npc} and {@link Player} to store stats
+ * This class is used to make it easier to create players and npcs with different stats
+ */
 
-
-import se.liu.arvra591.objects.Object;
-
-public class CreatureStats implements Object
+public class CreatureStats
 {
     private int maxHealth;
     private int attack;
     private int defense;
     private int maxEnergy;
-    private int energyRegenRate;
+    private int energyRegenRate; //kodgranskning does not recoqnise "Regen" as a word, I do not agree
 
+    /**
+     * Temporary field for testing purposes
+     */
     public static CreatureStats basic = new CreatureStats(10,10,10,10,10);
 
 
