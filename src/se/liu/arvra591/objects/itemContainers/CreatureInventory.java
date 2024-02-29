@@ -6,6 +6,10 @@ import se.liu.arvra591.objects.items.Item;
 
 import java.util.List;
 
+/**
+ * Abstract class the inventory of a creature. The inventory can contain items and can be printed.
+ * The inventory can also remove and add items. {@Link Player} inherits a creature inventory and can use it to pick up and drop items.
+ */
 public abstract class CreatureInventory
 {
     protected List<Item> itemList;

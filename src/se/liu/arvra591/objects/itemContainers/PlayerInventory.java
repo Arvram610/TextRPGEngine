@@ -6,6 +6,11 @@ import se.liu.arvra591.objects.items.Item;
 import java.util.ArrayList;
 import java.util.List;
 
+/**
+ * Class for the inventory of the player. The player inventory can contain items and can be printed.
+ * The player inventory can also remove and add items.
+ * The player inventory also has a weight limit.
+ */
 public class PlayerInventory extends CreatureInventory
 {
     protected PlayerStats playerStats;

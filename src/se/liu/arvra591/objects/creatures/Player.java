@@ -15,17 +15,6 @@ import java.util.ArrayList;
  */
 public class Player extends Creature
 {
-
-    /**
-     * Capacity for how many items the player can carry.
-     */
-    protected int carryWeight;
-
-    /**
-     * Current weight of items the player is carrying.
-     */
-    protected int currentWeight;
-    protected int experience;
     protected Location currentLocation;
 
 
