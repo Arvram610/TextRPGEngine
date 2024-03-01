@@ -67,9 +67,9 @@ public class ObjectContainer <T extends AbstractObject>
      * @return Returns the object from the inventory
      */
     public T getObject(String name){
-	AbstractObject object = ListHelper.findObjectInList(objects, name);
+	T object = ListHelper.findObjectInList(objects, name);
 	if (object != null) {
-	    return (T) object;
+	    return object;
 	}
 	return null;
     }
