@@ -42,10 +42,10 @@ public class ObjectContainer <T extends AbstractObject>
      * @return Returns the Object removed from the container
      */
     public T removeObject(String name){
-	AbstractObject object = ListHelper.findObjectInList(objects, name);
+	T object = ListHelper.findObjectInList(objects, name);
 	if (object != null) {
 	    objects.remove(object);
-	    return (T) object;
+	    return object;
 	}
 	return null;
     }
