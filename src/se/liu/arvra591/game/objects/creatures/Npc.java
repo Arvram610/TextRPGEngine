@@ -1,6 +1,6 @@
-package se.liu.arvra591.objects.creatures;
+package se.liu.arvra591.game.objects.creatures;
 
-import se.liu.arvra591.objects.containers.CreatureInventory;
+import se.liu.arvra591.game.objects.containers.CreatureInventory;
 
 import java.util.Arrays;
 

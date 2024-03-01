@@ -1,12 +1,12 @@
-package se.liu.arvra591.objects.locations;
+package se.liu.arvra591.game.objects.locations;
 
-import se.liu.arvra591.ListHelper;
-import se.liu.arvra591.objects.AbstractObject;
-import se.liu.arvra591.objects.creatures.CreatureStats;
-import se.liu.arvra591.objects.creatures.Npc;
-import se.liu.arvra591.objects.creatures.NpcDialogue;
-import se.liu.arvra591.objects.containers.ObjectContainer;
-import se.liu.arvra591.objects.items.Item;
+import se.liu.arvra591.game.ListHelper;
+import se.liu.arvra591.game.objects.AbstractObject;
+import se.liu.arvra591.game.objects.creatures.CreatureStats;
+import se.liu.arvra591.game.objects.creatures.Npc;
+import se.liu.arvra591.game.objects.creatures.NpcDialogue;
+import se.liu.arvra591.game.objects.containers.ObjectContainer;
+import se.liu.arvra591.game.objects.items.Item;
 
 import java.util.ArrayList;
 import java.util.Arrays;

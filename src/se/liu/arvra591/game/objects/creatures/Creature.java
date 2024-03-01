@@ -1,8 +1,8 @@
-package se.liu.arvra591.objects.creatures;
+package se.liu.arvra591.game.objects.creatures;
 
-import se.liu.arvra591.objects.AbstractObject;
-import se.liu.arvra591.objects.containers.CreatureInventory;
-import se.liu.arvra591.objects.items.Item;
+import se.liu.arvra591.game.objects.AbstractObject;
+import se.liu.arvra591.game.objects.containers.CreatureInventory;
+import se.liu.arvra591.game.objects.items.Item;
 
 /**
  * A class representing all creatures, all creatures have some basic stats as well as health and level

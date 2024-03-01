@@ -1,7 +1,6 @@
-package se.liu.arvra591.modes;
+package se.liu.arvra591.game.modes;
 
-import se.liu.arvra591.objects.creatures.Player;
-import se.liu.arvra591.parsers.InputParser;
+import se.liu.arvra591.game.objects.creatures.Player;
 
 public abstract class AbstractMode
 {

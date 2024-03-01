@@ -1,4 +1,4 @@
-package se.liu.arvra591.objects.creatures;
+package se.liu.arvra591.game.objects.creatures;
 
 import java.util.List;
 

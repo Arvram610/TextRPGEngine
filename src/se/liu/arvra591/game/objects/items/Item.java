@@ -1,6 +1,6 @@
-package se.liu.arvra591.objects.items;
+package se.liu.arvra591.game.objects.items;
 
-import se.liu.arvra591.objects.AbstractObject;
+import se.liu.arvra591.game.objects.AbstractObject;
 /**
  * Superclass for items. Items are objects that can be picked up and put in the inventory.
  * They can be used for different purposes, ex consumables, equippables, etc

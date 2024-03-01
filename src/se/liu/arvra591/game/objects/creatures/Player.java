@@ -1,9 +1,9 @@
-package se.liu.arvra591.objects.creatures;
+package se.liu.arvra591.game.objects.creatures;
 
-import se.liu.arvra591.ListHelper;
-import se.liu.arvra591.objects.containers.PlayerInventory;
-import se.liu.arvra591.objects.items.Item;
-import se.liu.arvra591.objects.locations.Location;
+import se.liu.arvra591.game.ListHelper;
+import se.liu.arvra591.game.objects.containers.PlayerInventory;
+import se.liu.arvra591.game.objects.items.Item;
+import se.liu.arvra591.game.objects.locations.Location;
 
 import java.util.ArrayList;
 import java.util.List;

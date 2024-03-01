@@ -1,4 +1,4 @@
-package se.liu.arvra591.objects.items;
+package se.liu.arvra591.game.objects.items;
 /**
  * class for consumable items which inherit from the item class. Consumable items are items that when
  * used is consumed and removed from the inventory.

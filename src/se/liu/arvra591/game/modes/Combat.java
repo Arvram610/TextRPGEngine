@@ -1,13 +1,13 @@
-package se.liu.arvra591.modes;
+package se.liu.arvra591.game.modes;
 
-import se.liu.arvra591.objects.containers.PlayerInventory;
-import se.liu.arvra591.objects.creatures.CreatureStats;
-import se.liu.arvra591.objects.creatures.Npc;
-import se.liu.arvra591.objects.creatures.PlayerStats;
-import se.liu.arvra591.objects.items.Item;
-import se.liu.arvra591.objects.locations.Location;
-import se.liu.arvra591.parsers.InputParser;
-import se.liu.arvra591.objects.creatures.Player;
+import se.liu.arvra591.game.objects.containers.PlayerInventory;
+import se.liu.arvra591.game.objects.creatures.CreatureStats;
+import se.liu.arvra591.game.objects.creatures.Npc;
+import se.liu.arvra591.game.objects.creatures.PlayerStats;
+import se.liu.arvra591.game.objects.items.Item;
+import se.liu.arvra591.game.objects.locations.Location;
+import se.liu.arvra591.game.parsers.InputParser;
+import se.liu.arvra591.game.objects.creatures.Player;
 
 import java.util.ArrayList;
 import java.util.List;

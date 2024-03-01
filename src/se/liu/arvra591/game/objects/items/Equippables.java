@@ -1,4 +1,4 @@
-package se.liu.arvra591.objects.items;
+package se.liu.arvra591.game.objects.items;
 /**
  * Equipable items which inherit from the item class. Equipable items are items that can be equipped
  * This can be ex armor, weapons, etc

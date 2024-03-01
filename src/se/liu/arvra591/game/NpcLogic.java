@@ -1,11 +1,11 @@
-package se.liu.arvra591;
+package se.liu.arvra591.game;
 
-import se.liu.arvra591.objects.creatures.Npc;
+import se.liu.arvra591.game.objects.creatures.Npc;
 
-public class Ai
+public class NpcLogic
 {
     private Npc npc;
-    public Ai(Npc npc) {
+    public NpcLogic(Npc npc) {
 	this.npc = npc;
     }
 

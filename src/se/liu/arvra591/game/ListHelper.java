@@ -1,6 +1,6 @@
-package se.liu.arvra591;
+package se.liu.arvra591.game;
 
-import se.liu.arvra591.objects.AbstractObject;
+import se.liu.arvra591.game.objects.AbstractObject;
 
 import java.util.List;
 

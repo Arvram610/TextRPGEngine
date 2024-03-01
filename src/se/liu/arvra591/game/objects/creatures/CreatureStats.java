@@ -1,4 +1,4 @@
-package se.liu.arvra591.objects.creatures;
+package se.liu.arvra591.game.objects.creatures;
 /**
  * class for creature stats such as health, attack, defense, energy, and energy regen
  * Used by {@link Npc} and {@link Player} to store stats

@@ -1,4 +1,4 @@
-package se.liu.arvra591.objects;
+package se.liu.arvra591.game.objects;
 
 
 /**
