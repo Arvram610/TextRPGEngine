@@ -1,4 +1,4 @@
-package se.liu.arvra591;
+package se.liu.arvra591.modes;
 
 import se.liu.arvra591.parsers.InputParser;
 import se.liu.arvra591.objects.containers.PlayerInventory;
@@ -18,18 +18,18 @@ import java.util.List;
  * The adventure class is the class that controls the adventure mode of the game and the player.
  * It has a parser that takes input from the player and parses it to get the correct command and applies the command to an action
  */
-public class Adventure
+public class Adventure extends AbstractMode
 {
-    private Player player;
+    //private Player player;
 
-    private Parser parser;
+    private AdventureParser parser;
 
     /**
      * @param player The player that is playing the game
      */
     public Adventure(Player player){
-	this.player = player;
-	this.parser = new Parser();
+	super(player);
+	this.parser = new AdventureParser();
     }
 
     /**
@@ -77,14 +77,6 @@ public class Adventure
     }
 
     /**
-     * @param input The input from the player will be empty
-     * Prints the players inventory
-     */
-    public void printInventory(String input){
-	player.printInventory();
-    }
-
-    /**
      * @param input The input from the player
      */
     public void parseInput(String input){
@@ -105,13 +97,6 @@ public class Adventure
     }
 
     /**
-     * @param input The input from the player will be empty
-     */
-    public void printStats(String ignored){
-	player.printStats();
-    }
-
-    /**
      * @param input The input from the player will be the name of the npc to talk to
      */
     public void talk(String input){
@@ -121,9 +106,9 @@ public class Adventure
 	}
     }
 
-    private class Parser extends InputParser
+    private class AdventureParser extends InputParser
     {
-	private Parser(){
+	private AdventureParser(){
 	    parseInputs.put("move", Adventure.this::move);
 	    parseInputs.put("pickup", Adventure.this::pickUp);
 	    parseInputs.put("inspect", Adventure.this::inspect);
@@ -158,7 +143,7 @@ public class Adventure
 
 	PlayerInventory inventory = new PlayerInventory(itemsInInventory, stats);
 	Player testPlayer = new Player("TestPlayer", "TestDescription", 100, 100, stats, testLocation,
-				       0, inventory);
+				        inventory);
 
 	Adventure ad = new Adventure(testPlayer);
 	//ad.parseInput("help");
@@ -174,7 +159,11 @@ public class Adventure
 	//ad.parseInput("stats");
 	//ad.parseInput("talk Carl");
 
-	ad.parseInput("move TestExit");
+	//ad.parseInput("move TestExit");
 	//ad.parseInput("location");
+
+	ad.parseInput("inventory");
+	ad.parseInput("checkinventory");
+	ad.parseInput("stats");
     }
 }

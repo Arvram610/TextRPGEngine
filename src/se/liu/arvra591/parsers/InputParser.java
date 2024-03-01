@@ -12,12 +12,14 @@ import java.util.Map;
 public abstract class InputParser
 {
 
+
     protected Map<String, ParseAction> parseInputs;
 
     protected InputParser(){
 	parseInputs = new HashMap<>();
 	parseInputs.put("help", this::printActions);
     }
+
     private String removeActionFromInput(String input, String action){
 	return input.replace(action+" ", "");
     }

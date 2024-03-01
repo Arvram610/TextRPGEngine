@@ -1,18 +1,24 @@
-package se.liu.arvra591;
+package se.liu.arvra591.modes;
 
+import se.liu.arvra591.objects.containers.PlayerInventory;
 import se.liu.arvra591.objects.creatures.CreatureStats;
 import se.liu.arvra591.objects.creatures.Npc;
 import se.liu.arvra591.objects.creatures.PlayerStats;
+import se.liu.arvra591.objects.items.Item;
+import se.liu.arvra591.objects.locations.Location;
 import se.liu.arvra591.parsers.InputParser;
 import se.liu.arvra591.objects.creatures.Player;
 
-public class Combat
-{
-    private Player player;
+import java.util.ArrayList;
+import java.util.List;
 
-    private Parser parser;
+public class Combat extends AbstractMode
+{
+    private CombatParser parser;
 
     private static final int ENERGY_COST = 5;
+
+    private static final int REST_ENERGY_REGEN = 15;
 
     private Npc currentTarget;
 
@@ -20,8 +26,8 @@ public class Combat
      * @param player The player that is playing the game
      */
     public Combat(Player player, Npc target){
-	this.player = player;
-	this.parser = new Parser();
+	super(player);
+	this.parser = new CombatParser();
 	this.currentTarget = target;
     }
 
@@ -30,6 +36,7 @@ public class Combat
 	int health = player.getHealth();
 	int energy = player.getCurrentEnergy();
 	System.out.println("You have " + health + " health and " + energy + " energy");
+	System.out.println(currentTarget.getName() + " now has " + currentTarget.getHealth() + " health left");
     }
 
     /**
@@ -61,34 +68,49 @@ public class Combat
 	    return;
 	}
 	System.out.println("You attacked " + currentTarget.getName() + " for " + damage + " damage");
-	System.out.println(currentTarget.getName() + " now has " + currentTarget.getHealth() + " health left");
     }
 
-    public void sleep(String name){
-	//player.sleep();
+    public void rest(String name){
+	player.addEnergy(REST_ENERGY_REGEN);
+	System.out.println("You slept and regained " + REST_ENERGY_REGEN + " energy");
     }
 
-    private class Parser extends InputParser
+    private class CombatParser extends InputParser
     {
-	private Parser(){
+	private CombatParser(){
 
 	    parseInputs.put("attack", Combat.this::attack);
-	    parseInputs.put("sleep", Combat.this::sleep);
+	    parseInputs.put("rest", Combat.this::rest);
+	    parseInputs.put("checkinventory", Combat.this::printInventory);
+	    parseInputs.put("inventory", Combat.this::printInventory);
+	    parseInputs.put("stats", Combat.this::printStats);
 	}
     }
 
     public static void main(String[] args){
+	List<Npc> npcs = new ArrayList<>();
+	List<Item> items = new ArrayList<>();
+	List<Location> exits = new ArrayList<>();
+	List<Item> itemsInInventory = new ArrayList<>();
+
+
+
 	PlayerStats stats = new PlayerStats(100, 10, 10, 5, 10, 0, 0, 100, 5);
 	CreatureStats creatureStats = new CreatureStats(100, 5, 5, 0, 0);
 
-	Player player = new Player("Player", "A player", 100, 100, stats, null, 0, null);
+	PlayerInventory inventory = new PlayerInventory(itemsInInventory, stats);
+	Player player = new Player("Player", "A player", 100, 100, stats, null,  inventory);
 	Npc target = new Npc("Carl", "A friendly human", 100, creatureStats, null, null);
 
 	Combat combat = new Combat(player, target);
 
 	//combat.parseInput("help");
-	combat.parseInput("attack");
-	combat.startOfRound();
+	//combat.parseInput("attack");
+	//combat.startOfRound();
+
+	//combat.parseInput("inventory");
+	//combat.parseInput("checkinventory");
+	//combat.parseInput("stats");
     }
 
 }

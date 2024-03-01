@@ -33,7 +33,7 @@ public class Player extends Creature
      */
     public Player(final String name, final String description, int currentHealth, int currentEnergy,
 		  PlayerStats stats, Location currentLocation,
-		  int experience, PlayerInventory inventory) {
+		   PlayerInventory inventory) {
 	super(name, description, currentHealth, stats, inventory);
 	this.currentLocation = currentLocation;
 	this.currentEnergy = currentEnergy;
@@ -172,7 +172,7 @@ public class Player extends Creature
 				   new ArrayList<>(), new ArrayList<>(), new ArrayList<>());
 	PlayerStats c1 = new PlayerStats(10, 10, 10, 10, 10, 10, 10, 10, 110);
 	Player p1 = new Player("Kalle", "Redigt kool", 10, 100,
-			       c1, l1, 0, null);
+			       c1, l1, null);
 
 	Location l2 = new Location("Room 2", "Andra rummet",
 				   new ArrayList<>(), new ArrayList<>(), new ArrayList<>());
