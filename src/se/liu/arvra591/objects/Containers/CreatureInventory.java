@@ -1,4 +1,4 @@
-package se.liu.arvra591.objects.itemContainers;
+package se.liu.arvra591.objects.Containers;
 
 import se.liu.arvra591.objects.items.Item;
 

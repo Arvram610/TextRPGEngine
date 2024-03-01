@@ -1,4 +1,4 @@
-package se.liu.arvra591.inputParsers;
+package se.liu.arvra591.Parsers;
 
 import se.liu.arvra591.ParseAction;
 
@@ -40,10 +40,20 @@ public abstract class InputParser
     //Kodgranskning says that input is not used but is wrong
     public void parseInput(String input){
 	String[] inputs = input.split(" ");
-	parseInputs.forEach((key, value) -> { //use map.get instead of forEach?
+
+	/*parseInputs.forEach((key, value) -> { //use map.get instead of forEach?
 	    if (inputs[0].toLowerCase().equals(key))
 		value.performAction(removeActionFromInput(input, key));
-	});
+	});*/
+
+	ParseAction action = parseInputs.get(inputs[0].toLowerCase());
+	if (action != null){
+	    action.performAction(removeActionFromInput(input, inputs[0]));
+	}
+	else {
+	    System.out.println("Invalid command");
+	}
+
     }
 
 }

@@ -1,7 +1,7 @@
 package se.liu.arvra591.objects.creatures;
 
 import se.liu.arvra591.ListHelper;
-import se.liu.arvra591.objects.itemContainers.PlayerInventory;
+import se.liu.arvra591.objects.Containers.PlayerInventory;
 import se.liu.arvra591.objects.items.Item;
 import se.liu.arvra591.objects.locations.Location;
 

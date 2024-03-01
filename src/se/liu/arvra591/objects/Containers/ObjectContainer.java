@@ -1,4 +1,4 @@
-package se.liu.arvra591.objects.itemContainers;
+package se.liu.arvra591.objects.Containers;
 
 import se.liu.arvra591.ListHelper;
 import se.liu.arvra591.objects.AbstractObject;
@@ -51,9 +51,9 @@ public class ObjectContainer <T extends AbstractObject>
     }
 
     /**
-     * @param object is the object to remove
-     *
      * this function is called when the parameter is the object itseflf nstead of the name of the object
+     *
+     * @param object is the object to remove
      *
      * @return Returns the object removed from the inventory
      */

@@ -1,7 +1,18 @@
 package se.liu.arvra591;
 
-import se.liu.arvra591.inputParsers.InputParser;
+import se.liu.arvra591.Parsers.InputParser;
+import se.liu.arvra591.objects.Containers.PlayerInventory;
+import se.liu.arvra591.objects.creatures.CreatureStats;
+import se.liu.arvra591.objects.creatures.Npc;
+import se.liu.arvra591.objects.creatures.NpcDialogue;
 import se.liu.arvra591.objects.creatures.Player;
+import se.liu.arvra591.objects.creatures.PlayerStats;
+import se.liu.arvra591.objects.items.Item;
+import se.liu.arvra591.objects.locations.Location;
+
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
 
 /**
  * The adventure class is the class that controls the adventure mode of the game and the player.
@@ -61,16 +72,15 @@ public class Adventure
      * @param input The input from the player will be empty
      * Prints the current location of the player
      */
-    public void printLocation(String input){ //input kommer vara tom? Man kommer bara skriva "location"
+    public void printLocation(String input){ //input kommer vara tom. Man kommer bara skriva "location"
 	player.getCurrentLocation().printObject(); //vill vi printa hela objektet eller bara namnet?
-	System.out.println("Current location: " + player.getCurrentLocation().getName());
     }
 
     /**
      * @param input The input from the player will be empty
      * Prints the players inventory
      */
-    public void checkInventory(String input){
+    public void printInventory(String input){
 	player.printInventory();
     }
 
@@ -97,7 +107,7 @@ public class Adventure
     /**
      * @param input The input from the player will be empty
      */
-    public void printStats(String input){
+    public void printStats(String ignored){
 	player.printStats();
     }
 
@@ -115,11 +125,11 @@ public class Adventure
     {
 	private Parser(){
 	    parseInputs.put("move", Adventure.this::move);
-	    parseInputs.put("pickUp", Adventure.this::pickUp);
+	    parseInputs.put("pickup", Adventure.this::pickUp);
 	    parseInputs.put("inspect", Adventure.this::inspect);
 	    parseInputs.put("location", Adventure.this::printLocation);
-	    parseInputs.put("checkInventory", Adventure.this::checkInventory);
-	    parseInputs.put("inventory", Adventure.this::checkInventory);
+	    parseInputs.put("checkinventory", Adventure.this::printInventory);
+	    parseInputs.put("inventory", Adventure.this::printInventory);
 	    parseInputs.put("drop", Adventure.this::dropItem);
 	    parseInputs.put("stats", Adventure.this::printStats);
 	    parseInputs.put("talk", Adventure.this::talk); //input will be "talk npc" where npc is the name of the npc you want to talk to
@@ -127,7 +137,44 @@ public class Adventure
     }
 
     public static void main(String[] args){
-	Adventure ad = new Adventure(null);
-	ad.parseInput("help");
+	List<Npc> npcs = new ArrayList<>();
+	List<Item> items = new ArrayList<>();
+	List<Location> exits = new ArrayList<>();
+	List<Item> itemsInInventory = new ArrayList<>();
+
+	List<Npc> emptyNpcs = new ArrayList<>();
+
+	NpcDialogue npcDialogue = new NpcDialogue(Arrays.asList("Hej!", "Hoppas du mår bra", "Ha en trevlig dag"));
+	Npc npc = new Npc("Carl", "A friendly human", 10, CreatureStats.basic, npcDialogue, null);
+	Item item = new Item("TestItem", "TestDescription", 10);
+	Location testExit = new Location("TestExit", "TestDescription", emptyNpcs, items, exits);
+
+	npcs.add(npc);
+	items.add(item);
+	exits.add(testExit);
+
+	Location testLocation = new Location("TestLocation", "TestDescription", npcs, items, exits);
+	PlayerStats stats = new PlayerStats( 10,10,10,10,10,10,10,10);
+
+	PlayerInventory inventory = new PlayerInventory(itemsInInventory, stats);
+	Player testPlayer = new Player("TestPlayer", "TestDescription", 100, stats, testLocation,
+				       0, inventory);
+
+	Adventure ad = new Adventure(testPlayer);
+	//ad.parseInput("help");
+	//ad.parseInput("loCATiOn");
+	//ad.parseInput("insPect TestItem");
+
+	/*ad.parseInput("pickUp TestItem");
+	ad.parseInput("checkInventory");
+	ad.parseInput("drop TestItem");
+	ad.parseInput("pickUp TestItem");
+	ad.parseInput("pickUp TestItem");*/
+
+	//ad.parseInput("stats");
+	//ad.parseInput("talk Carl");
+
+	ad.parseInput("move TestExit");
+	//ad.parseInput("location");
     }
 }
