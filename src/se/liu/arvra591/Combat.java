@@ -1,6 +1,6 @@
 package se.liu.arvra591;
 
-import se.liu.arvra591.Parsers.InputParser;
+import se.liu.arvra591.parsers.InputParser;
 import se.liu.arvra591.objects.creatures.Player;
 
 public class Combat

@@ -1,7 +1,7 @@
 package se.liu.arvra591;
 
-import se.liu.arvra591.Parsers.InputParser;
-import se.liu.arvra591.objects.Containers.PlayerInventory;
+import se.liu.arvra591.parsers.InputParser;
+import se.liu.arvra591.objects.containers.PlayerInventory;
 import se.liu.arvra591.objects.creatures.CreatureStats;
 import se.liu.arvra591.objects.creatures.Npc;
 import se.liu.arvra591.objects.creatures.NpcDialogue;

@@ -1,4 +1,4 @@
-package se.liu.arvra591.Parsers;
+package se.liu.arvra591.parsers;
 
 import se.liu.arvra591.ParseAction;
 

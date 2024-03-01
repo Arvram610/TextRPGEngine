@@ -5,7 +5,7 @@ import se.liu.arvra591.objects.AbstractObject;
 import se.liu.arvra591.objects.creatures.CreatureStats;
 import se.liu.arvra591.objects.creatures.Npc;
 import se.liu.arvra591.objects.creatures.NpcDialogue;
-import se.liu.arvra591.objects.Containers.ObjectContainer;
+import se.liu.arvra591.objects.containers.ObjectContainer;
 import se.liu.arvra591.objects.items.Item;
 
 import java.util.ArrayList;

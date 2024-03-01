@@ -1,7 +1,7 @@
 package se.liu.arvra591.objects.creatures;
 
 import se.liu.arvra591.objects.AbstractObject;
-import se.liu.arvra591.objects.Containers.CreatureInventory;
+import se.liu.arvra591.objects.containers.CreatureInventory;
 import se.liu.arvra591.objects.items.Item;
 
 /**
