@@ -20,6 +20,7 @@ public class Location extends AbstractObject
     private ObjectContainer<Npc> npcContainer; //might be divided into enemies and players
     private ObjectContainer<Item> itemContainer;
     private ObjectContainer<Location> exitContainer;
+    private List<String> exitListString;
 
     //private List<interactables> interactablesList; //might be added later
 
@@ -30,11 +31,12 @@ public class Location extends AbstractObject
      * @param items List of items in the location
      * @param exits List of exits in the location
      */
-    public Location(String name, String description, List<Npc> npcs, List<Item> items, List<Location> exits) {
+    public Location(String name, String description, List<Npc> npcs, List<Item> items, List<String> exitListString) {
 	super(name, description);
 	this.npcContainer = new ObjectContainer<>(npcs);
 	this.itemContainer = new ObjectContainer<>(items);
-	this.exitContainer = new ObjectContainer<>(exits);
+	this.exitContainer = new ObjectContainer<>(new ArrayList<>());
+	this.exitListString = exitListString;
     }
 
     /**
@@ -103,6 +105,10 @@ public class Location extends AbstractObject
 	return npcContainer.getObjects();
     }
 
+    public List<String> getExitStringList() {
+	return exitListString;
+    }
+
     /**
      * Prints the the location and its contents such as npcs, items and exits
      */
@@ -124,26 +130,5 @@ public class Location extends AbstractObject
 	System.out.println("Exits in location: ");
 	ListHelper.printList(exitContainer.getObjects(), true);
 	System.out.println();
-    }
-
-
-    public static void main(String[] args) {
-	List<Npc> npcs = new ArrayList<>();
-	List<Item> items = new ArrayList<>();
-	NpcDialogue emptyDialogue = new NpcDialogue(new ArrayList<>());
-	List<Location> exits = new ArrayList<>();
-	npcs.add(new Npc("TestCreature", "TestDescription", 10,
-				 new CreatureStats(10, 10, 10, 10, 10),
-				 emptyDialogue, null));
-	items.add(new Item("TestItem", "TestDescription", 10));
-	items.add(new Item("TestItem2", "TestDescription2", 20));
-	exits.add(new Location("TestLocation", "TestDescription", new ArrayList<>(), new ArrayList<>(), new ArrayList<>()));
-
-
-	Location location = new Location("TestLocation", "TestDescription", npcs, items, exits);
-	location.printObject();
-
-	location.inspect("TestItem");
-
     }
 }

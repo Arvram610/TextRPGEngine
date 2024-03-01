@@ -6,6 +6,7 @@ import com.google.gson.JsonObject;
 import se.liu.arvra591.factories.Factory;
 import se.liu.arvra591.jsonParser.JsonParser;
 import se.liu.arvra591.objects.AbstractObject;
+import se.liu.arvra591.objects.items.Item;
 
 import java.io.IOException;
 import java.util.ArrayList;
@@ -34,7 +35,7 @@ public abstract class ObjectGenerator<T>
 	}
     }
 
-    protected <S extends AbstractObject> List<S> genObjectListFromFactory(JsonArray jsonArray, Map<String, Factory<S>> map){
+    protected <S extends AbstractObject> List<S> genObjectListFromFactory(JsonArray jsonArray, Map<String, Factory<? extends S>> map){
 	List<S> list = new ArrayList<>();
 	jsonArray.forEach((object) -> {
 	    list.add(map.get(object.getAsString()).gen());
