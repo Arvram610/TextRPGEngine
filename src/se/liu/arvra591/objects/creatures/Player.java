@@ -145,6 +145,9 @@ public class Player extends Creature
 	return true;
     }
 
+    /**
+     * @param energy is the energy to add to the player
+     */
     public void addEnergy(int energy){
 	stats = getPlayerStats();
 	currentEnergy += energy;
