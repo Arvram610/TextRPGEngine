@@ -1,4 +1,4 @@
-package se.liu.arvra591.objects.itemContainers;
+package se.liu.arvra591.objects.containers;
 
 import se.liu.arvra591.objects.creatures.PlayerStats;
 import se.liu.arvra591.objects.items.Item;
@@ -17,25 +17,37 @@ public class PlayerInventory extends CreatureInventory
 
     protected int currentWeight;
 
-    public PlayerInventory(List<Item> itemList, PlayerStats stats){
-	super(itemList);
+    /**
+     * @param items is the list of items in the inventory
+     * @param stats is the stats of the player which contains the carry weight
+     */
+    public PlayerInventory(List<Item> items, PlayerStats stats){
+	super(items);
 	this.playerStats = stats;
 	this.currentWeight = 0;
     }
 
+    /**
+     * @param item is the object to add to the inventory
+     *
+     * @return true if the item was added to the inventory, false if the item was not added to the inventory
+     */
     @Override
-    public boolean addItem(Item item){
+    public boolean addObject(Item item){
 	int maxWeight = playerStats.getCarryWeight();
 	int weight = item.getWeight();
 	if (maxWeight >= weight + getCurrentWeight()){
-	    return super.addItem(item);
+	    return super.addObject(item);
 	}
 	return false;
     }
 
+    /**
+     * @return Returns the current weight of the items in the inventory
+     */
     public int getCurrentWeight() {
 	currentWeight = 0;
-	for (Item item : itemList) {
+	for (Item item : objects) {
 	    currentWeight += item.getWeight();
 	}
 	return currentWeight;
@@ -43,19 +55,19 @@ public class PlayerInventory extends CreatureInventory
 
 
     public static void main(String[] args) {
-	List<Item> itemList = new ArrayList<>();
+	List<Item> items = new ArrayList<>();
 	PlayerStats basicStats = new PlayerStats(10, 10, 10, 10, 30, 10, 10, 10);
-	PlayerInventory inventory = new PlayerInventory(itemList, basicStats);
+	PlayerInventory inventory = new PlayerInventory(items, basicStats);
 	Item sword = new Item("Sword", "A sword", 10);
 	Item shield = new Item("Shield", "A shield", 10);
-	inventory.addItem(sword);
-	inventory.addItem(shield);
-	inventory.addItem(sword);
-	inventory.removeItem("Sword");
-	inventory.addItem(shield);
-	inventory.printInventory();
-	inventory.getItem("Sword");
-	inventory.getItem("Shield");
+	inventory.addObject(sword);
+	inventory.addObject(shield);
+	inventory.addObject(sword);
+	inventory.removeObject("Sword");
+	inventory.addObject(shield);
+	inventory.printContainer();
+	inventory.getObject("Sword");
+	inventory.getObject("Shield");
 
     }
 }

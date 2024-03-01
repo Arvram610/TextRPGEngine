@@ -19,6 +19,13 @@ public class CreatureStats
     public static CreatureStats basic = new CreatureStats(10,10,10,10,10);
 
 
+    /**
+     * @param maxHealth is the maximum health of the creature
+     * @param attack is the amount of damage the creature does
+     * @param defense is the amount of damage the creature can mitigate
+     * @param maxEnergy is the maximum energy of the creature
+     * @param energyRegenRate is the rate at which the creature regenerates energy
+     */
     public CreatureStats(final int maxHealth, final int attack, final int defense, final int maxEnergy,
                          final int energyRegenRate)
     {
@@ -29,26 +36,44 @@ public class CreatureStats
         this.energyRegenRate = energyRegenRate;
     }
 
+    /**
+     * @return Returns the max health of the creature
+     */
     public int getMaxHealth() {
         return maxHealth;
     }
 
+    /**
+     * @return Returns the attack of the creature
+     */
     public int getAttack() {
         return attack;
     }
 
+    /**
+     * @return Returns the defense of the creature
+     */
     public int getDefense() {
         return defense;
     }
 
+    /**
+     * @return Returns the max energy of the creature
+     */
     public int getMaxEnergy() {
         return maxEnergy;
     }
 
+    /**
+     * @return Returns the energy regen rate of the creature
+     */
     public int getEnergyRegenRate() {
         return energyRegenRate;
     }
 
+    /**
+     * Prints the stats of the creature
+     */
     public void printStats(){
         System.out.println("Attack: " + getAttack());
         System.out.println("Defense: " + getDefense());

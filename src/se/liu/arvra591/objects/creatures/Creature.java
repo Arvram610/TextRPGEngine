@@ -1,7 +1,7 @@
 package se.liu.arvra591.objects.creatures;
 
 import se.liu.arvra591.objects.AbstractObject;
-import se.liu.arvra591.objects.itemContainers.CreatureInventory;
+import se.liu.arvra591.objects.containers.CreatureInventory;
 import se.liu.arvra591.objects.items.Item;
 
 /**
@@ -40,8 +40,11 @@ public abstract class Creature extends AbstractObject
         return health;
     }
 
+    /**
+     * @param item is the item that the creature picks up
+     */
     public void pickUpItem(Item item){
-        inventory.addItem(item);
+        inventory.addObject(item);
     }
 
 
