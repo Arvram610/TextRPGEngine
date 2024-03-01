@@ -99,8 +99,10 @@ public class Adventure
 	    parseInputs.put("inspect", Adventure.this::inspect);
 	    parseInputs.put("location", Adventure.this::printLocation);
 	    parseInputs.put("checkInventory", Adventure.this::checkInventory);
+	    parseInputs.put("inventory", Adventure.this::checkInventory);
 	    parseInputs.put("drop", Adventure.this::dropItem);
-	    //TODO: Add more commands
+	    //stats (print stats)
+	    //talk (print npc dialogue)
 	}
     }
 
