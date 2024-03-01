@@ -39,6 +39,15 @@ public class Npc extends Creature
     /**
      * to be removed
      */
+
+    public boolean takeDamage(int damage){
+	health -= damage;
+	if (health <= 0) {
+	    //System.out.println(getName() + " has died");
+	    return true;
+	}
+	return false;
+    }
     public static void main(String[] args) {
 	NpcDialogue npcDialogue = new NpcDialogue(Arrays.asList("Hej!", "Hoppas du mår bra", "Ha en trevlig dag"));
 	Npc npc = new Npc("Carl", "A friendly human", 10, CreatureStats.basic, npcDialogue, null);

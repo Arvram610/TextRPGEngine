@@ -19,22 +19,24 @@ import java.util.List;
 public class Player extends Creature
 {
     protected Location currentLocation;
+    protected int currentEnergy;
 
 
     /**
      * @param name is the name of the player
      * @param description is the description of the player
-     * @param health is the health of the player
+     * @param currentHealth is the health of the player
      * @param stats is the stats of the player such as attack, defense, level, energy
      * @param currentLocation is the location of the player
      * @param experience is the experience points of the player, this determines the level of the player
      * @param inventory is the inventory of the player which contains items
      */
-    public Player(final String name, final String description, int health,
+    public Player(final String name, final String description, int currentHealth, int currentEnergy,
 		  PlayerStats stats, Location currentLocation,
 		  int experience, PlayerInventory inventory) {
-	super(name, description, health, stats, inventory);
+	super(name, description, currentHealth, stats, inventory);
 	this.currentLocation = currentLocation;
+	this.currentEnergy = currentEnergy;
     }
 
     /**
@@ -46,9 +48,16 @@ public class Player extends Creature
 	System.out.println("Current Location: " + getCurrentLocation().getName());
     }
 
+    /**
+     * Prints the players stats
+     */
     public void printStats(){
-	PlayerStats stats = (PlayerStats) getStats();
+	PlayerStats stats = getPlayerStats();
 	stats.printStats();
+    }
+
+    public PlayerStats getPlayerStats() {
+	return (PlayerStats) stats;
     }
 
     /**
@@ -123,6 +132,35 @@ public class Player extends Creature
     }
 
     /**
+     * @param energy is the energy to reduce from the player
+     */
+    public boolean reduceEnergy(int energy){
+	stats = getPlayerStats();
+	int lastEnergy = currentEnergy;
+	currentEnergy -= energy;
+	if (currentEnergy < 0) {
+	    currentEnergy = lastEnergy;
+	    return false;
+	}
+	return true;
+    }
+
+    public void addEnergy(int energy){
+	stats = getPlayerStats();
+	currentEnergy += energy;
+	if (currentEnergy > stats.getMaxEnergy()) {
+	    currentEnergy = stats.getMaxEnergy();
+	}
+    }
+
+    /**
+     * @return Returns the current energy of the player
+     */
+    public int getCurrentEnergy(){
+	return currentEnergy;
+    }
+
+    /**
      * @return Returns the current location of the player
      */
     public Location getCurrentLocation() {
@@ -132,8 +170,8 @@ public class Player extends Creature
     public static void main(String[] args) {
 	Location l1 = new Location("Room 1", "Första rummet du vaknar i",
 				   new ArrayList<>(), new ArrayList<>(), new ArrayList<>());
-	PlayerStats c1 = new PlayerStats(10, 10, 10, 10, 10, 10, 10, 10);
-	Player p1 = new Player("Kalle", "Redigt kool", 10,
+	PlayerStats c1 = new PlayerStats(10, 10, 10, 10, 10, 10, 10, 10, 110);
+	Player p1 = new Player("Kalle", "Redigt kool", 10, 100,
 			       c1, l1, 0, null);
 
 	Location l2 = new Location("Room 2", "Andra rummet",

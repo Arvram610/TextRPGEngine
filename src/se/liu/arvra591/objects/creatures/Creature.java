@@ -11,14 +11,13 @@ import se.liu.arvra591.objects.items.Item;
 public abstract class Creature extends AbstractObject
 {
     protected int health;
-
     protected CreatureStats stats;
     protected CreatureInventory inventory;
 
-    protected Creature(String name, String description, int health, CreatureStats stats, CreatureInventory inventory){
+    protected Creature(String name, String description, int currentHealth, CreatureStats stats, CreatureInventory inventory){
 
 	super(name, description);
-	this.health = health;
+	this.health = currentHealth;
         this.stats = stats;
         this.inventory = inventory;
     }

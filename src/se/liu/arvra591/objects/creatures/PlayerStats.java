@@ -17,7 +17,7 @@ public class PlayerStats extends CreatureStats
     protected int experience;
 
     /**
-     * @param health how much health the player currently has
+     * @param maxHealth how much health the player currently has
      * @param level the level of the player
      * @param attack how much damage the player does
      * @param defense how much damage the player can mitigate
@@ -26,9 +26,9 @@ public class PlayerStats extends CreatureStats
      * @param experience the experience points the player has, this determines level
      * @param energy the energy of the player
      */
-    public PlayerStats(int health, int level, int attack, int defense,
-		       int carryWeight, int currentWeight, int experience, int energy) {
-	super(health, level, attack, energy, defense);
+    public PlayerStats(int maxHealth, int level, int attack, int defense,
+		       int carryWeight, int currentWeight, int experience, int energy, int energyRegen) {
+	super(maxHealth, attack, defense, energy, energyRegen);
 	this.carryWeight = carryWeight;
 	this.experience = 0;
     }

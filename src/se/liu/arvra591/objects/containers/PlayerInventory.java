@@ -56,7 +56,7 @@ public class PlayerInventory extends CreatureInventory
 
     public static void main(String[] args) {
 	List<Item> items = new ArrayList<>();
-	PlayerStats basicStats = new PlayerStats(10, 10, 10, 10, 30, 10, 10, 10);
+	PlayerStats basicStats = new PlayerStats(10, 10, 10, 10, 30, 10, 10, 10, 10);
 	PlayerInventory inventory = new PlayerInventory(items, basicStats);
 	Item sword = new Item("Sword", "A sword", 10);
 	Item shield = new Item("Shield", "A shield", 10);

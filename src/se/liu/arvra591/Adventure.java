@@ -154,10 +154,10 @@ public class Adventure
 	exits.add(testExit);
 
 	Location testLocation = new Location("TestLocation", "TestDescription", npcs, items, exits);
-	PlayerStats stats = new PlayerStats( 10,10,10,10,10,10,10,10);
+	PlayerStats stats = new PlayerStats( 10,10,10,10,10,10,10,10, 110);
 
 	PlayerInventory inventory = new PlayerInventory(itemsInInventory, stats);
-	Player testPlayer = new Player("TestPlayer", "TestDescription", 100, stats, testLocation,
+	Player testPlayer = new Player("TestPlayer", "TestDescription", 100, 100, stats, testLocation,
 				       0, inventory);
 
 	Adventure ad = new Adventure(testPlayer);
