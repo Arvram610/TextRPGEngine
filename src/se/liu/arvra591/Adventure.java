@@ -81,6 +81,9 @@ public class Adventure
 	parser.parseInput(input);
     }
 
+    /**
+     * @param item The item to drop
+     */
     public void dropItem(String item){
 	boolean success = player.dropItem(item);
 	if (!success) {
@@ -88,6 +91,23 @@ public class Adventure
 	}
 	else{
 	    System.out.println("You dropped " + item);
+	}
+    }
+
+    /**
+     * @param input The input from the player will be empty
+     */
+    public void printStats(String input){
+	player.printStats();
+    }
+
+    /**
+     * @param input The input from the player will be the name of the npc to talk to
+     */
+    public void talk(String input){
+	boolean success = player.talkToNpc(input);
+	if (!success) {
+	    System.out.println("No creature with the name " + input);
 	}
     }
 
@@ -101,8 +121,8 @@ public class Adventure
 	    parseInputs.put("checkInventory", Adventure.this::checkInventory);
 	    parseInputs.put("inventory", Adventure.this::checkInventory);
 	    parseInputs.put("drop", Adventure.this::dropItem);
-	    //stats (print stats)
-	    //talk (print npc dialogue)
+	    parseInputs.put("stats", Adventure.this::printStats);
+	    parseInputs.put("talk", Adventure.this::talk); //input will be "talk npc" where npc is the name of the npc you want to talk to
 	}
     }
 

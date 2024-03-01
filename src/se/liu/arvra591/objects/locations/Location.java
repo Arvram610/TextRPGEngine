@@ -61,6 +61,11 @@ public class Location extends AbstractObject
 	return itemContainer.removeObject(name);
     }
 
+    /**
+     * @param item Item to add to the location
+     *
+     * @return True if the item was added, false if not
+     */
     public boolean addItem(Item item){
 	return itemContainer.addObject(item);
     }
@@ -90,6 +95,13 @@ public class Location extends AbstractObject
      */
     public Location getExit(final String name) {
 	return (Location) ListHelper.findObjectInList(exitContainer.getObjects(), name);
+    }
+
+    /**
+     * @return List of npcs in the location
+     */
+    public List<Npc> getNpcs() {
+	return npcContainer.getObjects();
     }
 
     /**

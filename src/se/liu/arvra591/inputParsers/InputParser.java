@@ -40,7 +40,7 @@ public abstract class InputParser
     //Kodgranskning says that input is not used but is wrong
     public void parseInput(String input){
 	String[] inputs = input.split(" ");
-	parseInputs.forEach((key, value) -> {
+	parseInputs.forEach((key, value) -> { //use map.get instead of forEach?
 	    if (inputs[0].toLowerCase().equals(key))
 		value.performAction(removeActionFromInput(input, key));
 	});

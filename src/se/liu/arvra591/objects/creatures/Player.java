@@ -1,10 +1,12 @@
 package se.liu.arvra591.objects.creatures;
 
+import se.liu.arvra591.ListHelper;
 import se.liu.arvra591.objects.itemContainers.PlayerInventory;
 import se.liu.arvra591.objects.items.Item;
 import se.liu.arvra591.objects.locations.Location;
 
 import java.util.ArrayList;
+import java.util.List;
 
 /**
  * A class representing a player
@@ -40,9 +42,13 @@ public class Player extends Creature
      */
     @Override public void printObject() {
 	super.printObject();
+	printStats();
+	System.out.println("Current Location: " + getCurrentLocation().getName());
+    }
+
+    public void printStats(){
 	PlayerStats stats = (PlayerStats) getStats();
 	stats.printStats();
-	System.out.println("Current Location: " + getCurrentLocation().getName());
     }
 
     /**
@@ -96,6 +102,21 @@ public class Player extends Creature
 	Item item = inventory.removeObject(name);
 	if (item != null) {
 	    currentLocation.addItem(item);
+	    return true;
+	}
+	return false;
+    }
+
+    /**
+     * @param name is the name of the npc to talk to
+     *
+     * @return true if the player can talk to the npc, false if the npc does not exist
+     */
+    public boolean talkToNpc(String name){
+	List<Npc> npcs = currentLocation.getNpcs();
+	Npc npc = (Npc) ListHelper.findObjectInList(npcs, name);
+	if (npc != null) {
+	    npc.talk();
 	    return true;
 	}
 	return false;
