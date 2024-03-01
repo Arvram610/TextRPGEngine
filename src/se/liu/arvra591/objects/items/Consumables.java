@@ -6,7 +6,7 @@ public class Consumables extends Item
 {
 
 
-    public Consumables(final String name, final String description, final int weight, final int stacksize, final int amount) {
+    public Consumables(final String name, final String description, final int weight) {
 	super(name, description, weight);
     }
 

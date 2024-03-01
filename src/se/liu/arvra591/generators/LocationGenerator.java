@@ -46,7 +46,7 @@ public class LocationGenerator extends ObjectGenerator<Location>{
 
     @Override
     public void genObjects(String fileName) throws IOException {
-	JsonArray jsonArray = jsonParser.parseFile(ClassLoader.getSystemResource("locations/" + fileName).getPath());
+	JsonArray jsonArray = loadJsonFile("locations/" + fileName);
 	genObjects(jsonArray);
     }
 

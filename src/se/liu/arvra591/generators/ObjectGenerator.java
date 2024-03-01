@@ -58,6 +58,10 @@ public abstract class ObjectGenerator<T>
 	return list;
     }
 
+    protected JsonArray loadJsonFile(String filepath) throws IOException {
+	return jsonParser.parseFile(ClassLoader.getSystemResource(filepath).getPath());
+    }
+
     public Map<String, T> getObjects(){
 	return objects;
     }
