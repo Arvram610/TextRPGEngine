@@ -31,8 +31,7 @@ public class Player extends Creature
      * @param inventory is the inventory of the player which contains items
      */
     public Player(final String name, final String description, int health,
-		  PlayerStats stats, Location currentLocation,
-		  int experience, PlayerInventory inventory) {
+		  PlayerStats stats, Location currentLocation, PlayerInventory inventory) {
 	super(name, description, health, stats, inventory);
 	this.currentLocation = currentLocation;
     }

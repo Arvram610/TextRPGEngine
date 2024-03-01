@@ -6,7 +6,7 @@ import se.liu.arvra591.objects.AbstractObject;
 public class Factory<T extends AbstractObject>
 {
     protected T targetObject;
-    Gson gson;
+    protected Gson gson;
 
     public Factory(T targetObject){
 	this.targetObject = targetObject;
