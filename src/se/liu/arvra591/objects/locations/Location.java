@@ -17,32 +17,12 @@ import java.util.List;
  */
 public class Location extends AbstractObject
 {
-<<<<<<< HEAD
-    private List<Npc> npcList; //might be divided into enemies and players
-    private List<Item> itemList;
-    private List<Location> exitList;
-    private List<String> exitStringList;
-=======
     private ObjectContainer<Npc> npcContainer; //might be divided into enemies and players
     private ObjectContainer<Item> itemContainer;
     private ObjectContainer<Location> exitContainer;
->>>>>>> main
 
     //private List<interactables> interactablesList; //might be added later
 
-
-<<<<<<< HEAD
-    public Location(String name, String description, List<Npc> npcList, List<Item> itemList, List<String> exitStringList) {
-	super(name, description);
-	this.npcList = npcList;
-	this.itemList = itemList;
-	this.exitStringList = exitStringList;
-	this.exitList = new ArrayList<>();
-    }
-
-    public List<String> getExitStringList(){
-	return exitStringList;
-=======
     /**
      * @param name Name of the location
      * @param description Description of the location
@@ -55,7 +35,6 @@ public class Location extends AbstractObject
 	this.npcContainer = new ObjectContainer<>(npcs);
 	this.itemContainer = new ObjectContainer<>(items);
 	this.exitContainer = new ObjectContainer<>(exits);
->>>>>>> main
     }
 
     /**
@@ -155,15 +134,6 @@ public class Location extends AbstractObject
 	List<Location> exits = new ArrayList<>();
 	npcs.add(new Npc("TestCreature", "TestDescription", 10,
 				 new CreatureStats(10, 10, 10, 10, 10),
-<<<<<<< HEAD
-				 NpcDialogue.emptyDialogue, null));
-
-	itemList.add(new Item("TestItem", "TestDescription", 10));
-	itemList.add(new Item("TestItem2", "TestDescription2", 20));
-
-
-	Location location = new Location("TestLocation", "TestDescription", npcList, itemList, new ArrayList<>());
-=======
 				 emptyDialogue, null));
 	items.add(new Item("TestItem", "TestDescription", 10));
 	items.add(new Item("TestItem2", "TestDescription2", 20));
@@ -171,7 +141,6 @@ public class Location extends AbstractObject
 
 
 	Location location = new Location("TestLocation", "TestDescription", npcs, items, exits);
->>>>>>> main
 	location.printObject();
 
 	location.inspect("TestItem");

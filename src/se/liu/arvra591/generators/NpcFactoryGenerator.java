@@ -21,7 +21,7 @@ public class NpcFactoryGenerator extends ObjectGenerator<Factory<? extends Npc>>
 	String name = object.get("name").getAsString();
 	String desc = object.get("description").getAsString();
 	int weight = object.get("weight").getAsInt();
-	List<String> new NpcDialogue()
+	List<String> new NpcDialogue();
 
 	objects.put(name, new Factory<>(new Npc(name, desc)));
     }
