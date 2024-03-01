@@ -73,7 +73,7 @@ public class Adventure
      * Prints the current location of the player
      */
     public void printLocation(String input){ //input kommer vara tom. Man kommer bara skriva "location"
-	player.getCurrentLocation().printObject(); //vill vi printa hela objektet eller bara namnet?
+	player.getCurrentLocation().printObject();
     }
 
     /**
