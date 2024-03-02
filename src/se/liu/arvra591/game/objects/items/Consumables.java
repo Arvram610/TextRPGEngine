@@ -5,6 +5,7 @@ package se.liu.arvra591.game.objects.items;
  */
 public class Consumables extends Item //Kodgranskning complains that the word Consumables should be split, I do not agree
 {
+
     /**
      * @param name of the item
      * @param description Describes the item

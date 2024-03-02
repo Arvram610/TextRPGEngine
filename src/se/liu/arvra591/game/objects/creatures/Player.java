@@ -30,6 +30,7 @@ public class Player extends Creature
      * @param experience is the experience points of the player, this determines the level of the player
      * @param inventory is the inventory of the player which contains items
      */
+
     public Player(final String name, final String description, int currentHealth, int currentEnergy,
 		  PlayerStats stats, Location currentLocation,
 		   PlayerInventory inventory) {
@@ -165,21 +166,5 @@ public class Player extends Creature
      */
     public Location getCurrentLocation() {
 	return currentLocation;
-    }
-
-    public static void main(String[] args) {
-	Location l1 = new Location("Room 1", "Första rummet du vaknar i",
-				   new ArrayList<>(), new ArrayList<>(), new ArrayList<>());
-	PlayerStats c1 = new PlayerStats(10, 10, 10, 10, 10, 10,  10, 110);
-	Player p1 = new Player("Kalle", "Redigt kool", 10, 100,
-			       c1, l1, null);
-
-	Location l2 = new Location("Room 2", "Andra rummet",
-				   new ArrayList<>(), new ArrayList<>(), new ArrayList<>());
-	l1.addExit(l2);
-
-	p1.getCurrentLocation().printObject();
-	p1.move("Room 2");
-	p1.getCurrentLocation().printObject();
     }
 }

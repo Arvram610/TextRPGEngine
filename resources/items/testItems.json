@@ -1,0 +1,14 @@
+[
+  {
+    "type": "equipable",
+    "name": "sword",
+    "description": "desc",
+    "weight": 3
+  },
+  {
+    "type": "consumable",
+    "name": "potion",
+    "description": "desc",
+    "weight": 1
+  }
+]

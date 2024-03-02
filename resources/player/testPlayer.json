@@ -1,0 +1,20 @@
+[
+  {
+    "name": "Kalle",
+    "description": "En stark grabb",
+    "health": 2,
+    "energy": 1,
+    "startLocation": "Rum1",
+    "stats":{
+      "attack": -1,
+      "defense": -1,
+      "maxHealth": 3,
+      "maxEnergy": 1,
+      "energyRegen": 0,
+      "carryWeight": 1
+    },
+    "inventory": [
+      "potion"
+    ]
+  }
+]

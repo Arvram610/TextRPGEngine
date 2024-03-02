@@ -86,31 +86,4 @@ public class Combat extends AbstractMode
 	    parseInputs.put("stats", Combat.this::printStats);
 	}
     }
-
-    public static void main(String[] args){
-	List<Npc> npcs = new ArrayList<>();
-	List<Item> items = new ArrayList<>();
-	List<Location> exits = new ArrayList<>();
-	List<Item> itemsInInventory = new ArrayList<>();
-
-
-
-	PlayerStats stats = new PlayerStats(100, 10, 10, 5, 10, 0,  100, 5);
-	CreatureStats creatureStats = new CreatureStats(100, 5, 5, 0, 0);
-
-	PlayerInventory inventory = new PlayerInventory(itemsInInventory, stats);
-	Player player = new Player("Player", "A player", 100, 100, stats, null,  inventory);
-	Npc target = new Npc("Carl", "A friendly human", 100, 110, creatureStats, null, null);
-
-	Combat combat = new Combat(player, target);
-
-	//combat.parseInput("help");
-	//combat.parseInput("attack");
-	//combat.startOfRound();
-
-	//combat.parseInput("inventory");
-	//combat.parseInput("checkinventory");
-	//combat.parseInput("stats");
-    }
-
 }

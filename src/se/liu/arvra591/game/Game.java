@@ -83,7 +83,7 @@ public class Game
 
     public static void main(String[] args) {
 	PlayerStats stats = new PlayerStats(100, 10, 10, 10, 10,
-					    10,  101, 10);
+					    10,  101);
 	Player player = new Player("player", "player", 10, 10,
 				   stats, null, null);
 	Game game = new Game(player);

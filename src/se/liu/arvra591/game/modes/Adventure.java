@@ -121,49 +121,4 @@ public class Adventure extends AbstractMode
 	}
     }
 
-    public static void main(String[] args){
-	List<Npc> npcs = new ArrayList<>();
-	List<Item> items = new ArrayList<>();
-	List<Location> exits = new ArrayList<>();
-	List<Item> itemsInInventory = new ArrayList<>();
-
-	List<Npc> emptyNpcs = new ArrayList<>();
-
-	NpcDialogue npcDialogue = new NpcDialogue(Arrays.asList("Hej!", "Hoppas du mår bra", "Ha en trevlig dag"));
-	Npc npc = new Npc("Carl", "A friendly human", 10, 10, CreatureStats.basic, npcDialogue, null);
-	Item item = new Item("TestItem", "TestDescription", 10);
-	Location testExit = new Location("TestExit", "TestDescription", emptyNpcs, items, exits);
-
-	npcs.add(npc);
-	items.add(item);
-	exits.add(testExit);
-
-	Location testLocation = new Location("TestLocation", "TestDescription", npcs, items, exits);
-	PlayerStats stats = new PlayerStats( 10,10,10,10,10,10,10, 110);
-
-	PlayerInventory inventory = new PlayerInventory(itemsInInventory, stats);
-	Player testPlayer = new Player("TestPlayer", "TestDescription", 100, 100, stats, testLocation,
-				        inventory);
-
-	Adventure ad = new Adventure(testPlayer);
-	//ad.parseInput("help");
-	//ad.parseInput("loCATiOn");
-	//ad.parseInput("insPect TestItem");
-
-	/*ad.parseInput("pickUp TestItem");
-	ad.parseInput("checkInventory");
-	ad.parseInput("drop TestItem");
-	ad.parseInput("pickUp TestItem");
-	ad.parseInput("pickUp TestItem");*/
-
-	//ad.parseInput("stats");
-	//ad.parseInput("talk Carl");
-
-	//ad.parseInput("move TestExit");
-	//ad.parseInput("location");
-
-	ad.parseInput("inventory");
-	ad.parseInput("checkinventory");
-	ad.parseInput("stats");
-    }
 }
