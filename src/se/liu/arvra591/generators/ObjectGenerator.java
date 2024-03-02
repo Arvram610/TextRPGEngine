@@ -16,6 +16,11 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+/**
+ * An abstract class that generates items of type {@link T}
+ *
+ * @param <T> The type of item the generator generates
+ */
 public abstract class ObjectGenerator<T> extends Generator
 {
 
