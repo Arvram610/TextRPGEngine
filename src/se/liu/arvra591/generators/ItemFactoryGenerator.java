@@ -7,13 +7,21 @@ import se.liu.arvra591.objects.items.Consumables;
 import se.liu.arvra591.objects.items.Equippables;
 import se.liu.arvra591.objects.items.Item;
 
+import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.util.Map;
 
 public class ItemFactoryGenerator extends ObjectGenerator<Factory<? extends Item>>
 {
 
-    @Override public void genObjects(final String fileName) throws IOException {
+    /**
+     * Generates itemsfactories from given file
+     *
+     * @param fileName The name of the file containing items
+     *
+     * @throws FileNotFoundException
+     */
+    @Override public void genObjects(final String fileName) throws FileNotFoundException {
 	JsonArray jsonArray = loadJsonArrayFile("items/" + fileName);
 	genObjects(jsonArray);
     }
@@ -32,7 +40,8 @@ public class ItemFactoryGenerator extends ObjectGenerator<Factory<? extends Item
 		objects.put(name, new Factory<>(new Equippables(name, desc, weight)));
 	    }
 	    default -> {
-		throw new RuntimeException();
+		System.out.println("itemtype not valid");
+		System.exit(1);
 	    }
 	}
     }
