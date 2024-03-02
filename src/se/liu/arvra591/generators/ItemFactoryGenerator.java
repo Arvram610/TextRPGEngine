@@ -11,6 +11,9 @@ import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.util.Map;
 
+/**
+ * A class the generates itemfactories from given files
+ */
 public class ItemFactoryGenerator extends ObjectGenerator<Factory<? extends Item>>
 {
 
