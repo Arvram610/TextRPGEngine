@@ -47,27 +47,4 @@ public class LocationGenerator extends ObjectGenerator<Location>{
 	JsonArray jsonArray = loadJsonArrayFile("locations/" + fileName);
 	genObjects(jsonArray);
     }
-
-    public static void main(String[] args) {
-	Item item = new Item("svärd", "Ett svärd", 10);
-	Npc npc = new Npc("gubbe1", "en gube", 1, null, null, null);
-	Factory<Npc> npcFactory = new Factory<>(npc);
-	Factory<Item> itemFactory = new Factory<>(item);
-	Map<String, Factory<? extends Item>> items = new HashMap<>();
-	Map<String, Factory<? extends Npc>> npcs = new HashMap<>();
-	items.put("svärd", itemFactory);
-	npcs.put("gubbe1", npcFactory);
-	LocationGenerator generator = new LocationGenerator(items, npcs);
-	try {
-	    generator.genObjects("testRooms.json");
-	} catch (IOException e) {
-	    throw new RuntimeException(e);
-	}
-
-	generator.connectRooms();
-
-	Map<String, Location> locations = generator.getObjects();
-	locations.get("Rum1").printObject();
-	locations.get("Rum1").getExit("Rum2").printObject();
-    }
 }

@@ -41,24 +41,4 @@ public class NpcFactoryGenerator extends ObjectGenerator<Factory<? extends Npc>>
 	List<Item> itemList = genObjectListFromFactory(array, items);
 	return new CreatureInventory(genObjectListFromFactory(array, items));
     }
-
-    public static void main(String[] args) {
-	ItemFactoryGenerator itemFactoryGenerator = new ItemFactoryGenerator();
-	try {
-	    itemFactoryGenerator.genObjects("testItems.json");
-	} catch (IOException e) {
-	    System.exit(1);
-	}
-	Map<String, Factory<? extends Item>> items = itemFactoryGenerator.getObjects();
-
-	NpcFactoryGenerator npcFactoryGenerator = new NpcFactoryGenerator(items);
-	try {
-	    npcFactoryGenerator.genObjects("testNpcs.json");
-	} catch (IOException e) {
-	    System.exit(1);
-	}
-	Map<String, Factory<? extends Npc>> npcs = npcFactoryGenerator.getObjects();
-
-	npcs.get("Carl").gen().talk();
-    }
 }

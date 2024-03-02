@@ -36,17 +36,4 @@ public class ItemFactoryGenerator extends ObjectGenerator<Factory<? extends Item
 	    }
 	}
     }
-
-    public static void main(String[] args) {
-	ItemFactoryGenerator generator = new ItemFactoryGenerator();
-	try {
-	    generator.genObjects("testItems.json");
-	} catch (IOException e) {
-	    throw new RuntimeException(e);
-	}
-
-	Map<String, Factory<? extends Item>> items = generator.getObjects();
-	Item i = items.get("potion").gen();
-	i.printObject();
-    }
 }

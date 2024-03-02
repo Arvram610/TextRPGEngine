@@ -47,44 +47,4 @@ public class PlayerGenerator extends ObjectGenerator<Player>
 	int carryWeight = object.get("carryWeight").getAsInt();
 	return new PlayerStats(cStats, carryWeight);
     }
-
-    public static void main(String[] args) {
-	ItemFactoryGenerator itemFactoryGenerator = new ItemFactoryGenerator();
-	try {
-	    itemFactoryGenerator.genObjects("testItems.json");
-	} catch (IOException e) {
-	    System.exit(1);
-	}
-	Map<String, Factory<? extends Item>> items = itemFactoryGenerator.getObjects();
-
-
-	NpcFactoryGenerator npcFactoryGenerator = new NpcFactoryGenerator(items);
-	try {
-	    npcFactoryGenerator.genObjects("testNpcs.json");
-	} catch (IOException e) {
-	    System.exit(1);
-	}
-	Map<String, Factory<? extends Npc>> npcs = npcFactoryGenerator.getObjects();
-
-
-	LocationGenerator locationGenerator = new LocationGenerator(items, npcs);
-	try {
-	    locationGenerator.genObjects("testRooms.json");
-	} catch (IOException e) {
-	    System.exit(1);
-	}
-	locationGenerator.connectRooms();
-	Map<String, Location> locations = locationGenerator.getObjects();
-
-
-	PlayerGenerator playerGenerator = new PlayerGenerator(items, locations);
-	try {
-	    playerGenerator.genObjects("testPlayer.json");
-	} catch (IOException e) {
-	    System.exit(1);
-	}
-	Player p1 = playerGenerator.getObjects().get("player");
-
-	p1.printObject();
-    }
 }
