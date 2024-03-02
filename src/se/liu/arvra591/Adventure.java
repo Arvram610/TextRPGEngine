@@ -147,18 +147,17 @@ public class Adventure
 	NpcDialogue npcDialogue = new NpcDialogue(Arrays.asList("Hej!", "Hoppas du mår bra", "Ha en trevlig dag"));
 	Npc npc = new Npc("Carl", "A friendly human", 10, CreatureStats.basic, npcDialogue, null);
 	Item item = new Item("TestItem", "TestDescription", 10);
-	Location testExit = new Location("TestExit", "TestDescription", emptyNpcs, items, exits);
+	Location testExit = new Location("TestExit", "TestDescription", emptyNpcs, items, null);
 
 	npcs.add(npc);
 	items.add(item);
 	exits.add(testExit);
 
-	Location testLocation = new Location("TestLocation", "TestDescription", npcs, items, exits);
-	PlayerStats stats = new PlayerStats( 10,10,10,10,10,10,10,10);
+	Location testLocation = new Location("TestLocation", "TestDescription", npcs, items, null);
+	PlayerStats stats = new PlayerStats( 10,10,10,10,10,10);
 
 	PlayerInventory inventory = new PlayerInventory(itemsInInventory, stats);
-	Player testPlayer = new Player("TestPlayer", "TestDescription", 100, stats, testLocation,
-				       0, inventory);
+	Player testPlayer = new Player("TestPlayer", "TestDescription", 100, stats, testLocation, inventory);
 
 	Adventure ad = new Adventure(testPlayer);
 	//ad.parseInput("help");
@@ -174,7 +173,7 @@ public class Adventure
 	//ad.parseInput("stats");
 	//ad.parseInput("talk Carl");
 
-	ad.parseInput("move TestExit");
+	//ad.parseInput("move TestExit");
 	//ad.parseInput("location");
     }
 }

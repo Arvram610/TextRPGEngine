@@ -1,0 +1,21 @@
+[
+  {
+    "name": "Carl",
+    "description": "En vanlig grabb",
+    "health": 10,
+    "stats":{
+      "attack": 1,
+      "defense": 1,
+      "maxHealth": 10,
+      "maxEnergy": 10,
+      "energyRegen": 1
+    },
+    "dialogue": [
+      "Hej!",
+      "Hoppas du mår bra :)"
+    ],
+    "inventory": [
+      "potion"
+    ]
+  }
+]
