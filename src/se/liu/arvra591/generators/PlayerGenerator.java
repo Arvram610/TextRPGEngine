@@ -15,16 +15,32 @@ import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.util.Map;
 
+/**
+ * A class that generates a player used in game from a given file
+ */
 public class PlayerGenerator extends ObjectGenerator<Player>
 {
     private Map<String, Factory<? extends Item>> items;
     private Map<String, Location> locations;
 
+    /**
+     * The playergenerator constructor
+     *
+     * @param items A map containing all the itemfactories in the game
+     * @param locations A map containing all the locations in the game
+     */
     public PlayerGenerator(Map<String, Factory<? extends Item>> items, Map<String, Location> locations){
 	this.items = items;
 	this.locations = locations;
     }
 
+    /**
+     * Generates the player from a given file
+     *
+     * @param fileName The file that the player come from
+     *
+     * @throws FileNotFoundException
+     */
     @Override public void genObjects(final String fileName) throws FileNotFoundException {
 	JsonArray jsonArray = loadJsonArrayFile("player/" + fileName);
 	genObjects(jsonArray);
