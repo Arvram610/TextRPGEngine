@@ -6,6 +6,7 @@ import com.google.gson.JsonObject;
 import se.liu.arvra591.factories.Factory;
 import se.liu.arvra591.jsonParser.JsonParser;
 import se.liu.arvra591.objects.AbstractObject;
+import se.liu.arvra591.objects.creatures.CreatureStats;
 import se.liu.arvra591.objects.items.Item;
 
 import java.io.IOException;
@@ -61,6 +62,16 @@ public abstract class ObjectGenerator<T>
 
     protected JsonArray loadJsonFile(String filepath) throws IOException {
 	return jsonParser.parseFile(ClassLoader.getSystemResource(filepath).getPath());
+    }
+
+    protected CreatureStats genCreatureStats(JsonObject object){
+	int attack = object.get("attack").getAsInt();
+	int def = object.get("defense").getAsInt();
+	int maxHealth = object.get("maxHealth").getAsInt();
+	int maxEnergy = object.get("maxEnergy").getAsInt();
+	int energyRegen = object.get("energyRegen").getAsInt();
+
+	return new CreatureStats(maxHealth, attack, def, maxEnergy, energyRegen);
     }
 
     public Map<String, T> getObjects(){

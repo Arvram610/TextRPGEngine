@@ -43,16 +43,6 @@ public class NpcFactoryGenerator extends ObjectGenerator<Factory<? extends Npc>>
 	return new CreatureInventory(genObjectListFromFactory(array, items));
     }
 
-    private CreatureStats genCreatureStats(JsonObject object){
-	int attack = object.get("attack").getAsInt();
-	int def = object.get("defense").getAsInt();
-	int maxHealth = object.get("maxHealth").getAsInt();
-	int maxEnergy = object.get("maxEnergy").getAsInt();
-	int energyRegen = object.get("energyRegen").getAsInt();
-
-	return new CreatureStats(maxHealth, attack, def, maxEnergy, energyRegen);
-    }
-
     public static void main(String[] args) {
 	ItemFactoryGenerator itemFactoryGenerator = new ItemFactoryGenerator();
 	try {

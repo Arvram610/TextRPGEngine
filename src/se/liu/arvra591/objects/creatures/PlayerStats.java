@@ -11,10 +11,6 @@ public class PlayerStats extends CreatureStats
      * capacity for how many items the player can carry
      */
     protected int carryWeight;
-    /**
-     * experience points the player has
-     */
-    protected int experience;
 
     /**
      * @param maxHealth how much maxHealth the player currently has
@@ -29,7 +25,12 @@ public class PlayerStats extends CreatureStats
 		       int energyRegenRate, int carryWeight) {
 	super(maxHealth, attack, defense, maxEnergy, energyRegenRate);
 	this.carryWeight = carryWeight;
-	this.experience = 0;
+    }
+
+    public PlayerStats(CreatureStats cStats, int carryWeight){
+	super(cStats.getMaxHealth(), cStats.getAttack(), cStats.getDefense(),
+	      cStats.getMaxEnergy(), cStats.getEnergyRegenRate());
+	this.carryWeight = carryWeight;
     }
 
     /**
@@ -39,7 +40,6 @@ public class PlayerStats extends CreatureStats
     public void printStats(){
 	super.printStats();
 	System.out.println("Carry Weight: " + getCarryWeight());
-	System.out.println("Experience: " + getExperience());
     }
 
     /**
@@ -47,12 +47,5 @@ public class PlayerStats extends CreatureStats
      */
     public int getCarryWeight() {
 	return carryWeight;
-    }
-
-    /**
-     * @return Returns the experience points of the player
-     */
-    public int getExperience() {
-	return experience;
     }
 }
