@@ -13,6 +13,7 @@ public class Factory<T extends AbstractObject>
 	gson = new Gson();
     }
 
+    @SuppressWarnings("unchecked")
     public T gen() {
 	return (T) gson.fromJson(gson.toJson(targetObject), targetObject.getClass());
     }
