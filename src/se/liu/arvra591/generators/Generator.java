@@ -13,11 +13,14 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 
-public class Generator
+/**
+ * An abstract class used to generate objects from a json file
+ */
+public abstract class Generator
 {
     protected JsonParser jsonParser = new JsonParser();
 
-    public Generator() {
+    protected Generator() {
 	jsonParser = new JsonParser();
     }
 
