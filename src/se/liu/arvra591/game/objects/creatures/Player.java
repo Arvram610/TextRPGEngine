@@ -143,7 +143,9 @@ public class Player extends Creature
 	return true;
     }
 
-
+    public void addItem(Item item){
+	inventory.addObject(item);
+    }
 
     /**
      * @param energy is the energy to add to the player
@@ -156,12 +158,7 @@ public class Player extends Creature
 	}
     }
 
-    /**
-     * @return Returns the current energy of the player
-     */
-    public int getCurrentEnergy(){
-	return currentEnergy;
-    }
+
 
     /**
      * @return Returns the current location of the player

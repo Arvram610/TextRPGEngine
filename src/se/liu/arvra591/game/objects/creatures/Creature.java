@@ -105,6 +105,12 @@ public abstract class Creature extends AbstractObject
     }
 
 
+    /**
+     * @return Returns the current energy of the player
+     */
+    public int getCurrentEnergy(){
+        return currentEnergy;
+    }
 
     /**
      * @param item is the item that the creature picks up

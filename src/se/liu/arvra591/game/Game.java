@@ -1,9 +1,13 @@
 package se.liu.arvra591.game;
 
+import se.liu.arvra591.game.objects.creatures.CreatureStats;
 import se.liu.arvra591.game.objects.creatures.Npc;
+import se.liu.arvra591.game.objects.creatures.NpcDialogue;
 import se.liu.arvra591.game.objects.creatures.Player;
 import se.liu.arvra591.game.objects.creatures.PlayerStats;
 import se.liu.arvra591.game.parsers.InputParser;
+
+import java.util.Arrays;
 
 public class Game
 {
@@ -17,7 +21,9 @@ public class Game
      */
     public Game(Player player){
 	this.player = player;
-	this.target = null;
+	NpcDialogue npcDialogue = new NpcDialogue(Arrays.asList("Hej!", "Hoppas du mår bra", "Ha en trevlig dag"));
+	Npc npc = new Npc("Carl", "A friendly human", 10, 10, CreatureStats.basic, npcDialogue, null);
+	this.target = npc;
 	this.parser = new MasterParser();
     }
 
@@ -48,8 +54,22 @@ public class Game
     {
 	private MasterParser(){
 	    parseInputs.put("say", Game.this::say);
+
+	    parseInputs.put("giveplayerhealth", player::increaseHealth);
+	    parseInputs.put("giveplayerenergy", player::addEnergy);
+	    parseInputs.put("giveplayerattack", player::increaseAttack);
+	    parseInputs.put("giveplayerdefense", player::increaseDefense);
+
+	    parseInputs.put("givenpcenergy", target::addEnergy);
+	    parseInputs.put("givenpchealth", target::increaseHealth);
+	    parseInputs.put("givenpcattack", target::increaseAttack);
+	    parseInputs.put("givenpcdefense", target::increaseDefense);
+
+	    parseInputs.put("moveplayer", player::move);
+
+	    //parseInputs.put("giveitem", player::addItem);
+
 	    //engage
-	    //movePlayer
 	    //giveItem
 	    //useItem
 	    //spawnNpc
@@ -58,16 +78,6 @@ public class Game
 	    //disEngage
 	    //win
 	    //lose
-
-	    parseInputs.put("giveplayerhealth", player::increaseHealth); //how to do with generic creature? npc can use items too
-	    parseInputs.put("giveplayerenergy", player::addEnergy);
-	    parseInputs.put("giveplayerattack", player::increaseAttack);
-	    parseInputs.put("giveplayerdefense", player::increaseDefense);
-
-	    parseInputs.put("givenpcenergy", target::addEnergy); //how to do with generic creature? npc can use items too")
-	    parseInputs.put("givenpchealth", target::increaseHealth);
-	    parseInputs.put("givenpcattack", target::increaseAttack);
-	    parseInputs.put("givenpcdefense", target::increaseDefense);
 	}
     }
 
@@ -78,26 +88,50 @@ public class Game
 				   stats, null, null);
 	Game game = new Game(player);
 	System.out.println("Health: " + player.getCurrentHealth());
-	game.parseInput("give health 10");
+	game.parseInput("giveplayerhealth 10");
 	System.out.println("Health: " + player.getCurrentHealth());
 
 	System.out.println();
 
 	System.out.println("Energy: " + player.getCurrentEnergy());
-	game.parseInput("give energy 10");
+	game.parseInput("giveplayerenergy 10");
 	System.out.println("Energy: " + player.getCurrentEnergy());
 
 	System.out.println();
 
 	System.out.println("Attack: " + player.getPlayerStats().getAttack());
-	game.parseInput("give attack 10");
+	game.parseInput("giveplayerattack 10");
 	System.out.println("Attack: " + player.getPlayerStats().getAttack());
 
 	System.out.println();
 
 	System.out.println("Defense: " + player.getPlayerStats().getDefense());
-	game.parseInput("give defense 10");
+	game.parseInput("giveplayerdefense 10");
 	System.out.println("Defense: " + player.getPlayerStats().getDefense());
+
+	System.out.println();
+
+	System.out.println("Npc Health: " + game.target.getCurrentHealth());
+	game.parseInput("givenpchealth 10");
+	System.out.println("Npc Health: " + game.target.getCurrentHealth());
+
+	System.out.println();
+
+	System.out.println("Npc Energy: " + game.target.getCurrentEnergy());
+	game.parseInput("givenpcenergy 10");
+	System.out.println("Npc Energy: " + game.target.getCurrentEnergy());
+
+	System.out.println();
+
+	System.out.println("Npc Attack: " + game.target.getStats().getAttack());
+	game.parseInput("givenpcattack 10");
+	System.out.println("Npc Attack: " + game.target.getStats().getAttack());
+
+	System.out.println();
+
+	System.out.println("Npc Defense: " + game.target.getStats().getDefense());
+	game.parseInput("givenpcdefense 10");
+	System.out.println("Npc Defense: " + game.target.getStats().getDefense());
 
 	game.parseInput("say Hello");
     }
