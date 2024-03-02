@@ -21,6 +21,9 @@ public class Main
     private Map<String, Factory<? extends Item>> items;
     private Map<String, Factory<? extends Npc>> npcs;
 
+    /**
+     * Constructor for the main class, initializes what is needed for the game to run
+     */
     public Main(){
 	GameGenerator gameGenerator = new GameGenerator();
 	gameGenerator.generateGame();
@@ -30,11 +33,19 @@ public class Main
 	npcs = gameGenerator.getNpcs();
     }
 
+    /**
+     * This method starts the game
+     */
     public void startGame(){
 	player.printObject();
     }
 
 
+    /**
+     * The method used to start the game
+     *
+     * @param args Ignored
+     */
     public static void main(String[] args) {
 	Main main = new Main();
 	main.startGame();
