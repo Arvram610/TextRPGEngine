@@ -15,7 +15,7 @@ import java.util.Map;
 
 public class NpcFactoryGenerator extends ObjectGenerator<Factory<? extends Npc>>
 {
-    Map<String, Factory<? extends Item>> items;
+    private Map<String, Factory<? extends Item>> items;
 
     public NpcFactoryGenerator(final Map<String, Factory<? extends Item>> items) {
 	this.items = items;

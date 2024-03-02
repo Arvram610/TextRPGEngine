@@ -127,10 +127,4 @@ public class GameGenerator extends Generator
     public Player getPlayer() {
         return player;
     }
-
-    public static void main(String[] args) {
-        GameGenerator gameGenerator = new GameGenerator();
-        gameGenerator.generateGame();
-        gameGenerator.getPlayer().printObject();
-    }
 }
