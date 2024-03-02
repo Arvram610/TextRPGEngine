@@ -33,10 +33,10 @@ public class Combat extends AbstractMode
 
     public void startOfRound(){
 	player.addEnergy(player.getPlayerStats().getEnergyRegenRate());
-	int health = player.getHealth();
+	int health = player.getCurrentHealth();
 	int energy = player.getCurrentEnergy();
 	System.out.println("You have " + health + " health and " + energy + " energy");
-	System.out.println(currentTarget.getName() + " now has " + currentTarget.getHealth() + " health left");
+	System.out.println(currentTarget.getName() + " now has " + currentTarget.getCurrentHealth() + " health left");
     }
 
     /**

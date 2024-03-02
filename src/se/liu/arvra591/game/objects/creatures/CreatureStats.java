@@ -51,6 +51,20 @@ public class CreatureStats
     }
 
     /**
+     * @param amount is the amount of attack the creature will gain
+     */
+    public void increaseAttack(int amount){
+        attack += amount;
+    }
+
+    /**
+     * @param amount is the amount of defense the creature will gain
+     */
+    public void increaseDefense(int amount){
+        defense += amount;
+    }
+
+    /**
      * @return Returns the defense of the creature
      */
     public int getDefense() {

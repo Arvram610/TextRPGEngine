@@ -24,11 +24,11 @@ public class PlayerStats extends CreatureStats
      * @param carryWeight the capacity for how many items the player can carry
      * @param currentWeight the current weight of the items the player is carrying
      * @param experience the experience points the player has, this determines level
-     * @param energy the energy of the player
+     * @param maxEnergy the energy of the player
      */
     public PlayerStats(int maxHealth, int level, int attack, int defense,
-		       int carryWeight, int currentWeight, int experience, int energy, int energyRegen) {
-	super(maxHealth, attack, defense, energy, energyRegen);
+		       int carryWeight, int currentWeight, int experience, int maxEnergy, int energyRegen) {
+	super(maxHealth, attack, defense, maxEnergy, energyRegen);
 	this.carryWeight = carryWeight;
 	this.experience = 0;
     }

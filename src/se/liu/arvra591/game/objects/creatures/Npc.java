@@ -41,8 +41,8 @@ public class Npc extends Creature
      */
 
     public boolean takeDamage(int damage){
-	health -= damage;
-	if (health <= 0) {
+	currentHealth -= damage;
+	if (currentHealth <= 0) {
 	    //System.out.println(getName() + " has died");
 	    return true;
 	}

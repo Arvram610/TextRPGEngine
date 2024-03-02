@@ -135,7 +135,7 @@ public class Player extends Creature
      * @param energy is the energy to reduce from the player
      */
     public boolean reduceEnergy(int energy){
-	stats = getPlayerStats();
+	//stats = getPlayerStats();
 	int lastEnergy = currentEnergy;
 	currentEnergy -= energy;
 	if (currentEnergy < 0) {
@@ -143,6 +143,21 @@ public class Player extends Creature
 	    return false;
 	}
 	return true;
+    }
+
+    public void addEnergy(String number){
+	stats = getPlayerStats();
+	int maxEnergy = stats.getMaxEnergy();
+	try {
+	    int amount = Integer.parseInt(number);
+	    currentEnergy += amount;
+	    if (currentEnergy > maxEnergy) {
+		currentEnergy = maxEnergy;
+	    }
+	}
+	catch (NumberFormatException e) {
+	    System.out.println("wrong formatting, third word must be integer");
+	}
     }
 
     /**
