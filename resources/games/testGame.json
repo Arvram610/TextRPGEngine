@@ -1,0 +1,12 @@
+{
+  "player": "testPlayer.json",
+  "npcs": [
+    "testNpcs.json"
+  ],
+  "items": [
+    "testItems.json"
+  ],
+  "locations": [
+    "testRooms.json"
+  ]
+}

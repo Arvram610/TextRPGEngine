@@ -25,7 +25,7 @@ public class PlayerGenerator extends ObjectGenerator<Player>
     }
 
     @Override public void genObjects(final String fileName) throws IOException {
-	JsonArray jsonArray = loadJsonFile("player/" + fileName);
+	JsonArray jsonArray = loadJsonArrayFile("player/" + fileName);
 	genObjects(jsonArray);
     }
 

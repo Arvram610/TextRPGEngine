@@ -15,14 +15,13 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-public abstract class ObjectGenerator<T>
+public abstract class ObjectGenerator<T> extends Generator
 {
-    protected JsonParser jsonParser = new JsonParser();
 
     protected Map<String, T> objects;
 
     protected ObjectGenerator() {
-	jsonParser = new JsonParser();
+	super();
 	objects = new HashMap<>();
     }
 
@@ -34,34 +33,6 @@ public abstract class ObjectGenerator<T>
 	for (JsonElement jsonElement : jsonArray) {
 	    genObject(jsonElement.getAsJsonObject());
 	}
-    }
-
-    protected <S extends AbstractObject> List<S> genObjectListFromFactory(JsonArray jsonArray, Map<String, Factory<? extends S>> map){
-	List<S> list = new ArrayList<>();
-	jsonArray.forEach((object) -> {
-	    list.add(map.get(object.getAsString()).gen());
-	});
-	return list;
-    }
-
-    protected <S extends AbstractObject> List<S> genObjectListFromName(List<String> names, Map<String, S> map){
-	List<S> list = new ArrayList<>();
-	names.forEach((object) -> {
-	    list.add(map.get(object));
-	});
-	return list;
-    }
-
-    protected List<String> genStringListFromJson(JsonArray jsonArray){
-	List<String> list = new ArrayList<>();
-	jsonArray.forEach((objectName) -> {
-	    list.add(objectName.getAsString());
-	});
-	return list;
-    }
-
-    protected JsonArray loadJsonFile(String filepath) throws IOException {
-	return jsonParser.parseFile(ClassLoader.getSystemResource(filepath).getPath());
     }
 
     protected CreatureStats genCreatureStats(JsonObject object){

@@ -16,7 +16,7 @@ public class JsonParser
 	gson = new Gson();
     }
 
-    public JsonArray parseFile(String path) throws IOException {
+    public JsonArray parseArrayFile(String path) throws IOException {
 	StringBuilder json = new StringBuilder();
 
 	try (BufferedReader br = new BufferedReader(
@@ -26,5 +26,17 @@ public class JsonParser
 	    throw e;
 	}
 	return gson.fromJson(json.toString(), JsonArray.class);
+    }
+
+    public JsonObject parseObjectFile(final String path) throws IOException {
+	StringBuilder json = new StringBuilder();
+
+	try (BufferedReader br = new BufferedReader(
+		new FileReader(path))){
+	    br.lines().forEach(json::append);
+	} catch (IOException e) {
+	    throw e;
+	}
+	return gson.fromJson(json.toString(), JsonObject.class);
     }
 }

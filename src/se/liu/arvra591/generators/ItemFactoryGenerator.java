@@ -6,7 +6,6 @@ import se.liu.arvra591.factories.Factory;
 import se.liu.arvra591.objects.items.Consumables;
 import se.liu.arvra591.objects.items.Equippables;
 import se.liu.arvra591.objects.items.Item;
-import se.liu.arvra591.objects.locations.Location;
 
 import java.io.IOException;
 import java.util.Map;
@@ -15,7 +14,7 @@ public class ItemFactoryGenerator extends ObjectGenerator<Factory<? extends Item
 {
 
     @Override public void genObjects(final String fileName) throws IOException {
-	JsonArray jsonArray = loadJsonFile("items/" + fileName);
+	JsonArray jsonArray = loadJsonArrayFile("items/" + fileName);
 	genObjects(jsonArray);
     }
 

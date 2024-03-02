@@ -1,12 +1,3 @@
 {
-  "player": "testPlayer.json",
-  "npcs": [
-    "testNpcs.json"
-  ],
-  "items": [
-    "testItems.json"
-  ],
-  "locations": [
-    "testLocations.json"
-  ]
+  "game": "testGame.json"
 }

@@ -3,13 +3,11 @@ package se.liu.arvra591.generators;
 import com.google.gson.JsonArray;
 import com.google.gson.JsonObject;
 import se.liu.arvra591.factories.Factory;
-import se.liu.arvra591.objects.AbstractObject;
 import se.liu.arvra591.objects.creatures.Npc;
 import se.liu.arvra591.objects.items.Item;
 import se.liu.arvra591.objects.locations.Location;
 
 import java.io.IOException;
-import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -46,7 +44,7 @@ public class LocationGenerator extends ObjectGenerator<Location>{
 
     @Override
     public void genObjects(String fileName) throws IOException {
-	JsonArray jsonArray = loadJsonFile("locations/" + fileName);
+	JsonArray jsonArray = loadJsonArrayFile("locations/" + fileName);
 	genObjects(jsonArray);
     }
 
