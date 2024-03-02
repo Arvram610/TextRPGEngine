@@ -8,8 +8,6 @@ import se.liu.arvra591.objects.items.Equippables;
 import se.liu.arvra591.objects.items.Item;
 
 import java.io.FileNotFoundException;
-import java.io.IOException;
-import java.util.Map;
 
 /**
  * A class the generates all the itemfactories used in the game from given files
@@ -35,7 +33,7 @@ public class ItemFactoryGenerator extends ObjectGenerator<Factory<? extends Item
 	String desc = object.get("description").getAsString();
 	int weight = object.get("weight").getAsInt();
 
-	switch (type){
+	switch (type) {
 	    case "consumable" -> {
 		objects.put(name, new Factory<>(new Consumables(name, desc, weight)));
 	    }

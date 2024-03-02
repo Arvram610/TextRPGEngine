@@ -24,6 +24,14 @@ public abstract class Generator
 	jsonParser = new JsonParser();
     }
 
+    private static URL getUrl(final String filepath) throws FileNotFoundException {
+	URL url = ClassLoader.getSystemResource(filepath);
+	if (url == null) {
+	    throw new FileNotFoundException("File: " + filepath + "was not found");
+	}
+	return url;
+    }
+
     protected <S extends AbstractObject> List<S> genObjectListFromFactory(JsonArray jsonArray, Map<String, Factory<? extends S>> map) {
 	List<S> list = new ArrayList<>();
 	jsonArray.forEach((object) -> {
@@ -58,13 +66,6 @@ public abstract class Generator
 	    System.exit(1);
 	}
 	return array;
-    }
-
-    private static URL getUrl(final String filepath) throws FileNotFoundException {
-	URL url = ClassLoader.getSystemResource(filepath);
-	if (url == null)
-	    throw new FileNotFoundException("File: " + filepath + "was not found");
-	return url;
     }
 
     protected JsonObject loadJsonObjectFile(String filepath) throws FileNotFoundException {

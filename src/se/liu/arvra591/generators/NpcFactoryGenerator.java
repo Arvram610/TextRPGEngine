@@ -10,7 +10,6 @@ import se.liu.arvra591.objects.creatures.NpcDialogue;
 import se.liu.arvra591.objects.items.Item;
 
 import java.io.FileNotFoundException;
-import java.io.IOException;
 import java.util.List;
 import java.util.Map;
 

@@ -8,15 +8,14 @@ import se.liu.arvra591.objects.items.Item;
 import se.liu.arvra591.objects.locations.Location;
 
 import java.io.FileNotFoundException;
-import java.io.IOException;
-import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
 /**
  * A class that generates all the locations used in the game from given files
  */
-public class LocationGenerator extends ObjectGenerator<Location>{
+public class LocationGenerator extends ObjectGenerator<Location>
+{
 
     protected Map<String, Factory<? extends Item>> items;
     protected Map<String, Factory<? extends Npc>> npcs;
@@ -25,7 +24,7 @@ public class LocationGenerator extends ObjectGenerator<Location>{
      * The constructor for the locationgenerator class
      *
      * @param items A map containing itemfactories used to generate items for locations
-     * @param npcs A map containing npcfactories used to generate npcsc for locations
+     * @param npcs  A map containing npcfactories used to generate npcsc for locations
      */
     public LocationGenerator(Map<String, Factory<? extends Item>> items, Map<String, Factory<? extends Npc>> npcs) {
 	super();
@@ -33,7 +32,7 @@ public class LocationGenerator extends ObjectGenerator<Location>{
 	this.npcs = npcs;
     }
 
-    @Override protected void genObject(JsonObject object){
+    @Override protected void genObject(JsonObject object) {
 	String name = object.get("name").getAsString();
 	String description = object.get("description").getAsString();
 	List<Npc> npcList = genObjectListFromFactory(object.get("npcs").getAsJsonArray(), npcs);
@@ -47,7 +46,7 @@ public class LocationGenerator extends ObjectGenerator<Location>{
     /**
      * A method used to connect rooms to eachother, if not used things will not work
      */
-    public void connectRooms(){
+    public void connectRooms() {
 	objects.forEach((name, location) -> {
 	    List<String> exitStringList = location.getExitStringList();
 	    List<Location> exits = genObjectListFromName(exitStringList, objects);
@@ -62,8 +61,7 @@ public class LocationGenerator extends ObjectGenerator<Location>{
      *
      * @throws FileNotFoundException
      */
-    @Override
-    public void genObjects(String fileName) throws FileNotFoundException {
+    @Override public void genObjects(String fileName) throws FileNotFoundException {
 	JsonArray jsonArray = loadJsonArrayFile("locations/" + fileName);
 	genObjects(jsonArray);
     }

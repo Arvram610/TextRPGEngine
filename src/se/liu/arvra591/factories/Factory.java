@@ -16,19 +16,17 @@ public class Factory<T extends AbstractObject>
     /**
      * @param targetObject The targetobject that the factory clones
      */
-    public Factory(T targetObject){
+    public Factory(T targetObject) {
 	this.targetObject = targetObject;
 	gson = new Gson();
     }
 
     /**
-     * The method used to clone the object
-     * Says it does unchecked cast, but all casts are garanteed to be of type T
+     * The method used to clone the object Says it does unchecked cast, but all casts are garanteed to be of type T
      *
      * @return Returns a copy of the object
      */
-    @SuppressWarnings("unchecked")
-    public T gen() {
+    @SuppressWarnings("unchecked") public T gen() {
 	return (T) gson.fromJson(gson.toJson(targetObject), targetObject.getClass());
     }
 }
