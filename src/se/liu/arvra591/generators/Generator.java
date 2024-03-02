@@ -3,7 +3,7 @@ package se.liu.arvra591.generators;
 import com.google.gson.JsonArray;
 import com.google.gson.JsonObject;
 import se.liu.arvra591.factories.Factory;
-import se.liu.arvra591.jsonParser.JsonParser;
+import se.liu.arvra591.parsers.JsonParser;
 import se.liu.arvra591.objects.AbstractObject;
 
 import java.io.FileNotFoundException;
