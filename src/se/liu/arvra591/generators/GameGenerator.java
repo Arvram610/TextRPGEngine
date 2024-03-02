@@ -14,6 +14,9 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+/**
+ * A class that generates all the objects needed for the game
+ */
 public class GameGenerator extends Generator
 {
     private Map<String, Factory<? extends Item>> items;
@@ -21,6 +24,9 @@ public class GameGenerator extends Generator
     private Map<String, Location> locations;
     private Player player;
 
+    /**
+     * The constructor for the gamegenerator
+     */
     public GameGenerator(){
         items = new HashMap<>();
         npcs = new HashMap<>();
@@ -28,6 +34,9 @@ public class GameGenerator extends Generator
         player = null;
     }
 
+    /**
+     * The method used to initialize everything
+     */
     public void generateGame(){
 	String gamePath = null;
 	try {
@@ -112,18 +121,30 @@ public class GameGenerator extends Generator
         player = playerGenerator.getObjects().get("player");
     }
 
+    /**
+     * @return Returns a map with all the itemfactories
+     */
     public Map<String, Factory<? extends Item>> getItems() {
         return items;
     }
 
+    /**
+     * @return Returns a map with all the npcfactories
+     */
     public Map<String, Factory<? extends Npc>> getNpcs() {
         return npcs;
     }
 
+    /**
+     * @return Returns a map with all the locations
+     */
     public Map<String, Location> getLocations() {
         return locations;
     }
 
+    /**
+     * @return Returns the player of the game
+     */
     public Player getPlayer() {
         return player;
     }
