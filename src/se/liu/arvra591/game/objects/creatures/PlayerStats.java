@@ -27,10 +27,9 @@ public class PlayerStats extends CreatureStats
      * @param maxEnergy the energy of the player
      */
     public PlayerStats(int maxHealth, int level, int attack, int defense,
-		       int carryWeight, int currentWeight, int experience, int maxEnergy, int energyRegen) {
+		       int carryWeight, int currentWeight, int maxEnergy, int energyRegen) {
 	super(maxHealth, attack, defense, maxEnergy, energyRegen);
 	this.carryWeight = carryWeight;
-	this.experience = 0;
     }
 
     /**

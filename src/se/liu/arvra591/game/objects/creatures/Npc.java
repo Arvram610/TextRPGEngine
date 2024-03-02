@@ -17,15 +17,14 @@ public class Npc extends Creature
     /**
      * @param name what the npc is called
      * @param description describes the npc
-     * @param health how much damage the npc can take
+     * @param currentHealth how much damage the npc can take
      * @param stats the stats of the npc
      * @param dialogue what the npc says
      * @param inventory the inventory of the npc
      */
     public Npc(final String name, final String description,
-	       final int health, final CreatureStats stats, final NpcDialogue dialogue, CreatureInventory inventory) {
-	super(name, description, health, stats, inventory);
-
+	       final int currentHealth, int currentEnergy, final CreatureStats stats, final NpcDialogue dialogue, CreatureInventory inventory) {
+	super(name, description, currentHealth, currentEnergy, stats, inventory);
 	this.dialogue = dialogue;
     }
 
@@ -50,7 +49,7 @@ public class Npc extends Creature
     }
     public static void main(String[] args) {
 	NpcDialogue npcDialogue = new NpcDialogue(Arrays.asList("Hej!", "Hoppas du mår bra", "Ha en trevlig dag"));
-	Npc npc = new Npc("Carl", "A friendly human", 10, CreatureStats.basic, npcDialogue, null);
+	Npc npc = new Npc("Carl", "A friendly human", 10, 10, CreatureStats.basic, npcDialogue, null);
 	npc.talk();
     }
 }

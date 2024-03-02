@@ -133,7 +133,7 @@ public class Location extends AbstractObject
 	List<Item> items = new ArrayList<>();
 	NpcDialogue emptyDialogue = new NpcDialogue(new ArrayList<>());
 	List<Location> exits = new ArrayList<>();
-	npcs.add(new Npc("TestCreature", "TestDescription", 10,
+	npcs.add(new Npc("TestCreature", "TestDescription", 10, 10,
 				 new CreatureStats(10, 10, 10, 10, 10),
 				 emptyDialogue, null));
 	items.add(new Item("TestItem", "TestDescription", 10));

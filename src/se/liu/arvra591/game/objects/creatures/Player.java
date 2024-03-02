@@ -19,7 +19,6 @@ import java.util.List;
 public class Player extends Creature
 {
     protected Location currentLocation;
-    protected int currentEnergy;
 
 
     /**
@@ -34,9 +33,8 @@ public class Player extends Creature
     public Player(final String name, final String description, int currentHealth, int currentEnergy,
 		  PlayerStats stats, Location currentLocation,
 		   PlayerInventory inventory) {
-	super(name, description, currentHealth, stats, inventory);
+	super(name, description, currentHealth, currentEnergy, stats, inventory);
 	this.currentLocation = currentLocation;
-	this.currentEnergy = currentEnergy;
     }
 
     /**
@@ -145,20 +143,7 @@ public class Player extends Creature
 	return true;
     }
 
-    public void addEnergy(String number){
-	stats = getPlayerStats();
-	int maxEnergy = stats.getMaxEnergy();
-	try {
-	    int amount = Integer.parseInt(number);
-	    currentEnergy += amount;
-	    if (currentEnergy > maxEnergy) {
-		currentEnergy = maxEnergy;
-	    }
-	}
-	catch (NumberFormatException e) {
-	    System.out.println("wrong formatting, third word must be integer");
-	}
-    }
+
 
     /**
      * @param energy is the energy to add to the player
@@ -188,7 +173,7 @@ public class Player extends Creature
     public static void main(String[] args) {
 	Location l1 = new Location("Room 1", "Första rummet du vaknar i",
 				   new ArrayList<>(), new ArrayList<>(), new ArrayList<>());
-	PlayerStats c1 = new PlayerStats(10, 10, 10, 10, 10, 10, 10, 10, 110);
+	PlayerStats c1 = new PlayerStats(10, 10, 10, 10, 10, 10,  10, 110);
 	Player p1 = new Player("Kalle", "Redigt kool", 10, 100,
 			       c1, l1, null);
 

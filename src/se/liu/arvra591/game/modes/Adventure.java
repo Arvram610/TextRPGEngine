@@ -130,7 +130,7 @@ public class Adventure extends AbstractMode
 	List<Npc> emptyNpcs = new ArrayList<>();
 
 	NpcDialogue npcDialogue = new NpcDialogue(Arrays.asList("Hej!", "Hoppas du mår bra", "Ha en trevlig dag"));
-	Npc npc = new Npc("Carl", "A friendly human", 10, CreatureStats.basic, npcDialogue, null);
+	Npc npc = new Npc("Carl", "A friendly human", 10, 10, CreatureStats.basic, npcDialogue, null);
 	Item item = new Item("TestItem", "TestDescription", 10);
 	Location testExit = new Location("TestExit", "TestDescription", emptyNpcs, items, exits);
 
@@ -139,7 +139,7 @@ public class Adventure extends AbstractMode
 	exits.add(testExit);
 
 	Location testLocation = new Location("TestLocation", "TestDescription", npcs, items, exits);
-	PlayerStats stats = new PlayerStats( 10,10,10,10,10,10,10,10, 110);
+	PlayerStats stats = new PlayerStats( 10,10,10,10,10,10,10, 110);
 
 	PlayerInventory inventory = new PlayerInventory(itemsInInventory, stats);
 	Player testPlayer = new Player("TestPlayer", "TestDescription", 100, 100, stats, testLocation,

@@ -1,5 +1,6 @@
 package se.liu.arvra591.game;
 
+import se.liu.arvra591.game.objects.creatures.Npc;
 import se.liu.arvra591.game.objects.creatures.Player;
 import se.liu.arvra591.game.objects.creatures.PlayerStats;
 import se.liu.arvra591.game.parsers.InputParser;
@@ -8,6 +9,7 @@ public class Game
 {
 
     private Player player;
+    private Npc target;
     private MasterParser parser;
 
     /**
@@ -15,6 +17,7 @@ public class Game
      */
     public Game(Player player){
 	this.player = player;
+	this.target = null;
 	this.parser = new MasterParser();
     }
 
@@ -29,7 +32,7 @@ public class Game
      * @param input The input from the object
      * gives the user stats, for example "give health 10"
      */
-    public void giveStats(String input){ //example "give (user) health 10"
+    public void giveStats(String input){ //example "give health (user) 10"
 	parseInput(input);// parsees the rest of the string example "health 10"
     }
 
@@ -44,19 +47,33 @@ public class Game
     private class MasterParser extends InputParser
     {
 	private MasterParser(){
-	    parseInputs.put("give", Game.this::giveStats);
 	    parseInputs.put("say", Game.this::say);
+	    //engage
+	    //movePlayer
+	    //giveItem
+	    //useItem
+	    //spawnNpc
+	    //spawnExit
+	    //spawnItem
+	    //disEngage
+	    //win
+	    //lose
 
-	    parseInputs.put("health", player::increaseHealth); //how to do with generic creature? npc can use items too
-	    parseInputs.put("energy", player::addEnergy);
-	    parseInputs.put("attack", player::increaseAttack);
-	    parseInputs.put("defense", player::increaseDefense);
+	    parseInputs.put("giveplayerhealth", player::increaseHealth); //how to do with generic creature? npc can use items too
+	    parseInputs.put("giveplayerenergy", player::addEnergy);
+	    parseInputs.put("giveplayerattack", player::increaseAttack);
+	    parseInputs.put("giveplayerdefense", player::increaseDefense);
+
+	    parseInputs.put("givenpcenergy", target::addEnergy); //how to do with generic creature? npc can use items too")
+	    parseInputs.put("givenpchealth", target::increaseHealth);
+	    parseInputs.put("givenpcattack", target::increaseAttack);
+	    parseInputs.put("givenpcdefense", target::increaseDefense);
 	}
     }
 
     public static void main(String[] args) {
 	PlayerStats stats = new PlayerStats(100, 10, 10, 10, 10,
-					    10, 10, 101, 10);
+					    10,  101, 10);
 	Player player = new Player("player", "player", 10, 10,
 				   stats, null, null);
 	Game game = new Game(player);

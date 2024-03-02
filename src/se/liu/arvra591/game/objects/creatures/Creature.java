@@ -11,13 +11,17 @@ import se.liu.arvra591.game.objects.items.Item;
 public abstract class Creature extends AbstractObject
 {
     protected int currentHealth;
+
+    protected int currentEnergy;
     protected CreatureStats stats;
+
     protected CreatureInventory inventory;
 
-    protected Creature(String name, String description, int currentHealth, CreatureStats stats, CreatureInventory inventory){
+    protected Creature(String name, String description, int currentHealth, int currentEnergy, CreatureStats stats, CreatureInventory inventory){
 
 	super(name, description);
 	this.currentHealth = currentHealth;
+        this.currentEnergy = currentEnergy;
         this.stats = stats;
         this.inventory = inventory;
     }
@@ -49,6 +53,24 @@ public abstract class Creature extends AbstractObject
             int maxHealth = stats.getMaxHealth();
             if(currentHealth > maxHealth){
                 currentHealth = maxHealth;
+            }
+        }
+        catch (NumberFormatException e) {
+            System.out.println("wrong formatting, third word must be integer");
+        }
+    }
+
+    /**
+     * @param number is the amount of energy the creature will gain
+     */
+    public void addEnergy(String number){
+        stats = getStats();
+        int maxEnergy = stats.getMaxEnergy();
+        try {
+            int amount = Integer.parseInt(number);
+            currentEnergy += amount;
+            if (currentEnergy > maxEnergy) {
+                currentEnergy = maxEnergy;
             }
         }
         catch (NumberFormatException e) {

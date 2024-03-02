@@ -95,12 +95,12 @@ public class Combat extends AbstractMode
 
 
 
-	PlayerStats stats = new PlayerStats(100, 10, 10, 5, 10, 0, 0, 100, 5);
+	PlayerStats stats = new PlayerStats(100, 10, 10, 5, 10, 0,  100, 5);
 	CreatureStats creatureStats = new CreatureStats(100, 5, 5, 0, 0);
 
 	PlayerInventory inventory = new PlayerInventory(itemsInInventory, stats);
 	Player player = new Player("Player", "A player", 100, 100, stats, null,  inventory);
-	Npc target = new Npc("Carl", "A friendly human", 100, creatureStats, null, null);
+	Npc target = new Npc("Carl", "A friendly human", 100, 110, creatureStats, null, null);
 
 	Combat combat = new Combat(player, target);
 
