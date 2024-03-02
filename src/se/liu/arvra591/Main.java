@@ -1,8 +1,10 @@
 package se.liu.arvra591;
 
+import se.liu.arvra591.game.Game;
 import se.liu.arvra591.game.factories.Factory;
 import se.liu.arvra591.game.objects.creatures.Npc;
 import se.liu.arvra591.game.objects.creatures.Player;
+import se.liu.arvra591.game.objects.creatures.PlayerStats;
 import se.liu.arvra591.game.objects.items.Item;
 import se.liu.arvra591.game.objects.locations.Location;
 import se.liu.arvra591.game.generators.GameGenerator;
@@ -17,6 +19,8 @@ import java.util.Map;
 public class Main
 {
     private Player player;
+
+    private Game game;
     private Map<String, Location> locations;
     private Map<String, Factory<? extends Item>> items;
     private Map<String, Factory<? extends Npc>> npcs;
@@ -31,13 +35,20 @@ public class Main
 	locations = gameGenerator.getLocations();
 	items = gameGenerator.getItems();
 	npcs = gameGenerator.getNpcs();
+	game = new Game(player, locations, items, npcs);
     }
 
     /**
      * This method starts the game
      */
     public void startGame(){
+
 	player.printObject();
+	Location currentLocation = player.getCurrentLocation();
+	//currentLocation.printObject();
+	game.parseInput("moveplayer Rum2");
+	currentLocation = player.getCurrentLocation();
+	System.out.println(currentLocation.getName());
     }
 
 

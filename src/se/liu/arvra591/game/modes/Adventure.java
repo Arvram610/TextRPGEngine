@@ -106,6 +106,10 @@ public class Adventure extends AbstractMode
 	}
     }
 
+    public void engage(String input){
+	//TODO: sätt listener som kallar på game.engage(input)
+    }
+
     private class AdventureParser extends InputParser
     {
 	private AdventureParser(){
@@ -118,6 +122,7 @@ public class Adventure extends AbstractMode
 	    parseInputs.put("drop", Adventure.this::dropItem);
 	    parseInputs.put("stats", Adventure.this::printStats);
 	    parseInputs.put("talk", Adventure.this::talk); //input will be "talk npc" where npc is the name of the npc you want to talk to
+	    parseInputs.put("engage", Adventure.this::engage);
 	}
     }
 

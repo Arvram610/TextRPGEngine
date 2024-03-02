@@ -16,7 +16,7 @@ public class CreatureStats
     /**
      * Temporary field for testing purposes
      */
-    public static CreatureStats basic = new CreatureStats(10,10,10,10,10);
+    public static CreatureStats basic = new CreatureStats(100,10,10,100,10);
 
 
     /**

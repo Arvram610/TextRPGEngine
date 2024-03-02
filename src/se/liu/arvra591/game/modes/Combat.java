@@ -70,9 +70,19 @@ public class Combat extends AbstractMode
 	System.out.println("You attacked " + currentTarget.getName() + " for " + damage + " damage");
     }
 
+    /**
+     * @param name Will be empty string
+     */
     public void rest(String name){
 	player.addEnergy(REST_ENERGY_REGEN);
 	System.out.println("You slept and regained " + REST_ENERGY_REGEN + " energy");
+    }
+
+    /**
+     * @return The target
+     */
+    public Npc getCurrentTarget(){
+	return currentTarget;
     }
 
     private class CombatParser extends InputParser
