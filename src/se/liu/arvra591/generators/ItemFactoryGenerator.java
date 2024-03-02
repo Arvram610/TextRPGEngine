@@ -12,7 +12,7 @@ import java.io.IOException;
 import java.util.Map;
 
 /**
- * A class the generates itemfactories from given files
+ * A class the generates all the itemfactories used in the game from given files
  */
 public class ItemFactoryGenerator extends ObjectGenerator<Factory<? extends Item>>
 {

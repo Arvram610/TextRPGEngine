@@ -9,6 +9,7 @@ import se.liu.arvra591.objects.AbstractObject;
 import se.liu.arvra591.objects.creatures.CreatureStats;
 import se.liu.arvra591.objects.items.Item;
 
+import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -25,7 +26,14 @@ public abstract class ObjectGenerator<T> extends Generator
 	objects = new HashMap<>();
     }
 
-    public abstract void genObjects(String fileName) throws IOException;
+    /**
+     * Generates the objects from given file
+     *
+     * @param fileName The file that the object come from
+     *
+     * @throws FileNotFoundException
+     */
+    public abstract void genObjects(String fileName) throws FileNotFoundException;
 
     protected abstract void genObject(JsonObject object);
 
@@ -45,6 +53,9 @@ public abstract class ObjectGenerator<T> extends Generator
 	return new CreatureStats(maxHealth, attack, def, maxEnergy, energyRegen);
     }
 
+    /**
+     * @return Returns the generated objects
+     */
     public Map<String, T> getObjects(){
 	return objects;
     }

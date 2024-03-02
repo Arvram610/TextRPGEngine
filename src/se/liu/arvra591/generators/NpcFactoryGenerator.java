@@ -9,6 +9,7 @@ import se.liu.arvra591.objects.creatures.Npc;
 import se.liu.arvra591.objects.creatures.NpcDialogue;
 import se.liu.arvra591.objects.items.Item;
 
+import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.util.List;
 import java.util.Map;
@@ -21,7 +22,7 @@ public class NpcFactoryGenerator extends ObjectGenerator<Factory<? extends Npc>>
 	this.items = items;
     }
 
-    @Override public void genObjects(final String fileName) throws IOException {
+    @Override public void genObjects(final String fileName) throws FileNotFoundException {
 	JsonArray jsonArray = loadJsonArrayFile("npcs/" + fileName);
 	genObjects(jsonArray);
     }

@@ -11,6 +11,7 @@ import se.liu.arvra591.objects.creatures.PlayerStats;
 import se.liu.arvra591.objects.items.Item;
 import se.liu.arvra591.objects.locations.Location;
 
+import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.util.Map;
 
@@ -24,7 +25,7 @@ public class PlayerGenerator extends ObjectGenerator<Player>
 	this.locations = locations;
     }
 
-    @Override public void genObjects(final String fileName) throws IOException {
+    @Override public void genObjects(final String fileName) throws FileNotFoundException {
 	JsonArray jsonArray = loadJsonArrayFile("player/" + fileName);
 	genObjects(jsonArray);
     }
