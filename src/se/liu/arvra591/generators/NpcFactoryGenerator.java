@@ -14,14 +14,29 @@ import java.io.IOException;
 import java.util.List;
 import java.util.Map;
 
+/**
+ * A class that generates all the npcfactories used in the game from given files
+ */
 public class NpcFactoryGenerator extends ObjectGenerator<Factory<? extends Npc>>
 {
     private Map<String, Factory<? extends Item>> items;
 
+    /**
+     * The constructor for the npcfactorygenerator
+     *
+     * @param items A map containing all the itemfactories in the game
+     */
     public NpcFactoryGenerator(final Map<String, Factory<? extends Item>> items) {
 	this.items = items;
     }
 
+    /**
+     * Generates the npcs from given file
+     *
+     * @param fileName The file that the object come from
+     *
+     * @throws FileNotFoundException
+     */
     @Override public void genObjects(final String fileName) throws FileNotFoundException {
 	JsonArray jsonArray = loadJsonArrayFile("npcs/" + fileName);
 	genObjects(jsonArray);
