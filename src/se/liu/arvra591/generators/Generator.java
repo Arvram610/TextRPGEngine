@@ -32,15 +32,15 @@ public abstract class Generator
 	return url;
     }
 
-    protected <S extends AbstractObject> List<S> genObjectListFromFactory(JsonArray jsonArray, Map<String, Factory<? extends S>> map) {
+    protected <S extends AbstractObject> List<S> generateObjectListFromFactory(JsonArray jsonArray, Map<String, Factory<? extends S>> map) {
 	List<S> list = new ArrayList<>();
 	jsonArray.forEach((object) -> {
-	    list.add(map.get(object.getAsString()).gen());
+	    list.add(map.get(object.getAsString()).generate());
 	});
 	return list;
     }
 
-    protected <S extends AbstractObject> List<S> genObjectListFromName(List<String> names, Map<String, S> map) {
+    protected <S extends AbstractObject> List<S> generateObjectListFromName(List<String> names, Map<String, S> map) {
 	List<S> list = new ArrayList<>();
 	names.forEach((object) -> {
 	    list.add(map.get(object));
@@ -48,7 +48,7 @@ public abstract class Generator
 	return list;
     }
 
-    protected List<String> genStringListFromJson(JsonArray jsonArray) {
+    protected List<String> generateStringListFromJson(JsonArray jsonArray) {
 	List<String> list = new ArrayList<>();
 	jsonArray.forEach((objectName) -> {
 	    list.add(objectName.getAsString());

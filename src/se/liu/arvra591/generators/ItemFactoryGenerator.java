@@ -22,12 +22,12 @@ public class ItemFactoryGenerator extends ObjectGenerator<Factory<? extends Item
      *
      * @throws FileNotFoundException
      */
-    @Override public void genObjects(final String fileName) throws FileNotFoundException {
+    @Override public void generateObjects(final String fileName) throws FileNotFoundException {
 	JsonArray jsonArray = loadJsonArrayFile("items/" + fileName);
-	genObjects(jsonArray);
+	generateObjects(jsonArray);
     }
 
-    @Override protected void genObject(final JsonObject object) {
+    @Override protected void generateObject(final JsonObject object) {
 	String type = object.get("type").getAsString();
 	String name = object.get("name").getAsString();
 	String desc = object.get("description").getAsString();

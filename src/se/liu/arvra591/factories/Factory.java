@@ -26,7 +26,7 @@ public class Factory<T extends AbstractObject>
      *
      * @return Returns a copy of the object
      */
-    @SuppressWarnings("unchecked") public T gen() {
+    @SuppressWarnings("unchecked") public T generate() {
 	return (T) gson.fromJson(gson.toJson(targetObject), targetObject.getClass());
     }
 }

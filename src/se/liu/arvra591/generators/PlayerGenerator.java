@@ -39,23 +39,23 @@ public class PlayerGenerator extends ObjectGenerator<Player>
      *
      * @throws FileNotFoundException
      */
-    @Override public void genObjects(final String fileName) throws FileNotFoundException {
+    @Override public void generateObjects(final String fileName) throws FileNotFoundException {
 	JsonArray jsonArray = loadJsonArrayFile("player/" + fileName);
-	genObjects(jsonArray);
+	generateObjects(jsonArray);
     }
 
-    @Override protected void genObject(final JsonObject object) {
+    @Override protected void generateObject(final JsonObject object) {
 	String name = object.get("name").getAsString();
 	String desc = object.get("description").getAsString();
 	int health = object.get("health").getAsInt();
-	PlayerStats stats = genPlayerStats(object.get("stats").getAsJsonObject());
+	PlayerStats stats = generatePlayerStats(object.get("stats").getAsJsonObject());
 	Location location = locations.get(object.get("startLocation").getAsString());
-	PlayerInventory inventory = new PlayerInventory(genObjectListFromFactory(object.get("inventory").getAsJsonArray(), items), stats);
+	PlayerInventory inventory = new PlayerInventory(generateObjectListFromFactory(object.get("inventory").getAsJsonArray(), items), stats);
 	objects.put("player", new Player(name, desc, health, stats, location, inventory));
     }
 
-    private PlayerStats genPlayerStats(JsonObject object) {
-	CreatureStats cStats = genCreatureStats(object);
+    private PlayerStats generatePlayerStats(JsonObject object) {
+	CreatureStats cStats = generateCreatureStats(object);
 	int carryWeight = object.get("carryWeight").getAsInt();
 	return new PlayerStats(cStats, carryWeight);
     }

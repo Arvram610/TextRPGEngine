@@ -8,7 +8,6 @@ import se.liu.arvra591.objects.items.Item;
 import se.liu.arvra591.objects.locations.Location;
 
 import java.io.IOException;
-import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -52,17 +51,11 @@ public class GameGenerator extends Generator
 	    System.exit(1);
 	}
 
-	List<String> itemPaths = new ArrayList<>();
-	game.getAsJsonArray("items").forEach(item -> itemPaths.add(item.getAsString()));
-	generateItems(itemPaths);
+	generateItems(generateStringListFromJson(game.getAsJsonArray("items")));
 
-	List<String> npcPaths = new ArrayList<>();
-	game.getAsJsonArray("npcs").forEach(npc -> npcPaths.add(npc.getAsString()));
-	generateNpcs(npcPaths);
+	generateNpcs(generateStringListFromJson(game.getAsJsonArray("npcs")));
 
-	List<String> locationPaths = new ArrayList<>();
-	game.getAsJsonArray("locations").forEach(location -> locationPaths.add(location.getAsString()));
-	generateLocations(locationPaths);
+	generateLocations(generateStringListFromJson(game.getAsJsonArray("locations")));
 
 	String playerPath = game.get("player").getAsString();
 	generatePlayer(playerPath);
@@ -72,7 +65,7 @@ public class GameGenerator extends Generator
 	ItemFactoryGenerator itemFactoryGenerator = new ItemFactoryGenerator();
 	paths.forEach(path -> {
 	    try {
-		itemFactoryGenerator.genObjects(path);
+		itemFactoryGenerator.generateObjects(path);
 	    } catch (IOException e) {
 		System.out.println("Could not find itemfile: items/" + path);
 		System.exit(1);
@@ -85,7 +78,7 @@ public class GameGenerator extends Generator
 	NpcFactoryGenerator npcFactoryGenerator = new NpcFactoryGenerator(items);
 	paths.forEach(path -> {
 	    try {
-		npcFactoryGenerator.genObjects(path);
+		npcFactoryGenerator.generateObjects(path);
 	    } catch (IOException e) {
 		System.out.println("Could not find npcfile: npcs/" + path);
 		System.exit(1);
@@ -99,7 +92,7 @@ public class GameGenerator extends Generator
 	LocationGenerator locationGenerator = new LocationGenerator(items, npcs);
 	paths.forEach(path -> {
 	    try {
-		locationGenerator.genObjects(path);
+		locationGenerator.generateObjects(path);
 	    } catch (IOException e) {
 		System.out.println("Could not find locationfile: location/" + path);
 		System.exit(1);
@@ -112,7 +105,7 @@ public class GameGenerator extends Generator
     private void generatePlayer(String path) {
 	PlayerGenerator playerGenerator = new PlayerGenerator(items, locations);
 	try {
-	    playerGenerator.genObjects(path);
+	    playerGenerator.generateObjects(path);
 	} catch (IOException e) {
 	    System.out.println("Could not find playerfile: player/" + path);
 	    System.exit(1);

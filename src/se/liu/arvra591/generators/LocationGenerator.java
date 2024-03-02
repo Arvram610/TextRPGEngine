@@ -32,12 +32,12 @@ public class LocationGenerator extends ObjectGenerator<Location>
 	this.npcs = npcs;
     }
 
-    @Override protected void genObject(JsonObject object) {
+    @Override protected void generateObject(JsonObject object) {
 	String name = object.get("name").getAsString();
 	String description = object.get("description").getAsString();
-	List<Npc> npcList = genObjectListFromFactory(object.get("npcs").getAsJsonArray(), npcs);
-	List<Item> itemList = genObjectListFromFactory(object.get("items").getAsJsonArray(), items);
-	List<String> stringLocationList = genStringListFromJson(object.get("exits").getAsJsonArray());
+	List<Npc> npcList = generateObjectListFromFactory(object.get("npcs").getAsJsonArray(), npcs);
+	List<Item> itemList = generateObjectListFromFactory(object.get("items").getAsJsonArray(), items);
+	List<String> stringLocationList = generateStringListFromJson(object.get("exits").getAsJsonArray());
 
 	objects.put(name, new Location(name, description, npcList, itemList, stringLocationList));
     }
@@ -49,7 +49,7 @@ public class LocationGenerator extends ObjectGenerator<Location>
     public void connectRooms() {
 	objects.forEach((name, location) -> {
 	    List<String> exitStringList = location.getExitStringList();
-	    List<Location> exits = genObjectListFromName(exitStringList, objects);
+	    List<Location> exits = generateObjectListFromName(exitStringList, objects);
 	    exits.forEach(location::addExit);
 	});
     }
@@ -61,8 +61,8 @@ public class LocationGenerator extends ObjectGenerator<Location>
      *
      * @throws FileNotFoundException
      */
-    @Override public void genObjects(String fileName) throws FileNotFoundException {
+    @Override public void generateObjects(String fileName) throws FileNotFoundException {
 	JsonArray jsonArray = loadJsonArrayFile("locations/" + fileName);
-	genObjects(jsonArray);
+	generateObjects(jsonArray);
     }
 }

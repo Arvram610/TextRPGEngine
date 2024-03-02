@@ -31,17 +31,17 @@ public abstract class ObjectGenerator<T> extends Generator
      *
      * @throws FileNotFoundException
      */
-    public abstract void genObjects(String fileName) throws FileNotFoundException;
+    public abstract void generateObjects(String fileName) throws FileNotFoundException;
 
-    protected abstract void genObject(JsonObject object);
+    protected abstract void generateObject(JsonObject object);
 
-    protected void genObjects(JsonArray jsonArray) {
+    protected void generateObjects(JsonArray jsonArray) {
 	for (JsonElement jsonElement : jsonArray) {
-	    genObject(jsonElement.getAsJsonObject());
+	    generateObject(jsonElement.getAsJsonObject());
 	}
     }
 
-    protected CreatureStats genCreatureStats(JsonObject object) {
+    protected CreatureStats generateCreatureStats(JsonObject object) {
 	int attack = object.get("attack").getAsInt();
 	int def = object.get("defense").getAsInt();
 	int maxHealth = object.get("maxHealth").getAsInt();
