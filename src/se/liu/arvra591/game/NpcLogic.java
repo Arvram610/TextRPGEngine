@@ -22,6 +22,10 @@ public class NpcLogic
         this.combatEventHandler = combatEventHandler;
     }
 
+    public void setNpc(Npc npc){
+        this.npc = npc;
+    }
+
     public void startOfTurn(){
         npc.addEnergy(Integer.toString(npc.getStats().getEnergyRegenRate()));
         Random rnd = new Random();
@@ -49,6 +53,6 @@ public class NpcLogic
     }
 
     public void rest(){
-
+        npc.rest(REST_ENERGY_REGEN);
     }
 }

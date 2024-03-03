@@ -53,17 +53,34 @@ public class Npc extends Creature
 	return inventory;
     }
 
+    /**
+     * Puts player back into adventure mode and drops all the items in the NPCs inventory
+     */
     public void onDeath(){
-	sendCommand("disengage");
+	sendCommand("say " + name + " dropped: ");
 	for (Item item : inventory.getObjects()) {
 	    sendCommand("spawnitem " + item.getName());
+	    sendCommand("say   " + item.getName());
 	}
+	sendCommand("removenpc " + name);
+	sendCommand("disengage");
     }
 
+    /**
+     * Attacks the player with the current damage of the npc
+     */
     public void attack(){
 	CreatureStats stats = getStats();
 	String attack = Integer.toString(stats.getAttack());
 	sendCommand("attackplayer " + attack);
+    }
+
+    /**
+     * @param energyRegen is the amount of energy the npc will regain
+     */
+    public void rest(int energyRegen){
+	String restEnergyRegen = Integer.toString(energyRegen);
+	addEnergy(restEnergyRegen);
     }
     public static void main(String[] args) {
 	NpcDialogue npcDialogue = new NpcDialogue(Arrays.asList("Hej!", "Hoppas du mår bra", "Ha en trevlig dag"));

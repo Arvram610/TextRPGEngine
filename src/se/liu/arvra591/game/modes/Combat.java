@@ -3,12 +3,13 @@ package se.liu.arvra591.game.modes;
 import se.liu.arvra591.game.listeners.CombatEventHandler;
 import se.liu.arvra591.game.listeners.CombatListener;
 import se.liu.arvra591.game.listeners.EngageEventHandler;
+import se.liu.arvra591.game.objects.creatures.CreatureStats;
 import se.liu.arvra591.game.objects.creatures.Npc;
 import se.liu.arvra591.game.objects.creatures.PlayerStats;
 import se.liu.arvra591.game.parsers.InputParser;
 import se.liu.arvra591.game.objects.creatures.Player;
 
-public class Combat extends AbstractMode implements CombatListener
+public class Combat extends AbstractMode
 {
     private CombatParser parser;
 
@@ -25,12 +26,12 @@ public class Combat extends AbstractMode implements CombatListener
     /**
      * @param player The player that is playing the game
      */
-    public Combat(Player player, Npc target, EngageEventHandler eventHandler){
+    public Combat(Player player, Npc target, EngageEventHandler eventHandler, CombatEventHandler combatEventHandler){
 	super(player);
 	this.parser = new CombatParser();
 	this.currentTarget = target;
 	this.eventHandler = eventHandler;
-	this.combatEventHandler = new CombatEventHandler();
+	this.combatEventHandler = combatEventHandler;
     }
 
     /**
@@ -44,9 +45,26 @@ public class Combat extends AbstractMode implements CombatListener
 	System.out.println(currentTarget.getName() + " now has " + currentTarget.getCurrentHealth() + " health left");
     }
 
-    public void notifyNpcLogic(){
-	//TODO: Call npclogic start of round method or something like that
+    public void startOfCombat(){
+	System.out.println("You are in combat with " + currentTarget.getName());
+	System.out.println(currentTarget.getName() + " stats are: ");
+	CreatureStats stats = currentTarget.getStats();
+	stats.printStats();
+
+	System.out.println();
+
+	System.out.println("Your stats are: ");
+	PlayerStats playerStats = player.getPlayerStats();
+	playerStats.printStats();
+
+	System.out.println();
+
+	System.out.println("Available commands: attack, rest, checkinventory, stats, disengage and enemyinfo");
+
+	System.out.println();
     }
+
+
 
     /**
      * @param input The input from the player
@@ -79,6 +97,8 @@ public class Combat extends AbstractMode implements CombatListener
 	    return;
 	}
 	System.out.println("You attacked " + currentTarget.getName() + " for " + damage + " damage");
+	System.out.println(currentTarget.getName() + " now has " + currentTarget.getCurrentHealth() + " health left");
+	System.out.println();
 	combatEventHandler.notifyNpcLogic();
     }
 
@@ -116,6 +136,10 @@ public class Combat extends AbstractMode implements CombatListener
 	eventHandler.disEngage(name);
     }
 
+    public void printEnemyInfo(String name){
+	currentTarget.printObject();
+    }
+
     private class CombatParser extends InputParser
     {
 	private CombatParser(){
@@ -126,6 +150,7 @@ public class Combat extends AbstractMode implements CombatListener
 	    parseInputs.put("inventory", Combat.this::printInventory);
 	    parseInputs.put("stats", Combat.this::printStats);
 	    parseInputs.put("disengage", Combat.this::disEngage);
+	    parseInputs.put("enemyinfo", Combat.this::printEnemyInfo);
 	}
     }
 }

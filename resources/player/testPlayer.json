@@ -2,14 +2,14 @@
   {
     "name": "Kalle",
     "description": "En stark grabb",
-    "health": 2,
-    "energy": 1,
+    "health": 100,
+    "energy": 100,
     "startLocation": "Rum1",
     "stats":{
-      "attack": -1,
+      "attack": 5,
       "defense": -1,
-      "maxHealth": 3,
-      "maxEnergy": 1,
+      "maxHealth": 100,
+      "maxEnergy": 100,
       "energyRegen": 0,
       "carryWeight": 1
     },

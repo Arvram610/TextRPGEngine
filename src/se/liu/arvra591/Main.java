@@ -1,5 +1,6 @@
 package se.liu.arvra591;
 
+import se.liu.arvra591.game.listeners.CombatEventHandler;
 import se.liu.arvra591.game.listeners.EngageEventHandler;
 import se.liu.arvra591.game.Game;
 import se.liu.arvra591.game.factories.Factory;
@@ -21,6 +22,7 @@ public class Main
 {
     private Player player;
     private EngageEventHandler eventHandler;
+    private CombatEventHandler combatEventHandler;
     private Game game;
     private Map<String, Location> locations;
     private Map<String, Factory<? extends Item>> items;
@@ -38,7 +40,8 @@ public class Main
 	items = gameGenerator.getItems();
 	npcs = gameGenerator.getNpcs();
 	eventHandler = new EngageEventHandler();
-	game = new Game(player, locations, items, npcs, eventHandler);
+	combatEventHandler = new CombatEventHandler();
+	game = new Game(player, locations, items, npcs, eventHandler, combatEventHandler);
 
 	commandHandler.setListener(game.getParser());
     }
@@ -53,14 +56,11 @@ public class Main
 	Location currentLocation = player.getCurrentLocation();
 	//currentLocation.printObject();
 	game.parseInput("currentmode");
-	game.processInput("help");
 	game.processInput("engage Carl");
-	game.parseInput("currentmode");
-	game.processInput("help");
+	game.parseInput("giveplayerenergy 100");
 	game.processInput("attack");
-	game.processInput("rest");
-	game.processInput("stats");
-	game.processInput("disengage");
+	game.processInput("attack");
+	game.processInput("attack");
 	game.parseInput("currentmode");
     }
 

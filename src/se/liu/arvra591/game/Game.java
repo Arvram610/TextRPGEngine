@@ -1,6 +1,8 @@
 package se.liu.arvra591.game;
 
 import se.liu.arvra591.game.factories.Factory;
+import se.liu.arvra591.game.listeners.CombatEventHandler;
+import se.liu.arvra591.game.listeners.CombatListener;
 import se.liu.arvra591.game.listeners.EngageEventHandler;
 import se.liu.arvra591.game.listeners.EngageListener;
 import se.liu.arvra591.game.modes.Adventure;
@@ -14,15 +16,17 @@ import se.liu.arvra591.game.parsers.InputParser;
 import java.util.List;
 import java.util.Map;
 
-public class Game implements EngageListener
+public class Game implements EngageListener, CombatListener
 {
 
     private Player player;
     private EngageEventHandler eventHandler;
+    private CombatEventHandler combatEventHandler;
     private MasterParser parser;
     private GameState gameState;
     private Adventure adventure;
     private Combat combat;
+    private NpcLogic npcLogic;
     private Map<String, Location> locations;
     private Map<String, Factory<? extends Item>> items;
     private Map<String, Factory<? extends Npc>> npcs;
@@ -31,16 +35,20 @@ public class Game implements EngageListener
      * @param player The player that is playing the game
      */
     public Game(Player player, Map<String, Location> locations, Map<String, Factory<? extends Item>> items,
-		Map<String, Factory<? extends Npc>> npcs, EngageEventHandler eventHandler){
+		Map<String, Factory<? extends Npc>> npcs, EngageEventHandler engageEventHandler, CombatEventHandler combatEventHandler){
 	this.player = player;
 	this.parser = new MasterParser();
 	this.locations = locations;
 	this.items = items;
 	this.npcs = npcs;
 	this.gameState = GameState.ADVENTURE;
-	this.adventure = new Adventure(player, eventHandler);
-	this.eventHandler = eventHandler;
-	eventHandler.setListener(this);
+	this.eventHandler = engageEventHandler;
+	this.combatEventHandler = combatEventHandler;
+	this.combat = new Combat(player, null, engageEventHandler, combatEventHandler);
+	this.adventure = new Adventure(player, engageEventHandler);
+	this.npcLogic = new NpcLogic(null, combatEventHandler);
+	engageEventHandler.setListener(this);
+	combatEventHandler.setListener(this);
     }
 
     /**
@@ -97,6 +105,7 @@ public class Game implements EngageListener
 	Npc target = ListHelper.findObjectInList(npcs, input);
 	combat.setCurrentTarget(target);
 	gameState = GameState.COMBAT;
+	combat.startOfCombat();
     }
 
     /**
@@ -108,6 +117,12 @@ public class Game implements EngageListener
 	    return;
 	}
 	gameState = GameState.ADVENTURE;
+	player.getCurrentLocation().removeNpc(combat.getCurrentTarget().getName());
+    }
+
+    public void notifyNpcLogic(){
+	npcLogic.setNpc(combat.getCurrentTarget());
+	npcLogic.startOfTurn();
     }
 
     /**
@@ -208,10 +223,36 @@ public class Game implements EngageListener
 	player.getCurrentLocation().addItem(item);
     }
 
+    /**
+     * @param input The attack of the npc that is attacking
+     */
     public void attackPlayer(String input){
 	int attack = Integer.parseInt(input);
 	int damage = Math.max(attack - player.getStats().getDefense(), 0);
 	player.takeDamage(damage);
+	String enemy = combat.getCurrentTarget().getName();
+
+	System.out.println(enemy + " attacked you for " + damage + " damage");
+	System.out.println("You have " + player.getCurrentHealth() + " health left");
+	System.out.println();
+    }
+
+    /**
+     * @param input The name of the npc to remove
+     */
+    public void removeNpc(String input){
+	player.getCurrentLocation().removeNpc(input);
+    }
+
+    /**
+     * @param input The name of the exit to remove
+     */
+    public void removeExit(String input){
+	player.getCurrentLocation().removeExit(input);
+    }
+
+    public void removeItem(String input){
+	player.getCurrentLocation().removeItem(input);
     }
 
     private class MasterParser extends InputParser
@@ -244,6 +285,9 @@ public class Game implements EngageListener
 	    parseInputs.put("spawnnpc", Game.this::spawnNpc);
 	    parseInputs.put("spawnexit", Game.this::spawnExit);
 	    parseInputs.put("spawnitem", Game.this::spawnItem);
+	    parseInputs.put("removenpc", Game.this::removeNpc);
+	    parseInputs.put("removeexit", Game.this::removeExit);
+	    parseInputs.put("removeitem", Game.this::removeItem);
 
 	    //useItem
 
