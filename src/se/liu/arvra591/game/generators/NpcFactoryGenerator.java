@@ -3,6 +3,7 @@ package se.liu.arvra591.game.generators;
 import com.google.gson.JsonArray;
 import com.google.gson.JsonObject;
 import se.liu.arvra591.game.factories.Factory;
+import se.liu.arvra591.game.listeners.CommandHandler;
 import se.liu.arvra591.game.objects.containers.CreatureInventory;
 import se.liu.arvra591.game.objects.creatures.CreatureStats;
 import se.liu.arvra591.game.objects.creatures.Npc;
@@ -26,7 +27,8 @@ public class NpcFactoryGenerator extends ObjectGenerator<Factory<? extends Npc>>
      *
      * @param items A map containing all the itemfactories in the game
      */
-    public NpcFactoryGenerator(final Map<String, Factory<? extends Item>> items) {
+    public NpcFactoryGenerator(CommandHandler commandHandler, final Map<String, Factory<? extends Item>> items) {
+	super(commandHandler);
 	this.items = items;
     }
 
@@ -51,7 +53,7 @@ public class NpcFactoryGenerator extends ObjectGenerator<Factory<? extends Npc>>
 	NpcDialogue dialogue = new NpcDialogue(generateStringListFromJson(object.getAsJsonArray("dialogue")));
 	CreatureInventory inventory = generateInventory(object.getAsJsonArray("inventory"));
 
-	objects.put(name, new Factory<>(new Npc(name, desc, health, energy, stats, dialogue, inventory, true)));
+	objects.put(name, new Factory<>(new Npc(name, desc, health, energy, stats, dialogue, inventory, true), commandHandler));
     }
 
     private CreatureInventory generateInventory(final JsonArray array) {

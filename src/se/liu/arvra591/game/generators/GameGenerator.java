@@ -2,6 +2,7 @@ package se.liu.arvra591.game.generators;
 
 import com.google.gson.JsonObject;
 import se.liu.arvra591.game.factories.Factory;
+import se.liu.arvra591.game.listeners.CommandHandler;
 import se.liu.arvra591.game.objects.creatures.Npc;
 import se.liu.arvra591.game.objects.creatures.Player;
 import se.liu.arvra591.game.objects.items.Item;
@@ -18,6 +19,7 @@ import java.util.Map;
  */
 public class GameGenerator extends Generator
 {
+    private CommandHandler commandHandler;
     private Map<String, Factory<? extends Item>> items;
     private Map<String, Factory<? extends Npc>> npcs;
     private Map<String, Location> locations;
@@ -26,11 +28,12 @@ public class GameGenerator extends Generator
     /**
      * The constructor for the gamegenerator
      */
-    public GameGenerator() {
+    public GameGenerator(CommandHandler commandHandler) {
 	items = new HashMap<>();
 	npcs = new HashMap<>();
 	locations = new HashMap<>();
 	player = null;
+	this.commandHandler = commandHandler;
     }
 
     /**
@@ -63,7 +66,7 @@ public class GameGenerator extends Generator
     }
 
     private void generateItems(List<String> paths) {
-	ItemFactoryGenerator itemFactoryGenerator = new ItemFactoryGenerator();
+	ItemFactoryGenerator itemFactoryGenerator = new ItemFactoryGenerator(commandHandler);
 	paths.forEach(path -> {
 	    try {
 		itemFactoryGenerator.generateObjects(path);
@@ -76,7 +79,7 @@ public class GameGenerator extends Generator
     }
 
     private void generateNpcs(List<String> paths) {
-	NpcFactoryGenerator npcFactoryGenerator = new NpcFactoryGenerator(items);
+	NpcFactoryGenerator npcFactoryGenerator = new NpcFactoryGenerator(commandHandler, items);
 	paths.forEach(path -> {
 	    try {
 		npcFactoryGenerator.generateObjects(path);
@@ -90,7 +93,7 @@ public class GameGenerator extends Generator
 
 
     private void generateLocations(List<String> paths) {
-	LocationGenerator locationGenerator = new LocationGenerator(items, npcs);
+	LocationGenerator locationGenerator = new LocationGenerator(commandHandler, items, npcs);
 	paths.forEach(path -> {
 	    try {
 		locationGenerator.generateObjects(path);
@@ -104,7 +107,7 @@ public class GameGenerator extends Generator
     }
 
     private void generatePlayer(String path) {
-	PlayerGenerator playerGenerator = new PlayerGenerator(items, locations);
+	PlayerGenerator playerGenerator = new PlayerGenerator(commandHandler, items, locations);
 	try {
 	    playerGenerator.generateObjects(path);
 	} catch (IOException e) {

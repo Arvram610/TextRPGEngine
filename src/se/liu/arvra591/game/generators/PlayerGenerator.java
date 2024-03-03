@@ -3,6 +3,7 @@ package se.liu.arvra591.game.generators;
 import com.google.gson.JsonArray;
 import com.google.gson.JsonObject;
 import se.liu.arvra591.game.factories.Factory;
+import se.liu.arvra591.game.listeners.CommandHandler;
 import se.liu.arvra591.game.objects.containers.PlayerInventory;
 import se.liu.arvra591.game.objects.creatures.CreatureStats;
 import se.liu.arvra591.game.objects.creatures.Player;
@@ -28,7 +29,10 @@ public class PlayerGenerator extends ObjectGenerator<Player>
      * @param items     A map containing all the itemfactories in the game
      * @param locations A map containing all the locations in the game
      */
-    public PlayerGenerator(Map<String, Factory<? extends Item>> items, Map<String, Location> locations) {
+    public PlayerGenerator(CommandHandler commandHandler,
+			   Map<String, Factory<? extends Item>> items,
+			   Map<String, Location> locations) {
+	super(commandHandler);
 	this.items = items;
 	this.locations = locations;
     }
@@ -54,7 +58,10 @@ public class PlayerGenerator extends ObjectGenerator<Player>
 	Location location = locations.get(object.get("startLocation").getAsString());
 	PlayerInventory
 		inventory = new PlayerInventory(generateObjectListFromFactory(object.get("inventory").getAsJsonArray(), items), stats);
-	objects.put("player", new Player(name, desc, health, energy, stats, location, inventory));
+
+	Player player = new Player(name, desc, health, energy, stats, location, inventory);
+	player.setCommandHandler(commandHandler);
+	objects.put("player", player);
     }
 
     private PlayerStats generatePlayerStats(JsonObject object) {
