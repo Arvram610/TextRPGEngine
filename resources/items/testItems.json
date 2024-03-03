@@ -1,6 +1,6 @@
 [
   {
-    "type": "equipable",
+    "type": "equippable",
     "name": "sword",
     "description": "desc",
     "weight": 3
