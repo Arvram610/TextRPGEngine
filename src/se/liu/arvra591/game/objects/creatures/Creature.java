@@ -91,6 +91,17 @@ public abstract class Creature extends AbstractObject
         }
     }
 
+    public void takeDamage(int damage){
+        currentHealth -= damage;
+    }
+
+    public boolean isAlive(){
+        if (currentHealth <= 0) {
+            return false;
+        }
+        return true;
+    }
+
     /**
      * @param number is the amount of defense the creature will gain
      */

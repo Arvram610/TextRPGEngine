@@ -13,7 +13,7 @@ public abstract class AbstractObject
 {
     protected String name;
     protected String description;
-    protected CommandHandler commandHandler;
+    private CommandHandler commandHandler;
 
     protected AbstractObject(String name, String description){
         this.name = name;

@@ -146,6 +146,8 @@ public class Player extends Creature
 	return true;
     }
 
+
+
     public void forceAddItem(Item item){
 	inventory.forceAddObject(item);
     }

@@ -200,9 +200,18 @@ public class Game implements EngageListener
 	player.getCurrentLocation().addExit(exit);
     }
 
+    /**
+     * @param input The name of the item to spawn
+     */
     public void spawnItem(String input){
 	Item item = items.get(input).generate();
 	player.getCurrentLocation().addItem(item);
+    }
+
+    public void attackPlayer(String input){
+	int attack = Integer.parseInt(input);
+	int damage = Math.max(attack - player.getStats().getDefense(), 0);
+	player.takeDamage(damage);
     }
 
     private class MasterParser extends InputParser
@@ -214,6 +223,7 @@ public class Game implements EngageListener
 	    parseInputs.put("giveplayerenergy", player::addEnergy);
 	    parseInputs.put("giveplayerattack", player::increaseAttack);
 	    parseInputs.put("giveplayerdefense", player::increaseDefense);
+	    parseInputs.put("attackplayer", Game.this::attackPlayer);
 
 	    parseInputs.put("givenpcenergy", Game.this::giveNpcEnergy);
 	    parseInputs.put("givenpchealth", Game.this::giveNpcHealth);

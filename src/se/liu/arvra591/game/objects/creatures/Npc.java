@@ -1,6 +1,8 @@
 package se.liu.arvra591.game.objects.creatures;
 
+import se.liu.arvra591.game.listeners.CommandHandler;
 import se.liu.arvra591.game.objects.containers.CreatureInventory;
+import se.liu.arvra591.game.objects.items.Item;
 
 import java.util.Arrays;
 
@@ -8,7 +10,6 @@ import java.util.Arrays;
  * Class for non-player characters such as enemies, pets or vendors. All npcs have a dialogue but this can be empty for creatures
  *  that cant talk exs pets.
  *  Npcs are a subclass of {@link Creature}
- *
  */
 public class Npc extends Creature
 {
@@ -39,19 +40,6 @@ public class Npc extends Creature
     }
 
     /**
-     * to be removed
-     */
-
-    public boolean takeDamage(int damage){
-	currentHealth -= damage;
-	if (currentHealth <= 0) {
-	    //System.out.println(getName() + " has died");
-	    return true;
-	}
-	return false;
-    }
-
-    /**
      * @return Returns true if the player can disengage from the npc
      */
     public boolean getCanDisengage(){
@@ -65,9 +53,17 @@ public class Npc extends Creature
 	return inventory;
     }
 
+    public void onDeath(){
+	sendCommand("disengage");
+	for (Item item : inventory.getObjects()) {
+	    sendCommand("spawnitem " + item.getName());
+	}
+    }
+
     public void attack(){
 	CreatureStats stats = getStats();
-	int attack = stats.getAttack();
+	String attack = Integer.toString(stats.getAttack());
+	sendCommand("attackplayer " + attack);
     }
     public static void main(String[] args) {
 	NpcDialogue npcDialogue = new NpcDialogue(Arrays.asList("Hej!", "Hoppas du mår bra", "Ha en trevlig dag"));

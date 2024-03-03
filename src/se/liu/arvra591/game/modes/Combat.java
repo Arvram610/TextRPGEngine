@@ -71,9 +71,11 @@ public class Combat extends AbstractMode implements CombatListener
 	    return;
 	}
 
-	boolean hasDied = currentTarget.takeDamage(damage);
+	currentTarget.takeDamage(damage);
+	boolean hasDied = !currentTarget.isAlive();
 	if (hasDied){
 	    System.out.println(currentTarget.getName() + " has died");
+	    currentTarget.onDeath();
 	    return;
 	}
 	System.out.println("You attacked " + currentTarget.getName() + " for " + damage + " damage");
