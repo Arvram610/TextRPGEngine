@@ -3,6 +3,7 @@ package se.liu.arvra591.game.generators;
 import com.google.gson.JsonArray;
 import com.google.gson.JsonElement;
 import com.google.gson.JsonObject;
+import se.liu.arvra591.game.listeners.CommandHandler;
 import se.liu.arvra591.game.objects.creatures.CreatureStats;
 
 import java.io.FileNotFoundException;
@@ -19,9 +20,12 @@ public abstract class ObjectGenerator<T> extends Generator
 
     protected Map<String, T> objects;
 
-    protected ObjectGenerator() {
+    protected CommandHandler commandHandler;
+
+    protected ObjectGenerator(CommandHandler commandHandler) {
 	super();
 	objects = new HashMap<>();
+	this.commandHandler = commandHandler;
     }
 
     /**

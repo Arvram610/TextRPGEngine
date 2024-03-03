@@ -52,6 +52,11 @@ public class Game implements EngageListener
 	parser.parseInput(input);
     }
 
+
+    public InputParser getParser(){
+	return parser;
+    }
+
     /**
      * @param input The input from the object
      * gives the user stats, for example "give health 10"
