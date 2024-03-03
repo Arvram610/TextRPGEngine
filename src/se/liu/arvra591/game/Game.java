@@ -1,18 +1,16 @@
 package se.liu.arvra591.game;
 
 import se.liu.arvra591.game.factories.Factory;
+import se.liu.arvra591.game.listeners.EngageEventHandler;
+import se.liu.arvra591.game.listeners.EngageListener;
 import se.liu.arvra591.game.modes.Adventure;
 import se.liu.arvra591.game.modes.Combat;
-import se.liu.arvra591.game.objects.creatures.CreatureStats;
 import se.liu.arvra591.game.objects.creatures.Npc;
-import se.liu.arvra591.game.objects.creatures.NpcDialogue;
 import se.liu.arvra591.game.objects.creatures.Player;
-import se.liu.arvra591.game.objects.creatures.PlayerStats;
 import se.liu.arvra591.game.objects.items.Item;
 import se.liu.arvra591.game.objects.locations.Location;
 import se.liu.arvra591.game.parsers.InputParser;
 
-import java.util.Arrays;
 import java.util.List;
 import java.util.Map;
 
@@ -20,7 +18,7 @@ public class Game implements EngageListener
 {
 
     private Player player;
-    private EventHandler eventHandler;
+    private EngageEventHandler eventHandler;
     private MasterParser parser;
     private GameState gameState;
     private Adventure adventure;
@@ -33,7 +31,7 @@ public class Game implements EngageListener
      * @param player The player that is playing the game
      */
     public Game(Player player, Map<String, Location> locations, Map<String, Factory<? extends Item>> items,
-		Map<String, Factory<? extends Npc>> npcs, EventHandler eventHandler){
+		Map<String, Factory<? extends Npc>> npcs, EngageEventHandler eventHandler){
 	this.player = player;
 	this.parser = new MasterParser();
 	this.locations = locations;
@@ -88,10 +86,11 @@ public class Game implements EngageListener
 	Location location = player.getCurrentLocation();
 	if (location.getNpcs().isEmpty()) {
 	    System.out.println("There are no npcs to engage with");
+	    return;
 	}
 	List<Npc> npcs = location.getNpcs();
 	Npc target = ListHelper.findObjectInList(npcs, input);
-	combat = new Combat(player, target, eventHandler);
+	combat.setCurrentTarget(target);
 	gameState = GameState.COMBAT;
     }
 
@@ -192,8 +191,8 @@ public class Game implements EngageListener
      * @param input The name of the exit to spawn
      */
     public void spawnExit(String input){
-	//Location exit = locations.get(input).generate();
-	//player.getCurrentLocation().addExit(exit);
+	Location exit = locations.get(input);
+	player.getCurrentLocation().addExit(exit);
     }
 
     public void spawnItem(String input){

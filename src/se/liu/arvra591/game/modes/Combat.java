@@ -1,23 +1,20 @@
 package se.liu.arvra591.game.modes;
 
-import se.liu.arvra591.game.EventHandler;
-import se.liu.arvra591.game.objects.containers.PlayerInventory;
-import se.liu.arvra591.game.objects.creatures.CreatureStats;
+import se.liu.arvra591.game.listeners.CombatEventHandler;
+import se.liu.arvra591.game.listeners.CombatListener;
+import se.liu.arvra591.game.listeners.EngageEventHandler;
 import se.liu.arvra591.game.objects.creatures.Npc;
 import se.liu.arvra591.game.objects.creatures.PlayerStats;
-import se.liu.arvra591.game.objects.items.Item;
-import se.liu.arvra591.game.objects.locations.Location;
 import se.liu.arvra591.game.parsers.InputParser;
 import se.liu.arvra591.game.objects.creatures.Player;
 
-import java.util.ArrayList;
-import java.util.List;
-
-public class Combat extends AbstractMode
+public class Combat extends AbstractMode implements CombatListener
 {
     private CombatParser parser;
 
-    private EventHandler eventHandler;
+    private EngageEventHandler eventHandler;
+
+    private CombatEventHandler combatEventHandler;
 
     private static final int ENERGY_COST = 5;
 
@@ -28,19 +25,27 @@ public class Combat extends AbstractMode
     /**
      * @param player The player that is playing the game
      */
-    public Combat(Player player, Npc target, EventHandler eventHandler){
+    public Combat(Player player, Npc target, EngageEventHandler eventHandler){
 	super(player);
 	this.parser = new CombatParser();
 	this.currentTarget = target;
 	this.eventHandler = eventHandler;
+	this.combatEventHandler = new CombatEventHandler();
     }
 
+    /**
+     * This function is called at the start of a round
+     */
     public void startOfRound(){
 	player.addEnergy(player.getPlayerStats().getEnergyRegenRate());
 	int health = player.getCurrentHealth();
 	int energy = player.getCurrentEnergy();
 	System.out.println("You have " + health + " health and " + energy + " energy");
 	System.out.println(currentTarget.getName() + " now has " + currentTarget.getCurrentHealth() + " health left");
+    }
+
+    public void notifyNpcLogic(){
+	//TODO: Call npclogic start of round method or something like that
     }
 
     /**
@@ -72,6 +77,7 @@ public class Combat extends AbstractMode
 	    return;
 	}
 	System.out.println("You attacked " + currentTarget.getName() + " for " + damage + " damage");
+	combatEventHandler.notifyNpcLogic();
     }
 
     /**
@@ -89,6 +95,16 @@ public class Combat extends AbstractMode
 	return currentTarget;
     }
 
+    /**
+     * @param target The target to set
+     */
+    public void setCurrentTarget(Npc target){
+	currentTarget = target;
+    }
+
+    /**
+     * @param name Will be empty string
+     */
     public void disEngage(String name){
 	boolean canDisengage = currentTarget.getCanDisengage();
 	if (!canDisengage){

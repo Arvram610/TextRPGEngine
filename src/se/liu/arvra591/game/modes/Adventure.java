@@ -1,19 +1,8 @@
 package se.liu.arvra591.game.modes;
 
-import se.liu.arvra591.game.EventHandler;
+import se.liu.arvra591.game.listeners.EngageEventHandler;
 import se.liu.arvra591.game.parsers.InputParser;
-import se.liu.arvra591.game.objects.containers.PlayerInventory;
-import se.liu.arvra591.game.objects.creatures.CreatureStats;
-import se.liu.arvra591.game.objects.creatures.Npc;
-import se.liu.arvra591.game.objects.creatures.NpcDialogue;
 import se.liu.arvra591.game.objects.creatures.Player;
-import se.liu.arvra591.game.objects.creatures.PlayerStats;
-import se.liu.arvra591.game.objects.items.Item;
-import se.liu.arvra591.game.objects.locations.Location;
-
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.List;
 
 /**
  * The adventure class is the class that controls the adventure mode of the game and the player.
@@ -25,12 +14,12 @@ public class Adventure extends AbstractMode
 
     private AdventureParser parser;
 
-    private EventHandler eventHandler;
+    private EngageEventHandler eventHandler;
 
     /**
      * @param player The player that is playing the game
      */
-    public Adventure(Player player, EventHandler eventHandler){
+    public Adventure(Player player, EngageEventHandler eventHandler){
 	super(player);
 	this.parser = new AdventureParser();
 	this.eventHandler = eventHandler;

@@ -1,11 +1,10 @@
 package se.liu.arvra591;
 
-import se.liu.arvra591.game.EventHandler;
+import se.liu.arvra591.game.listeners.EngageEventHandler;
 import se.liu.arvra591.game.Game;
 import se.liu.arvra591.game.factories.Factory;
 import se.liu.arvra591.game.objects.creatures.Npc;
 import se.liu.arvra591.game.objects.creatures.Player;
-import se.liu.arvra591.game.objects.creatures.PlayerStats;
 import se.liu.arvra591.game.objects.items.Item;
 import se.liu.arvra591.game.objects.locations.Location;
 import se.liu.arvra591.game.generators.GameGenerator;
@@ -20,7 +19,7 @@ import java.util.Map;
 public class Main
 {
     private Player player;
-    private EventHandler eventHandler;
+    private EngageEventHandler eventHandler;
     private Game game;
     private Map<String, Location> locations;
     private Map<String, Factory<? extends Item>> items;
@@ -36,7 +35,7 @@ public class Main
 	locations = gameGenerator.getLocations();
 	items = gameGenerator.getItems();
 	npcs = gameGenerator.getNpcs();
-	eventHandler = new EventHandler();
+	eventHandler = new EngageEventHandler();
 	game = new Game(player, locations, items, npcs, eventHandler);
 
     }

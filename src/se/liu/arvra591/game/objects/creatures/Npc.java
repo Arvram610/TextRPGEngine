@@ -57,6 +57,18 @@ public class Npc extends Creature
     public boolean getCanDisengage(){
 	return canDisengage;
     }
+
+    /**
+     * @return Returns the inventory of the npc
+     */
+    public CreatureInventory getInventory(){
+	return inventory;
+    }
+
+    public void attack(){
+	CreatureStats stats = getStats();
+	int attack = stats.getAttack();
+    }
     public static void main(String[] args) {
 	NpcDialogue npcDialogue = new NpcDialogue(Arrays.asList("Hej!", "Hoppas du mår bra", "Ha en trevlig dag"));
 	Npc npc = new Npc("Carl", "A friendly human", 10, 10, CreatureStats.basic, npcDialogue, null, true);

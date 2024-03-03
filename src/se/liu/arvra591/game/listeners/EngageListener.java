@@ -1,4 +1,4 @@
-package se.liu.arvra591.game;
+package se.liu.arvra591.game.listeners;
 
 public interface EngageListener
 {
