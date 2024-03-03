@@ -3,6 +3,7 @@ package se.liu.arvra591.game.generators;
 import com.google.gson.JsonArray;
 import com.google.gson.JsonObject;
 import se.liu.arvra591.game.factories.Factory;
+import se.liu.arvra591.game.listeners.CommandHandler;
 import se.liu.arvra591.game.objects.creatures.Npc;
 import se.liu.arvra591.game.objects.items.Item;
 import se.liu.arvra591.game.objects.locations.Location;
@@ -27,8 +28,10 @@ public class LocationGenerator extends ObjectGenerator<Location>
      * @param items A map containing itemfactories used to generate items for locations
      * @param npcs  A map containing npcfactories used to generate npcsc for locations
      */
-    public LocationGenerator(Map<String, Factory<? extends Item>> items, Map<String, Factory<? extends Npc>> npcs) {
-	super();
+    public LocationGenerator(CommandHandler commandHandler,
+			     Map<String, Factory<? extends Item>> items,
+			     Map<String, Factory<? extends Npc>> npcs) {
+	super(commandHandler);
 	this.items = items;
 	this.npcs = npcs;
     }
@@ -40,7 +43,9 @@ public class LocationGenerator extends ObjectGenerator<Location>
 	List<Item> itemList = generateObjectListFromFactory(object.get("items").getAsJsonArray(), items);
 	List<String> stringLocationList = generateStringListFromJson(object.get("exits").getAsJsonArray());
 
-	objects.put(name, new Location(name, description, npcList, itemList, stringLocationList));
+	Location location = new Location(name, description, npcList, itemList, stringLocationList);
+	location.setCommandHandler(commandHandler);
+	objects.put(name, location);
     }
 
 

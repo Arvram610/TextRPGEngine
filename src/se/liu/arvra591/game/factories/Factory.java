@@ -1,6 +1,7 @@
 package se.liu.arvra591.game.factories;
 
 import com.google.gson.Gson;
+import se.liu.arvra591.game.listeners.CommandHandler;
 import se.liu.arvra591.game.objects.AbstractObject;
 
 /**
@@ -13,11 +14,14 @@ public class Factory<T extends AbstractObject>
     protected T targetObject;
     protected Gson gson;
 
+    protected CommandHandler commandHandler;
+
     /**
      * @param targetObject The targetobject that the factory clones
      */
-    public Factory(T targetObject) {
+    public Factory(T targetObject, CommandHandler commandHandler) {
 	this.targetObject = targetObject;
+	this.commandHandler = commandHandler;
 	gson = new Gson();
     }
 
@@ -27,6 +31,8 @@ public class Factory<T extends AbstractObject>
      * @return Returns a copy of the object
      */
     @SuppressWarnings("unchecked") public T generate() {
-	return (T) gson.fromJson(gson.toJson(targetObject), targetObject.getClass());
+	T object = (T) gson.fromJson(gson.toJson(targetObject), targetObject.getClass());
+	object.setCommandHandler(commandHandler);
+	return object;
     }
 }

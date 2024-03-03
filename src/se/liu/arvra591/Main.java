@@ -3,6 +3,7 @@ package se.liu.arvra591;
 import se.liu.arvra591.game.listeners.EngageEventHandler;
 import se.liu.arvra591.game.Game;
 import se.liu.arvra591.game.factories.Factory;
+import se.liu.arvra591.game.listeners.CommandHandler;
 import se.liu.arvra591.game.objects.creatures.Npc;
 import se.liu.arvra591.game.objects.creatures.Player;
 import se.liu.arvra591.game.objects.items.Item;
@@ -29,7 +30,8 @@ public class Main
      * Constructor for the main class, initializes what is needed for the game to run
      */
     public Main(){
-	GameGenerator gameGenerator = new GameGenerator();
+	CommandHandler commandHandler = new CommandHandler();
+	GameGenerator gameGenerator = new GameGenerator(commandHandler);
 	gameGenerator.generateGame();
 	player = gameGenerator.getPlayer();
 	locations = gameGenerator.getLocations();
@@ -38,6 +40,7 @@ public class Main
 	eventHandler = new EngageEventHandler();
 	game = new Game(player, locations, items, npcs, eventHandler);
 
+	commandHandler.setListener(game.getParser());
     }
 
     /**

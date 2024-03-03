@@ -3,6 +3,7 @@ package se.liu.arvra591.game.generators;
 import com.google.gson.JsonArray;
 import com.google.gson.JsonObject;
 import se.liu.arvra591.game.factories.Factory;
+import se.liu.arvra591.game.listeners.CommandHandler;
 import se.liu.arvra591.game.objects.items.Consumables;
 import se.liu.arvra591.game.objects.items.Equippables;
 import se.liu.arvra591.game.objects.items.Item;
@@ -15,6 +16,10 @@ import java.io.FileNotFoundException;
  */
 public class ItemFactoryGenerator extends ObjectGenerator<Factory<? extends Item>>
 {
+
+    protected ItemFactoryGenerator(final CommandHandler commandHandler) {
+	super(commandHandler);
+    }
 
     /**
      * Generates itemsfactories from given file
@@ -36,10 +41,10 @@ public class ItemFactoryGenerator extends ObjectGenerator<Factory<? extends Item
 
 	switch (type) {
 	    case "consumable" -> {
-		objects.put(name, new Factory<>(new Consumables(name, desc, weight)));
+		objects.put(name, new Factory<>(new Consumables(name, desc, weight), commandHandler));
 	    }
 	    case "equipable" -> {
-		objects.put(name, new Factory<>(new Equippables(name, desc, weight)));
+		objects.put(name, new Factory<>(new Equippables(name, desc, weight), commandHandler));
 	    }
 	    default -> {
 		System.out.println("itemtype not valid");
