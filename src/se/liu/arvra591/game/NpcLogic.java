@@ -49,7 +49,6 @@ public class NpcLogic
     }
 
     public void useItem(){
-
     }
 
     public void rest(){
