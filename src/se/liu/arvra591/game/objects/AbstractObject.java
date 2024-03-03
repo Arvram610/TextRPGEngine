@@ -3,6 +3,8 @@ package se.liu.arvra591.game.objects;
 
 import se.liu.arvra591.game.listeners.CommandHandler;
 
+import java.util.List;
+
 /**
  * All objects in the game inherit from this class, objects includes locations as they are physical
  * All objects have a name and a description
@@ -60,7 +62,11 @@ public abstract class AbstractObject
         this.commandHandler = commandHandler;
     }
 
-    protected void sendCommand(final String sayHello) {
-        commandHandler.notifyListener(sayHello);
+    protected void sendCommand(final String command) {
+        commandHandler.notifyListener(command);
+    }
+
+    protected void sendCommands(final List<String> commands){
+        commands.forEach(this::sendCommand);
     }
 }
