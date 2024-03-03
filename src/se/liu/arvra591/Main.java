@@ -47,10 +47,8 @@ public class Main
      * This method starts the game
      */
     public void startGame(){
+	game.start();
 
-	//player.printObject();
-
-	Location currentLocation = player.getCurrentLocation();
 	//currentLocation.printObject();
 	game.parseInput("currentmode");
 	game.processInput("help");

@@ -82,6 +82,10 @@ public class Player extends Creature
 	return false;
     }
 
+    public void forceMove(Location location){
+	currentLocation = location;
+    }
+
     /**
      * @param name is the name of the item to pick up
      *

@@ -201,9 +201,20 @@ public class Game implements EngageListener
 	//player.getCurrentLocation().addExit(exit);
     }
 
+    private void movePlayer(String input) {
+	Location location = locations.get(input);
+	if (location == null) return;
+	player.forceMove(location);
+	player.getCurrentLocation().roomEntered();
+    }
+
     public void spawnItem(String input){
 	Item item = items.get(input).generate();
 	player.getCurrentLocation().addItem(item);
+    }
+
+    public void start() {
+    	player.getCurrentLocation().roomEntered();
     }
 
     private class MasterParser extends InputParser
@@ -221,7 +232,7 @@ public class Game implements EngageListener
 	    parseInputs.put("givenpcattack", Game.this::giveNpcAttack);
 	    parseInputs.put("givenpcdefense", Game.this::giveNpcDefense);
 
-	    parseInputs.put("moveplayer", player::move);
+	    parseInputs.put("moveplayer", Game.this::movePlayer);
 
 	    parseInputs.put("giveitem", Game.this::giveItem);
 

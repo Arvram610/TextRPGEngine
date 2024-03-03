@@ -10,6 +10,14 @@
     ],
     "exits": [
       "Rum2"
+    ],
+    "firstEnter": [
+      "say You wake up in a big room",
+      "say there is a sword on the ground",
+      "say An npc named carl greats you"
+    ],
+    "normalEnter": [
+      "say You enter a big room"
     ]
   },
   {
@@ -19,6 +27,12 @@
     "items": [],
     "exits": [
       "Rum2"
+    ],
+    "firstEnter": [
+      "say this room sucks..."
+    ],
+    "normalEnter": [
+      "say it still sucks"
     ]
   }
 ]
