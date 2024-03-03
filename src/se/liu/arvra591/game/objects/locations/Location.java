@@ -69,6 +69,20 @@ public class Location extends AbstractObject
 	return itemContainer.addObject(item);
     }
 
+    /**
+     * @param npc Npc to add to the location
+     */
+    public void addNpc(Npc npc){
+	npcContainer.forceAddObject(npc);
+    }
+
+    /**
+     * @param npc Npc to remove from the location
+     */
+    public void removeNpc(Npc npc){
+	npcContainer.removeObject(npc);
+    }
+
 
     /**
      * @param name Name of the item to inspect

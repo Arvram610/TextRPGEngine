@@ -164,6 +164,43 @@ public class Game implements EngageListener
 	System.out.println("Current mode is: " + gameState);
     }
 
+    /**
+     * @param input Will be empty
+     */
+    public void win(String input){
+	gameState = gameState.WIN;
+	//TODO: Add win condition
+    }
+
+    /**
+     * @param input Will be empty
+     */
+    public void lose(String input){
+	gameState = gameState.GAME_OVER;
+	//TODO: Add lose condition
+    }
+
+    /**
+     * @param input The name of the npc to spawn
+     */
+    public void spawnNpc(String input){
+	Npc npc = npcs.get(input).generate();
+	player.getCurrentLocation().addNpc(npc);
+    }
+
+    /**
+     * @param input The name of the exit to spawn
+     */
+    public void spawnExit(String input){
+	//Location exit = locations.get(input).generate();
+	//player.getCurrentLocation().addExit(exit);
+    }
+
+    public void spawnItem(String input){
+	Item item = items.get(input).generate();
+	player.getCurrentLocation().addItem(item);
+    }
+
     private class MasterParser extends InputParser
     {
 	private MasterParser(){
@@ -187,14 +224,16 @@ public class Game implements EngageListener
 	    parseInputs.put("disengage", Game.this::disEngage);
 	    parseInputs.put("currentmode", Game.this::currentMode);
 
+	    parseInputs.put("win", Game.this::win);
+	    parseInputs.put("lose", Game.this::lose);
+
+	    parseInputs.put("spawnnpc", Game.this::spawnNpc);
+	    parseInputs.put("spawnexit", Game.this::spawnExit);
+	    parseInputs.put("spawnitem", Game.this::spawnItem);
+
 	    //useItem
 
-	    //spawnNpc
-	    //spawnExit
-	    //spawnItem
 
-	    //win
-	    //lose
 	}
     }
 }

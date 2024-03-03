@@ -22,7 +22,7 @@ public class Factory<T extends AbstractObject>
     }
 
     /**
-     * The method used to clone the object Says it does unchecked cast, but all casts are garanteed to be of type T
+     * The method used to clone the object Says it does unchecked cast, but all casts are guaranteed to be of type T
      *
      * @return Returns a copy of the object
      */
