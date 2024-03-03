@@ -53,6 +53,8 @@ public class Player extends Creature
     public void printStats(){
 	PlayerStats stats = getPlayerStats();
 	stats.printStats();
+	System.out.println("Energy: " + currentEnergy);
+	System.out.println(("Health: " + currentHealth));
     }
 
     public PlayerStats getPlayerStats() {

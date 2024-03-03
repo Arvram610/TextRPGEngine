@@ -1,5 +1,6 @@
 package se.liu.arvra591.game.modes;
 
+import se.liu.arvra591.game.EventHandler;
 import se.liu.arvra591.game.parsers.InputParser;
 import se.liu.arvra591.game.objects.containers.PlayerInventory;
 import se.liu.arvra591.game.objects.creatures.CreatureStats;
@@ -24,12 +25,15 @@ public class Adventure extends AbstractMode
 
     private AdventureParser parser;
 
+    private EventHandler eventHandler;
+
     /**
      * @param player The player that is playing the game
      */
-    public Adventure(Player player){
+    public Adventure(Player player, EventHandler eventHandler){
 	super(player);
 	this.parser = new AdventureParser();
+	this.eventHandler = eventHandler;
     }
 
     /**
@@ -107,7 +111,7 @@ public class Adventure extends AbstractMode
     }
 
     public void engage(String input){
-	//TODO: sätt listener som kallar på game.engage(input)
+	eventHandler.engage(input);
     }
 
     private class AdventureParser extends InputParser

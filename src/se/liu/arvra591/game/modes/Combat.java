@@ -1,5 +1,6 @@
 package se.liu.arvra591.game.modes;
 
+import se.liu.arvra591.game.EventHandler;
 import se.liu.arvra591.game.objects.containers.PlayerInventory;
 import se.liu.arvra591.game.objects.creatures.CreatureStats;
 import se.liu.arvra591.game.objects.creatures.Npc;
@@ -16,6 +17,8 @@ public class Combat extends AbstractMode
 {
     private CombatParser parser;
 
+    private EventHandler eventHandler;
+
     private static final int ENERGY_COST = 5;
 
     private static final int REST_ENERGY_REGEN = 15;
@@ -25,10 +28,11 @@ public class Combat extends AbstractMode
     /**
      * @param player The player that is playing the game
      */
-    public Combat(Player player, Npc target){
+    public Combat(Player player, Npc target, EventHandler eventHandler){
 	super(player);
 	this.parser = new CombatParser();
 	this.currentTarget = target;
+	this.eventHandler = eventHandler;
     }
 
     public void startOfRound(){
@@ -85,6 +89,15 @@ public class Combat extends AbstractMode
 	return currentTarget;
     }
 
+    public void disEngage(String name){
+	boolean canDisengage = currentTarget.getCanDisengage();
+	if (!canDisengage){
+	    System.out.println("You cannot disengage from " + currentTarget.getName());
+	    return;
+	}
+	eventHandler.disEngage(name);
+    }
+
     private class CombatParser extends InputParser
     {
 	private CombatParser(){
@@ -94,6 +107,7 @@ public class Combat extends AbstractMode
 	    parseInputs.put("checkinventory", Combat.this::printInventory);
 	    parseInputs.put("inventory", Combat.this::printInventory);
 	    parseInputs.put("stats", Combat.this::printStats);
+	    parseInputs.put("disengage", Combat.this::disEngage);
 	}
     }
 }

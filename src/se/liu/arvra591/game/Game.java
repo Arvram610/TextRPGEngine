@@ -16,10 +16,11 @@ import java.util.Arrays;
 import java.util.List;
 import java.util.Map;
 
-public class Game
+public class Game implements EngageListener
 {
 
     private Player player;
+    private EventHandler eventHandler;
     private MasterParser parser;
     private GameState gameState;
     private Adventure adventure;
@@ -32,12 +33,16 @@ public class Game
      * @param player The player that is playing the game
      */
     public Game(Player player, Map<String, Location> locations, Map<String, Factory<? extends Item>> items,
-		Map<String, Factory<? extends Npc>> npcs){
+		Map<String, Factory<? extends Npc>> npcs, EventHandler eventHandler){
 	this.player = player;
 	this.parser = new MasterParser();
 	this.locations = locations;
 	this.items = items;
 	this.npcs = npcs;
+	this.gameState = GameState.ADVENTURE;
+	this.adventure = new Adventure(player, eventHandler);
+	this.eventHandler = eventHandler;
+	eventHandler.setListener(this);
     }
 
     /**
@@ -74,6 +79,7 @@ public class Game
     /**
      * @param input The NPC to engage combat with
      */
+    @Override
     public void engage(String input){
 	if (gameState == GameState.COMBAT) {
 	    System.out.println("You are already in combat");
@@ -85,7 +91,7 @@ public class Game
 	}
 	List<Npc> npcs = location.getNpcs();
 	Npc target = ListHelper.findObjectInList(npcs, input);
-	combat = new Combat(player, target);
+	combat = new Combat(player, target, eventHandler);
 	gameState = GameState.COMBAT;
     }
 
@@ -151,6 +157,13 @@ public class Game
 	target.increaseDefense(input);
     }
 
+    /**
+     * @param input The input from the player will be empty
+     */
+    public void currentMode(String input){
+	System.out.println("Current mode is: " + gameState);
+    }
+
     private class MasterParser extends InputParser
     {
 	private MasterParser(){
@@ -172,6 +185,7 @@ public class Game
 
 	    parseInputs.put("engage", Game.this::engage);
 	    parseInputs.put("disengage", Game.this::disEngage);
+	    parseInputs.put("currentmode", Game.this::currentMode);
 
 	    //useItem
 

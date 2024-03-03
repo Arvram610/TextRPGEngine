@@ -13,6 +13,7 @@ import java.util.Arrays;
 public class Npc extends Creature
 {
     protected NpcDialogue dialogue;
+    private boolean canDisengage;
 
     /**
      * @param name what the npc is called
@@ -23,9 +24,11 @@ public class Npc extends Creature
      * @param inventory the inventory of the npc
      */
     public Npc(final String name, final String description,
-	       final int currentHealth, int currentEnergy, final CreatureStats stats, final NpcDialogue dialogue, CreatureInventory inventory) {
+	       final int currentHealth, int currentEnergy, final CreatureStats stats, final NpcDialogue dialogue,
+	       CreatureInventory inventory, boolean canDisengage) {
 	super(name, description, currentHealth, currentEnergy, stats, inventory);
 	this.dialogue = dialogue;
+	this.canDisengage = canDisengage;
     }
 
     /**
@@ -47,9 +50,16 @@ public class Npc extends Creature
 	}
 	return false;
     }
+
+    /**
+     * @return Returns true if the player can disengage from the npc
+     */
+    public boolean getCanDisengage(){
+	return canDisengage;
+    }
     public static void main(String[] args) {
 	NpcDialogue npcDialogue = new NpcDialogue(Arrays.asList("Hej!", "Hoppas du mår bra", "Ha en trevlig dag"));
-	Npc npc = new Npc("Carl", "A friendly human", 10, 10, CreatureStats.basic, npcDialogue, null);
+	Npc npc = new Npc("Carl", "A friendly human", 10, 10, CreatureStats.basic, npcDialogue, null, true);
 	npc.talk();
     }
 }

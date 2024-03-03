@@ -1,5 +1,6 @@
 package se.liu.arvra591;
 
+import se.liu.arvra591.game.EventHandler;
 import se.liu.arvra591.game.Game;
 import se.liu.arvra591.game.factories.Factory;
 import se.liu.arvra591.game.objects.creatures.Npc;
@@ -19,7 +20,7 @@ import java.util.Map;
 public class Main
 {
     private Player player;
-
+    private EventHandler eventHandler;
     private Game game;
     private Map<String, Location> locations;
     private Map<String, Factory<? extends Item>> items;
@@ -35,7 +36,9 @@ public class Main
 	locations = gameGenerator.getLocations();
 	items = gameGenerator.getItems();
 	npcs = gameGenerator.getNpcs();
-	game = new Game(player, locations, items, npcs);
+	eventHandler = new EventHandler();
+	game = new Game(player, locations, items, npcs, eventHandler);
+
     }
 
     /**
@@ -43,12 +46,20 @@ public class Main
      */
     public void startGame(){
 
-	player.printObject();
+	//player.printObject();
+
 	Location currentLocation = player.getCurrentLocation();
 	//currentLocation.printObject();
-	game.parseInput("moveplayer Rum2");
-	currentLocation = player.getCurrentLocation();
-	System.out.println(currentLocation.getName());
+	game.parseInput("currentmode");
+	game.processInput("help");
+	game.processInput("engage Carl");
+	game.parseInput("currentmode");
+	game.processInput("help");
+	game.processInput("attack");
+	game.processInput("rest");
+	game.processInput("stats");
+	game.processInput("disengage");
+	game.parseInput("currentmode");
     }
 
 
