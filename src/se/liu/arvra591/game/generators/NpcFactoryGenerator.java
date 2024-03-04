@@ -7,11 +7,11 @@ import se.liu.arvra591.game.listeners.CommandHandler;
 import se.liu.arvra591.game.objects.containers.CreatureInventory;
 import se.liu.arvra591.game.objects.creatures.CreatureStats;
 import se.liu.arvra591.game.objects.creatures.Npc;
-import se.liu.arvra591.game.objects.creatures.NpcDialogue;
 import se.liu.arvra591.game.objects.items.Item;
 
 
 import java.io.FileNotFoundException;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 
@@ -50,7 +50,9 @@ public class NpcFactoryGenerator extends ObjectGenerator<Factory<? extends Npc>>
 	int health = object.get("health").getAsInt();
 	int energy = object.get("energy").getAsInt();
 	CreatureStats stats = generateCreatureStats(object.getAsJsonObject("stats"));
-	NpcDialogue dialogue = new NpcDialogue(generateStringListFromJson(object.getAsJsonArray("dialogue")));
+	List<List<String>> dialogues = new ArrayList<>();
+	object.getAsJsonArray("dialogue").forEach(element ->
+							  dialogues.add(generateStringListFromJson(element.getAsJsonArray())));
 	CreatureInventory inventory = generateInventory(object.getAsJsonArray("inventory"));
 
 	objects.put(name, new Factory<>(new Npc(name, description, health, energy, stats, dialogue, inventory, true), commandHandler));

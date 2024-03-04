@@ -11,10 +11,12 @@ import se.liu.arvra591.game.objects.items.Item;
  */
 public class Npc extends Creature
 {
-    protected NpcDialogue dialogue;
+    private final List<List<String>> npcDialogues;
     private boolean canDisengage;
     private static final int ENERGY_COST = 5;
 
+
+    private int timesTalked;
 
     /**
      * @param name what the npc is called
@@ -25,18 +27,20 @@ public class Npc extends Creature
      * @param inventory the inventory of the npc
      */
     public Npc(final String name, final String description,
-	       final int currentHealth, int currentEnergy, final CreatureStats stats, final NpcDialogue dialogue,
+	       final int currentHealth, int currentEnergy, final CreatureStats stats, final List<List<String>> npcDialogues,
 	       CreatureInventory inventory, boolean canDisengage) {
 	super(name, description, currentHealth, currentEnergy, stats, inventory);
-	this.dialogue = dialogue;
+	this.npcDialogues = npcDialogues;
 	this.canDisengage = canDisengage;
+	this.timesTalked = 0;
     }
 
     /**
      * Prints the npc dialogue
      */
     public void talk(){
-	dialogue.printDialogue(getName());
+	sendCommands(npcDialogues.get(Math.min(timesTalked, npcDialogues.size())));
+	timesTalked++;
     }
 
     /**

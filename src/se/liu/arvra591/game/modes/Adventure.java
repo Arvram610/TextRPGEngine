@@ -1,9 +1,6 @@
 package se.liu.arvra591.game.modes;
 
-import se.liu.arvra591.game.listeners.EngageEventHandler;
-import se.liu.arvra591.game.objects.containers.CreatureInventory;
-import se.liu.arvra591.game.objects.items.Equipable;
-import se.liu.arvra591.game.objects.items.Item;
+import se.liu.arvra591.game.EventHandler;
 import se.liu.arvra591.game.parsers.InputParser;
 import se.liu.arvra591.game.objects.creatures.Player;
 

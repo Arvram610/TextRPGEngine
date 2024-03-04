@@ -12,8 +12,17 @@
       "energyRegen": 1
     },
     "dialogue": [
-      "Hej!",
-      "Hoppas du mår bra :)"
+      [
+        "say Carl: Hej!",
+        "say Carl: Hoppas du mår bra :)",
+        "say Carl: Här får du ett svärd",
+        "giveItem sword",
+        "say \ndu fick ett svärd"
+      ],
+      [
+        "say Carl: försöker du kränga mig på fler items!?",
+        "say Carl: Fy skäms!"
+      ]
     ],
     "inventory": [
       "potion"
