@@ -2,6 +2,7 @@ package se.liu.arvra591.game.objects.creatures;
 
 import se.liu.arvra591.game.ListHelper;
 import se.liu.arvra591.game.objects.containers.PlayerInventory;
+import se.liu.arvra591.game.objects.items.Consumable;
 import se.liu.arvra591.game.objects.items.Item;
 import se.liu.arvra591.game.objects.locations.Location;
 
@@ -96,6 +97,16 @@ public class Player extends Creature
 	    return pickUpItem(item);
 	}
 	return false;
+    }
+
+    public void useItem(String name){
+	Item item = inventory.getObject(name);
+	if (!(item instanceof Consumable)){
+	    System.out.println("You can't use that item");
+	    return;
+	}
+	((Consumable) item).use();
+	inventory.removeObject(item);
     }
 
     /**

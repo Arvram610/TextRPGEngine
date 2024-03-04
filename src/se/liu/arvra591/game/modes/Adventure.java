@@ -103,22 +103,7 @@ public class Adventure extends AbstractMode
     /**
      * @param input The item to equip
      */
-    public void equipItem(String input){
-	CreatureInventory inventory = player.getInventory();
-	Item item = inventory.getObject(input);
-	if (item == null) {
-	    System.out.println("You don't have that item");
-	    return;
-	}
-	if (!(item instanceof Equipable)) {
-	    System.out.println("You can't equip that item");
-	    return;
-	}
-	player.equipItem((Equipable) item);
-	System.out.println("You equiped " + item.getName());
-	System.out.print("It gave you ");
-	((Equipable) item).getStats().printStats();
-    }
+
 
     /**
      * @param input The NPC to engage combat with
@@ -141,6 +126,7 @@ public class Adventure extends AbstractMode
 	    parseInputs.put("talk", Adventure.this::talk); //input will be "talk npc" where npc is the name of the npc you want to talk to
 	    parseInputs.put("engage", Adventure.this::engage);
 	    parseInputs.put("equip", Adventure.this::equipItem);
+	    parseInputs.put("use", Adventure.this::useItem);
 	}
     }
 

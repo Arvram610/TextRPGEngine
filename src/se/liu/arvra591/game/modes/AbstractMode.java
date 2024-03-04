@@ -1,6 +1,9 @@
 package se.liu.arvra591.game.modes;
 
+import se.liu.arvra591.game.objects.containers.CreatureInventory;
 import se.liu.arvra591.game.objects.creatures.Player;
+import se.liu.arvra591.game.objects.items.Equipable;
+import se.liu.arvra591.game.objects.items.Item;
 
 /**
  * All modes in the game inherit from this class
@@ -27,6 +30,33 @@ public abstract class AbstractMode implements Mode
      */
     public void printStats(String ignored){
 	player.printStats();
+    }
+
+    /**
+     * @param item The item to use
+     */
+    public void useItem(String item){
+	player.useItem(item);
+    }
+
+    /**
+     * @param input The item to equip
+     */
+    public void equipItem(String input){
+	CreatureInventory inventory = player.getInventory();
+	Item item = inventory.getObject(input);
+	if (item == null) {
+	    System.out.println("You don't have that item");
+	    return;
+	}
+	if (!(item instanceof Equipable)) {
+	    System.out.println("You can't equip that item");
+	    return;
+	}
+	player.equipItem((Equipable) item);
+	System.out.println("You equiped " + item.getName());
+	System.out.print("It gave you ");
+	((Equipable) item).getStats().printStats();
     }
 
 

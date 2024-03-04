@@ -19,9 +19,7 @@ public class Consumable extends Item //Kodgranskning complains that the word Con
         this.useCommands = useCommands;
     }
 
-    private void use(){
-	//uses and consumes the item
+    public void use(){
         sendCommands(useCommands);
-        sendCommand("removeItem " + name);
     }
 }

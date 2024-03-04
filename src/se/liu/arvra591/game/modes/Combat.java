@@ -63,7 +63,7 @@ public class Combat extends AbstractMode
 
 	System.out.println();
 
-	System.out.println("Available commands: attack, rest, checkinventory, stats, disengage and enemyinfo");
+	parseInput("help");
 
 	System.out.println();
     }
@@ -130,23 +130,24 @@ public class Combat extends AbstractMode
     }
 
     /**
-     * @param name Will be empty string
+     * @param ignored Will be empty string
      */
-    public void disEngage(String name){
+    public void disEngage(String ignored){
 	boolean canDisengage = currentTarget.getCanDisengage();
 	if (!canDisengage){
 	    System.out.println("You cannot disengage from " + currentTarget.getName());
 	    return;
 	}
-	eventHandler.disEngage(name);
+	eventHandler.disEngage(ignored);
     }
 
     /**
-     * @param name Will be empty string
+     * @param ignored Will be empty string
      */
     public void printEnemyInfo(String ignored){
 	currentTarget.printObject();
     }
+
 
     private class CombatParser extends InputParser
     {
@@ -159,6 +160,8 @@ public class Combat extends AbstractMode
 	    parseInputs.put("stats", Combat.this::printStats);
 	    parseInputs.put("disengage", Combat.this::disEngage);
 	    parseInputs.put("enemyinfo", Combat.this::printEnemyInfo);
+	    parseInputs.put("use", Combat.this::useItem);
+	    parseInputs.put("equip", Combat.this::equipItem);
 	}
     }
 }
