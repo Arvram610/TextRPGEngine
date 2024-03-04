@@ -3,6 +3,7 @@ package se.liu.arvra591.game.objects.creatures;
 import se.liu.arvra591.game.objects.containers.CreatureInventory;
 
 import java.util.Arrays;
+import java.util.List;
 
 /**
  * Class for non-player characters such as enemies, pets or vendors. All npcs have a dialogue but this can be empty for creatures
@@ -12,8 +13,10 @@ import java.util.Arrays;
  */
 public class Npc extends Creature
 {
-    protected NpcDialogue dialogue;
+    private final List<List<String>> npcDialogues;
     private boolean canDisengage;
+
+    private int timesTalked;
 
     /**
      * @param name what the npc is called
@@ -24,18 +27,20 @@ public class Npc extends Creature
      * @param inventory the inventory of the npc
      */
     public Npc(final String name, final String description,
-	       final int currentHealth, int currentEnergy, final CreatureStats stats, final NpcDialogue dialogue,
+	       final int currentHealth, int currentEnergy, final CreatureStats stats, final List<List<String>> npcDialogues,
 	       CreatureInventory inventory, boolean canDisengage) {
 	super(name, description, currentHealth, currentEnergy, stats, inventory);
-	this.dialogue = dialogue;
+	this.npcDialogues = npcDialogues;
 	this.canDisengage = canDisengage;
+	this.timesTalked = 0;
     }
 
     /**
      * Prints the npc dialogue
      */
     public void talk(){
-	dialogue.printDialogue(getName());
+	sendCommands(npcDialogues.get(Math.min(timesTalked, npcDialogues.size())));
+	timesTalked++;
     }
 
     /**
@@ -56,10 +61,5 @@ public class Npc extends Creature
      */
     public boolean getCanDisengage(){
 	return canDisengage;
-    }
-    public static void main(String[] args) {
-	NpcDialogue npcDialogue = new NpcDialogue(Arrays.asList("Hej!", "Hoppas du mår bra", "Ha en trevlig dag"));
-	Npc npc = new Npc("Carl", "A friendly human", 10, 10, CreatureStats.basic, npcDialogue, null, true);
-	npc.talk();
     }
 }

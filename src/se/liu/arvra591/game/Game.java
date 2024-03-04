@@ -3,16 +3,12 @@ package se.liu.arvra591.game;
 import se.liu.arvra591.game.factories.Factory;
 import se.liu.arvra591.game.modes.Adventure;
 import se.liu.arvra591.game.modes.Combat;
-import se.liu.arvra591.game.objects.creatures.CreatureStats;
 import se.liu.arvra591.game.objects.creatures.Npc;
-import se.liu.arvra591.game.objects.creatures.NpcDialogue;
 import se.liu.arvra591.game.objects.creatures.Player;
-import se.liu.arvra591.game.objects.creatures.PlayerStats;
 import se.liu.arvra591.game.objects.items.Item;
 import se.liu.arvra591.game.objects.locations.Location;
 import se.liu.arvra591.game.parsers.InputParser;
 
-import java.util.Arrays;
 import java.util.List;
 import java.util.Map;
 
@@ -221,14 +217,14 @@ public class Game implements EngageListener
      * @return Returns if the game is on
      */
     public boolean gameOn() {
-	switch (gameState){
+	switch (gameState) {
 	    case WIN:
 	    case GAME_OVER:
 		return false;
 	    default:
 		return true;
 	}
-
+    }
     private class MasterParser extends InputParser
     {
 	private MasterParser(){
