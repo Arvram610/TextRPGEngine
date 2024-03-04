@@ -1,30 +1,37 @@
 package se.liu.arvra591.game;
 
 import se.liu.arvra591.game.factories.Factory;
+import se.liu.arvra591.game.listeners.CombatEventHandler;
+import se.liu.arvra591.game.listeners.CombatListener;
+import se.liu.arvra591.game.listeners.EngageEventHandler;
+import se.liu.arvra591.game.listeners.EngageListener;
 import se.liu.arvra591.game.modes.Adventure;
 import se.liu.arvra591.game.modes.Combat;
-import se.liu.arvra591.game.objects.creatures.CreatureStats;
 import se.liu.arvra591.game.objects.creatures.Npc;
-import se.liu.arvra591.game.objects.creatures.NpcDialogue;
 import se.liu.arvra591.game.objects.creatures.Player;
-import se.liu.arvra591.game.objects.creatures.PlayerStats;
 import se.liu.arvra591.game.objects.items.Item;
 import se.liu.arvra591.game.objects.locations.Location;
 import se.liu.arvra591.game.parsers.InputParser;
 
-import java.util.Arrays;
 import java.util.List;
 import java.util.Map;
 
-public class Game implements EngageListener
+/**
+ * The main parser of the game
+ * takes input from the game and parses it to the correct method
+ * also takes the input from main and sends it to the correct method
+ */
+public class Game implements EngageListener, CombatListener
 {
 
     private Player player;
-    private EventHandler eventHandler;
+    //private EngageEventHandler eventHandler;
+    //private CombatEventHandler combatEventHandler;
     private MasterParser parser;
     private GameState gameState;
     private Adventure adventure;
     private Combat combat;
+    private NpcLogic npcLogic;
     private Map<String, Location> locations;
     private Map<String, Factory<? extends Item>> items;
     private Map<String, Factory<? extends Npc>> npcs;
@@ -33,16 +40,20 @@ public class Game implements EngageListener
      * @param player The player that is playing the game
      */
     public Game(Player player, Map<String, Location> locations, Map<String, Factory<? extends Item>> items,
-		Map<String, Factory<? extends Npc>> npcs, EventHandler eventHandler){
+		Map<String, Factory<? extends Npc>> npcs, EngageEventHandler engageEventHandler, CombatEventHandler combatEventHandler){
 	this.player = player;
 	this.parser = new MasterParser();
 	this.locations = locations;
 	this.items = items;
 	this.npcs = npcs;
 	this.gameState = GameState.ADVENTURE;
-	this.adventure = new Adventure(player, eventHandler);
-	this.eventHandler = eventHandler;
-	eventHandler.setListener(this);
+	//this.eventHandler = engageEventHandler;
+	//this.combatEventHandler = combatEventHandler;
+	this.combat = new Combat(player, null, engageEventHandler, combatEventHandler);
+	this.adventure = new Adventure(player, engageEventHandler);
+	this.npcLogic = new NpcLogic(null);
+	engageEventHandler.setListener(this);
+	combatEventHandler.setListener(this);
     }
 
     /**
@@ -93,11 +104,13 @@ public class Game implements EngageListener
 	Location location = player.getCurrentLocation();
 	if (location.getNpcs().isEmpty()) {
 	    System.out.println("There are no npcs to engage with");
+	    return;
 	}
 	List<Npc> npcs = location.getNpcs();
 	Npc target = ListHelper.findObjectInList(npcs, input);
-	combat = new Combat(player, target, eventHandler);
+	combat.setCurrentTarget(target);
 	gameState = GameState.COMBAT;
+	combat.startOfCombat();
     }
 
     /**
@@ -109,6 +122,12 @@ public class Game implements EngageListener
 	    return;
 	}
 	gameState = GameState.ADVENTURE;
+	player.getCurrentLocation().removeNpc(combat.getCurrentTarget().getName());
+    }
+
+    public void notifyNpcLogic(){
+	npcLogic.setNpc(combat.getCurrentTarget());
+	npcLogic.startOfTurn();
     }
 
     /**
@@ -173,7 +192,7 @@ public class Game implements EngageListener
      * @param input Will be empty
      */
     public void win(String input){
-	gameState = gameState.WIN;
+	gameState = GameState.WIN;
 	//TODO: Add win condition
     }
 
@@ -181,7 +200,7 @@ public class Game implements EngageListener
      * @param input Will be empty
      */
     public void lose(String input){
-	gameState = gameState.GAME_OVER;
+	gameState = GameState.GAME_OVER;
 	//TODO: Add lose condition
     }
 
@@ -197,13 +216,48 @@ public class Game implements EngageListener
      * @param input The name of the exit to spawn
      */
     public void spawnExit(String input){
-	//Location exit = locations.get(input).generate();
-	//player.getCurrentLocation().addExit(exit);
+	Location exit = locations.get(input);
+	player.getCurrentLocation().addExit(exit);
     }
 
+    /**
+     * @param input The name of the item to spawn
+     */
     public void spawnItem(String input){
 	Item item = items.get(input).generate();
 	player.getCurrentLocation().addItem(item);
+    }
+
+    /**
+     * @param input The attack of the npc that is attacking
+     */
+    public void attackPlayer(String input){
+	int attack = Integer.parseInt(input);
+	int damage = Math.max(attack - player.getStats().getDefense(), 0);
+	player.takeDamage(damage);
+	String enemy = combat.getCurrentTarget().getName();
+
+	System.out.println(enemy + " attacked you for " + damage + " damage");
+	System.out.println("You have " + player.getCurrentHealth() + " health left");
+	System.out.println();
+    }
+
+    /**
+     * @param input The name of the npc to remove
+     */
+    public void removeNpc(String input){
+	player.getCurrentLocation().removeNpc(input);
+    }
+
+    /**
+     * @param input The name of the exit to remove
+     */
+    public void removeExit(String input){
+	player.getCurrentLocation().removeExit(input);
+    }
+
+    public void removeItem(String input){
+	player.getCurrentLocation().removeItem(input);
     }
 
     private class MasterParser extends InputParser
@@ -215,6 +269,7 @@ public class Game implements EngageListener
 	    parseInputs.put("giveplayerenergy", player::addEnergy);
 	    parseInputs.put("giveplayerattack", player::increaseAttack);
 	    parseInputs.put("giveplayerdefense", player::increaseDefense);
+	    parseInputs.put("attackplayer", Game.this::attackPlayer);
 
 	    parseInputs.put("givenpcenergy", Game.this::giveNpcEnergy);
 	    parseInputs.put("givenpchealth", Game.this::giveNpcHealth);
@@ -235,6 +290,9 @@ public class Game implements EngageListener
 	    parseInputs.put("spawnnpc", Game.this::spawnNpc);
 	    parseInputs.put("spawnexit", Game.this::spawnExit);
 	    parseInputs.put("spawnitem", Game.this::spawnItem);
+	    parseInputs.put("removenpc", Game.this::removeNpc);
+	    parseInputs.put("removeexit", Game.this::removeExit);
+	    parseInputs.put("removeitem", Game.this::removeItem);
 
 	    //useItem
 

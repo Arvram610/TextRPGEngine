@@ -39,11 +39,11 @@ public class LocationGenerator extends ObjectGenerator<Location>
     @Override protected void generateObject(JsonObject object) {
 	String name = object.get("name").getAsString();
 	String description = object.get("description").getAsString();
-	List<Npc> npcList = generateObjectListFromFactory(object.get("npcs").getAsJsonArray(), npcs);
-	List<Item> itemList = generateObjectListFromFactory(object.get("items").getAsJsonArray(), items);
-	List<String> stringLocationList = generateStringListFromJson(object.get("exits").getAsJsonArray());
+	List<Npc> npcs = generateObjectListFromFactory(object.get("npcs").getAsJsonArray(), this.npcs);
+	List<Item> items = generateObjectListFromFactory(object.get("items").getAsJsonArray(), this.items);
+	List<String> stringLocations = generateStringListFromJson(object.get("exits").getAsJsonArray());
 
-	Location location = new Location(name, description, npcList, itemList, stringLocationList);
+	Location location = new Location(name, description, npcs, items, stringLocations);
 	location.setCommandHandler(commandHandler);
 	objects.put(name, location);
     }
@@ -54,8 +54,8 @@ public class LocationGenerator extends ObjectGenerator<Location>
      */
     public void connectRooms() {
 	objects.forEach((name, location) -> {
-	    List<String> exitStringList = location.getExitStringList();
-	    List<Location> exits = generateObjectListFromName(exitStringList, objects);
+	    List<String> exitStrings = location.getExitStrings();
+	    List<Location> exits = generateObjectListFromName(exitStrings, objects);
 	    exits.forEach(location::addExit);
 	});
     }
@@ -68,7 +68,7 @@ public class LocationGenerator extends ObjectGenerator<Location>
      * @throws FileNotFoundException
      */
     @Override public void generateObjects(String fileName) throws FileNotFoundException {
-	JsonArray jsonArray = loadJsonArrayFile("locations/" + fileName);
-	generateObjects(jsonArray);
+	JsonArray jsonObjects = loadJsonArrayFile("locations/" + fileName);
+	generateObjects(jsonObjects);
     }
 }

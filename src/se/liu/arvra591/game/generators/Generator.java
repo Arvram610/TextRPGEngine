@@ -4,7 +4,7 @@ import com.google.gson.JsonArray;
 import com.google.gson.JsonObject;
 import se.liu.arvra591.game.factories.Factory;
 import se.liu.arvra591.game.objects.AbstractObject;
-import se.liu.arvra591.parsers.JsonParser;
+import se.liu.arvra591.game.parsers.JsonParser;
 
 import java.io.FileNotFoundException;
 import java.io.IOException;
@@ -18,7 +18,7 @@ import java.util.Map;
  */
 public abstract class Generator
 {
-    protected JsonParser jsonParser = new JsonParser();
+    protected JsonParser jsonParser; //= new JsonParser();
 
     protected Generator() {
 	jsonParser = new JsonParser();
@@ -32,28 +32,28 @@ public abstract class Generator
 	return url;
     }
 
-    protected <S extends AbstractObject> List<S> generateObjectListFromFactory(JsonArray jsonArray, Map<String, Factory<? extends S>> map) {
-	List<S> list = new ArrayList<>();
-	jsonArray.forEach((object) -> {
-	    list.add(map.get(object.getAsString()).generate());
+    protected <S extends AbstractObject> List<S> generateObjectListFromFactory(JsonArray jsonObjects, Map<String, Factory<? extends S>> map) {
+	List<S> objects = new ArrayList<>();
+	jsonObjects.forEach((object) -> {
+	    objects.add(map.get(object.getAsString()).generate());
 	});
-	return list;
+	return objects;
     }
 
     protected <S extends AbstractObject> List<S> generateObjectListFromName(List<String> names, Map<String, S> map) {
-	List<S> list = new ArrayList<>();
+	List<S> objects = new ArrayList<>();
 	names.forEach((object) -> {
-	    list.add(map.get(object));
+	    objects.add(map.get(object));
 	});
-	return list;
+	return objects;
     }
 
-    protected List<String> generateStringListFromJson(JsonArray jsonArray) {
-	List<String> list = new ArrayList<>();
-	jsonArray.forEach((objectName) -> {
-	    list.add(objectName.getAsString());
+    protected List<String> generateStringListFromJson(JsonArray jsonObjects) {
+	List<String> strings = new ArrayList<>();
+	jsonObjects.forEach((objectName) -> {
+	    strings.add(objectName.getAsString());
 	});
-	return list;
+	return strings;
     }
 
     protected JsonArray loadJsonArrayFile(String filepath) throws FileNotFoundException {

@@ -1,6 +1,7 @@
 package se.liu.arvra591;
 
-import se.liu.arvra591.game.EventHandler;
+import se.liu.arvra591.game.listeners.CombatEventHandler;
+import se.liu.arvra591.game.listeners.EngageEventHandler;
 import se.liu.arvra591.game.Game;
 import se.liu.arvra591.game.factories.Factory;
 import se.liu.arvra591.game.listeners.CommandHandler;
@@ -20,11 +21,7 @@ import java.util.Map;
 public class Main
 {
     private Player player;
-    private EventHandler eventHandler;
     private Game game;
-    private Map<String, Location> locations;
-    private Map<String, Factory<? extends Item>> items;
-    private Map<String, Factory<? extends Npc>> npcs;
 
     /**
      * Constructor for the main class, initializes what is needed for the game to run
@@ -34,11 +31,12 @@ public class Main
 	GameGenerator gameGenerator = new GameGenerator(commandHandler);
 	gameGenerator.generateGame();
 	player = gameGenerator.getPlayer();
-	locations = gameGenerator.getLocations();
-	items = gameGenerator.getItems();
-	npcs = gameGenerator.getNpcs();
-	eventHandler = new EventHandler();
-	game = new Game(player, locations, items, npcs, eventHandler);
+	Map<String, Location> locations = gameGenerator.getLocations();
+	Map<String, Factory<? extends Item>> items = gameGenerator.getItems();
+	Map<String, Factory<? extends Npc>> npcs = gameGenerator.getNpcs();
+	EngageEventHandler engageEventHandler = new EngageEventHandler();
+	CombatEventHandler combatEventHandler = new CombatEventHandler();
+	game = new Game(player, locations, items, npcs, engageEventHandler, combatEventHandler);
 
 	commandHandler.setListener(game.getParser());
     }
@@ -53,14 +51,11 @@ public class Main
 	Location currentLocation = player.getCurrentLocation();
 	//currentLocation.printObject();
 	game.parseInput("currentmode");
-	game.processInput("help");
 	game.processInput("engage Carl");
-	game.parseInput("currentmode");
-	game.processInput("help");
+	game.parseInput("giveplayerenergy 100");
 	game.processInput("attack");
-	game.processInput("rest");
-	game.processInput("stats");
-	game.processInput("disengage");
+	game.processInput("attack");
+	game.processInput("attack");
 	game.parseInput("currentmode");
     }
 

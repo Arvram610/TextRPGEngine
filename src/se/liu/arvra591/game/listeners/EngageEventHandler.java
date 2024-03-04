@@ -1,8 +1,12 @@
-package se.liu.arvra591.game;
+package se.liu.arvra591.game.listeners;
 
-public class EventHandler
+/**
+ * The EngageEventHandler class is used to notify the EngageListener
+ * when the player has engaged or disengaged in combat
+ */
+public class EngageEventHandler
 {
-    private EngageListener listener;
+    private EngageListener listener = null;
 
     public void setListener(EngageListener listener)
     {

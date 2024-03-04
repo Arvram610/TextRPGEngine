@@ -18,7 +18,7 @@ public class Location extends AbstractObject
     private ObjectContainer<Npc> npcContainer; //might be divided into enemies and players
     private ObjectContainer<Item> itemContainer;
     private ObjectContainer<Location> exitContainer;
-    private List<String> exitStringList;
+    private List<String> exitStrings;
 
     //private List<interactables> interactablesList; //might be added later
 
@@ -29,12 +29,12 @@ public class Location extends AbstractObject
      * @param items List of items in the location
      * @param exits List of exits in the location
      */
-    public Location(String name, String description, List<Npc> npcs, List<Item> items, List<String> exitListString) {
+    public Location(String name, String description, List<Npc> npcs, List<Item> items, List<String> exitStrings) {
 	super(name, description);
 	this.npcContainer = new ObjectContainer<>(npcs);
 	this.itemContainer = new ObjectContainer<>(items);
 	this.exitContainer = new ObjectContainer<>(new ArrayList<>());
-	this.exitStringList = exitListString;
+	this.exitStrings = exitStrings;
     }
 
     /**
@@ -47,8 +47,8 @@ public class Location extends AbstractObject
     /**
      * @param location Location to remove from the exit list
      */
-    public void removeExit(Location location){
-	exitContainer.removeObject(location);
+    public void removeExit(String name){
+	exitContainer.removeObject(name);
     }
 
     /**
@@ -79,10 +79,9 @@ public class Location extends AbstractObject
     /**
      * @param npc Npc to remove from the location
      */
-    public void removeNpc(Npc npc){
-	npcContainer.removeObject(npc);
+    public void removeNpc(String name){
+	npcContainer.removeObject(name);
     }
-
 
     /**
      * @param name Name of the item to inspect
@@ -107,18 +106,29 @@ public class Location extends AbstractObject
      * @return The name of the exit
      */
     public Location getExit(final String name) {
-	return (Location) ListHelper.findObjectInList(exitContainer.getObjects(), name);
+	return ListHelper.findObjectInList(exitContainer.getObjects(), name);
     }
 
     /**
      * @return List of npcs in the location
      */
+    public Npc getNpc(final String name) {
+	return ListHelper.findObjectInList(npcContainer.getObjects(), name);
+    }
+
     public List<Npc> getNpcs() {
 	return npcContainer.getObjects();
     }
 
-    public List<String> getExitStringList() {
-	return exitStringList;
+    /**
+     * @return List of items in the location
+     */
+    public Item getItem(final String name) {
+	return ListHelper.findObjectInList(itemContainer.getObjects(), name);
+    }
+
+    public List<String> getExitStrings() {
+	return exitStrings;
     }
 
     /**
