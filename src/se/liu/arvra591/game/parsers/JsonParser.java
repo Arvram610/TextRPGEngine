@@ -1,4 +1,4 @@
-package se.liu.arvra591.parsers;
+package se.liu.arvra591.game.parsers;
 
 import com.google.gson.Gson;
 import com.google.gson.JsonArray;

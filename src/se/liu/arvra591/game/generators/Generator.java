@@ -4,7 +4,7 @@ import com.google.gson.JsonArray;
 import com.google.gson.JsonObject;
 import se.liu.arvra591.game.factories.Factory;
 import se.liu.arvra591.game.objects.AbstractObject;
-import se.liu.arvra591.parsers.JsonParser;
+import se.liu.arvra591.game.parsers.JsonParser;
 
 import java.io.FileNotFoundException;
 import java.io.IOException;
