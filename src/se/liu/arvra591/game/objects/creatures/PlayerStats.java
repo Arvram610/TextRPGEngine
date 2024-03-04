@@ -29,7 +29,7 @@ public class PlayerStats extends CreatureStats
 
     public PlayerStats(CreatureStats cStats, int carryWeight){
 	super(cStats.getMaxHealth(), cStats.getAttack(), cStats.getDefense(),
-	      cStats.getMaxEnergy(), cStats.getEnergyRegenRate());
+	      cStats.getMaxEnergy(), cStats.getEnergyRegenerationRate());
 	this.carryWeight = carryWeight;
     }
 

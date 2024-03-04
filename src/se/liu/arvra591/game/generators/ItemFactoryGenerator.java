@@ -4,12 +4,14 @@ import com.google.gson.JsonArray;
 import com.google.gson.JsonObject;
 import se.liu.arvra591.game.factories.Factory;
 import se.liu.arvra591.game.listeners.CommandHandler;
-import se.liu.arvra591.game.objects.items.Consumables;
-import se.liu.arvra591.game.objects.items.Equippables;
+import se.liu.arvra591.game.objects.creatures.CreatureStats;
+import se.liu.arvra591.game.objects.items.Consumable;
+import se.liu.arvra591.game.objects.items.Equipable;
 import se.liu.arvra591.game.objects.items.Item;
 
 
 import java.io.FileNotFoundException;
+import java.util.List;
 
 /**
  * A class the generates all the itemfactories used in the game from given files
@@ -29,22 +31,24 @@ public class ItemFactoryGenerator extends ObjectGenerator<Factory<? extends Item
      * @throws FileNotFoundException
      */
     @Override public void generateObjects(final String fileName) throws FileNotFoundException {
-	JsonArray jsonArray = loadJsonArrayFile("items/" + fileName);
-	generateObjects(jsonArray);
+	JsonArray jsonObjects = loadJsonArrayFile("items/" + fileName);
+	generateObjects(jsonObjects);
     }
 
     @Override protected void generateObject(final JsonObject object) {
 	String type = object.get("type").getAsString();
 	String name = object.get("name").getAsString();
-	String desc = object.get("description").getAsString();
+	String description = object.get("description").getAsString();
 	int weight = object.get("weight").getAsInt();
 
 	switch (type) {
 	    case "consumable" -> {
-		objects.put(name, new Factory<>(new Consumables(name, desc, weight), commandHandler));
+		List<String> useCommands = generateStringListFromJson(object.get("useCommands").getAsJsonArray());
+		objects.put(name, new Factory<>(new Consumable(name, description, weight, useCommands), commandHandler));
 	    }
 	    case "equipable" -> {
-		objects.put(name, new Factory<>(new Equippables(name, desc, weight), commandHandler));
+		CreatureStats stats = generateCreatureStats(object.get("stats").getAsJsonObject());
+		objects.put(name, new Factory<>(new Equipable(name, description, weight, stats), commandHandler));
 	    }
 	    default -> {
 		System.out.println("itemtype not valid");

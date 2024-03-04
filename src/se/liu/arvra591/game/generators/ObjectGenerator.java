@@ -39,20 +39,20 @@ public abstract class ObjectGenerator<T> extends Generator
 
     protected abstract void generateObject(JsonObject object);
 
-    protected void generateObjects(JsonArray jsonArray) {
-	for (JsonElement jsonElement : jsonArray) {
+    protected void generateObjects(JsonArray jsonObjects) {
+	for (JsonElement jsonElement : jsonObjects) {
 	    generateObject(jsonElement.getAsJsonObject());
 	}
     }
 
     protected CreatureStats generateCreatureStats(JsonObject object) {
 	int attack = object.get("attack").getAsInt();
-	int def = object.get("defense").getAsInt();
+	int defense = object.get("defense").getAsInt();
 	int maxHealth = object.get("maxHealth").getAsInt();
 	int maxEnergy = object.get("maxEnergy").getAsInt();
 	int energyRegen = object.get("energyRegen").getAsInt();
 
-	return new CreatureStats(maxHealth, attack, def, maxEnergy, energyRegen);
+	return new CreatureStats(maxHealth, attack, defense, maxEnergy, energyRegen);
     }
 
     /**

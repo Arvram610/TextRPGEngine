@@ -3,12 +3,22 @@
     "type": "equipable",
     "name": "sword",
     "description": "desc",
-    "weight": 3
+    "weight": 3,
+    "stats": {
+      "attack": 5,
+      "defense": 0,
+      "maxHealth": 0,
+      "maxEnergy": 0,
+      "energyRegen": 0
+    }
   },
   {
     "type": "consumable",
     "name": "potion",
     "description": "desc",
-    "weight": 1
+    "weight": 1,
+    "useCommands": [
+      "giveplayerhealth 10"
+    ]
   }
 ]

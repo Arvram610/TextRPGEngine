@@ -11,29 +11,41 @@ public class CreatureStats
     private int attack;
     private int defense;
     private int maxEnergy;
-    private int energyRegenRate; //kodgranskning does not recoqnise "Regen" as a word, I do not agree
+    private int energyRegenerationRate; //kodgranskning does not recoqnise "Regen" as a word, I do not agree
 
     /**
      * Temporary field for testing purposes
      */
-    public static CreatureStats basic = new CreatureStats(100,10,10,100,10);
-
 
     /**
      * @param maxHealth is the maximum health of the creature
      * @param attack is the amount of damage the creature does
      * @param defense is the amount of damage the creature can mitigate
      * @param maxEnergy is the maximum energy of the creature
-     * @param energyRegenRate is the rate at which the creature regenerates energy
+     * @param energyRegenerationRate is the rate at which the creature regenerates energy
      */
     public CreatureStats(final int maxHealth, final int attack, final int defense, final int maxEnergy,
-                         final int energyRegenRate)
+                         final int energyRegenerationRate)
     {
         this.maxHealth = maxHealth;
         this.attack = attack;
         this.defense = defense;
         this.maxEnergy = maxEnergy;
-        this.energyRegenRate = energyRegenRate;
+        this.energyRegenerationRate = energyRegenerationRate;
+    }
+
+    /**
+     * @param stats is the stats that will be added to the creature
+     *
+     * @return Returns the new stats of the creature
+     */
+    public CreatureStats calculateStats(CreatureStats stats){
+        int maxHealth = this.maxHealth + stats.maxHealth;
+        int attack = this.attack + stats.attack;
+        int defense = this.defense + stats.defense;
+        int maxEnergy = this.maxEnergy + stats.maxEnergy;
+        int energyRegenerationRate = this.energyRegenerationRate + stats.energyRegenerationRate;
+        return new CreatureStats(maxHealth, attack, defense, maxEnergy, energyRegenerationRate);
     }
 
     /**
@@ -81,8 +93,8 @@ public class CreatureStats
     /**
      * @return Returns the energy regen rate of the creature
      */
-    public int getEnergyRegenRate() {
-        return energyRegenRate;
+    public int getEnergyRegenerationRate() {
+        return energyRegenerationRate;
     }
 
     /**
@@ -93,6 +105,6 @@ public class CreatureStats
         System.out.println("Defense: " + getDefense());
         System.out.println("Max Health: " + getMaxHealth());
         System.out.println("Max Energy: " + getMaxEnergy());
-        System.out.println("Energy Regen: " + getEnergyRegenRate());
+        System.out.println("Energy Regen: " + getEnergyRegenerationRate());
     }
 }

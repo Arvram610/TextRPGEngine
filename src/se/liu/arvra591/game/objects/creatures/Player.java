@@ -2,10 +2,10 @@ package se.liu.arvra591.game.objects.creatures;
 
 import se.liu.arvra591.game.ListHelper;
 import se.liu.arvra591.game.objects.containers.PlayerInventory;
+import se.liu.arvra591.game.objects.items.Consumable;
 import se.liu.arvra591.game.objects.items.Item;
 import se.liu.arvra591.game.objects.locations.Location;
 
-import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -52,13 +52,15 @@ public class Player extends Creature
      */
     public void printStats(){
 	PlayerStats stats = getPlayerStats();
+	PlayerInventory inventory = (PlayerInventory) this.inventory;
 	stats.printStats();
 	System.out.println("Energy: " + currentEnergy);
 	System.out.println(("Health: " + currentHealth));
+	System.out.println("Current weight of items: " + inventory.getCurrentWeight() + "/" + stats.getCarryWeight());
     }
 
     public PlayerStats getPlayerStats() {
-	return (PlayerStats) stats;
+	return new PlayerStats(getStats(), ((PlayerStats) stats).getCarryWeight());
     }
 
     /**
@@ -94,10 +96,21 @@ public class Player extends Creature
     public boolean pickUpItem(String name){
 	Item item = currentLocation.removeItem(name);
 	if (item != null) {
-	    pickUpItem(item); //use super method or remove super method?
-	    return true;
+	    return pickUpItem(item);
 	}
 	return false;
+    }
+
+    public void useItem(String name){
+	Item item = inventory.getObject(name);
+	System.out.println(item.getClass());
+	if (!(item instanceof Consumable)){
+	    System.out.println("You can't use that item");
+	    return;
+	}
+	((Consumable) item).use();
+	inventory.removeObject(item);
+	System.out.println("You used " + item.getName());
     }
 
     /**
@@ -116,9 +129,17 @@ public class Player extends Creature
 	Item item = inventory.removeObject(name);
 	if (item != null) {
 	    currentLocation.addItem(item);
+	    if (equippedItem == item) {
+		equippedItem = null;
+	    }
 	    return true;
 	}
 	return false;
+    }
+
+    public void onDeath(){
+	sendCommand("say Sadly you died and the game is over");
+	sendCommand("lose");
     }
 
     /**
@@ -128,7 +149,7 @@ public class Player extends Creature
      */
     public boolean talkToNpc(String name){
 	List<Npc> npcs = currentLocation.getNpcs();
-	Npc npc = (Npc) ListHelper.findObjectInList(npcs, name);
+	Npc npc = ListHelper.findObjectInList(npcs, name);
 	if (npc != null) {
 	    npc.talk();
 	    return true;
@@ -140,7 +161,6 @@ public class Player extends Creature
      * @param energy is the energy to reduce from the player
      */
     public boolean reduceEnergy(int energy){
-	//stats = getPlayerStats();
 	int lastEnergy = currentEnergy;
 	currentEnergy -= energy;
 	if (currentEnergy < 0) {
@@ -150,6 +170,9 @@ public class Player extends Creature
 	return true;
     }
 
+    /**
+     * @param item is the item to add to the player
+     */
     public void forceAddItem(Item item){
 	inventory.forceAddObject(item);
     }
@@ -164,8 +187,6 @@ public class Player extends Creature
 	    currentEnergy = stats.getMaxEnergy();
 	}
     }
-
-
 
     /**
      * @return Returns the current location of the player

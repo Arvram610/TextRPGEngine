@@ -1,16 +1,16 @@
-package se.liu.arvra591.parsers;
+package se.liu.arvra591.game.parsers;
 
 import com.google.gson.Gson;
 import com.google.gson.JsonArray;
 import com.google.gson.JsonObject;
 
 import java.io.BufferedReader;
-import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.IOException;
 
 /**
  * A class that parses a json file
+ * The class uses the gson library to parse the json file
  */
 public class JsonParser
 {

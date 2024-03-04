@@ -6,7 +6,7 @@ import se.liu.arvra591.game.objects.AbstractObject;
 
 /**
  * A class that generates copies of a given item
- *
+ * It uses gson to convert the object to a json string and then back to an object
  * @param <T> The type of object the factory generates
  */
 public class Factory<T extends AbstractObject>

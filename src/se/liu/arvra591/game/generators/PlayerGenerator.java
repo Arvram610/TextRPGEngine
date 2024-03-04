@@ -45,13 +45,13 @@ public class PlayerGenerator extends ObjectGenerator<Player>
      * @throws FileNotFoundException
      */
     @Override public void generateObjects(final String fileName) throws FileNotFoundException {
-	JsonArray jsonArray = loadJsonArrayFile("player/" + fileName);
-	generateObjects(jsonArray);
+	JsonArray jsonObjects = loadJsonArrayFile("player/" + fileName);
+	generateObjects(jsonObjects);
     }
 
     @Override protected void generateObject(final JsonObject object) {
 	String name = object.get("name").getAsString();
-	String desc = object.get("description").getAsString();
+	String description = object.get("description").getAsString();
 	int health = object.get("health").getAsInt();
 	int energy = object.get("energy").getAsInt();
 	PlayerStats stats = generatePlayerStats(object.get("stats").getAsJsonObject());
@@ -59,7 +59,7 @@ public class PlayerGenerator extends ObjectGenerator<Player>
 	PlayerInventory
 		inventory = new PlayerInventory(generateObjectListFromFactory(object.get("inventory").getAsJsonArray(), items), stats);
 
-	Player player = new Player(name, desc, health, energy, stats, location, inventory);
+	Player player = new Player(name, description, health, energy, stats, location, inventory);
 	player.setCommandHandler(commandHandler);
 	objects.put("player", player);
     }

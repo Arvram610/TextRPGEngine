@@ -1,6 +1,6 @@
 package se.liu.arvra591.game.modes;
 
-import se.liu.arvra591.game.EventHandler;
+import se.liu.arvra591.game.listeners.EngageEventHandler;
 import se.liu.arvra591.game.parsers.InputParser;
 import se.liu.arvra591.game.objects.creatures.Player;
 
@@ -10,16 +10,14 @@ import se.liu.arvra591.game.objects.creatures.Player;
  */
 public class Adventure extends AbstractMode
 {
-    //private Player player;
-
     private AdventureParser parser;
 
-    private EventHandler eventHandler;
+    private EngageEventHandler eventHandler;
 
     /**
      * @param player The player that is playing the game
      */
-    public Adventure(Player player, EventHandler eventHandler){
+    public Adventure(Player player, EngageEventHandler eventHandler){
 	super(player);
 	this.parser = new AdventureParser();
 	this.eventHandler = eventHandler;
@@ -99,6 +97,14 @@ public class Adventure extends AbstractMode
 	}
     }
 
+    /**
+     * @param input The item to equip
+     */
+
+
+    /**
+     * @param input The NPC to engage combat with
+     */
     public void engage(String input){
 	eventHandler.engage(input);
     }
@@ -116,6 +122,8 @@ public class Adventure extends AbstractMode
 	    parseInputs.put("stats", Adventure.this::printStats);
 	    parseInputs.put("talk", Adventure.this::talk); //input will be "talk npc" where npc is the name of the npc you want to talk to
 	    parseInputs.put("engage", Adventure.this::engage);
+	    parseInputs.put("equip", Adventure.this::equipItem);
+	    parseInputs.put("use", Adventure.this::useItem);
 	}
     }
 
