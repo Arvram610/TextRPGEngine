@@ -220,14 +220,27 @@ public class Game implements EngageListener, CombatListener
 	player.getCurrentLocation().addExit(exit);
     }
 
+
     /**
      * @param input The name of the item to spawn
      */
+
+    private void movePlayer(String input) {
+	Location location = locations.get(input);
+	if (location == null) return;
+	player.forceMove(location);
+	player.getCurrentLocation().roomEntered();
+    }
+
     public void spawnItem(String input){
 	Item item = items.get(input).generate();
 	player.getCurrentLocation().addItem(item);
     }
 
+
+    public void start() {
+    	player.getCurrentLocation().roomEntered();
+    }
     /**
 <<<<<<< HEAD
      * @param input The attack of the npc that is attacking
@@ -264,7 +277,7 @@ public class Game implements EngageListener, CombatListener
      * @return Returns if the game is on
      */
     public boolean gameOn() {
-	switch (gameState){
+	switch (gameState) {
 	    case WIN:
 	    case GAME_OVER:
 		return false;
@@ -289,7 +302,7 @@ public class Game implements EngageListener, CombatListener
 	    parseInputs.put("givenpcattack", Game.this::giveNpcAttack);
 	    parseInputs.put("givenpcdefense", Game.this::giveNpcDefense);
 
-	    parseInputs.put("moveplayer", player::move);
+	    parseInputs.put("moveplayer", Game.this::movePlayer);
 
 	    parseInputs.put("giveitem", Game.this::giveItem);
 
