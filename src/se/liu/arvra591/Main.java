@@ -49,7 +49,6 @@ public class Main
      */
     public void startGame(){
 
-	//player.printObject();
 	Scanner scanner = new Scanner(System.in);
 	while(game.gameOn()){
 	    game.processInput(scanner.nextLine());
