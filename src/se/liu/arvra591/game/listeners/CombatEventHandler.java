@@ -8,11 +8,17 @@ public class CombatEventHandler
 {
     private CombatListener listener = null;
 
+    /**
+     * @param listener The listener that is notified when the player has finished their turn
+     */
     public void setListener(CombatListener listener)
     {
 	this.listener = listener;
     }
 
+    /**
+     * Notifies the listener that the player has finished their turn
+     */
     public void notifyNpcLogic()
     {
 	listener.notifyNpcLogic();
