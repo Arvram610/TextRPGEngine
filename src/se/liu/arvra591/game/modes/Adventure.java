@@ -34,8 +34,8 @@ public class Adventure extends AbstractMode
 	    System.out.println("You cannot move to " + location);
 	}
 	else {
-	    player.getCurrentLocation().printObject();
-	    }
+	    player.getCurrentLocation().roomEntered();
+	}
     }
 
     /**

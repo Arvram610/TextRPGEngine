@@ -46,6 +46,7 @@ public class Main
      * This method starts the game
      */
     public void startGame(){
+	game.start();
 
 
 	Scanner scanner = new Scanner(System.in);

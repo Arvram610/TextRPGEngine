@@ -42,8 +42,12 @@ public class LocationGenerator extends ObjectGenerator<Location>
 	List<Npc> npcs = generateObjectListFromFactory(object.get("npcs").getAsJsonArray(), this.npcs);
 	List<Item> items = generateObjectListFromFactory(object.get("items").getAsJsonArray(), this.items);
 	List<String> stringLocations = generateStringListFromJson(object.get("exits").getAsJsonArray());
+	List<String> firstEnteredCommands = generateStringListFromJson(object.get("firstEnter").getAsJsonArray());
+	List<String> normalEnterCommands = generateStringListFromJson(object.get("normalEnter").getAsJsonArray());
 
-	Location location = new Location(name, description, npcs, items, stringLocations);
+	Location location = new Location(name, description, npcs, items,
+					 stringLocations, firstEnteredCommands, normalEnterCommands);
+
 	location.setCommandHandler(commandHandler);
 	objects.put(name, location);
     }
