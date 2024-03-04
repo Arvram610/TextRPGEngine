@@ -128,7 +128,7 @@ public class Game implements EngageListener, CombatListener
 	    return;
 	}
 	gameState = GameState.ADVENTURE;
-	//player.getCurrentLocation().removeNpc(combat.getCurrentTarget().getName());
+	System.out.println("You are no longer in combat");
     }
 
     public void notifyNpcLogic(){

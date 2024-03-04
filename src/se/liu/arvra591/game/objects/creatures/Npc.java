@@ -78,19 +78,4 @@ public class Npc extends Creature
 	addEnergy(restEnergyRegeneneration);
 	System.out.println(getName() + " slept and regained " + energyRegeneneration + " energy");
     }
-
-    /**
-     * @param index Random number to choose which item to use
-     */
-    public void useItem(int index){
-	String name = inventory.getObjects().get(index).getName();
-	Item item = inventory.getObject(name);
-	if (!(item instanceof Consumable)){
-	    System.out.println(getName() + " Tried to use a non consumable item");
-	    return;
-	}
-	((Consumable) item).use();
-	inventory.removeObject(item);
-	System.out.println(name + " used " + item.getName());
-    }
 }
