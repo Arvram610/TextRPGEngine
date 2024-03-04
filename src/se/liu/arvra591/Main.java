@@ -52,7 +52,7 @@ public class Main
 	//player.printObject();
 	Scanner scanner = new Scanner(System.in);
 	while(game.gameOn()){
-	    game.processInput(scanner.next());
+	    game.processInput(scanner.nextLine());
 	}
     }
 
