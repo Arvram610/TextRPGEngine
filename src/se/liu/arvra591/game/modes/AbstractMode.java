@@ -2,6 +2,10 @@ package se.liu.arvra591.game.modes;
 
 import se.liu.arvra591.game.objects.creatures.Player;
 
+/**
+ * All modes in the game inherit from this class
+ * It contains the player and the methods that are common for all modes
+ */
 public abstract class AbstractMode implements Mode
 {
     protected Player player;

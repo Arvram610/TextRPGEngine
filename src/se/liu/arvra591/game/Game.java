@@ -16,6 +16,11 @@ import se.liu.arvra591.game.parsers.InputParser;
 import java.util.List;
 import java.util.Map;
 
+/**
+ * The main parser of the game
+ * takes input from the game and parses it to the correct method
+ * also takes the input from main and sends it to the correct method
+ */
 public class Game implements EngageListener, CombatListener
 {
 

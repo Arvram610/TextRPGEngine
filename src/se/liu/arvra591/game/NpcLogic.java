@@ -8,6 +8,10 @@ import se.liu.arvra591.game.objects.items.Item;
 import java.util.List;
 import java.util.Random;
 
+/**
+ * Class for the logic of the npcs
+ * The npcs will have a set of actions they can do, and will do one of them at the start of their turn
+ */
 public class NpcLogic
 {
     private Npc npc;
