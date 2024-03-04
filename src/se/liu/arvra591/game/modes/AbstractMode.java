@@ -59,7 +59,7 @@ public abstract class AbstractMode implements Mode
 	}
 	player.equipItem((Equipable) item);
 	System.out.println("You equiped " + item.getName());
-	System.out.print("It gave you ");
+	System.out.print("\nIt gave you: \n");
 	((Equipable) item).getStats().printStats();
     }
 

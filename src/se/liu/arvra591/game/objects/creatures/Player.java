@@ -52,9 +52,11 @@ public class Player extends Creature
      */
     public void printStats(){
 	PlayerStats stats = getPlayerStats();
+	PlayerInventory inventory = (PlayerInventory) this.inventory;
 	stats.printStats();
 	System.out.println("Energy: " + currentEnergy);
 	System.out.println(("Health: " + currentHealth));
+	System.out.println("Current weight of items: " + inventory.getCurrentWeight() + "/" + stats.getCarryWeight());
     }
 
     public PlayerStats getPlayerStats() {
