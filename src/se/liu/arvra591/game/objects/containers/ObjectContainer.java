@@ -33,6 +33,7 @@ public class ObjectContainer <T extends AbstractObject>
     public void printContainer(){
 	for (T object : objects) {
 	    object.printObject();
+	    System.out.println();
 	}
     }
 

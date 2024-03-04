@@ -110,6 +110,10 @@ public class Game implements EngageListener, CombatListener
 	}
 	List<Npc> npcs = location.getNpcs();
 	Npc target = ListHelper.findObjectInList(npcs, input);
+	if (target == null) {
+	    System.out.println("There is no npc with that name");
+	    return;
+	}
 	combat.setCurrentTarget(target);
 	gameState = GameState.COMBAT;
 	combat.startOfCombat();
@@ -124,7 +128,7 @@ public class Game implements EngageListener, CombatListener
 	    return;
 	}
 	gameState = GameState.ADVENTURE;
-	player.getCurrentLocation().removeNpc(combat.getCurrentTarget().getName());
+	//player.getCurrentLocation().removeNpc(combat.getCurrentTarget().getName());
     }
 
     public void notifyNpcLogic(){
@@ -250,8 +254,8 @@ public class Game implements EngageListener, CombatListener
 	player.takeDamage(damage);
 	String enemy = combat.getCurrentTarget().getName();
 
-	System.out.println(enemy + " attacked you for " + damage + " damage");
-	System.out.println("You have " + player.getCurrentHealth() + " health left");
+	System.out.println(enemy + " attacked you for " + damage + " damage \n");
+	combat.startOfRound();
 	System.out.println();
     }
 

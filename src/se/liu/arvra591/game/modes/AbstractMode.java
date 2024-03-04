@@ -53,6 +53,10 @@ public abstract class AbstractMode implements Mode
 	    System.out.println("You can't equip that item");
 	    return;
 	}
+	if (player.getEquippedItem() == item) {
+	    System.out.println("You already have that item equipped");
+	    return;
+	}
 	player.equipItem((Equipable) item);
 	System.out.println("You equiped " + item.getName());
 	System.out.print("It gave you ");

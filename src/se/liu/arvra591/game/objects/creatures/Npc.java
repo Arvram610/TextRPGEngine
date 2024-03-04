@@ -1,6 +1,7 @@
 package se.liu.arvra591.game.objects.creatures;
 
 import se.liu.arvra591.game.objects.containers.CreatureInventory;
+import se.liu.arvra591.game.objects.items.Consumable;
 import se.liu.arvra591.game.objects.items.Item;
 
 /**
@@ -75,5 +76,21 @@ public class Npc extends Creature
     public void rest(int energyRegeneneration){
 	String restEnergyRegeneneration = Integer.toString(energyRegeneneration);
 	addEnergy(restEnergyRegeneneration);
+	System.out.println(getName() + " slept and regained " + energyRegeneneration + " energy");
+    }
+
+    /**
+     * @param index Random number to choose which item to use
+     */
+    public void useItem(int index){
+	String name = inventory.getObjects().get(index).getName();
+	Item item = inventory.getObject(name);
+	if (!(item instanceof Consumable)){
+	    System.out.println(getName() + " Tried to use a non consumable item");
+	    return;
+	}
+	((Consumable) item).use();
+	inventory.removeObject(item);
+	System.out.println(name + " used " + item.getName());
     }
 }

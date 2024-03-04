@@ -36,8 +36,9 @@ public class NpcLogic
             case 0:
                 CreatureInventory inventory = npc.getInventory();
                 List<Item> items = inventory.getObjects();
+                int amountOfItems = items.size();
                 if (!items.isEmpty())
-                    useItem();
+                    useItem(RND.nextInt(amountOfItems));
             case 1: //Fallthrough intended
             case 2:
                 if (npc.getCurrentEnergy() >= ENERGY_COST)
@@ -47,12 +48,19 @@ public class NpcLogic
                 break;
         }
     }
+
+    /**
+     * The npc attacks the player
+     */
     public void attack(){
         npc.attack();
     }
 
-    public void useItem(){
-        System.out.println("Npc used an item");
+    /**
+     * @param index Random number to choose which item to use
+     */
+    public void useItem(int index){
+        npc.useItem(index);
     }
 
     public void rest(){

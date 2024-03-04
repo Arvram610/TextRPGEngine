@@ -34,6 +34,10 @@ public abstract class Creature extends AbstractObject
         equippedItem = item;
     }
 
+
+    public Item getEquippedItem(){
+        return equippedItem;
+    }
     /**
      * Prints the creature
      */

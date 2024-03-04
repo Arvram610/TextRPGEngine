@@ -46,7 +46,8 @@ public class Combat extends AbstractMode
 	int health = player.getCurrentHealth();
 	int energy = player.getCurrentEnergy();
 	System.out.println("You have " + health + " health and " + energy + " energy");
-	System.out.println(currentTarget.getName() + " now has " + currentTarget.getCurrentHealth() + " health left");
+	System.out.println(currentTarget.getName() + " now has " + currentTarget.getCurrentHealth()
+			   + " health and " + currentTarget.getCurrentEnergy() + " energy");
     }
 
     public void startOfCombat(){
@@ -54,6 +55,8 @@ public class Combat extends AbstractMode
 	System.out.println(currentTarget.getName() + " stats are: ");
 	CreatureStats stats = currentTarget.getStats();
 	stats.printStats();
+	System.out.println("Current health: " + currentTarget.getCurrentHealth());
+	System.out.println("Current energy: " + currentTarget.getCurrentEnergy());
 
 	System.out.println();
 
@@ -101,7 +104,6 @@ public class Combat extends AbstractMode
 	    return;
 	}
 	System.out.println("You attacked " + currentTarget.getName() + " for " + damage + " damage");
-	System.out.println(currentTarget.getName() + " now has " + currentTarget.getCurrentHealth() + " health left");
 	System.out.println();
 	combatEventHandler.notifyNpcLogic();
     }
@@ -111,7 +113,7 @@ public class Combat extends AbstractMode
      */
     public void rest(String name){
 	player.addEnergy(REST_ENERGY_REGENERATION);
-	System.out.println("You slept and regained " + REST_ENERGY_REGENERATION + " energy");
+	System.out.println("You slept and regained " + REST_ENERGY_REGENERATION + " energy \n");
 	combatEventHandler.notifyNpcLogic();
     }
 
@@ -139,6 +141,8 @@ public class Combat extends AbstractMode
 	    return;
 	}
 	eventHandler.disEngage(ignored);
+	System.out.println("You disengaged from combat with " + currentTarget.getName());
+	System.out.println("You are now in " + player.getCurrentLocation().getName());
     }
 
     /**
