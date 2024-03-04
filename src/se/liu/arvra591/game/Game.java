@@ -51,7 +51,7 @@ public class Game implements EngageListener, CombatListener
 	//this.combatEventHandler = combatEventHandler;
 	this.combat = new Combat(player, null, engageEventHandler, combatEventHandler);
 	this.adventure = new Adventure(player, engageEventHandler);
-	this.npcLogic = new NpcLogic(null, combatEventHandler);
+	this.npcLogic = new NpcLogic(null);
 	engageEventHandler.setListener(this);
 	combatEventHandler.setListener(this);
     }

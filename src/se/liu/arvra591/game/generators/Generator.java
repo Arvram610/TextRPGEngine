@@ -18,7 +18,7 @@ import java.util.Map;
  */
 public abstract class Generator
 {
-    protected JsonParser jsonParser = new JsonParser();
+    protected JsonParser jsonParser; //= new JsonParser();
 
     protected Generator() {
 	jsonParser = new JsonParser();
@@ -32,9 +32,9 @@ public abstract class Generator
 	return url;
     }
 
-    protected <S extends AbstractObject> List<S> generateObjectListFromFactory(JsonArray jsonArray, Map<String, Factory<? extends S>> map) {
+    protected <S extends AbstractObject> List<S> generateObjectListFromFactory(JsonArray jsonObjects, Map<String, Factory<? extends S>> map) {
 	List<S> objects = new ArrayList<>();
-	jsonArray.forEach((object) -> {
+	jsonObjects.forEach((object) -> {
 	    objects.add(map.get(object.getAsString()).generate());
 	});
 	return objects;

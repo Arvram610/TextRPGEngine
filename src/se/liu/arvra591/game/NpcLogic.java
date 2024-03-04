@@ -20,7 +20,7 @@ public class NpcLogic
     private static final int AMOUNT_OF_ACTIONS = 3;
 
     private static final int REST_ENERGY_REGENERATION = 15;
-    public NpcLogic(Npc npc, CombatEventHandler combatEventHandler)
+    public NpcLogic(Npc npc)
     {
 	this.npc = npc;
     }

@@ -58,6 +58,6 @@ public class NpcFactoryGenerator extends ObjectGenerator<Factory<? extends Npc>>
 
     private CreatureInventory generateInventory(final JsonArray jsonObjects) {
 	List<Item> items = generateObjectListFromFactory(jsonObjects, this.items);
-	return new CreatureInventory(generateObjectListFromFactory(jsonObjects, this.items));
+	return new CreatureInventory(items);
     }
 }
