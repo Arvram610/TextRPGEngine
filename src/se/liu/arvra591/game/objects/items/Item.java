@@ -7,7 +7,7 @@ import se.liu.arvra591.game.objects.AbstractObject;
  * They have a name, description and a weight
  * The weight limits how many items can be carried at a time
  * The class extends {@link AbstractObject}
- * The Item class is inherited by {@link Equippables} and {@link Consumables}
+ * The Item class is inherited by {@link Equipable} and {@link Consumable}
  */
 public class Item extends AbstractObject
 {

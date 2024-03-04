@@ -5,7 +5,7 @@ package se.liu.arvra591.game.objects.items;
  * you equip for examble a sword and it will be removed from the inventory and added to the players equipment and then you can use it
  * to attack, or equip armor which gives you more defense
  */
-public class Equippables extends Item //Kodgranskning does not reqognize the word Equippables, I do not agree
+public class Equipable extends Item //Kodgranskning does not reqognize the word Equippables, I do not agree
 {
     private int stats; //might be changed later, ex armor, damage, etc
 
@@ -14,7 +14,7 @@ public class Equippables extends Item //Kodgranskning does not reqognize the wor
      * @param description What the item does
      * @param weight How much the item weighs
      */
-    public Equippables(final String name, final String description, final int weight) {
+    public Equipable(final String name, final String description, final int weight) {
 	super(name, description, weight);
     }
 }

@@ -4,8 +4,8 @@ import com.google.gson.JsonArray;
 import com.google.gson.JsonObject;
 import se.liu.arvra591.game.factories.Factory;
 import se.liu.arvra591.game.listeners.CommandHandler;
-import se.liu.arvra591.game.objects.items.Consumables;
-import se.liu.arvra591.game.objects.items.Equippables;
+import se.liu.arvra591.game.objects.items.Consumable;
+import se.liu.arvra591.game.objects.items.Equipable;
 import se.liu.arvra591.game.objects.items.Item;
 
 
@@ -41,10 +41,10 @@ public class ItemFactoryGenerator extends ObjectGenerator<Factory<? extends Item
 
 	switch (type) {
 	    case "consumable" -> {
-		objects.put(name, new Factory<>(new Consumables(name, description, weight), commandHandler));
+		objects.put(name, new Factory<>(new Consumable(name, description, weight), commandHandler));
 	    }
 	    case "equipable" -> {
-		objects.put(name, new Factory<>(new Equippables(name, description, weight), commandHandler));
+		objects.put(name, new Factory<>(new Equipable(name, description, weight), commandHandler));
 	    }
 	    default -> {
 		System.out.println("itemtype not valid");
