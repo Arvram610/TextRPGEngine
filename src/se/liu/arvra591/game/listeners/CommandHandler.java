@@ -4,7 +4,7 @@ import se.liu.arvra591.game.parsers.InputParser;
 
 public class CommandHandler
 {
-    private InputParser listener;
+    private InputParser listener = null;
 
     public void setListener(InputParser listener){
 	this.listener = listener;

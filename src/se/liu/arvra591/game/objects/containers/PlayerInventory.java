@@ -3,7 +3,6 @@ package se.liu.arvra591.game.objects.containers;
 import se.liu.arvra591.game.objects.creatures.PlayerStats;
 import se.liu.arvra591.game.objects.items.Item;
 
-import java.util.ArrayList;
 import java.util.List;
 
 /**

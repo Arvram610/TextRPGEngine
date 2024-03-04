@@ -54,7 +54,7 @@ public class LocationGenerator extends ObjectGenerator<Location>
      */
     public void connectRooms() {
 	objects.forEach((name, location) -> {
-	    List<String> exitStringList = location.getExitStringList();
+	    List<String> exitStringList = location.getExitStrings();
 	    List<Location> exits = generateObjectListFromName(exitStringList, objects);
 	    exits.forEach(location::addExit);
 	});

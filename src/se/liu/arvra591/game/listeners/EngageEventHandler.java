@@ -1,10 +1,8 @@
 package se.liu.arvra591.game.listeners;
 
-import se.liu.arvra591.game.listeners.EngageListener;
-
 public class EngageEventHandler
 {
-    private EngageListener listener;
+    private EngageListener listener = null;
 
     public void setListener(EngageListener listener)
     {

@@ -1,9 +1,7 @@
 package se.liu.arvra591.game;
 
 import se.liu.arvra591.game.listeners.CombatEventHandler;
-import se.liu.arvra591.game.objects.AbstractObject;
 import se.liu.arvra591.game.objects.containers.CreatureInventory;
-import se.liu.arvra591.game.objects.creatures.CreatureStats;
 import se.liu.arvra591.game.objects.creatures.Npc;
 import se.liu.arvra591.game.objects.items.Item;
 
@@ -14,12 +12,13 @@ public class NpcLogic
 {
     private Npc npc;
     private static final int ENERGY_COST = 5;
-    private static final int REST_ENERGY_REGEN = 15;
-    private CombatEventHandler combatEventHandler;
+    private final static Random RND = new Random();
+    private static final int AMOUNT_OF_ACTIONS = 3;
+
+    private static final int REST_ENERGY_REGENERATION = 15;
     public NpcLogic(Npc npc, CombatEventHandler combatEventHandler)
     {
 	this.npc = npc;
-        this.combatEventHandler = combatEventHandler;
     }
 
     public void setNpc(Npc npc){
@@ -27,20 +26,20 @@ public class NpcLogic
     }
 
     public void startOfTurn(){
-        npc.addEnergy(Integer.toString(npc.getStats().getEnergyRegenRate()));
-        Random rnd = new Random();
-        int random = rnd.nextInt(3);
-        switch(random){
+        npc.addEnergy(Integer.toString(npc.getStats().getEnergyRegenerationRate()));
+        //int random = RND.nextInt(AMOUNT_OF_ACTIONS);
+        switch(RND.nextInt(AMOUNT_OF_ACTIONS)){
             case 0:
                 CreatureInventory inventory = npc.getInventory();
                 List<Item> items = inventory.getObjects();
                 if (!items.isEmpty())
                     useItem();
-            case 1:
+            case 1: //Fallthrough intended
             case 2:
-
-                attack();
-                rest();
+                if (npc.getCurrentEnergy() >= ENERGY_COST)
+                    attack();
+                else
+                    rest();
                 break;
         }
     }
@@ -49,9 +48,10 @@ public class NpcLogic
     }
 
     public void useItem(){
+        System.out.println("Npc used an item");
     }
 
     public void rest(){
-        npc.rest(REST_ENERGY_REGEN);
+        npc.rest(REST_ENERGY_REGENERATION);
     }
 }

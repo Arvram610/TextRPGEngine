@@ -2,7 +2,7 @@ package se.liu.arvra591.game.listeners;
 
 public class CombatEventHandler
 {
-    private CombatListener listener;
+    private CombatListener listener = null;
 
     public void setListener(CombatListener listener)
     {

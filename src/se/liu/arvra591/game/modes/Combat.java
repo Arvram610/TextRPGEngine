@@ -1,7 +1,6 @@
 package se.liu.arvra591.game.modes;
 
 import se.liu.arvra591.game.listeners.CombatEventHandler;
-import se.liu.arvra591.game.listeners.CombatListener;
 import se.liu.arvra591.game.listeners.EngageEventHandler;
 import se.liu.arvra591.game.objects.creatures.CreatureStats;
 import se.liu.arvra591.game.objects.creatures.Npc;
@@ -9,6 +8,11 @@ import se.liu.arvra591.game.objects.creatures.PlayerStats;
 import se.liu.arvra591.game.parsers.InputParser;
 import se.liu.arvra591.game.objects.creatures.Player;
 
+/**
+ * This class is the combat mode of the game
+ * The player can attack, rest, check inventory, check stats, disengage and check enemy info
+ * The player can also check the stats of the enemy
+ */
 public class Combat extends AbstractMode
 {
     private CombatParser parser;
@@ -19,7 +23,7 @@ public class Combat extends AbstractMode
 
     private static final int ENERGY_COST = 5;
 
-    private static final int REST_ENERGY_REGEN = 15;
+    private static final int REST_ENERGY_REGENERATION = 15;
 
     private Npc currentTarget;
 
@@ -38,7 +42,7 @@ public class Combat extends AbstractMode
      * This function is called at the start of a round
      */
     public void startOfRound(){
-	player.addEnergy(player.getPlayerStats().getEnergyRegenRate());
+	player.addEnergy(player.getPlayerStats().getEnergyRegenerationRate());
 	int health = player.getCurrentHealth();
 	int energy = player.getCurrentEnergy();
 	System.out.println("You have " + health + " health and " + energy + " energy");
@@ -106,8 +110,8 @@ public class Combat extends AbstractMode
      * @param name Will be empty string
      */
     public void rest(String name){
-	player.addEnergy(REST_ENERGY_REGEN);
-	System.out.println("You slept and regained " + REST_ENERGY_REGEN + " energy");
+	player.addEnergy(REST_ENERGY_REGENERATION);
+	System.out.println("You slept and regained " + REST_ENERGY_REGENERATION + " energy");
     }
 
     /**
@@ -136,7 +140,10 @@ public class Combat extends AbstractMode
 	eventHandler.disEngage(name);
     }
 
-    public void printEnemyInfo(String name){
+    /**
+     * @param name Will be empty string
+     */
+    public void printEnemyInfo(String ignored){
 	currentTarget.printObject();
     }
 

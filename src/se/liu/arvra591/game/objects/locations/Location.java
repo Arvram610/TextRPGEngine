@@ -18,7 +18,7 @@ public class Location extends AbstractObject
     private ObjectContainer<Npc> npcContainer; //might be divided into enemies and players
     private ObjectContainer<Item> itemContainer;
     private ObjectContainer<Location> exitContainer;
-    private List<String> exitStringList;
+    private List<String> exitStrings;
 
     //private List<interactables> interactablesList; //might be added later
 
@@ -29,12 +29,12 @@ public class Location extends AbstractObject
      * @param items List of items in the location
      * @param exits List of exits in the location
      */
-    public Location(String name, String description, List<Npc> npcs, List<Item> items, List<String> exitListString) {
+    public Location(String name, String description, List<Npc> npcs, List<Item> items, List<String> exitStrings) {
 	super(name, description);
 	this.npcContainer = new ObjectContainer<>(npcs);
 	this.itemContainer = new ObjectContainer<>(items);
 	this.exitContainer = new ObjectContainer<>(new ArrayList<>());
-	this.exitStringList = exitListString;
+	this.exitStrings = exitStrings;
     }
 
     /**
@@ -127,8 +127,8 @@ public class Location extends AbstractObject
 	return ListHelper.findObjectInList(itemContainer.getObjects(), name);
     }
 
-    public List<String> getExitStringList() {
-	return exitStringList;
+    public List<String> getExitStrings() {
+	return exitStrings;
     }
 
     /**

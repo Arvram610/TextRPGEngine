@@ -187,7 +187,7 @@ public class Game implements EngageListener, CombatListener
      * @param input Will be empty
      */
     public void win(String input){
-	gameState = gameState.WIN;
+	gameState = GameState.WIN;
 	//TODO: Add win condition
     }
 
@@ -195,7 +195,7 @@ public class Game implements EngageListener, CombatListener
      * @param input Will be empty
      */
     public void lose(String input){
-	gameState = gameState.GAME_OVER;
+	gameState = GameState.GAME_OVER;
 	//TODO: Add lose condition
     }
 
