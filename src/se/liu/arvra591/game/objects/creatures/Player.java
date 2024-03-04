@@ -57,7 +57,7 @@ public class Player extends Creature
     }
 
     public PlayerStats getPlayerStats() {
-	return (PlayerStats) stats;
+	return new PlayerStats(getStats(), ((PlayerStats) stats).getCarryWeight());
     }
 
     /**
@@ -93,8 +93,7 @@ public class Player extends Creature
     public boolean pickUpItem(String name){
 	Item item = currentLocation.removeItem(name);
 	if (item != null) {
-	    pickUpItem(item); //use super method or remove super method?
-	    return true;
+	    return pickUpItem(item);
 	}
 	return false;
     }
@@ -115,6 +114,9 @@ public class Player extends Creature
 	Item item = inventory.removeObject(name);
 	if (item != null) {
 	    currentLocation.addItem(item);
+	    if (equippedItem == item) {
+		equippedItem = null;
+	    }
 	    return true;
 	}
 	return false;
@@ -139,7 +141,6 @@ public class Player extends Creature
      * @param energy is the energy to reduce from the player
      */
     public boolean reduceEnergy(int energy){
-	//stats = getPlayerStats();
 	int lastEnergy = currentEnergy;
 	currentEnergy -= energy;
 	if (currentEnergy < 0) {
@@ -149,8 +150,9 @@ public class Player extends Creature
 	return true;
     }
 
-
-
+    /**
+     * @param item is the item to add to the player
+     */
     public void forceAddItem(Item item){
 	inventory.forceAddObject(item);
     }
@@ -165,8 +167,6 @@ public class Player extends Creature
 	    currentEnergy = stats.getMaxEnergy();
 	}
     }
-
-
 
     /**
      * @return Returns the current location of the player

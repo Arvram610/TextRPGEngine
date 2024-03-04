@@ -1,4 +1,9 @@
 package se.liu.arvra591.game.objects.items;
+
+import se.liu.arvra591.game.objects.creatures.Creature;
+import se.liu.arvra591.game.objects.creatures.CreatureStats;
+import se.liu.arvra591.game.objects.creatures.PlayerStats;
+
 /**
  * Equipable items which inherit from the item class. Equipable items are items that can be equipped
  * This can be ex armor, weapons, etc
@@ -7,14 +12,20 @@ package se.liu.arvra591.game.objects.items;
  */
 public class Equipable extends Item //Kodgranskning does not reqognize the word Equippables, I do not agree
 {
-    private int stats; //might be changed later, ex armor, damage, etc
+    private CreatureStats stats;
 
     /**
      * @param name What the item is called
      * @param description What the item does
      * @param weight How much the item weighs
      */
-    public Equipable(final String name, final String description, final int weight) {
+    public Equipable(final String name, final String description, final int weight, CreatureStats stats) {
+
 	super(name, description, weight);
+	this.stats = stats;
+    }
+
+    public CreatureStats getStats() {
+	return stats;
     }
 }

@@ -4,12 +4,14 @@ import com.google.gson.JsonArray;
 import com.google.gson.JsonObject;
 import se.liu.arvra591.game.factories.Factory;
 import se.liu.arvra591.game.listeners.CommandHandler;
+import se.liu.arvra591.game.objects.creatures.CreatureStats;
 import se.liu.arvra591.game.objects.items.Consumable;
 import se.liu.arvra591.game.objects.items.Equipable;
 import se.liu.arvra591.game.objects.items.Item;
 
 
 import java.io.FileNotFoundException;
+import java.util.List;
 
 /**
  * A class the generates all the itemfactories used in the game from given files
@@ -41,10 +43,12 @@ public class ItemFactoryGenerator extends ObjectGenerator<Factory<? extends Item
 
 	switch (type) {
 	    case "consumable" -> {
-		objects.put(name, new Factory<>(new Consumable(name, description, weight), commandHandler));
+		List<String> useCommands = generateStringListFromJson(object.get("useCommands").getAsJsonArray());
+		objects.put(name, new Factory<>(new Consumable(name, description, weight, useCommands), commandHandler));
 	    }
 	    case "equipable" -> {
-		objects.put(name, new Factory<>(new Equipable(name, description, weight), commandHandler));
+		CreatureStats stats = generateCreatureStats(object.get("stats").getAsJsonObject());
+		objects.put(name, new Factory<>(new Equipable(name, description, weight, stats), commandHandler));
 	    }
 	    default -> {
 		System.out.println("itemtype not valid");

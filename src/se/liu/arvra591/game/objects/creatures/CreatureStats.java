@@ -35,6 +35,20 @@ public class CreatureStats
     }
 
     /**
+     * @param stats is the stats that will be added to the creature
+     *
+     * @return Returns the new stats of the creature
+     */
+    public CreatureStats calculateStats(CreatureStats stats){
+        int maxHealth = this.maxHealth + stats.maxHealth;
+        int attack = this.attack + stats.attack;
+        int defense = this.defense + stats.defense;
+        int maxEnergy = this.maxEnergy + stats.maxEnergy;
+        int energyRegenerationRate = this.energyRegenerationRate + stats.energyRegenerationRate;
+        return new CreatureStats(maxHealth, attack, defense, maxEnergy, energyRegenerationRate);
+    }
+
+    /**
      * @return Returns the max health of the creature
      */
     public int getMaxHealth() {

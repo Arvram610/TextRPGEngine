@@ -11,7 +11,7 @@
       "maxHealth": 100,
       "maxEnergy": 100,
       "energyRegen": 0,
-      "carryWeight": 1
+      "carryWeight": 10
     },
     "inventory": [
       "potion"

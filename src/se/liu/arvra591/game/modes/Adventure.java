@@ -1,6 +1,9 @@
 package se.liu.arvra591.game.modes;
 
 import se.liu.arvra591.game.listeners.EngageEventHandler;
+import se.liu.arvra591.game.objects.containers.CreatureInventory;
+import se.liu.arvra591.game.objects.items.Equipable;
+import se.liu.arvra591.game.objects.items.Item;
 import se.liu.arvra591.game.parsers.InputParser;
 import se.liu.arvra591.game.objects.creatures.Player;
 
@@ -10,8 +13,6 @@ import se.liu.arvra591.game.objects.creatures.Player;
  */
 public class Adventure extends AbstractMode
 {
-    //private Player player;
-
     private AdventureParser parser;
 
     private EngageEventHandler eventHandler;
@@ -99,6 +100,29 @@ public class Adventure extends AbstractMode
 	}
     }
 
+    /**
+     * @param input The item to equip
+     */
+    public void equipItem(String input){
+	CreatureInventory inventory = player.getInventory();
+	Item item = inventory.getObject(input);
+	if (item == null) {
+	    System.out.println("You don't have that item");
+	    return;
+	}
+	if (!(item instanceof Equipable)) {
+	    System.out.println("You can't equip that item");
+	    return;
+	}
+	player.equipItem((Equipable) item);
+	System.out.println("You equiped " + item.getName());
+	System.out.print("It gave you ");
+	((Equipable) item).getStats().printStats();
+    }
+
+    /**
+     * @param input The NPC to engage combat with
+     */
     public void engage(String input){
 	eventHandler.engage(input);
     }
@@ -116,6 +140,7 @@ public class Adventure extends AbstractMode
 	    parseInputs.put("stats", Adventure.this::printStats);
 	    parseInputs.put("talk", Adventure.this::talk); //input will be "talk npc" where npc is the name of the npc you want to talk to
 	    parseInputs.put("engage", Adventure.this::engage);
+	    parseInputs.put("equip", Adventure.this::equipItem);
 	}
     }
 

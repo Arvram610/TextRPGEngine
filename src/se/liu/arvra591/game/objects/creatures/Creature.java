@@ -2,6 +2,7 @@ package se.liu.arvra591.game.objects.creatures;
 
 import se.liu.arvra591.game.objects.AbstractObject;
 import se.liu.arvra591.game.objects.containers.CreatureInventory;
+import se.liu.arvra591.game.objects.items.Equipable;
 import se.liu.arvra591.game.objects.items.Item;
 
 /**
@@ -11,7 +12,7 @@ import se.liu.arvra591.game.objects.items.Item;
 public abstract class Creature extends AbstractObject
 {
     protected int currentHealth;
-
+    protected Equipable equippedItem = null;
     protected int currentEnergy;
     protected CreatureStats stats;
 
@@ -24,6 +25,13 @@ public abstract class Creature extends AbstractObject
         this.currentEnergy = currentEnergy;
         this.stats = stats;
         this.inventory = inventory;
+    }
+
+    /**
+     * @param item is the item that the creature will equip
+     */
+    public void equipItem(Equipable item){
+        equippedItem = item;
     }
 
     /**
@@ -133,7 +141,6 @@ public abstract class Creature extends AbstractObject
         }
     }
 
-
     /**
      * @return Returns the current energy of the player
      */
@@ -144,15 +151,16 @@ public abstract class Creature extends AbstractObject
     /**
      * @param item is the item that the creature picks up
      */
-    public void pickUpItem(Item item){
-        inventory.addObject(item);
+    public boolean pickUpItem(Item item){
+        return inventory.addObject(item);
     }
-
-
     /**
      * @return Returns the stats of the creature
      */
     public CreatureStats getStats() {
-        return stats;
+        if (equippedItem == null) {
+            return stats;
+        }
+        return stats.calculateStats(equippedItem.getStats());
     }
 }

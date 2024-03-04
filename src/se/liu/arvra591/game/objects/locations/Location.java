@@ -19,7 +19,6 @@ public class Location extends AbstractObject
     private ObjectContainer<Item> itemContainer;
     private ObjectContainer<Location> exitContainer;
     private List<String> exitStrings;
-
     private boolean firstEnter = true;
     private final List<String> firstEnteredCommands;
     private final List<String> normalEnterCommands;

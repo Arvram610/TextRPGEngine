@@ -7,8 +7,10 @@ import se.liu.arvra591.game.listeners.EngageEventHandler;
 import se.liu.arvra591.game.listeners.EngageListener;
 import se.liu.arvra591.game.modes.Adventure;
 import se.liu.arvra591.game.modes.Combat;
+import se.liu.arvra591.game.objects.containers.CreatureInventory;
 import se.liu.arvra591.game.objects.creatures.Npc;
 import se.liu.arvra591.game.objects.creatures.Player;
+import se.liu.arvra591.game.objects.items.Equipable;
 import se.liu.arvra591.game.objects.items.Item;
 import se.liu.arvra591.game.objects.locations.Location;
 import se.liu.arvra591.game.parsers.InputParser;
@@ -193,7 +195,6 @@ public class Game implements EngageListener, CombatListener
      */
     public void win(String input){
 	gameState = GameState.WIN;
-	//TODO: Add win condition
     }
 
     /**
@@ -201,7 +202,6 @@ public class Game implements EngageListener, CombatListener
      */
     public void lose(String input){
 	gameState = GameState.GAME_OVER;
-	//TODO: Add lose condition
     }
 
     /**
@@ -242,7 +242,6 @@ public class Game implements EngageListener, CombatListener
     	player.getCurrentLocation().roomEntered();
     }
     /**
-<<<<<<< HEAD
      * @param input The attack of the npc that is attacking
      */
     public void attackPlayer(String input){
@@ -270,6 +269,9 @@ public class Game implements EngageListener, CombatListener
 	player.getCurrentLocation().removeExit(input);
     }
 
+    /**
+     * @param input The name of the item to remove
+     */
     public void removeItem(String input){
 	player.getCurrentLocation().removeItem(input);
     }
@@ -285,7 +287,6 @@ public class Game implements EngageListener, CombatListener
 		return true;
 	}
     }
-
     private class MasterParser extends InputParser
     {
 	private MasterParser(){
@@ -319,10 +320,6 @@ public class Game implements EngageListener, CombatListener
 	    parseInputs.put("removenpc", Game.this::removeNpc);
 	    parseInputs.put("removeexit", Game.this::removeExit);
 	    parseInputs.put("removeitem", Game.this::removeItem);
-
-	    //useItem
-
-
 	}
     }
 }
