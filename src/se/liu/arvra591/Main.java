@@ -21,7 +21,7 @@ import java.util.Scanner;
  */
 public class Main
 {
-    private Player player;
+    //private Player player;
     private Game game;
 
     /**
@@ -31,13 +31,12 @@ public class Main
 	CommandHandler commandHandler = new CommandHandler();
 	GameGenerator gameGenerator = new GameGenerator(commandHandler);
 	gameGenerator.generateGame();
-	player = gameGenerator.getPlayer();
+	Player player = gameGenerator.getPlayer();
 	Map<String, Location> locations = gameGenerator.getLocations();
 	Map<String, Factory<? extends Item>> items = gameGenerator.getItems();
 	Map<String, Factory<? extends Npc>> npcs = gameGenerator.getNpcs();
-	EngageEventHandler engageEventHandler = new EngageEventHandler();
-	CombatEventHandler combatEventHandler = new CombatEventHandler();
-	game = new Game(player, locations, items, npcs, engageEventHandler, combatEventHandler);
+
+	game = new Game(player, locations, items, npcs);
 
 	commandHandler.setListener(game.getParser());
     }

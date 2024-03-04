@@ -40,15 +40,15 @@ public class Game implements EngageListener, CombatListener
      * @param player The player that is playing the game
      */
     public Game(Player player, Map<String, Location> locations, Map<String, Factory<? extends Item>> items,
-		Map<String, Factory<? extends Npc>> npcs, EngageEventHandler engageEventHandler, CombatEventHandler combatEventHandler){
+		Map<String, Factory<? extends Npc>> npcs){
 	this.player = player;
 	this.parser = new MasterParser();
 	this.locations = locations;
 	this.items = items;
 	this.npcs = npcs;
 	this.gameState = GameState.ADVENTURE;
-	//this.eventHandler = engageEventHandler;
-	//this.combatEventHandler = combatEventHandler;
+	EngageEventHandler engageEventHandler = new EngageEventHandler();
+	CombatEventHandler combatEventHandler = new CombatEventHandler();
 	this.combat = new Combat(player, null, engageEventHandler, combatEventHandler);
 	this.adventure = new Adventure(player, engageEventHandler);
 	this.npcLogic = new NpcLogic(null);
