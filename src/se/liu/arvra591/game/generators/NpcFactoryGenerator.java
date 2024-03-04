@@ -40,24 +40,24 @@ public class NpcFactoryGenerator extends ObjectGenerator<Factory<? extends Npc>>
      * @throws FileNotFoundException
      */
     @Override public void generateObjects(final String fileName) throws FileNotFoundException {
-	JsonArray jsonArray = loadJsonArrayFile("npcs/" + fileName);
-	generateObjects(jsonArray);
+	JsonArray jsonObjects = loadJsonArrayFile("npcs/" + fileName);
+	generateObjects(jsonObjects);
     }
 
     @Override protected void generateObject(final JsonObject object) {
 	String name = object.get("name").getAsString();
-	String desc = object.get("description").getAsString();
+	String description = object.get("description").getAsString();
 	int health = object.get("health").getAsInt();
 	int energy = object.get("energy").getAsInt();
 	CreatureStats stats = generateCreatureStats(object.getAsJsonObject("stats"));
 	NpcDialogue dialogue = new NpcDialogue(generateStringListFromJson(object.getAsJsonArray("dialogue")));
 	CreatureInventory inventory = generateInventory(object.getAsJsonArray("inventory"));
 
-	objects.put(name, new Factory<>(new Npc(name, desc, health, energy, stats, dialogue, inventory, true), commandHandler));
+	objects.put(name, new Factory<>(new Npc(name, description, health, energy, stats, dialogue, inventory, true), commandHandler));
     }
 
-    private CreatureInventory generateInventory(final JsonArray array) {
-	List<Item> itemList = generateObjectListFromFactory(array, items);
-	return new CreatureInventory(generateObjectListFromFactory(array, items));
+    private CreatureInventory generateInventory(final JsonArray jsonObjects) {
+	List<Item> items = generateObjectListFromFactory(jsonObjects, this.items);
+	return new CreatureInventory(generateObjectListFromFactory(jsonObjects, this.items));
     }
 }

@@ -33,27 +33,27 @@ public abstract class Generator
     }
 
     protected <S extends AbstractObject> List<S> generateObjectListFromFactory(JsonArray jsonArray, Map<String, Factory<? extends S>> map) {
-	List<S> list = new ArrayList<>();
+	List<S> objects = new ArrayList<>();
 	jsonArray.forEach((object) -> {
-	    list.add(map.get(object.getAsString()).generate());
+	    objects.add(map.get(object.getAsString()).generate());
 	});
-	return list;
+	return objects;
     }
 
     protected <S extends AbstractObject> List<S> generateObjectListFromName(List<String> names, Map<String, S> map) {
-	List<S> list = new ArrayList<>();
+	List<S> objects = new ArrayList<>();
 	names.forEach((object) -> {
-	    list.add(map.get(object));
+	    objects.add(map.get(object));
 	});
-	return list;
+	return objects;
     }
 
-    protected List<String> generateStringListFromJson(JsonArray jsonArray) {
-	List<String> list = new ArrayList<>();
-	jsonArray.forEach((objectName) -> {
-	    list.add(objectName.getAsString());
+    protected List<String> generateStringListFromJson(JsonArray jsonObjects) {
+	List<String> strings = new ArrayList<>();
+	jsonObjects.forEach((objectName) -> {
+	    strings.add(objectName.getAsString());
 	});
-	return list;
+	return strings;
     }
 
     protected JsonArray loadJsonArrayFile(String filepath) throws FileNotFoundException {

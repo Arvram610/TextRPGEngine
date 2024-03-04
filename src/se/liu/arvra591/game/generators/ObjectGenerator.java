@@ -39,8 +39,8 @@ public abstract class ObjectGenerator<T> extends Generator
 
     protected abstract void generateObject(JsonObject object);
 
-    protected void generateObjects(JsonArray jsonArray) {
-	for (JsonElement jsonElement : jsonArray) {
+    protected void generateObjects(JsonArray jsonObjects) {
+	for (JsonElement jsonElement : jsonObjects) {
 	    generateObject(jsonElement.getAsJsonObject());
 	}
     }
