@@ -20,8 +20,8 @@ public class Game implements EngageListener, CombatListener
 {
 
     private Player player;
-    private EngageEventHandler eventHandler;
-    private CombatEventHandler combatEventHandler;
+    //private EngageEventHandler eventHandler;
+    //private CombatEventHandler combatEventHandler;
     private MasterParser parser;
     private GameState gameState;
     private Adventure adventure;
@@ -42,8 +42,8 @@ public class Game implements EngageListener, CombatListener
 	this.items = items;
 	this.npcs = npcs;
 	this.gameState = GameState.ADVENTURE;
-	this.eventHandler = engageEventHandler;
-	this.combatEventHandler = combatEventHandler;
+	//this.eventHandler = engageEventHandler;
+	//this.combatEventHandler = combatEventHandler;
 	this.combat = new Combat(player, null, engageEventHandler, combatEventHandler);
 	this.adventure = new Adventure(player, engageEventHandler);
 	this.npcLogic = new NpcLogic(null, combatEventHandler);

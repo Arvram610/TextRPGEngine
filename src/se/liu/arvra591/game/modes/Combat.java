@@ -112,6 +112,7 @@ public class Combat extends AbstractMode
     public void rest(String name){
 	player.addEnergy(REST_ENERGY_REGENERATION);
 	System.out.println("You slept and regained " + REST_ENERGY_REGENERATION + " energy");
+	combatEventHandler.notifyNpcLogic();
     }
 
     /**

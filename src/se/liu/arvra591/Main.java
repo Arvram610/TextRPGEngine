@@ -21,12 +21,7 @@ import java.util.Map;
 public class Main
 {
     private Player player;
-    private EngageEventHandler eventHandler;
-    private CombatEventHandler combatEventHandler;
     private Game game;
-    private Map<String, Location> locations;
-    private Map<String, Factory<? extends Item>> items;
-    private Map<String, Factory<? extends Npc>> npcs;
 
     /**
      * Constructor for the main class, initializes what is needed for the game to run
@@ -36,12 +31,12 @@ public class Main
 	GameGenerator gameGenerator = new GameGenerator(commandHandler);
 	gameGenerator.generateGame();
 	player = gameGenerator.getPlayer();
-	locations = gameGenerator.getLocations();
-	items = gameGenerator.getItems();
-	npcs = gameGenerator.getNpcs();
-	eventHandler = new EngageEventHandler();
-	combatEventHandler = new CombatEventHandler();
-	game = new Game(player, locations, items, npcs, eventHandler, combatEventHandler);
+	Map<String, Location> locations = gameGenerator.getLocations();
+	Map<String, Factory<? extends Item>> items = gameGenerator.getItems();
+	Map<String, Factory<? extends Npc>> npcs = gameGenerator.getNpcs();
+	EngageEventHandler engageEventHandler = new EngageEventHandler();
+	CombatEventHandler combatEventHandler = new CombatEventHandler();
+	game = new Game(player, locations, items, npcs, engageEventHandler, combatEventHandler);
 
 	commandHandler.setListener(game.getParser());
     }
