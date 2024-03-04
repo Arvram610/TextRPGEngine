@@ -137,6 +137,11 @@ public class Player extends Creature
 	return false;
     }
 
+    public void onDeath(){
+	sendCommand("say Sadly you died and the game is over");
+	sendCommand("lose");
+    }
+
     /**
      * @param name is the name of the npc to talk to
      *

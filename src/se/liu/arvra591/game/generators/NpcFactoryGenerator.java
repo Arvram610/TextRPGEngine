@@ -55,7 +55,7 @@ public class NpcFactoryGenerator extends ObjectGenerator<Factory<? extends Npc>>
 							  dialogues.add(generateStringListFromJson(element.getAsJsonArray())));
 	CreatureInventory inventory = generateInventory(object.getAsJsonArray("inventory"));
 
-	objects.put(name, new Factory<>(new Npc(name, description, health, energy, stats, dialogue, inventory, true), commandHandler));
+	objects.put(name, new Factory<>(new Npc(name, description, health, energy, stats, dialogues, inventory, true), commandHandler));
     }
 
     private CreatureInventory generateInventory(final JsonArray jsonObjects) {

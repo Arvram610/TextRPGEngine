@@ -250,6 +250,10 @@ public class Game implements EngageListener, CombatListener
 	int attack = Integer.parseInt(input);
 	int damage = Math.max(attack - player.getStats().getDefense(), 0);
 	player.takeDamage(damage);
+	if (!player.isAlive()) {
+	    player.onDeath();
+	    return;
+	}
 	String enemy = combat.getCurrentTarget().getName();
 
 	System.out.println(enemy + " attacked you for " + damage + " damage \n");

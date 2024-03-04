@@ -4,6 +4,8 @@ import se.liu.arvra591.game.objects.containers.CreatureInventory;
 import se.liu.arvra591.game.objects.items.Consumable;
 import se.liu.arvra591.game.objects.items.Item;
 
+import java.util.List;
+
 /**
  * Class for non-player characters such as enemies, pets or vendors. All npcs have a dialogue but this can be empty for creatures
  *  that cant talk exs pets.
