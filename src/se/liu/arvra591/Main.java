@@ -51,6 +51,7 @@ public class Main
 
 	Scanner scanner = new Scanner(System.in);
 	while(game.gameOn()){
+	    System.out.print(": ");
 	    game.processInput(scanner.nextLine());
 	}
     }
