@@ -5,7 +5,6 @@ import se.liu.arvra591.game.objects.containers.PlayerInventory;
 import se.liu.arvra591.game.objects.items.Item;
 import se.liu.arvra591.game.objects.locations.Location;
 
-import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -124,7 +123,7 @@ public class Player extends Creature
      */
     public boolean talkToNpc(String name){
 	List<Npc> npcs = currentLocation.getNpcs();
-	Npc npc = (Npc) ListHelper.findObjectInList(npcs, name);
+	Npc npc = ListHelper.findObjectInList(npcs, name);
 	if (npc != null) {
 	    npc.talk();
 	    return true;

@@ -56,6 +56,7 @@ public abstract class Creature extends AbstractObject
             }
         }
         catch (NumberFormatException e) {
+            e.printStackTrace();
             System.out.println("wrong formatting, third word must be integer");
         }
     }
@@ -74,6 +75,7 @@ public abstract class Creature extends AbstractObject
             }
         }
         catch (NumberFormatException e) {
+            e.printStackTrace();
             System.out.println("wrong formatting, third word must be integer");
         }
     }
@@ -87,20 +89,35 @@ public abstract class Creature extends AbstractObject
             stats.increaseAttack(amount);
         }
         catch (NumberFormatException e) {
+            e.printStackTrace();
             System.out.println("wrong formatting, third word must be integer");
         }
     }
 
+    /**
+     * @param damage is the amount of damage the creature will take
+     */
     public void takeDamage(int damage){
         currentHealth -= damage;
     }
 
+    /**
+     * @return Returns true if the creature is alive, false if it is dead
+     */
     public boolean isAlive(){
         if (currentHealth <= 0) {
             return false;
         }
         return true;
     }
+
+    /**
+     * @return Returns the inventory of the creature
+     */
+    public CreatureInventory getInventory(){
+        return inventory;
+    }
+
 
     /**
      * @param number is the amount of defense the creature will gain
@@ -111,6 +128,7 @@ public abstract class Creature extends AbstractObject
             stats.increaseDefense(amount);
         }
         catch (NumberFormatException e) {
+            e.printStackTrace();
             System.out.println("wrong formatting, third word must be integer");
         }
     }

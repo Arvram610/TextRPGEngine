@@ -16,12 +16,17 @@ import se.liu.arvra591.game.parsers.InputParser;
 import java.util.List;
 import java.util.Map;
 
+/**
+ * The main parser of the game
+ * takes input from the game and parses it to the correct method
+ * also takes the input from main and sends it to the correct method
+ */
 public class Game implements EngageListener, CombatListener
 {
 
     private Player player;
-    private EngageEventHandler eventHandler;
-    private CombatEventHandler combatEventHandler;
+    //private EngageEventHandler eventHandler;
+    //private CombatEventHandler combatEventHandler;
     private MasterParser parser;
     private GameState gameState;
     private Adventure adventure;
@@ -42,11 +47,11 @@ public class Game implements EngageListener, CombatListener
 	this.items = items;
 	this.npcs = npcs;
 	this.gameState = GameState.ADVENTURE;
-	this.eventHandler = engageEventHandler;
-	this.combatEventHandler = combatEventHandler;
+	//this.eventHandler = engageEventHandler;
+	//this.combatEventHandler = combatEventHandler;
 	this.combat = new Combat(player, null, engageEventHandler, combatEventHandler);
 	this.adventure = new Adventure(player, engageEventHandler);
-	this.npcLogic = new NpcLogic(null, combatEventHandler);
+	this.npcLogic = new NpcLogic(null);
 	engageEventHandler.setListener(this);
 	combatEventHandler.setListener(this);
     }
@@ -187,7 +192,7 @@ public class Game implements EngageListener, CombatListener
      * @param input Will be empty
      */
     public void win(String input){
-	gameState = gameState.WIN;
+	gameState = GameState.WIN;
 	//TODO: Add win condition
     }
 
@@ -195,7 +200,7 @@ public class Game implements EngageListener, CombatListener
      * @param input Will be empty
      */
     public void lose(String input){
-	gameState = gameState.GAME_OVER;
+	gameState = GameState.GAME_OVER;
 	//TODO: Add lose condition
     }
 

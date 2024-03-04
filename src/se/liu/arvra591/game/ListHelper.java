@@ -33,6 +33,7 @@ public class ListHelper
      *
      * @return It returns either the object if it is found or null
      */
+    @SuppressWarnings("MaybeTypeCheck")
     public static <T extends AbstractObject> T findObjectInList(List<T> objects, String name){//name includes type but that is what it is, dont knmow better name
 	return objects.stream().filter(object -> object.getName().equals(name)).findFirst().orElse(null); //Kodgranskning complains aboput type check but is wrong
     }
