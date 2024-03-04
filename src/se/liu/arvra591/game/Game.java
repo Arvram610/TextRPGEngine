@@ -206,6 +206,19 @@ public class Game implements EngageListener
 	player.getCurrentLocation().addItem(item);
     }
 
+    /**
+     * @return Returns if the game is on
+     */
+    public boolean gameOn() {
+	switch (gameState){
+	    case WIN:
+	    case GAME_OVER:
+		return false;
+	    default:
+		return true;
+	}
+    }
+
     private class MasterParser extends InputParser
     {
 	private MasterParser(){
