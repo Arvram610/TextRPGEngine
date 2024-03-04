@@ -229,6 +229,7 @@ public class Game implements EngageListener, CombatListener
     }
 
     /**
+<<<<<<< HEAD
      * @param input The attack of the npc that is attacking
      */
     public void attackPlayer(String input){
@@ -258,6 +259,18 @@ public class Game implements EngageListener, CombatListener
 
     public void removeItem(String input){
 	player.getCurrentLocation().removeItem(input);
+    }
+    /**
+     * @return Returns if the game is on
+     */
+    public boolean gameOn() {
+	switch (gameState){
+	    case WIN:
+	    case GAME_OVER:
+		return false;
+	    default:
+		return true;
+	}
     }
 
     private class MasterParser extends InputParser

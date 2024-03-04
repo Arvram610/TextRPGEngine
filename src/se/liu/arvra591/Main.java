@@ -12,6 +12,7 @@ import se.liu.arvra591.game.objects.locations.Location;
 import se.liu.arvra591.game.generators.GameGenerator;
 
 import java.util.Map;
+import java.util.Scanner;
 
 /**
  * The main class for the game
@@ -46,17 +47,12 @@ public class Main
      */
     public void startGame(){
 
-	//player.printObject();
 
-	Location currentLocation = player.getCurrentLocation();
-	//currentLocation.printObject();
-	game.parseInput("currentmode");
-	game.processInput("engage Carl");
-	game.parseInput("giveplayerenergy 100");
-	game.processInput("attack");
-	game.processInput("attack");
-	game.processInput("attack");
-	game.parseInput("currentmode");
+	Scanner scanner = new Scanner(System.in);
+	while(game.gameOn()){
+	    System.out.print(": ");
+	    game.processInput(scanner.nextLine());
+	}
     }
 
 
