@@ -20,6 +20,10 @@ public class Location extends AbstractObject
     private ObjectContainer<Location> exitContainer;
     private List<String> exitStringList;
 
+    private boolean firstEnter = true;
+    private final List<String> firstEnteredCommands;
+    private final List<String> normalEnterCommands;
+
     //private List<interactables> interactablesList; //might be added later
 
     /**
@@ -29,12 +33,32 @@ public class Location extends AbstractObject
      * @param items List of items in the location
      * @param exits List of exits in the location
      */
-    public Location(String name, String description, List<Npc> npcs, List<Item> items, List<String> exitListString) {
+    public Location(String name, String description,
+		    List<Npc> npcs, List<Item> items,
+		    List<String> exitListString, List<String> firstEnterCommands, List<String> normalEnterCommands) {
 	super(name, description);
 	this.npcContainer = new ObjectContainer<>(npcs);
 	this.itemContainer = new ObjectContainer<>(items);
 	this.exitContainer = new ObjectContainer<>(new ArrayList<>());
 	this.exitStringList = exitListString;
+	this.firstEnteredCommands = firstEnterCommands;
+	this.normalEnterCommands = normalEnterCommands;
+    }
+
+
+    /**
+     * This method should be called to tell the location that a player has entered it.
+     * If it is the first time the room is entered it will run through
+     * the {@link firstEnteredCommands} commands.
+     * If it is not the first time entering the room it will run the {@link normalEnterCommands} commands.
+     */
+    public void roomEntered(){
+	if (firstEnter) {
+	    sendCommands(firstEnteredCommands);
+	    firstEnter = false;
+	    return;
+	}
+	sendCommands(normalEnterCommands);
     }
 
     /**
