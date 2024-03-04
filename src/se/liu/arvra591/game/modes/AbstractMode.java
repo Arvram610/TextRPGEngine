@@ -25,4 +25,5 @@ public abstract class AbstractMode implements Mode
 	player.printStats();
     }
 
+
 }

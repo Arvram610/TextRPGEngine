@@ -78,9 +78,4 @@ public class Npc extends Creature
 	String restEnergyRegeneneration = Integer.toString(energyRegeneneration);
 	addEnergy(restEnergyRegeneneration);
     }
-    public static void main(String[] args) {
-	NpcDialogue npcDialogue = new NpcDialogue(Arrays.asList("Hej!", "Hoppas du mår bra", "Ha en trevlig dag"));
-	Npc npc = new Npc("Carl", "A friendly human", 10, 10, CreatureStats.basic, npcDialogue, null, true);
-	npc.talk();
-    }
 }

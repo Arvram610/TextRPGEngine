@@ -16,8 +16,6 @@ public class CreatureStats
     /**
      * Temporary field for testing purposes
      */
-    public static CreatureStats basic = new CreatureStats(100,10,10,100,10);
-
 
     /**
      * @param maxHealth is the maximum health of the creature
