@@ -1,0 +1,47 @@
+[
+  {
+    "name": "Forest Troll",
+    "description": "En stor och hårig troll som vandrar ensamt i skogen, redo att attackera alla som kommer i dess väg.",
+    "health": 30,
+    "energy": 10,
+    "stats": {
+      "attack": 8,
+      "defense": 3,
+      "maxHealth": 30,
+      "maxEnergy": 10,
+      "energyRegen": 1
+    },
+    "dialogue": [
+      [
+        "say Forest Troll: Du ska inte vara här!"
+      ]
+    ],
+    "inventory": [
+      "bone"
+    ],
+    "canDisengage": true
+  },
+
+  {
+  "name": "Dark Wolf",
+  "description": "En skrämmande varg med vassa tänder och röda ögon som glöder i mörkret.",
+  "health": 20,
+  "energy": 15,
+  "stats": {
+    "attack": 10,
+    "defense": 2,
+    "maxHealth": 20,
+    "maxEnergy": 15,
+    "energyRegen": 2
+    },
+  "dialogue": [
+    [
+  "say Dark Wolf: Grrrrr..."
+    ]
+  ],
+  "inventory": [
+  "potion"
+  ],
+    "canDisengage": true
+  }
+]
