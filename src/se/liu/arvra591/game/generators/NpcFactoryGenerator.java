@@ -9,7 +9,6 @@ import se.liu.arvra591.game.objects.creatures.CreatureStats;
 import se.liu.arvra591.game.objects.creatures.Npc;
 import se.liu.arvra591.game.objects.items.Item;
 
-
 import java.io.FileNotFoundException;
 import java.util.ArrayList;
 import java.util.List;
@@ -52,12 +51,12 @@ public class NpcFactoryGenerator extends ObjectGenerator<Factory<? extends Npc>>
 	int energy = object.get("energy").getAsInt();
 	CreatureStats stats = generateCreatureStats(object.getAsJsonObject("stats"));
 	List<List<String>> dialogues = new ArrayList<>();
-	object.getAsJsonArray("dialogue").forEach(element ->
-							  dialogues.add(generateStringListFromJson(element.getAsJsonArray())));
+	object.getAsJsonArray("dialogue").forEach(element -> dialogues.add(generateStringListFromJson(element.getAsJsonArray())));
 	CreatureInventory inventory = generateInventory(object.getAsJsonArray("inventory"));
 	boolean canDisengage = object.get("canDisengage").getAsBoolean();
 
-	objects.put(name, new Factory<>(new Npc(name, description, health, energy, stats, dialogues, inventory, canDisengage), commandHandler));
+	objects.put(name,
+		    new Factory<>(new Npc(name, description, health, energy, stats, dialogues, inventory, canDisengage), commandHandler));
     }
 
     private CreatureInventory generateInventory(final JsonArray jsonObjects) {

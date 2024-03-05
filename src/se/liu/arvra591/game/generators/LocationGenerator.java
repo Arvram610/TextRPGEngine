@@ -8,7 +8,6 @@ import se.liu.arvra591.game.objects.creatures.Npc;
 import se.liu.arvra591.game.objects.items.Item;
 import se.liu.arvra591.game.objects.locations.Location;
 
-
 import java.io.FileNotFoundException;
 import java.util.List;
 import java.util.Map;
@@ -29,10 +28,9 @@ public class LocationGenerator extends ObjectGenerator<Location>
      * @param items A map containing itemfactories used to generate items for locations
      * @param npcs  A map containing npcfactories used to generate npcsc for locations
      */
-    public LocationGenerator(CommandHandler commandHandler,
-			     Map<String, Factory<? extends Item>> items,
-			     Map<String, Factory<? extends Npc>> npcs,
-			     FileHandler fileHandler) {
+    public LocationGenerator(CommandHandler commandHandler, Map<String, Factory<? extends Item>> items,
+			     Map<String, Factory<? extends Npc>> npcs, FileHandler fileHandler)
+    {
 	super(commandHandler, fileHandler);
 	this.items = items;
 	this.npcs = npcs;
@@ -47,8 +45,7 @@ public class LocationGenerator extends ObjectGenerator<Location>
 	List<String> firstEnteredCommands = generateStringListFromJson(object.get("firstEnter").getAsJsonArray());
 	List<String> normalEnterCommands = generateStringListFromJson(object.get("normalEnter").getAsJsonArray());
 
-	Location location = new Location(name, description, npcs, items,
-					 stringLocations, firstEnteredCommands, normalEnterCommands);
+	Location location = new Location(name, description, npcs, items, stringLocations, firstEnteredCommands, normalEnterCommands);
 
 	location.setCommandHandler(commandHandler);
 	objects.put(name, location);

@@ -11,7 +11,6 @@ import se.liu.arvra591.game.objects.creatures.PlayerStats;
 import se.liu.arvra591.game.objects.items.Item;
 import se.liu.arvra591.game.objects.locations.Location;
 
-
 import java.io.FileNotFoundException;
 import java.util.Map;
 import java.util.logging.FileHandler;
@@ -30,10 +29,9 @@ public class PlayerGenerator extends ObjectGenerator<Player>
      * @param items     A map containing all the itemfactories in the game
      * @param locations A map containing all the locations in the game
      */
-    public PlayerGenerator(CommandHandler commandHandler,
-			   Map<String, Factory<? extends Item>> items,
-			   Map<String, Location> locations,
-			   FileHandler fileHandler) {
+    public PlayerGenerator(CommandHandler commandHandler, Map<String, Factory<? extends Item>> items, Map<String, Location> locations,
+			   FileHandler fileHandler)
+    {
 	super(commandHandler, fileHandler);
 	this.items = items;
 	this.locations = locations;
@@ -58,8 +56,8 @@ public class PlayerGenerator extends ObjectGenerator<Player>
 	int energy = object.get("energy").getAsInt();
 	PlayerStats stats = generatePlayerStats(object.get("stats").getAsJsonObject());
 	Location location = locations.get(object.get("startLocation").getAsString());
-	PlayerInventory
-		inventory = new PlayerInventory(generateObjectListFromFactory(object.get("inventory").getAsJsonArray(), items), stats);
+	PlayerInventory inventory =
+		new PlayerInventory(generateObjectListFromFactory(object.get("inventory").getAsJsonArray(), items), stats);
 
 	Player player = new Player(name, description, health, energy, stats, location, inventory);
 	player.setCommandHandler(commandHandler);

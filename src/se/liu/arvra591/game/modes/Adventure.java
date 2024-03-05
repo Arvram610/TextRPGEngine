@@ -1,12 +1,12 @@
 package se.liu.arvra591.game.modes;
 
 import se.liu.arvra591.game.listeners.EngageEventHandler;
-import se.liu.arvra591.game.parsers.InputParser;
 import se.liu.arvra591.game.objects.creatures.Player;
+import se.liu.arvra591.game.parsers.InputParser;
 
 /**
- * The adventure class is the class that controls the adventure mode of the game and the player.
- * It has a parser that takes input from the player and parses it to get the correct command and applies the command to an action
+ * The adventure class is the class that controls the adventure mode of the game and the player. It has a parser that takes input from the
+ * player and parses it to get the correct command and applies the command to an action
  */
 public class Adventure extends AbstractMode
 {
@@ -17,7 +17,7 @@ public class Adventure extends AbstractMode
     /**
      * @param player The player that is playing the game
      */
-    public Adventure(Player player, EngageEventHandler eventHandler){
+    public Adventure(Player player, EngageEventHandler eventHandler) {
 	super(player);
 	this.parser = new AdventureParser();
 	this.eventHandler = eventHandler;
@@ -26,12 +26,11 @@ public class Adventure extends AbstractMode
     /**
      * @param location The location to move to
      */
-    public void move(String location){
+    public void move(String location) {
 	boolean success = player.move(location);
 	if (!success) {
 	    System.out.println("You cannot move to " + location);
-	}
-	else {
+	} else {
 	    player.getCurrentLocation().roomEntered();
 	}
     }
@@ -39,12 +38,11 @@ public class Adventure extends AbstractMode
     /**
      * @param item The item to pick up
      */
-    public void pickUp(String item){
+    public void pickUp(String item) {
 	boolean success = player.pickUpItem(item);
 	if (!success) {
 	    System.out.println("You cannot pick up " + item);
-	}
-	else {
+	} else {
 	    System.out.println("You picked up " + item);
 	}
     }
@@ -52,7 +50,7 @@ public class Adventure extends AbstractMode
     /**
      * @param name The name of the object to inspect
      */
-    public void inspect(String name){
+    public void inspect(String name) {
 	boolean success = player.inspect(name);
 	if (!success) {
 	    System.out.println("You cannot inspect " + name);
@@ -60,29 +58,27 @@ public class Adventure extends AbstractMode
     }
 
     /**
-     * @param input The input from the player will be empty
-     * Prints the current location of the player
+     * @param input The input from the player will be empty Prints the current location of the player
      */
-    public void printLocation(String input){ //input kommer vara tom. Man kommer bara skriva "location"
+    public void printLocation(String input) { //input kommer vara tom. Man kommer bara skriva "location"
 	player.getCurrentLocation().printObject();
     }
 
     /**
      * @param input The input from the player
      */
-    public void parseInput(String input){
+    public void parseInput(String input) {
 	parser.parseInput(input);
     }
 
     /**
      * @param item The item to drop
      */
-    public void dropItem(String item){
+    public void dropItem(String item) {
 	boolean success = player.dropItem(item);
 	if (!success) {
 	    System.out.println("Couldnt find " + item + " in your inventory");
-	}
-	else{
+	} else {
 	    System.out.println("You dropped " + item);
 	}
     }
@@ -90,7 +86,7 @@ public class Adventure extends AbstractMode
     /**
      * @param input The input from the player will be the name of the npc to talk to
      */
-    public void talk(String input){
+    public void talk(String input) {
 	boolean success = player.talkToNpc(input);
 	if (!success) {
 	    System.out.println("No creature with the name " + input);
@@ -105,13 +101,13 @@ public class Adventure extends AbstractMode
     /**
      * @param input The NPC to engage combat with
      */
-    public void engage(String input){
+    public void engage(String input) {
 	eventHandler.engage(input);
     }
 
     private class AdventureParser extends InputParser
     {
-	private AdventureParser(){
+	private AdventureParser() {
 	    parseInputs.put("move", Adventure.this::move);
 	    parseInputs.put("pickup", Adventure.this::pickUp);
 	    parseInputs.put("inspect", Adventure.this::inspect);

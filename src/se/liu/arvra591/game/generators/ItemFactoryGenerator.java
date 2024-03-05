@@ -9,7 +9,6 @@ import se.liu.arvra591.game.objects.items.Consumable;
 import se.liu.arvra591.game.objects.items.Equipable;
 import se.liu.arvra591.game.objects.items.Item;
 
-
 import java.io.FileNotFoundException;
 import java.util.List;
 import java.util.logging.FileHandler;

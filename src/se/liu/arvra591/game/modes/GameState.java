@@ -5,8 +5,5 @@ package se.liu.arvra591.game.modes;
  */
 public enum GameState
 {
-    ADVENTURE,
-    COMBAT,
-    GAME_OVER,
-    WIN
+    ADVENTURE, COMBAT, GAME_OVER, WIN
 }
