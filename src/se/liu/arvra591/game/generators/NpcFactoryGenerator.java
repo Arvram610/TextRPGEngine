@@ -14,6 +14,7 @@ import java.io.FileNotFoundException;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
+import java.util.logging.FileHandler;
 
 /**
  * A class that generates all the npcfactories used in the game from given files
@@ -27,8 +28,8 @@ public class NpcFactoryGenerator extends ObjectGenerator<Factory<? extends Npc>>
      *
      * @param items A map containing all the itemfactories in the game
      */
-    public NpcFactoryGenerator(CommandHandler commandHandler, final Map<String, Factory<? extends Item>> items) {
-	super(commandHandler);
+    public NpcFactoryGenerator(CommandHandler commandHandler, final Map<String, Factory<? extends Item>> items, FileHandler fileHandler) {
+	super(commandHandler, fileHandler);
 	this.items = items;
     }
 

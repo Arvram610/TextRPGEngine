@@ -1,4 +1,4 @@
-package se.liu.arvra591.game;
+package se.liu.arvra591.game.objects;
 
 import se.liu.arvra591.game.objects.AbstractObject;
 

@@ -7,6 +7,7 @@ import com.google.gson.JsonObject;
 import java.io.BufferedReader;
 import java.io.FileReader;
 import java.io.IOException;
+import java.util.logging.FileHandler;
 
 /**
  * A class that parses a json file
@@ -35,8 +36,6 @@ public class JsonParser
 	try (BufferedReader br = new BufferedReader(
 		new FileReader(path))){
 	    br.lines().forEach(json::append);
-	} catch (IOException e) {
-	    throw e;
 	}
 	return gson.fromJson(json.toString(), JsonArray.class);
     }
@@ -53,8 +52,6 @@ public class JsonParser
 	try (BufferedReader br = new BufferedReader(
 		new FileReader(path))){
 	    br.lines().forEach(json::append);
-	} catch (IOException e) {
-	    throw e;
 	}
 	return gson.fromJson(json.toString(), JsonObject.class);
     }

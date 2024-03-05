@@ -14,6 +14,7 @@ import se.liu.arvra591.game.objects.locations.Location;
 
 import java.io.FileNotFoundException;
 import java.util.Map;
+import java.util.logging.FileHandler;
 
 /**
  * A class that generates a player used in game from a given file
@@ -31,8 +32,9 @@ public class PlayerGenerator extends ObjectGenerator<Player>
      */
     public PlayerGenerator(CommandHandler commandHandler,
 			   Map<String, Factory<? extends Item>> items,
-			   Map<String, Location> locations) {
-	super(commandHandler);
+			   Map<String, Location> locations,
+			   FileHandler fileHandler) {
+	super(commandHandler, fileHandler);
 	this.items = items;
 	this.locations = locations;
     }

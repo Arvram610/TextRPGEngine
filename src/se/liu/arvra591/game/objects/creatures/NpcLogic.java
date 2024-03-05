@@ -1,4 +1,4 @@
-package se.liu.arvra591.game;
+package se.liu.arvra591.game.objects.creatures;
 
 import se.liu.arvra591.game.listeners.CombatEventHandler;
 import se.liu.arvra591.game.objects.containers.CreatureInventory;

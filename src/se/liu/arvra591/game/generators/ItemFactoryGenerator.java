@@ -12,6 +12,7 @@ import se.liu.arvra591.game.objects.items.Item;
 
 import java.io.FileNotFoundException;
 import java.util.List;
+import java.util.logging.FileHandler;
 
 /**
  * A class the generates all the itemfactories used in the game from given files
@@ -19,8 +20,8 @@ import java.util.List;
 public class ItemFactoryGenerator extends ObjectGenerator<Factory<? extends Item>>
 {
 
-    protected ItemFactoryGenerator(final CommandHandler commandHandler) {
-	super(commandHandler);
+    protected ItemFactoryGenerator(final CommandHandler commandHandler, FileHandler fileHandler) {
+	super(commandHandler, fileHandler);
     }
 
     /**

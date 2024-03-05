@@ -1,6 +1,6 @@
 package se.liu.arvra591.game.objects.locations;
 
-import se.liu.arvra591.game.ListHelper;
+import se.liu.arvra591.game.objects.ListHelper;
 import se.liu.arvra591.game.objects.AbstractObject;
 import se.liu.arvra591.game.objects.creatures.Npc;
 import se.liu.arvra591.game.objects.containers.ObjectContainer;

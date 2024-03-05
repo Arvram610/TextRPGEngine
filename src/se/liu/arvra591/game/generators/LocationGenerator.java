@@ -12,6 +12,7 @@ import se.liu.arvra591.game.objects.locations.Location;
 import java.io.FileNotFoundException;
 import java.util.List;
 import java.util.Map;
+import java.util.logging.FileHandler;
 
 /**
  * A class that generates all the locations used in the game from given files
@@ -30,8 +31,9 @@ public class LocationGenerator extends ObjectGenerator<Location>
      */
     public LocationGenerator(CommandHandler commandHandler,
 			     Map<String, Factory<? extends Item>> items,
-			     Map<String, Factory<? extends Npc>> npcs) {
-	super(commandHandler);
+			     Map<String, Factory<? extends Npc>> npcs,
+			     FileHandler fileHandler) {
+	super(commandHandler, fileHandler);
 	this.items = items;
 	this.npcs = npcs;
     }

@@ -28,9 +28,7 @@ public abstract class InputParser
      */
     public void printActions(String input){
 	System.out.println("Available commands:");
-	parseInputs.forEach((key, value) -> {
-	    System.out.println("  " + key);
-	});
+	parseInputs.forEach((key, value) -> System.out.println("  " + key));
     }
 
     /**

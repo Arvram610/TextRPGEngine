@@ -11,6 +11,9 @@ import se.liu.arvra591.game.objects.items.Item;
 import se.liu.arvra591.game.objects.locations.Location;
 import se.liu.arvra591.game.generators.GameGenerator;
 
+import java.io.IOException;
+import java.util.logging.FileHandler;
+
 import java.util.Map;
 import java.util.Scanner;
 
@@ -28,8 +31,15 @@ public class Main
      * Constructor for the main class, initializes what is needed for the game to run
      */
     public Main(){
+	FileHandler fileHandler = null;
+	try {
+	    fileHandler = new FileHandler("log");
+	} catch (IOException e) {
+	    System.out.println("Could not find log file");
+	    System.exit(1);
+	}
 	CommandHandler commandHandler = new CommandHandler();
-	GameGenerator gameGenerator = new GameGenerator(commandHandler);
+	GameGenerator gameGenerator = new GameGenerator(commandHandler, fileHandler);
 	gameGenerator.generateGame();
 	Player player = gameGenerator.getPlayer();
 	Map<String, Location> locations = gameGenerator.getLocations();

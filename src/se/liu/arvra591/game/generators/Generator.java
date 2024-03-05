@@ -12,6 +12,9 @@ import java.net.URL;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
+import java.util.logging.FileHandler;
+import java.util.logging.Level;
+import java.util.logging.LogRecord;
 
 /**
  * An abstract class used to generate objects from a json file
@@ -20,8 +23,11 @@ public abstract class Generator
 {
     protected JsonParser jsonParser; //= new JsonParser();
 
-    protected Generator() {
+    protected FileHandler fileHandler;
+
+    protected Generator(FileHandler fileHandler) {
 	jsonParser = new JsonParser();
+	this.fileHandler = fileHandler;
     }
 
     private static URL getUrl(final String filepath) throws FileNotFoundException {
@@ -34,25 +40,19 @@ public abstract class Generator
 
     protected <S extends AbstractObject> List<S> generateObjectListFromFactory(JsonArray jsonObjects, Map<String, Factory<? extends S>> map) {
 	List<S> objects = new ArrayList<>();
-	jsonObjects.forEach((object) -> {
-	    objects.add(map.get(object.getAsString()).generate());
-	});
+	jsonObjects.forEach((object) -> objects.add(map.get(object.getAsString()).generate()));
 	return objects;
     }
 
     protected <S extends AbstractObject> List<S> generateObjectListFromName(List<String> names, Map<String, S> map) {
 	List<S> objects = new ArrayList<>();
-	names.forEach((object) -> {
-	    objects.add(map.get(object));
-	});
+	names.forEach((object) -> objects.add(map.get(object)));
 	return objects;
     }
 
     protected List<String> generateStringListFromJson(JsonArray jsonObjects) {
 	List<String> strings = new ArrayList<>();
-	jsonObjects.forEach((objectName) -> {
-	    strings.add(objectName.getAsString());
-	});
+	jsonObjects.forEach((objectName) -> strings.add(objectName.getAsString()));
 	return strings;
     }
 
@@ -61,8 +61,9 @@ public abstract class Generator
 	JsonArray array = null;
 	try {
 	    array = jsonParser.parseArrayFile(url.getPath());
-	} catch (IOException ignored) {
+	} catch (IOException e) {
 	    System.out.println("An IOException ocurred");
+	    fileHandler.publish(new LogRecord(Level.SEVERE, e.toString()));
 	    System.exit(1);
 	}
 	return array;
