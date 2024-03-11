@@ -57,12 +57,6 @@ public class Combat extends AbstractMode
 	System.out.println("Your stats are: ");
 	PlayerStats playerStats = player.getPlayerStats();
 	playerStats.printStats();
-
-	System.out.println();
-
-	parseInput("help");
-
-	System.out.println();
     }
 
 

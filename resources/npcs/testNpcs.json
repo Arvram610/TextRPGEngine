@@ -11,7 +11,7 @@
       "maxEnergy": 10,
       "energyRegen": 1
     },
-    "dialogue": [
+    "dialogue":[
       [
         "say Carl: Hej!",
         "say Carl: Hoppas du mår bra :)",
@@ -22,6 +22,10 @@
       [
         "say Carl: försöker du kränga mig på fler items!?",
         "say Carl: Fy skäms!"
+      ],
+      [
+        "say Carl: ok du vann, grattis!",
+        "win"
       ]
     ],
     "inventory": [

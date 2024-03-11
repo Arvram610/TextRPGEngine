@@ -1,7 +1,5 @@
 package se.liu.arvra591.game.parsers;
 
-import se.liu.arvra591.game.ParseAction;
-
 import java.util.HashMap;
 import java.util.Map;
 
