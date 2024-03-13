@@ -47,16 +47,16 @@ public class GameGenerator extends Generator
 	try {
 	    gamePath = loadJsonObjectFile("game.json").get("game").getAsString();
 	} catch (IOException e) {
-	    System.out.println("Could not find game.json");
 	    fileHandler.publish(new LogRecord(Level.SEVERE, e.toString()));
+	    System.out.println("Could not find game.json");
 	    System.exit(1);
 	}
 	JsonObject game = null;
 	try {
 	    game = loadJsonObjectFile("games/" + gamePath);
 	} catch (IOException e) {
-	    System.out.println("Could not find gamefile: games/" + gamePath);
 	    fileHandler.publish(new LogRecord(Level.SEVERE, e.toString()));
+	    System.out.println("Could not find gamefile: games/" + gamePath);
 	    System.exit(1);
 	}
 
@@ -76,8 +76,8 @@ public class GameGenerator extends Generator
 	    try {
 		itemFactoryGenerator.generateObjects(path);
 	    } catch (IOException e) {
-		System.out.println("Could not find itemfile: items/" + path);
 		fileHandler.publish(new LogRecord(Level.SEVERE, e.toString()));
+		System.out.println("Could not find itemfile: items/" + path);
 		System.exit(1);
 	    }
 	});
@@ -90,8 +90,8 @@ public class GameGenerator extends Generator
 	    try {
 		npcFactoryGenerator.generateObjects(path);
 	    } catch (IOException e) {
-		System.out.println("Could not find npcfile: npcs/" + path);
 		fileHandler.publish(new LogRecord(Level.SEVERE, e.toString()));
+		System.out.println("Could not find npcfile: npcs/" + path);
 		System.exit(1);
 	    }
 	});
@@ -105,8 +105,8 @@ public class GameGenerator extends Generator
 	    try {
 		locationGenerator.generateObjects(path);
 	    } catch (IOException e) {
-		System.out.println("Could not find locationfile: location/" + path);
 		fileHandler.publish(new LogRecord(Level.SEVERE, e.toString()));
+		System.out.println("Could not find locationfile: location/" + path);
 		System.exit(1);
 	    }
 	});
@@ -119,8 +119,8 @@ public class GameGenerator extends Generator
 	try {
 	    playerGenerator.generateObjects(path);
 	} catch (IOException e) {
-	    System.out.println("Could not find playerfile: player/" + path);
 	    fileHandler.publish(new LogRecord(Level.SEVERE, e.toString()));
+	    System.out.println("Could not find playerfile: player/" + path);
 	    System.exit(1);
 	}
 	player = playerGenerator.getObjects().get("player");
