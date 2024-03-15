@@ -10,7 +10,6 @@ import se.liu.arvra591.game.parsers.InputParser;
  */
 public class Adventure extends AbstractMode
 {
-    private AdventureParser parser;
 
     private EngageEventHandler eventHandler;
 
@@ -19,7 +18,7 @@ public class Adventure extends AbstractMode
      */
     public Adventure(Player player, EngageEventHandler eventHandler) {
 	super(player);
-	this.parser = new AdventureParser();
+	setParser(new AdventureParser());
 	this.eventHandler = eventHandler;
     }
 
@@ -65,13 +64,6 @@ public class Adventure extends AbstractMode
     }
 
     /**
-     * @param input The input from the player
-     */
-    public void parseInput(String input) {
-	parser.parseInput(input);
-    }
-
-    /**
      * @param item The item to drop
      */
     public void dropItem(String item) {
@@ -92,10 +84,6 @@ public class Adventure extends AbstractMode
 	    System.out.println("No creature with the name " + input);
 	}
     }
-
-    /**
-     * @param input The item to equip
-     */
 
 
     /**

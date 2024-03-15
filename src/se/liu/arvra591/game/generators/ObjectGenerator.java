@@ -21,11 +21,11 @@ public abstract class ObjectGenerator<T> extends Generator
 
     protected Map<String, T> objects;
 
-    protected CommandHandler commandHandler;
+
 
     protected ObjectGenerator(CommandHandler commandHandler) {
+	super(commandHandler);
 	objects = new HashMap<>();
-	this.commandHandler = commandHandler;
     }
 
     /**
@@ -35,7 +35,10 @@ public abstract class ObjectGenerator<T> extends Generator
      *
      * @throws FileNotFoundException
      */
-    public abstract void generateObjects(String fileName) throws FileNotFoundException;
+    public void generateObjects(final String filepath) throws FileNotFoundException {
+	JsonArray jsonObjects = loadJsonArrayFile(filepath);
+	generateObjects(jsonObjects);
+    }
 
     protected abstract void generateObject(JsonObject object);
 

@@ -22,7 +22,6 @@ import java.util.logging.Logger;
  */
 public class GameGenerator extends Generator
 {
-    private CommandHandler commandHandler;
     private Map<String, Factory<? extends Item>> items;
     private Map<String, Factory<? extends Npc>> npcs;
     private Map<String, Location> locations;
@@ -32,11 +31,11 @@ public class GameGenerator extends Generator
      * The constructor for the gamegenerator
      */
     public GameGenerator(CommandHandler commandHandler) {
+	super(commandHandler);
 	items = new HashMap<>();
 	npcs = new HashMap<>();
 	locations = new HashMap<>();
 	player = null;
-	this.commandHandler = commandHandler;
     }
 
     /**

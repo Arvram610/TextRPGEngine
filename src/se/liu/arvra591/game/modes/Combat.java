@@ -16,7 +16,6 @@ public class Combat extends AbstractMode
 {
     private static final int ENERGY_COST = 5;
     private static final int REST_ENERGY_REGENERATION = 15;
-    private CombatParser parser;
     private EngageEventHandler eventHandler;
     private CombatEventHandler combatEventHandler;
     private Npc currentTarget;
@@ -26,7 +25,7 @@ public class Combat extends AbstractMode
      */
     public Combat(Player player, Npc target, EngageEventHandler eventHandler, CombatEventHandler combatEventHandler) {
 	super(player);
-	this.parser = new CombatParser();
+	setParser(new CombatParser());
 	this.currentTarget = target;
 	this.eventHandler = eventHandler;
 	this.combatEventHandler = combatEventHandler;
@@ -57,14 +56,6 @@ public class Combat extends AbstractMode
 	System.out.println("Your stats are: ");
 	PlayerStats playerStats = player.getPlayerStats();
 	playerStats.printStats();
-    }
-
-
-    /**
-     * @param input The input from the player
-     */
-    public void parseInput(String input) {
-	parser.parseInput(input);
     }
 
     /**

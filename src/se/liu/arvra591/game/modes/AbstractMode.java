@@ -4,6 +4,7 @@ import se.liu.arvra591.game.objects.containers.CreatureInventory;
 import se.liu.arvra591.game.objects.creatures.Player;
 import se.liu.arvra591.game.objects.items.Equipable;
 import se.liu.arvra591.game.objects.items.Item;
+import se.liu.arvra591.game.parsers.InputParser;
 
 /**
  * All modes in the game inherit from this class It contains the player and the methods that are common for all modes
@@ -12,8 +13,14 @@ public abstract class AbstractMode implements Mode
 {
     protected Player player;
 
+    private InputParser parser = null;
+
     protected AbstractMode(Player player) {
 	this.player = player;
+    }
+
+    protected void setParser(InputParser parser){
+	this.parser = parser;
     }
 
     /**
@@ -61,5 +68,10 @@ public abstract class AbstractMode implements Mode
 	((Equipable) item).getStats().printStats();
     }
 
-
+    /**
+     * @param input The input from the player
+     */
+    public void parseInput(String input) {
+	parser.parseInput(input);
+    }
 }

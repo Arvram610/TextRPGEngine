@@ -3,6 +3,7 @@ package se.liu.arvra591.game.generators;
 import com.google.gson.JsonArray;
 import com.google.gson.JsonObject;
 import se.liu.arvra591.game.factories.Factory;
+import se.liu.arvra591.game.listeners.CommandHandler;
 import se.liu.arvra591.game.objects.AbstractObject;
 import se.liu.arvra591.game.parsers.JsonParser;
 
@@ -24,9 +25,12 @@ public abstract class Generator
 {
     protected JsonParser jsonParser; //= new JsonParser();
 
+    protected CommandHandler commandHandler;
 
-    protected Generator() {
+
+    protected Generator(CommandHandler commandHandler) {
 	jsonParser = new JsonParser();
+	this.commandHandler = commandHandler;
     }
 
     private static URL getUrl(final String filepath) throws FileNotFoundException {

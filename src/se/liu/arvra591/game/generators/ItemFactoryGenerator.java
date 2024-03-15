@@ -31,8 +31,7 @@ public class ItemFactoryGenerator extends ObjectGenerator<Factory<? extends Item
      * @throws FileNotFoundException
      */
     @Override public void generateObjects(final String fileName) throws FileNotFoundException {
-	JsonArray jsonObjects = loadJsonArrayFile("items/" + fileName);
-	generateObjects(jsonObjects);
+	super.generateObjects("items/" + fileName);
     }
 
     @Override protected void generateObject(final JsonObject object) {

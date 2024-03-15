@@ -71,7 +71,6 @@ public class LocationGenerator extends ObjectGenerator<Location>
      * @throws FileNotFoundException
      */
     @Override public void generateObjects(String fileName) throws FileNotFoundException {
-	JsonArray jsonObjects = loadJsonArrayFile("locations/" + fileName);
-	generateObjects(jsonObjects);
+	super.generateObjects("locations/" + fileName);
     }
 }

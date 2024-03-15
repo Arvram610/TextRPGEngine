@@ -40,8 +40,7 @@ public class NpcFactoryGenerator extends ObjectGenerator<Factory<? extends Npc>>
      * @throws FileNotFoundException
      */
     @Override public void generateObjects(final String fileName) throws FileNotFoundException {
-	JsonArray jsonObjects = loadJsonArrayFile("npcs/" + fileName);
-	generateObjects(jsonObjects);
+	super.generateObjects("npcs/" + fileName);
     }
 
     @Override protected void generateObject(final JsonObject object) {

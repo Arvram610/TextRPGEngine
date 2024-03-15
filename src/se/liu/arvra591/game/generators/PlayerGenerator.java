@@ -44,8 +44,7 @@ public class PlayerGenerator extends ObjectGenerator<Player>
      * @throws FileNotFoundException
      */
     @Override public void generateObjects(final String fileName) throws FileNotFoundException {
-	JsonArray jsonObjects = loadJsonArrayFile("player/" + fileName);
-	generateObjects(jsonObjects);
+	super.generateObjects("player/" + fileName);
     }
 
     @Override protected void generateObject(final JsonObject object) {
