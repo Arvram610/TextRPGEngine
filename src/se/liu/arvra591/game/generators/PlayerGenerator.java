@@ -29,10 +29,9 @@ public class PlayerGenerator extends ObjectGenerator<Player>
      * @param items     A map containing all the itemfactories in the game
      * @param locations A map containing all the locations in the game
      */
-    public PlayerGenerator(CommandHandler commandHandler, Map<String, Factory<? extends Item>> items, Map<String, Location> locations,
-			   FileHandler fileHandler)
+    public PlayerGenerator(CommandHandler commandHandler, Map<String, Factory<? extends Item>> items, Map<String, Location> locations)
     {
-	super(commandHandler, fileHandler);
+	super(commandHandler);
 	this.items = items;
 	this.locations = locations;
     }

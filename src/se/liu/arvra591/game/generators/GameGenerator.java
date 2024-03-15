@@ -15,6 +15,7 @@ import java.util.Map;
 import java.util.logging.FileHandler;
 import java.util.logging.Level;
 import java.util.logging.LogRecord;
+import java.util.logging.Logger;
 
 /**
  * A class that generates all the objects needed for the game
@@ -30,8 +31,7 @@ public class GameGenerator extends Generator
     /**
      * The constructor for the gamegenerator
      */
-    public GameGenerator(CommandHandler commandHandler, FileHandler fileHandler) {
-	super(fileHandler);
+    public GameGenerator(CommandHandler commandHandler) {
 	items = new HashMap<>();
 	npcs = new HashMap<>();
 	locations = new HashMap<>();
@@ -47,7 +47,7 @@ public class GameGenerator extends Generator
 	try {
 	    gamePath = loadJsonObjectFile("game.json").get("game").getAsString();
 	} catch (IOException e) {
-	    fileHandler.publish(new LogRecord(Level.SEVERE, e.toString()));
+	    Logger.getLogger("MainLogger").log(Level.SEVERE, e.toString());
 	    System.out.println("Could not find game.json");
 	    System.exit(1);
 	}
@@ -55,7 +55,7 @@ public class GameGenerator extends Generator
 	try {
 	    game = loadJsonObjectFile("games/" + gamePath);
 	} catch (IOException e) {
-	    fileHandler.publish(new LogRecord(Level.SEVERE, e.toString()));
+	    Logger.getLogger("MainLogger").log(Level.SEVERE, e.toString());
 	    System.out.println("Could not find gamefile: games/" + gamePath);
 	    System.exit(1);
 	}
@@ -71,12 +71,12 @@ public class GameGenerator extends Generator
     }
 
     private void generateItems(List<String> paths) {
-	ItemFactoryGenerator itemFactoryGenerator = new ItemFactoryGenerator(commandHandler, fileHandler);
+	ItemFactoryGenerator itemFactoryGenerator = new ItemFactoryGenerator(commandHandler);
 	paths.forEach(path -> {
 	    try {
 		itemFactoryGenerator.generateObjects(path);
 	    } catch (IOException e) {
-		fileHandler.publish(new LogRecord(Level.SEVERE, e.toString()));
+		Logger.getLogger("MainLogger").log(Level.SEVERE, e.toString());
 		System.out.println("Could not find itemfile: items/" + path);
 		System.exit(1);
 	    }
@@ -85,12 +85,12 @@ public class GameGenerator extends Generator
     }
 
     private void generateNpcs(List<String> paths) {
-	NpcFactoryGenerator npcFactoryGenerator = new NpcFactoryGenerator(commandHandler, items, fileHandler);
+	NpcFactoryGenerator npcFactoryGenerator = new NpcFactoryGenerator(commandHandler, items);
 	paths.forEach(path -> {
 	    try {
 		npcFactoryGenerator.generateObjects(path);
 	    } catch (IOException e) {
-		fileHandler.publish(new LogRecord(Level.SEVERE, e.toString()));
+		Logger.getLogger("MainLogger").log(Level.SEVERE, e.toString());
 		System.out.println("Could not find npcfile: npcs/" + path);
 		System.exit(1);
 	    }
@@ -100,12 +100,12 @@ public class GameGenerator extends Generator
 
 
     private void generateLocations(List<String> paths) {
-	LocationGenerator locationGenerator = new LocationGenerator(commandHandler, items, npcs, fileHandler);
+	LocationGenerator locationGenerator = new LocationGenerator(commandHandler, items, npcs);
 	paths.forEach(path -> {
 	    try {
 		locationGenerator.generateObjects(path);
 	    } catch (IOException e) {
-		fileHandler.publish(new LogRecord(Level.SEVERE, e.toString()));
+		Logger.getLogger("MainLogger").log(Level.SEVERE, e.toString());
 		System.out.println("Could not find locationfile: location/" + path);
 		System.exit(1);
 	    }
@@ -115,11 +115,11 @@ public class GameGenerator extends Generator
     }
 
     private void generatePlayer(String path) {
-	PlayerGenerator playerGenerator = new PlayerGenerator(commandHandler, items, locations, fileHandler);
+	PlayerGenerator playerGenerator = new PlayerGenerator(commandHandler, items, locations);
 	try {
 	    playerGenerator.generateObjects(path);
 	} catch (IOException e) {
-	    fileHandler.publish(new LogRecord(Level.SEVERE, e.toString()));
+	    Logger.getLogger("MainLogger").log(Level.SEVERE, e.toString());
 	    System.out.println("Could not find playerfile: player/" + path);
 	    System.exit(1);
 	}

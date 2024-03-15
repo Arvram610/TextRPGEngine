@@ -27,8 +27,8 @@ public class NpcFactoryGenerator extends ObjectGenerator<Factory<? extends Npc>>
      *
      * @param items A map containing all the itemfactories in the game
      */
-    public NpcFactoryGenerator(CommandHandler commandHandler, final Map<String, Factory<? extends Item>> items, FileHandler fileHandler) {
-	super(commandHandler, fileHandler);
+    public NpcFactoryGenerator(CommandHandler commandHandler, final Map<String, Factory<? extends Item>> items) {
+	super(commandHandler);
 	this.items = items;
     }
 

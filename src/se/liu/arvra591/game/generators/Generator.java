@@ -15,6 +15,7 @@ import java.util.Map;
 import java.util.logging.FileHandler;
 import java.util.logging.Level;
 import java.util.logging.LogRecord;
+import java.util.logging.Logger;
 
 /**
  * An abstract class used to generate objects from a json file
@@ -23,11 +24,9 @@ public abstract class Generator
 {
     protected JsonParser jsonParser; //= new JsonParser();
 
-    protected FileHandler fileHandler;
 
-    protected Generator(FileHandler fileHandler) {
+    protected Generator() {
 	jsonParser = new JsonParser();
-	this.fileHandler = fileHandler;
     }
 
     private static URL getUrl(final String filepath) throws FileNotFoundException {
@@ -64,8 +63,8 @@ public abstract class Generator
 	try {
 	    array = jsonParser.parseArrayFile(url.getPath());
 	} catch (IOException e) {
+	    Logger.getLogger("MainLogger").log(Level.SEVERE, e.toString());
 	    System.out.println("An IOException ocurred");
-	    fileHandler.publish(new LogRecord(Level.SEVERE, e.toString()));
 	    System.exit(1);
 	}
 	return array;

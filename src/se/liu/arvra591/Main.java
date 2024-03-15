@@ -13,6 +13,11 @@ import java.io.IOException;
 import java.util.Map;
 import java.util.Scanner;
 import java.util.logging.FileHandler;
+import java.util.logging.Formatter;
+import java.util.logging.Level;
+import java.util.logging.LogRecord;
+import java.util.logging.Logger;
+import java.util.logging.SimpleFormatter;
 
 /**
  * The main class for the game This is the file you run to start the game It handles logic on what mode the player is in (ex movement or
@@ -34,8 +39,12 @@ public class Main
 	    System.out.println("Could not find log file");
 	    System.exit(1);
 	}
+	Logger logger = Logger.getLogger("MainLogger");
+	logger.setLevel(Level.FINEST);
+	logger.addHandler(fileHandler);
+
 	CommandHandler commandHandler = new CommandHandler();
-	GameGenerator gameGenerator = new GameGenerator(commandHandler, fileHandler);
+	GameGenerator gameGenerator = new GameGenerator(commandHandler);
 	gameGenerator.generateGame();
 	Player player = gameGenerator.getPlayer();
 	Map<String, Location> locations = gameGenerator.getLocations();
@@ -45,6 +54,8 @@ public class Main
 	game = new Game(player, locations, items, npcs);
 
 	commandHandler.setListener(game.getParser());
+
+	logger.log(Level.FINEST, "Game initialized");
     }
 
     /**
@@ -63,6 +74,8 @@ public class Main
     public void startGame() {
 	game.start();
 
+
+	Logger.getLogger("MainLogger").log(Level.FINEST, "Started game");
 
 	Scanner scanner = new Scanner(System.in);
 	while (game.gameOn()) {

@@ -23,8 +23,7 @@ public abstract class ObjectGenerator<T> extends Generator
 
     protected CommandHandler commandHandler;
 
-    protected ObjectGenerator(CommandHandler commandHandler, FileHandler fileHandler) {
-	super(fileHandler);
+    protected ObjectGenerator(CommandHandler commandHandler) {
 	objects = new HashMap<>();
 	this.commandHandler = commandHandler;
     }

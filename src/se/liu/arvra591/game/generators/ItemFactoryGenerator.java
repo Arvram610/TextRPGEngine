@@ -19,8 +19,8 @@ import java.util.logging.FileHandler;
 public class ItemFactoryGenerator extends ObjectGenerator<Factory<? extends Item>>
 {
 
-    protected ItemFactoryGenerator(final CommandHandler commandHandler, FileHandler fileHandler) {
-	super(commandHandler, fileHandler);
+    protected ItemFactoryGenerator(final CommandHandler commandHandler) {
+	super(commandHandler);
     }
 
     /**

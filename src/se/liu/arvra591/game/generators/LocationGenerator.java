@@ -29,9 +29,9 @@ public class LocationGenerator extends ObjectGenerator<Location>
      * @param npcs  A map containing npcfactories used to generate npcsc for locations
      */
     public LocationGenerator(CommandHandler commandHandler, Map<String, Factory<? extends Item>> items,
-			     Map<String, Factory<? extends Npc>> npcs, FileHandler fileHandler)
+			     Map<String, Factory<? extends Npc>> npcs)
     {
-	super(commandHandler, fileHandler);
+	super(commandHandler);
 	this.items = items;
 	this.npcs = npcs;
     }
