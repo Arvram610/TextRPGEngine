@@ -7,6 +7,7 @@ import se.liu.arvra591.game.objects.items.Item;
 import se.liu.arvra591.game.objects.locations.Location;
 
 import java.util.List;
+import java.util.Objects;
 
 /**
  * A class representing a player A player has a location where pointing to where the player currently is A player has an inventory which
@@ -130,7 +131,7 @@ public class Player extends Creature
 	Item item = inventory.removeObject(name);
 	if (item != null) {
 	    currentLocation.addItem(item);
-	    if (equippedItem == item) {
+	    if (Objects.equals(equippedItem, item)) {
 		equippedItem = null;
 	    }
 	    return true;

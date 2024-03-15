@@ -6,6 +6,8 @@ import se.liu.arvra591.game.objects.items.Equipable;
 import se.liu.arvra591.game.objects.items.Item;
 import se.liu.arvra591.game.parsers.InputParser;
 
+import java.util.Objects;
+
 /**
  * All modes in the game inherit from this class It contains the player and the methods that are common for all modes
  */
@@ -58,7 +60,7 @@ public abstract class AbstractMode implements Mode
 	    System.out.println("You can't equip that item");
 	    return;
 	}
-	if (player.getEquippedItem() == item) {
+	if (Objects.equals(player.getEquippedItem(), item)) {
 	    System.out.println("You already have that item equipped");
 	    return;
 	}
