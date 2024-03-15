@@ -11,6 +11,7 @@ import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.net.URL;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 import java.util.Map;
 import java.util.logging.FileHandler;
@@ -69,7 +70,7 @@ public abstract class Generator
 	} catch (IOException e) {
 	    Logger.getLogger("MainLogger").log(Level.SEVERE, e.toString());
 	    System.out.println("An IOException ocurred");
-	    System.out.println(e.getStackTrace());
+	    System.out.println(Arrays.toString(e.getStackTrace()));
 	    System.exit(1);
 	}
 	return array;
@@ -83,7 +84,7 @@ public abstract class Generator
 	} catch (IOException e) {
 	    Logger.getLogger("MainLogger").log(Level.SEVERE, e.toString());
 	    System.out.println("An IOException ocurred");
-	    System.out.println(e.getStackTrace());
+	    System.out.println(Arrays.toString(e.getStackTrace()));
 	    System.exit(1);
 	}
 	return object;
