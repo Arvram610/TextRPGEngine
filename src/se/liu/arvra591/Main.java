@@ -33,14 +33,17 @@ public class Main
      */
     public Main() {
 	FileHandler fileHandler = null;
-	try {
-	    fileHandler = new FileHandler("log");
-	} catch (IOException ignored) {
-	    System.out.println("Could not find log file");
-	    System.exit(1);
-	}
 	Logger logger = Logger.getLogger("MainLogger");
 	logger.setLevel(Level.FINEST);
+	try {
+	    fileHandler = new FileHandler("log");
+	} catch (IOException e) {
+	    logger.log(Level.SEVERE, "Could not open log file\n"+e.toString());
+	    System.out.println("Could not open log file");
+	    System.out.println(e.getStackTrace());
+	    System.exit(1);
+	}
+
 	logger.addHandler(fileHandler);
 
 	CommandHandler commandHandler = new CommandHandler();

@@ -65,6 +65,7 @@ public abstract class Generator
 	} catch (IOException e) {
 	    Logger.getLogger("MainLogger").log(Level.SEVERE, e.toString());
 	    System.out.println("An IOException ocurred");
+	    System.out.println(e.getStackTrace());
 	    System.exit(1);
 	}
 	return array;
@@ -75,8 +76,10 @@ public abstract class Generator
 	JsonObject object = null;
 	try {
 	    object = jsonParser.parseObjectFile(url.getPath());
-	} catch (IOException ignored) {
+	} catch (IOException e) {
+	    Logger.getLogger("MainLogger").log(Level.SEVERE, e.toString());
 	    System.out.println("An IOException ocurred");
+	    System.out.println(e.getStackTrace());
 	    System.exit(1);
 	}
 	return object;
