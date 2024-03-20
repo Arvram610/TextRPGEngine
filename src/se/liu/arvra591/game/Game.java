@@ -112,9 +112,9 @@ public class Game implements EngageListener, CombatListener
     }
 
     /**
-     * @param input will be empty string
+     * @param ignored will be empty string
      */
-    public void disEngage(String input) {
+    public void disEngage(String ignored) {
 	if (gameState == GameState.ADVENTURE) {
 	    System.out.println("You are not in combat");
 	    return;

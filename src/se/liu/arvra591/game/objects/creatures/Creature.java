@@ -36,7 +36,9 @@ public abstract class Creature extends AbstractObject
 	equippedItem = item;
     }
 
-
+    /**
+     * @return Returns the equipped item of the creature
+     */
     public Item getEquippedItem() {
 	return equippedItem;
     }
@@ -150,7 +152,7 @@ public abstract class Creature extends AbstractObject
     /**
      * @param item is the item that the creature picks up
      */
-    public boolean pickUpItem(Item item) {
+    protected boolean pickUpItem(Item item) {
 	return inventory.addObject(item);
     }
 
