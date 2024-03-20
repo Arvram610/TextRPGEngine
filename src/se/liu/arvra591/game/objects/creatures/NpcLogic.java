@@ -30,7 +30,7 @@ public class NpcLogic
     /**
      * The npc attacks the player
      */
-    public void attack() {
+    private void attack() {
 	npc.attack();
     }
 
@@ -38,7 +38,7 @@ public class NpcLogic
      * @param index Random number to choose which item to use
      */
 
-    public void rest() {
+    private void rest() {
 	npc.rest(REST_ENERGY_REGENERATION);
     }
 }

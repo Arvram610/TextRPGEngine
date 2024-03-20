@@ -21,9 +21,10 @@ public abstract class InputParser
     }
 
     /**
-     * @param input The input from the user Prints all available commands
+     * @param ignored will be empty string
+     * Prints all available commands
      */
-    public void printActions(String input) {
+    private void printActions(String ignored) {
 	System.out.println("Available commands:");
 	parseInputs.forEach((key, value) -> System.out.println("  " + key));
     }
