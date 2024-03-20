@@ -14,9 +14,7 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 import java.util.Map;
-import java.util.logging.FileHandler;
 import java.util.logging.Level;
-import java.util.logging.LogRecord;
 import java.util.logging.Logger;
 
 /**
@@ -42,8 +40,7 @@ public abstract class Generator
 	return url;
     }
 
-    protected <S extends AbstractObject> List<S> generateObjectListFromFactory(JsonArray jsonObjects,
-									       Map<String, Factory<? extends S>> map)
+    protected <S extends AbstractObject> List<S> generateObjectListFromFactory(JsonArray jsonObjects, Map<String, Factory<? extends S>> map)
     {
 	List<S> objects = new ArrayList<>();
 	jsonObjects.forEach((object) -> objects.add(map.get(object.getAsString()).generate()));

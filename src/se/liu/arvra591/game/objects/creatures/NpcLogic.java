@@ -20,11 +20,11 @@ public class NpcLogic
 
     public void startOfTurn() {
 	npc.addEnergy(Integer.toString(npc.getStats().getEnergyRegenerationRate()));
-        if (npc.getCurrentEnergy() >= ENERGY_COST) {
-            attack();
-        } else {
-            rest();
-        }
+	if (npc.getCurrentEnergy() >= ENERGY_COST) {
+	    attack();
+	} else {
+	    rest();
+	}
     }
 
     /**

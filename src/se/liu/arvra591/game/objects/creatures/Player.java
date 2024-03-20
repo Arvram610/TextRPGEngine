@@ -66,7 +66,7 @@ public class Player extends Creature
      */
     public boolean inspect(String name) {
 	Item item = inventory.getObject(name);
-	if (item != null){
+	if (item != null) {
 	    item.printObject();
 	    return true;
 	}

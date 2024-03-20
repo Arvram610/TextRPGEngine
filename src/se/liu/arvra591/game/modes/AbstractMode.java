@@ -21,7 +21,7 @@ public abstract class AbstractMode implements Mode
 	this.player = player;
     }
 
-    protected void setParser(InputParser parser){
+    protected void setParser(InputParser parser) {
 	this.parser = parser;
     }
 

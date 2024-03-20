@@ -9,7 +9,6 @@ import se.liu.arvra591.game.objects.creatures.CreatureStats;
 import java.io.FileNotFoundException;
 import java.util.HashMap;
 import java.util.Map;
-import java.util.logging.FileHandler;
 
 /**
  * An abstract class that generates items of type {@link T}
@@ -20,7 +19,6 @@ public abstract class ObjectGenerator<T> extends Generator
 {
 
     protected Map<String, T> objects;
-
 
 
     protected ObjectGenerator(CommandHandler commandHandler) {

@@ -13,11 +13,8 @@ import java.io.IOException;
 import java.util.Map;
 import java.util.Scanner;
 import java.util.logging.FileHandler;
-import java.util.logging.Formatter;
 import java.util.logging.Level;
-import java.util.logging.LogRecord;
 import java.util.logging.Logger;
-import java.util.logging.SimpleFormatter;
 
 /**
  * The main class for the game This is the file you run to start the game It handles logic on what mode the player is in (ex movement or
@@ -38,7 +35,7 @@ public class Main
 	try {
 	    fileHandler = new FileHandler("log");
 	} catch (IOException e) {
-	    logger.log(Level.SEVERE, "Could not open log file\n"+e.toString());
+	    logger.log(Level.SEVERE, "Could not open log file\n" + e);
 	    System.out.println("Could not open log file");
 	    System.out.println(e.getStackTrace());
 	    System.exit(1);

@@ -1,6 +1,5 @@
 package se.liu.arvra591.game.generators;
 
-import com.google.gson.JsonArray;
 import com.google.gson.JsonObject;
 import se.liu.arvra591.game.factories.Factory;
 import se.liu.arvra591.game.listeners.CommandHandler;
@@ -11,7 +10,6 @@ import se.liu.arvra591.game.objects.items.Item;
 
 import java.io.FileNotFoundException;
 import java.util.List;
-import java.util.logging.FileHandler;
 
 /**
  * A class the generates all the itemfactories used in the game from given files
