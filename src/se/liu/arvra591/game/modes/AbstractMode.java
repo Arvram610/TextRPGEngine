@@ -29,8 +29,7 @@ public abstract class AbstractMode implements Mode
     }
 
     /**
-     * @param ignored The input from the player will be empty
-     * Prints the players inventory
+     * @param ignored The input from the player will be empty Prints the players inventory
      */
     protected void printInventory(String ignored) {
 	player.printInventory();

@@ -54,8 +54,7 @@ public class Adventure extends AbstractMode
     }
 
     /**
-     * @param ignored The input from the player will be empty
-     * Prints the current location of the player
+     * @param ignored The input from the player will be empty Prints the current location of the player
      */
     private void printLocation(String ignored) {
 	player.getCurrentLocation().printObject();

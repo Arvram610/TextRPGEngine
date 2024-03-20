@@ -5,6 +5,9 @@ import se.liu.arvra591.game.objects.containers.CreatureInventory;
 import se.liu.arvra591.game.objects.items.Equipable;
 import se.liu.arvra591.game.objects.items.Item;
 
+import java.util.logging.Level;
+import java.util.logging.Logger;
+
 /**
  * A class representing all creatures, all creatures have some basic stats as well as health and level All creatures such as {@link Player}
  * and {@link Npc} inherit from this class
@@ -72,7 +75,7 @@ public abstract class Creature extends AbstractObject
 	    }
 	} catch (NumberFormatException e) {
 	    e.printStackTrace();
-	    System.out.println("wrong formatting, third word must be integer");
+	    Logger.getLogger("MainLogger").log(Level.WARNING, "wrong formatting, third word must be integer");
 	}
     }
 
@@ -90,7 +93,7 @@ public abstract class Creature extends AbstractObject
 	    }
 	} catch (NumberFormatException e) {
 	    e.printStackTrace();
-	    System.out.println("wrong formatting, third word must be integer");
+	    Logger.getLogger("MainLogger").log(Level.WARNING, "wrong formatting, third word must be integer");
 	}
     }
 
@@ -103,7 +106,7 @@ public abstract class Creature extends AbstractObject
 	    stats.increaseAttack(amount);
 	} catch (NumberFormatException e) {
 	    e.printStackTrace();
-	    System.out.println("wrong formatting, third word must be integer");
+	    Logger.getLogger("MainLogger").log(Level.WARNING, "wrong formatting, third word must be integer");
 	}
     }
 
@@ -138,7 +141,7 @@ public abstract class Creature extends AbstractObject
 	    stats.increaseDefense(amount);
 	} catch (NumberFormatException e) {
 	    e.printStackTrace();
-	    System.out.println("wrong formatting, third word must be integer");
+	    Logger.getLogger("MainLogger").log(Level.WARNING, "wrong formatting, third word must be integer");
 	}
     }
 
