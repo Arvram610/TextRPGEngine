@@ -26,16 +26,17 @@ public abstract class Generator
 
     protected CommandHandler commandHandler;
 
+    private Logger logger = Logger.getLogger("MainLogger");
 
     protected Generator(CommandHandler commandHandler) {
 	jsonParser = new JsonParser();
 	this.commandHandler = commandHandler;
     }
 
-    private static URL getUrl(final String filepath) throws FileNotFoundException {
-	URL url = ClassLoader.getSystemResource(filepath);
+    private static URL getUrl(final String filePath) throws FileNotFoundException {
+	URL url = ClassLoader.getSystemResource(filePath);
 	if (url == null) {
-	    throw new FileNotFoundException("File: " + filepath + "was not found");
+	    throw new FileNotFoundException("File: " + filePath + "was not found");
 	}
 	return url;
     }
@@ -59,18 +60,18 @@ public abstract class Generator
 	return strings;
     }
 
-    protected JsonArray loadJsonArrayFile(String filepath) throws FileNotFoundException {
-	URL url = getUrl(filepath);
+    protected JsonArray loadJsonArrayFile(String filePath) throws FileNotFoundException {
+	URL url = getUrl(filePath);
 	JsonArray arr = null;
 	try {
 	    arr = jsonParser.parseArrayFile(url.getPath());
 	} catch (FileNotFoundException e) {
-	    Logger.getLogger("MainLogger").log(Level.SEVERE, e.toString());
+	    logger.log(Level.SEVERE, e.toString());
 	    System.out.println("An FileNotFoundException ocurred");
 	    System.out.println(Arrays.toString(e.getStackTrace()));
 	    System.exit(1);
 	} catch (IOException e) {
-	    Logger.getLogger("MainLogger").log(Level.SEVERE, e.toString());
+	    logger.log(Level.SEVERE, e.toString());
 	    System.out.println("An IOException ocurred");
 	    System.out.println(Arrays.toString(e.getStackTrace()));
 	    System.exit(1);
@@ -78,18 +79,18 @@ public abstract class Generator
 	return arr;
     }
 
-    protected JsonObject loadJsonObjectFile(String filepath) throws FileNotFoundException {
-	URL url = getUrl(filepath);
+    protected JsonObject loadJsonObjectFile(String filePath) throws FileNotFoundException {
+	URL url = getUrl(filePath);
 	JsonObject obj = null;
 	try {
 	    obj = jsonParser.parseObjectFile(url.getPath());
 	} catch (FileNotFoundException e) {
-	    Logger.getLogger("MainLogger").log(Level.SEVERE, e.toString());
+	    logger.log(Level.SEVERE, e.toString());
 	    System.out.println("An FileNotFoundException ocurred");
 	    System.out.println(Arrays.toString(e.getStackTrace()));
 	    System.exit(1);
 	} catch (IOException e) {
-	    Logger.getLogger("MainLogger").log(Level.SEVERE, e.toString());
+	    logger.log(Level.SEVERE, e.toString());
 	    System.out.println("An IOException ocurred");
 	    System.out.println(Arrays.toString(e.getStackTrace()));
 	    System.exit(1);
