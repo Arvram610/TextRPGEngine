@@ -78,7 +78,7 @@ public class Main
 	Logger.getLogger("MainLogger").log(Level.FINEST, "Started game");
 
 	Scanner scanner = new Scanner(System.in);
-	while (game.gameOn()) {
+	while (game.isGameOn()) {
 	    System.out.print(": ");
 	    game.processInput(scanner.nextLine());
 	}

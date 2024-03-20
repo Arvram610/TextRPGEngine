@@ -281,7 +281,7 @@ public class Game implements EngageListener, CombatListener
     /**
      * @return Returns if the game is on
      */
-    public boolean gameOn() {
+    public boolean isGameOn() {
 	switch (gameState) {
 	    case WIN:
 	    case GAME_OVER:
