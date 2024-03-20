@@ -5,5 +5,8 @@ package se.liu.arvra591.game.parsers;
  */
 public interface ParseAction
 {
+    /**
+     * @param input The input to perform the action on, example move (location) where location is the input
+     */
     public void performAction(String input);
 }

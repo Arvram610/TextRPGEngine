@@ -15,6 +15,7 @@ public class Equipable extends Item //Kodgranskning does not reqognize the word 
      * @param name        What the item is called
      * @param description What the item does
      * @param weight      How much the item weighs
+     * @param stats       The stats of the item
      */
     public Equipable(final String name, final String description, final int weight, CreatureStats stats) {
 
@@ -29,6 +30,9 @@ public class Equipable extends Item //Kodgranskning does not reqognize the word 
 	return stats;
     }
 
+    /**
+     * Prints the object
+     */
     @Override public void printObject() {
 	super.printObject();
 	stats.printStats();

@@ -35,11 +35,6 @@ public abstract class InputParser
     public void parseInput(String input) {
 	String[] inputs = input.split(" ");
 
-	/*parseInputs.forEach((key, value) -> {
-	    if (inputs[0].toLowerCase().equals(key))
-		value.performAction(removeActionFromInput(input, key));
-	});*/
-
 	ParseAction action = parseInputs.get(inputs[0].toLowerCase());
 	if (action != null) {
 	    action.performAction(removeActionFromInput(input, inputs[0]));
