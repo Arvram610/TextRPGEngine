@@ -1,0 +1,16 @@
+[
+  {
+    "name": "BossRoom",
+    "description": "Du ser en boss",
+    "npcs": ["Boss"],
+    "items": [],
+    "exits": ["Cave"],
+    "firstEnter": [
+      "say Du börjar slåss mot bossen",
+      "engage Boss"
+    ],
+    "normalEnter": [
+      "say Du är i bossrummet"
+    ]
+  }
+]

@@ -1,0 +1,25 @@
+[
+  {
+    "name": "Start Town",
+    "description": "Du står i en liten by mitt i en frodig skog. Solens strålar sipprar genom trädtaken och fåglarna kvittrar glatt.",
+    "npcs": [
+      "Eldric",
+      "Elena",
+      "Carl",
+      "Rufus",
+      "Milo"
+    ],
+    "items": [],
+    "exits": [
+      "Forest"
+    ],
+    "firstEnter": [
+      "say Välkommen till byn! Här i vår lilla hörna av skogen finner du fred och vänlighet.",
+      "say Du ser två NPCs som verkar vara invånare i byn. De ser vänliga ut och ler mot dig.",
+      "say Rufus, byns trogna hund, kommer skällande fram till dig och nosar nyfiket."
+    ],
+    "normalEnter": [
+      "say Du är återigen i den vänliga byn."
+    ]
+  }
+]

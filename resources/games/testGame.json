@@ -7,6 +7,6 @@
     "testItems.json"
   ],
   "locations": [
-    "testRooms.json"
+    "startTown.json", "forest.json", "caveEntrance.json", "cave.json", "bossRoom.json"
   ]
 }
