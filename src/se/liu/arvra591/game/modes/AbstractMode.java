@@ -56,18 +56,18 @@ public abstract class AbstractMode implements Mode
 	    System.out.println("You don't have that item");
 	    return;
 	}
-	if (!(item instanceof Equipable)) {
-	    System.out.println("You can't equip that item");
-	    return;
-	}
 	if (Objects.equals(player.getEquippedItem(), item)) {
 	    System.out.println("You already have that item equipped");
 	    return;
 	}
-	player.equipItem((Equipable) item);
-	System.out.println("You equiped " + item.getName());
-	System.out.print("\nIt gave you: \n");
-	((Equipable) item).getStats().printStats();
+	if (item instanceof Equipable equipable) {
+	    player.equipItem(equipable);
+	    System.out.println("You equiped " + item.getName());
+	    System.out.print("\nIt gave you: \n");
+	    equipable.getStats().printStats();
+	    return;
+	}
+	System.out.println("You can't equip that item");
     }
 
     /**
