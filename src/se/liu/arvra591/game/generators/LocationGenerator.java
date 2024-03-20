@@ -9,6 +9,7 @@ import se.liu.arvra591.game.objects.locations.Location;
 
 import java.io.File;
 import java.io.FileNotFoundException;
+import java.io.IOException;
 import java.util.List;
 import java.util.Map;
 
@@ -69,7 +70,7 @@ public class LocationGenerator extends ObjectGenerator<Location>
      *
      * @throws FileNotFoundException
      */
-    @Override public void generateObjects(String fileName) throws FileNotFoundException {
-	super.generateObjects("locations" + File.separator + fileName);
+    @Override public void generateObjects(String fileName) throws IOException, FileNotFoundException {
+	super.generateObjects("locations/" + fileName);
     }
 }

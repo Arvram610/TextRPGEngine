@@ -59,41 +59,15 @@ public abstract class Generator
 	return strings;
     }
 
-    protected JsonArray loadJsonArrayFile(String filePath) throws FileNotFoundException {
+    protected JsonArray loadJsonArrayFile(String filePath) throws IOException, FileNotFoundException {
 	URL url = getUrl(filePath);
-	JsonArray arr = null;
-	try {
-	    arr = jsonParser.parseArrayFile(url.getPath());
-	} catch (FileNotFoundException e) {
-	    logger.log(Level.SEVERE, e.toString());
-	    System.out.println("An FileNotFoundException ocurred");
-	    e.printStackTrace();
-	    System.exit(1);
-	} catch (IOException e) {
-	    logger.log(Level.SEVERE, e.toString());
-	    System.out.println("An IOException ocurred");
-	    e.printStackTrace();
-	    System.exit(1);
-	}
+	JsonArray arr = jsonParser.parseArrayFile(url.getPath());
 	return arr;
     }
 
-    protected JsonObject loadJsonObjectFile(String filePath) throws FileNotFoundException {
+    protected JsonObject loadJsonObjectFile(String filePath) throws IOException, FileNotFoundException {
 	URL url = getUrl(filePath);
-	JsonObject obj = null;
-	try {
-	    obj = jsonParser.parseObjectFile(url.getPath());
-	} catch (FileNotFoundException e) {
-	    logger.log(Level.SEVERE, e.toString());
-	    System.out.println("An FileNotFoundException ocurred");
-	    e.printStackTrace();
-	    System.exit(1);
-	} catch (IOException e) {
-	    logger.log(Level.SEVERE, e.toString());
-	    System.out.println("An IOException ocurred");
-	    e.printStackTrace();
-	    System.exit(1);
-	}
+	JsonObject obj = jsonParser.parseObjectFile(url.getPath());
 	return obj;
     }
 }

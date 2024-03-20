@@ -10,6 +10,7 @@ import se.liu.arvra591.game.objects.items.Item;
 
 import java.io.File;
 import java.io.FileNotFoundException;
+import java.io.IOException;
 import java.util.List;
 
 /**
@@ -29,8 +30,8 @@ public class ItemFactoryGenerator extends ObjectGenerator<Factory<? extends Item
      *
      * @throws FileNotFoundException
      */
-    @Override public void generateObjects(final String fileName) throws FileNotFoundException {
-	super.generateObjects("items" + File.separator + fileName);
+    @Override public void generateObjects(final String fileName) throws IOException, FileNotFoundException {
+	super.generateObjects("items/" + fileName);
     }
 
     @Override protected void generateObject(final JsonObject object) {

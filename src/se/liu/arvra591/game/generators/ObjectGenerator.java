@@ -7,6 +7,7 @@ import se.liu.arvra591.game.listeners.CommandHandler;
 import se.liu.arvra591.game.objects.creatures.CreatureStats;
 
 import java.io.FileNotFoundException;
+import java.io.IOException;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -33,7 +34,7 @@ public abstract class ObjectGenerator<T> extends Generator
      *
      * @throws FileNotFoundException
      */
-    public void generateObjects(final String filePath) throws FileNotFoundException {
+    public void generateObjects(final String filePath) throws IOException, FileNotFoundException {
 	JsonArray jsonObjects = loadJsonArrayFile(filePath);
 	generateObjects(jsonObjects);
     }

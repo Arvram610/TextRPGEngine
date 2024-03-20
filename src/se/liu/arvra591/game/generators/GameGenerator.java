@@ -53,10 +53,10 @@ public class GameGenerator extends Generator
 	}
 	JsonObject game = null;
 	try {
-	    game = loadJsonObjectFile("games" + File.separator + gamePath);
+	    game = loadJsonObjectFile("games/" + gamePath);
 	} catch (IOException e) {
 	    logger.log(Level.SEVERE, e.toString());
-	    System.out.println("Could not open gamefile: games" + File.separator + gamePath);
+	    System.out.println("Could not open gamefile: games/" + gamePath);
 	    e.printStackTrace();
 	    System.exit(1);
 	}
@@ -78,7 +78,7 @@ public class GameGenerator extends Generator
 		itemFactoryGenerator.generateObjects(path);
 	    } catch (IOException e) {
 		logger.log(Level.SEVERE, e.toString());
-		System.out.println("Could not open itemfile: items" + File.separator + path);
+		System.out.println("Could not open itemfile: items/" + path);
 		e.printStackTrace();
 		System.exit(1);
 	    }

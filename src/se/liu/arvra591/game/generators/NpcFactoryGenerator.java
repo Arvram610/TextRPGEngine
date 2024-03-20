@@ -11,6 +11,7 @@ import se.liu.arvra591.game.objects.items.Item;
 
 import java.io.File;
 import java.io.FileNotFoundException;
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
@@ -39,8 +40,8 @@ public class NpcFactoryGenerator extends ObjectGenerator<Factory<? extends Npc>>
      *
      * @throws FileNotFoundException
      */
-    @Override public void generateObjects(final String fileName) throws FileNotFoundException {
-	super.generateObjects("npcs" + File.separator + fileName);
+    @Override public void generateObjects(final String fileName) throws IOException, FileNotFoundException {
+	super.generateObjects("npcs/" + fileName);
     }
 
     @Override protected void generateObject(final JsonObject object) {
