@@ -16,7 +16,6 @@ public class Combat extends AbstractMode
 {
     private static final int ENERGY_COST = 5;
     private static final int REST_ENERGY_REGENERATION = 15;
-    private EngageEventHandler eventHandler;
     private CombatEventHandler combatEventHandler;
     private Npc currentTarget;
 
@@ -24,10 +23,9 @@ public class Combat extends AbstractMode
      * @param player The player that is playing the game
      */
     public Combat(Player player, Npc target, EngageEventHandler eventHandler, CombatEventHandler combatEventHandler) {
-	super(player);
+	super(player, eventHandler);
 	setParser(new CombatParser());
 	this.currentTarget = target;
-	this.eventHandler = eventHandler;
 	this.combatEventHandler = combatEventHandler;
     }
 

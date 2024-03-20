@@ -1,5 +1,6 @@
 package se.liu.arvra591.game.modes;
 
+import se.liu.arvra591.game.listeners.EngageEventHandler;
 import se.liu.arvra591.game.objects.containers.CreatureInventory;
 import se.liu.arvra591.game.objects.creatures.Player;
 import se.liu.arvra591.game.objects.items.Equipable;
@@ -14,11 +15,13 @@ import java.util.Objects;
 public abstract class AbstractMode implements Mode
 {
     protected Player player;
+    protected EngageEventHandler eventHandler;
 
     private InputParser parser = null;
 
-    protected AbstractMode(Player player) {
+    protected AbstractMode(Player player, EngageEventHandler eventHandler) {
 	this.player = player;
+	this.eventHandler = eventHandler;
     }
 
     protected void setParser(InputParser parser) {
