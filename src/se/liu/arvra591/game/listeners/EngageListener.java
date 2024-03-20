@@ -7,5 +7,5 @@ public interface EngageListener
 {
     void engage(String input);
 
-    void disEngage(String input);
+    void disengage(String input);
 }

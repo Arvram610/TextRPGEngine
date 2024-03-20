@@ -37,7 +37,7 @@ public class Main
 	} catch (IOException e) {
 	    logger.log(Level.SEVERE, "Could not open log file\n" + e);
 	    System.out.println("Could not open log file");
-	    System.out.println(e.getStackTrace());
+	    e.printStackTrace();
 	    System.exit(1);
 	}
 
@@ -78,7 +78,7 @@ public class Main
 	Logger.getLogger("MainLogger").log(Level.FINEST, "Started game");
 
 	Scanner scanner = new Scanner(System.in);
-	while (game.gameOn()) {
+	while (game.isGameOn()) {
 	    System.out.print(": ");
 	    game.processInput(scanner.nextLine());
 	}

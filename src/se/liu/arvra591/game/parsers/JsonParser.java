@@ -5,6 +5,7 @@ import com.google.gson.JsonArray;
 import com.google.gson.JsonObject;
 
 import java.io.BufferedReader;
+import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.IOException;
 
@@ -28,7 +29,7 @@ public class JsonParser
      * @return Returns a jsonarray containing the data of the file specified in the path
      * @throws IOException
      */
-    public JsonArray parseArrayFile(String path) throws IOException {
+    public JsonArray parseArrayFile(String path) throws IOException, FileNotFoundException {
 	StringBuilder json = new StringBuilder();
 
 	try (BufferedReader br = new BufferedReader(new FileReader(path))) {
@@ -43,7 +44,7 @@ public class JsonParser
      * @return Returns a jsonobject containing the data of the file specified in the path
      * @throws IOException
      */
-    public JsonObject parseObjectFile(final String path) throws IOException {
+    public JsonObject parseObjectFile(final String path) throws IOException, FileNotFoundException {
 	StringBuilder json = new StringBuilder();
 
 	try (BufferedReader br = new BufferedReader(new FileReader(path))) {

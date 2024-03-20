@@ -9,6 +9,7 @@ import se.liu.arvra591.game.objects.creatures.CreatureStats;
 import se.liu.arvra591.game.objects.creatures.Npc;
 import se.liu.arvra591.game.objects.items.Item;
 
+import java.io.File;
 import java.io.FileNotFoundException;
 import java.util.ArrayList;
 import java.util.List;
@@ -39,7 +40,7 @@ public class NpcFactoryGenerator extends ObjectGenerator<Factory<? extends Npc>>
      * @throws FileNotFoundException
      */
     @Override public void generateObjects(final String fileName) throws FileNotFoundException {
-	super.generateObjects("npcs/" + fileName);
+	super.generateObjects("npcs" + File.separator + fileName);
     }
 
     @Override protected void generateObject(final JsonObject object) {
@@ -54,7 +55,9 @@ public class NpcFactoryGenerator extends ObjectGenerator<Factory<? extends Npc>>
 	boolean canDisengage = object.get("canDisengage").getAsBoolean();
 	List<String> onDeathCommands = generateStringListFromJson(object.getAsJsonArray("onDeathCommands"));
 
-	objects.put(name, new Factory<>(new Npc(name, description, health, energy, stats, dialogues, inventory, canDisengage, onDeathCommands), commandHandler));
+	objects.put(name,
+		    new Factory<>(new Npc(name, description, health, energy, stats, dialogues, inventory, canDisengage, onDeathCommands),
+				  commandHandler));
     }
 
     private CreatureInventory generateInventory(final JsonArray jsonObjects) {

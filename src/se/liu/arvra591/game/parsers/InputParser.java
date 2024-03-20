@@ -21,8 +21,7 @@ public abstract class InputParser
     }
 
     /**
-     * @param ignored will be empty string
-     * Prints all available commands
+     * @param ignored will be empty string Prints all available commands
      */
     private void printActions(String ignored) {
 	System.out.println("Available commands:");

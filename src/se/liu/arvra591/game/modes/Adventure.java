@@ -11,15 +11,12 @@ import se.liu.arvra591.game.parsers.InputParser;
 public class Adventure extends AbstractMode
 {
 
-    private EngageEventHandler eventHandler;
-
     /**
      * @param player The player that is playing the game
      */
     public Adventure(Player player, EngageEventHandler eventHandler) {
-	super(player);
+	super(player, eventHandler);
 	setParser(new AdventureParser());
-	this.eventHandler = eventHandler;
     }
 
     /**
@@ -57,8 +54,7 @@ public class Adventure extends AbstractMode
     }
 
     /**
-     * @param ignored The input from the player will be empty
-     * Prints the current location of the player
+     * @param ignored The input from the player will be empty Prints the current location of the player
      */
     private void printLocation(String ignored) {
 	player.getCurrentLocation().printObject();

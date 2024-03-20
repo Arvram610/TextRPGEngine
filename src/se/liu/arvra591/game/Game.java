@@ -59,24 +59,11 @@ public class Game implements EngageListener, CombatListener
 	combatEventHandler.setListener(this);
     }
 
-    /**
-     * @param input The input from the object
-     */
-    public void parseInput(String input) {
-	parser.parseInput(input);
-    }
-
 
     public InputParser getParser() {
 	return parser;
     }
 
-    /**
-     * @param input The input from the object gives the user stats, for example "give health 10"
-     */
-    public void giveStats(String input) { //example "give health (user) 10"
-	parseInput(input);// parsees the rest of the string example "health 10"
-    }
 
     /**
      * @param input The input from the object prints a description of the object
@@ -120,7 +107,7 @@ public class Game implements EngageListener, CombatListener
     /**
      * @param ignored will be empty string
      */
-    public void disEngage(String ignored) {
+    @Override public void disengage(String ignored) {
 	if (gameState == GameState.ADVENTURE) {
 	    System.out.println("You are not in combat");
 	    return;
@@ -187,21 +174,21 @@ public class Game implements EngageListener, CombatListener
     /**
      * @param input The input from the player will be empty
      */
-    public void currentMode(String input) {
+    public void currentMode(String ignored) {
 	System.out.println("Current mode is: " + gameState);
     }
 
     /**
      * @param input Will be empty
      */
-    public void win(String input) {
+    public void win(String ignored) {
 	gameState = GameState.WIN;
     }
 
     /**
      * @param input Will be empty
      */
-    public void lose(String input) {
+    public void lose(String ignored) {
 	gameState = GameState.GAME_OVER;
     }
 
@@ -287,7 +274,7 @@ public class Game implements EngageListener, CombatListener
     /**
      * @return Returns if the game is on
      */
-    public boolean gameOn() {
+    public boolean isGameOn() {
 	switch (gameState) {
 	    case WIN:
 	    case GAME_OVER:
@@ -318,7 +305,7 @@ public class Game implements EngageListener, CombatListener
 	    parseInputs.put("giveitem", Game.this::giveItem);
 
 	    parseInputs.put("engage", Game.this::engage);
-	    parseInputs.put("disengage", Game.this::disEngage);
+	    parseInputs.put("disengage", Game.this::disengage);
 	    parseInputs.put("currentmode", Game.this::currentMode);
 
 	    parseInputs.put("win", Game.this::win);

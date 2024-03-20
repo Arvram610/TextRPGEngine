@@ -33,8 +33,8 @@ public abstract class ObjectGenerator<T> extends Generator
      *
      * @throws FileNotFoundException
      */
-    public void generateObjects(final String filepath) throws FileNotFoundException {
-	JsonArray jsonObjects = loadJsonArrayFile(filepath);
+    public void generateObjects(final String filePath) throws FileNotFoundException {
+	JsonArray jsonObjects = loadJsonArrayFile(filePath);
 	generateObjects(jsonObjects);
     }
 

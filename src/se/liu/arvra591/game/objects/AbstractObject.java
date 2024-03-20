@@ -28,12 +28,6 @@ public abstract class AbstractObject
 	return name;
     }
 
-    /**
-     * @return Returns the description of the object
-     */
-    public String getDescription() {
-	return description;
-    }
 
     /**
      * Prints the objects info

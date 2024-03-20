@@ -18,13 +18,11 @@ public class Location extends AbstractObject
 {
     private final List<String> firstEnteredCommands;
     private final List<String> normalEnterCommands;
-    private ObjectContainer<Npc> npcContainer; //might be divided into enemies and players
+    private ObjectContainer<Npc> npcContainer;
     private ObjectContainer<Item> itemContainer;
     private ObjectContainer<Location> exitContainer;
     private List<String> exitStrings;
     private boolean firstEnter = true;
-
-    //private List<interactables> interactablesList; //might be added later
 
     /**
      * @param name        Name of the location
@@ -132,24 +130,17 @@ public class Location extends AbstractObject
 	return ListHelper.findObjectInList(exitContainer.getObjects(), name);
     }
 
-    /**
-     * @return List of npcs in the location
-     */
-    public Npc getNpc(final String name) {
-	return ListHelper.findObjectInList(npcContainer.getObjects(), name);
-    }
 
+    /**
+     * @return returns the npcs
+     */
     public List<Npc> getNpcs() {
 	return npcContainer.getObjects();
     }
 
     /**
-     * @return List of items in the location
+     * @return reurns the exits
      */
-    public Item getItem(final String name) {
-	return ListHelper.findObjectInList(itemContainer.getObjects(), name);
-    }
-
     public List<String> getExitStrings() {
 	return exitStrings;
     }

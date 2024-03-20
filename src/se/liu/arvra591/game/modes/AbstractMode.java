@@ -1,5 +1,6 @@
 package se.liu.arvra591.game.modes;
 
+import se.liu.arvra591.game.listeners.EngageEventHandler;
 import se.liu.arvra591.game.objects.containers.CreatureInventory;
 import se.liu.arvra591.game.objects.creatures.Player;
 import se.liu.arvra591.game.objects.items.Equipable;
@@ -14,11 +15,13 @@ import java.util.Objects;
 public abstract class AbstractMode implements Mode
 {
     protected Player player;
+    protected EngageEventHandler eventHandler;
 
     private InputParser parser = null;
 
-    protected AbstractMode(Player player) {
+    protected AbstractMode(Player player, EngageEventHandler eventHandler) {
 	this.player = player;
+	this.eventHandler = eventHandler;
     }
 
     protected void setParser(InputParser parser) {
@@ -26,8 +29,7 @@ public abstract class AbstractMode implements Mode
     }
 
     /**
-     * @param ignored The input from the player will be empty
-     * Prints the players inventory
+     * @param ignored The input from the player will be empty Prints the players inventory
      */
     protected void printInventory(String ignored) {
 	player.printInventory();
@@ -57,24 +59,24 @@ public abstract class AbstractMode implements Mode
 	    System.out.println("You don't have that item");
 	    return;
 	}
-	if (!(item instanceof Equipable)) {
-	    System.out.println("You can't equip that item");
-	    return;
-	}
 	if (Objects.equals(player.getEquippedItem(), item)) {
 	    System.out.println("You already have that item equipped");
 	    return;
 	}
-	player.equipItem((Equipable) item);
-	System.out.println("You equiped " + item.getName());
-	System.out.print("\nIt gave you: \n");
-	((Equipable) item).getStats().printStats();
+	if (item instanceof Equipable equipable) {
+	    player.equipItem(equipable);
+	    System.out.println("You equiped " + item.getName());
+	    System.out.print("\nIt gave you: \n");
+	    equipable.getStats().printStats();
+	    return;
+	}
+	System.out.println("You can't equip that item");
     }
 
     /**
      * @param input The input from the player
      */
-    public void parseInput(String input) {
+    @Override public void parseInput(String input) {
 	parser.parseInput(input);
     }
 }
