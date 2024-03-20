@@ -54,7 +54,7 @@ public class Player extends Creature
 	stats.printStats();
 	System.out.println("Energy: " + currentEnergy);
 	System.out.println(("Health: " + currentHealth));
-	System.out.println("Current weight of items: " + inventory.getCurrentWeight() + "/" + stats.getCarryWeight());
+	System.out.println("Current weight of items: " + inventory.getCurrentWeight() + "/" + stats.getCarryWeight()); // slash is used as a styring not file separator
     }
 
     public PlayerStats getPlayerStats() {
@@ -87,6 +87,9 @@ public class Player extends Creature
 	return false;
     }
 
+    /**
+     * @param location is the location to move to
+     */
     public void forceMove(Location location) {
 	currentLocation = location;
     }
@@ -106,7 +109,7 @@ public class Player extends Creature
 
     public void useItem(String name) {
 	Item item = inventory.getObject(name);
-	if (item instanceof Consumable consumable) {
+	if (item instanceof Consumable consumable) { //polymorfism är inte bästa lösningen i detta fall
 	    consumable.use();
 	    inventory.removeObject(item);
 	    return;

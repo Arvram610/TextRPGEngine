@@ -10,7 +10,6 @@ import se.liu.arvra591.game.objects.creatures.PlayerStats;
 import se.liu.arvra591.game.objects.items.Item;
 import se.liu.arvra591.game.objects.locations.Location;
 
-import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.util.Map;
@@ -44,7 +43,7 @@ public class PlayerGenerator extends ObjectGenerator<Player>
      * @throws FileNotFoundException
      */
     @Override public void generateObjects(final String fileName) throws IOException, FileNotFoundException {
-	super.generateObjects("player/" + fileName);
+	super.generateObjects("player/" + fileName); //used in getResource()
     }
 
     @Override protected void generateObject(final JsonObject object) {

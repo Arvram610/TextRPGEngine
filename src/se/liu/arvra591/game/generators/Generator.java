@@ -13,19 +13,15 @@ import java.net.URL;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 
 /**
  * An abstract class used to generate objects from a json file
  */
 public abstract class Generator
 {
-    protected JsonParser jsonParser; //= new JsonParser();
+    protected JsonParser jsonParser;
 
     protected CommandHandler commandHandler;
-
-    private Logger logger = Logger.getLogger("MainLogger");
 
     protected Generator(CommandHandler commandHandler) {
 	jsonParser = new JsonParser();

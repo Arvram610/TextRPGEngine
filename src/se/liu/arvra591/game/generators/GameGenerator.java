@@ -8,7 +8,7 @@ import se.liu.arvra591.game.objects.creatures.Player;
 import se.liu.arvra591.game.objects.items.Item;
 import se.liu.arvra591.game.objects.locations.Location;
 
-import java.io.File;
+
 import java.io.IOException;
 import java.util.HashMap;
 import java.util.List;
@@ -53,7 +53,7 @@ public class GameGenerator extends Generator
 	}
 	JsonObject game = null;
 	try {
-	    game = loadJsonObjectFile("games/" + gamePath);
+	    game = loadJsonObjectFile("games/" + gamePath); //used in getResource()
 	} catch (IOException e) {
 	    logger.log(Level.SEVERE, e.toString());
 	    System.out.println("Could not open gamefile: games/" + gamePath);

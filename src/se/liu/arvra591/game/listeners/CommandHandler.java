@@ -9,10 +9,16 @@ public class CommandHandler
 {
     private InputParser listener = null;
 
+    /**
+     * @param listener The listener that is notified when a command is sent
+     */
     public void setListener(InputParser listener) {
 	this.listener = listener;
     }
 
+    /**
+     * @param command The command that is sent to the listener
+     */
     public void notifyListener(String command) {
 	listener.parseInput(command);
     }

@@ -17,6 +17,7 @@ public abstract class Creature extends AbstractObject
     protected int currentHealth;
     protected Equipable equippedItem = null;
     protected int currentEnergy;
+
     protected CreatureStats stats;
 
     protected CreatureInventory inventory;
@@ -130,7 +131,6 @@ public abstract class Creature extends AbstractObject
     public CreatureInventory getInventory() {
 	return inventory;
     }
-
 
     /**
      * @param number is the amount of defense the creature will gain

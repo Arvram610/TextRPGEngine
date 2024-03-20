@@ -27,8 +27,6 @@ public class Game implements EngageListener, CombatListener
 {
 
     private Player player;
-    //private EngageEventHandler eventHandler;
-    //private CombatEventHandler combatEventHandler;
     private MasterParser parser;
     private GameState gameState;
     private Adventure adventure;
@@ -38,8 +36,12 @@ public class Game implements EngageListener, CombatListener
     private Map<String, Factory<? extends Item>> items;
     private Map<String, Factory<? extends Npc>> npcs;
 
+
     /**
-     * @param player The player that is playing the game
+     * @param player The player object
+     * @param locations The locations in the game
+     * @param items The items in the game
+     * @param npcs The npcs in the game
      */
     public Game(Player player, Map<String, Location> locations, Map<String, Factory<? extends Item>> items,
 		Map<String, Factory<? extends Npc>> npcs)
@@ -60,6 +62,9 @@ public class Game implements EngageListener, CombatListener
     }
 
 
+    /**
+     * @return The master parser of the game
+     */
     public InputParser getParser() {
 	return parser;
     }
@@ -68,14 +73,14 @@ public class Game implements EngageListener, CombatListener
     /**
      * @param input The input from the object prints a description of the object
      */
-    public void say(String input) {
+    private void say(String input) {
 	System.out.println(input);
     }
 
     /**
      * @param input The input from the object
      */
-    public void giveItem(String input) {
+    private void giveItem(String input) {
 	Item item = items.get(input).generate();
 	player.forceAddItem(item);
     }
@@ -116,6 +121,9 @@ public class Game implements EngageListener, CombatListener
 	System.out.println("You are no longer in combat");
     }
 
+    /**
+     * Notifies the npc logic that it is the npcs turn
+     */
     public void notifyNpcLogic() {
 	npcLogic.setNpc(combat.getCurrentTarget());
 	npcLogic.startOfTurn();
@@ -124,7 +132,7 @@ public class Game implements EngageListener, CombatListener
     /**
      * @return The target
      */
-    public Npc getTarget() {
+    private Npc getTarget() {
 	return combat.getCurrentTarget();
     }
 
@@ -142,7 +150,7 @@ public class Game implements EngageListener, CombatListener
     /**
      * @param input The amount of health to give the npc
      */
-    public void giveNpcHealth(String input) {
+    private void giveNpcHealth(String input) {
 	Npc target = getTarget();
 	target.increaseHealth(input);
     }
@@ -150,7 +158,7 @@ public class Game implements EngageListener, CombatListener
     /**
      * @param input The amount of energy to give the npc
      */
-    public void giveNpcEnergy(String input) {
+    private void giveNpcEnergy(String input) {
 	Npc target = getTarget();
 	target.addEnergy(input);
     }
@@ -158,7 +166,7 @@ public class Game implements EngageListener, CombatListener
     /**
      * @param input The amount of attack to give the npc
      */
-    public void giveNpcAttack(String input) {
+    private void giveNpcAttack(String input) {
 	Npc target = getTarget();
 	target.increaseAttack(input);
     }
@@ -166,7 +174,7 @@ public class Game implements EngageListener, CombatListener
     /**
      * @param input The amount of defense to give the npc
      */
-    public void giveNpcDefense(String input) {
+    private void giveNpcDefense(String input) {
 	Npc target = getTarget();
 	target.increaseDefense(input);
     }
@@ -174,28 +182,28 @@ public class Game implements EngageListener, CombatListener
     /**
      * @param input The input from the player will be empty
      */
-    public void currentMode(String ignored) {
+    private void currentMode(String ignored) {
 	System.out.println("Current mode is: " + gameState);
     }
 
     /**
      * @param input Will be empty
      */
-    public void win(String ignored) {
+    private void win(String ignored) {
 	gameState = GameState.WIN;
     }
 
     /**
      * @param input Will be empty
      */
-    public void lose(String ignored) {
+    private void lose(String ignored) {
 	gameState = GameState.GAME_OVER;
     }
 
     /**
      * @param input The name of the npc to spawn
      */
-    public void spawnNpc(String input) {
+    private void spawnNpc(String input) {
 	Npc npc = npcs.get(input).generate();
 	player.getCurrentLocation().addNpc(npc);
     }
@@ -203,7 +211,7 @@ public class Game implements EngageListener, CombatListener
     /**
      * @param input The name of the exit to spawn
      */
-    public void spawnExit(String input) {
+    private void spawnExit(String input) {
 	Location exit = locations.get(input);
 	player.getCurrentLocation().addExit(exit);
     }
@@ -222,12 +230,15 @@ public class Game implements EngageListener, CombatListener
 	player.getCurrentLocation().roomEntered();
     }
 
-    public void spawnItem(String input) {
+    private void spawnItem(String input) {
 	Item item = items.get(input).generate();
 	player.getCurrentLocation().addItem(item);
     }
 
 
+    /**
+     * Starts the game
+     */
     public void start() {
 	player.getCurrentLocation().roomEntered();
     }
@@ -235,7 +246,7 @@ public class Game implements EngageListener, CombatListener
     /**
      * @param input The attack of the npc that is attacking
      */
-    public void attackPlayer(String input) {
+    private void attackPlayer(String input) {
 	int attack = Integer.parseInt(input);
 	int damage = Math.max(attack - player.getStats().getDefense(), 0);
 	player.takeDamage(damage);
@@ -253,21 +264,21 @@ public class Game implements EngageListener, CombatListener
     /**
      * @param input The name of the npc to remove
      */
-    public void removeNpc(String input) {
+    private void removeNpc(String input) {
 	player.getCurrentLocation().removeNpc(input);
     }
 
     /**
      * @param input The name of the exit to remove
      */
-    public void removeExit(String input) {
+    private void removeExit(String input) {
 	player.getCurrentLocation().removeExit(input);
     }
 
     /**
      * @param input The name of the item to remove
      */
-    public void removeItem(String input) {
+    private void removeItem(String input) {
 	player.getCurrentLocation().removeItem(input);
     }
 
@@ -284,6 +295,9 @@ public class Game implements EngageListener, CombatListener
 	}
     }
 
+    /**
+     * The master parser of the game, Allows the objects to talk to the game
+     */
     private class MasterParser extends InputParser
     {
 	private MasterParser() {

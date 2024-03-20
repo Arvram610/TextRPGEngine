@@ -8,7 +8,6 @@ import se.liu.arvra591.game.objects.items.Consumable;
 import se.liu.arvra591.game.objects.items.Equipable;
 import se.liu.arvra591.game.objects.items.Item;
 
-import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.util.List;
@@ -31,7 +30,7 @@ public class ItemFactoryGenerator extends ObjectGenerator<Factory<? extends Item
      * @throws FileNotFoundException
      */
     @Override public void generateObjects(final String fileName) throws IOException, FileNotFoundException {
-	super.generateObjects("items/" + fileName);
+	super.generateObjects("items/" + fileName); //used in getResource()
     }
 
     @Override protected void generateObject(final JsonObject object) {
@@ -40,7 +39,7 @@ public class ItemFactoryGenerator extends ObjectGenerator<Factory<? extends Item
 	String description = object.get("description").getAsString();
 	int weight = object.get("weight").getAsInt();
 
-	switch (type) {
+	switch (type) { //type is a String not an enum
 	    case "consumable" -> {
 		List<String> useCommands = generateStringListFromJson(object.get("useCommands").getAsJsonArray());
 		objects.put(name, new Factory<>(new Consumable(name, description, weight, useCommands), commandHandler));

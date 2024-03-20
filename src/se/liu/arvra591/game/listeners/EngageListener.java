@@ -5,7 +5,13 @@ package se.liu.arvra591.game.listeners;
  */
 public interface EngageListener
 {
-    void engage(String input);
+    /**
+     * @param input The npc to engage
+     */
+    public void engage(String input);
 
-    void disengage(String input);
+    /**
+     * @param ignored Will be empty string
+     */
+    public void disengage(String ignored);
 }

@@ -52,14 +52,23 @@ public abstract class AbstractObject
 	System.out.println(description);
     }
 
+    /**
+     * @param commandHandler The command handler to set
+     */
     public void setCommandHandler(final CommandHandler commandHandler) {
 	this.commandHandler = commandHandler;
     }
 
+    /**
+     * @param command The command to send
+     */
     protected void sendCommand(final String command) {
 	commandHandler.notifyListener(command);
     }
 
+    /**
+     * @param commands The commands to send
+     */
     protected void sendCommands(final List<String> commands) {
 	commands.forEach(this::sendCommand);
     }

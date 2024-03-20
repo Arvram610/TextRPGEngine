@@ -30,6 +30,8 @@ public class Location extends AbstractObject
      * @param npcs        List of npcs in the location
      * @param items       List of items in the location
      * @param exits       List of exits in the location
+     * @param firstEnterCommands Commands to run when the location is first entered
+     * @param normalEnterCommands Commands to run when the location is entered
      */
 
     public Location(String name, String description, List<Npc> npcs, List<Item> items, List<String> exitStrings,
