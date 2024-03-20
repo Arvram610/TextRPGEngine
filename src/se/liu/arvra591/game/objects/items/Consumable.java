@@ -20,6 +20,9 @@ public class Consumable extends Item //Kodgranskning complains that the word Con
 	this.useCommands = useCommands;
     }
 
+    /**
+     * Uses the item by sending the use commands
+     */
     public void use() {
 	sendCommands(useCommands);
     }

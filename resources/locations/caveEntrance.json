@@ -1,0 +1,19 @@
+[
+  {
+    "name": "Cave Entrance",
+    "description": "En mörk öppning i klippan som leder in i en djup grotta. Skogen tystnar när du närmar dig, och känslan av mystik och fara fyller luften.",
+    "npcs": [],
+    "items": [],
+    "exits": [
+      "Forest",
+      "Cave"
+    ],
+    "firstEnter": [
+      "say Du står vid ingången till grottan. Ett kallt drag sveper ut från mörkret och får dig att darra.",
+      "say Det är svårt att veta vad som väntar inuti, men nyfikenheten driver dig framåt."
+    ],
+    "normalEnter": [
+      "say Du återvänder till ingången av grottan."
+    ]
+  }
+]

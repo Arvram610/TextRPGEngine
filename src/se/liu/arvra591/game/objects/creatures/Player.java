@@ -138,6 +138,9 @@ public class Player extends Creature
 	return false;
     }
 
+    /**
+     * if the players HP is 0 or less this method is called and the game is over
+     */
     public void onDeath() {
 	sendCommand("say Sadly you died and the game is over");
 	sendCommand("lose");

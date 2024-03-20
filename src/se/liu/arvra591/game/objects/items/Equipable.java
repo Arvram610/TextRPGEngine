@@ -22,6 +22,9 @@ public class Equipable extends Item //Kodgranskning does not reqognize the word 
 	this.stats = stats;
     }
 
+    /**
+     * @return Returns the stats of the item
+     */
     public CreatureStats getStats() {
 	return stats;
     }
