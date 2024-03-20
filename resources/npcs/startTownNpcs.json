@@ -1,0 +1,127 @@
+[
+  {
+    "name": "Eldric",
+    "description": "En vis gammal man som är ledare för byn.",
+    "health": 20,
+    "energy": 20,
+    "stats": {
+      "attack": 10,
+      "defense": 5,
+      "maxHealth": 20,
+      "maxEnergy": 20,
+      "energyRegen": 2
+    },
+    "dialogue": [
+      [
+        "say Eldric: Hej, resenär. Vad för dig till vår lilla by?"
+      ]
+    ],
+    "inventory": [
+      "scroll"
+    ],
+    "canDisengage": true,
+    "onDeathCommands": []
+  },
+  {
+    "name": "Elena",
+    "description": "En ung kvinna som är känd för sina berättelser om skogens magi.",
+    "health": 15,
+    "energy": 15,
+    "stats": {
+      "attack": 5,
+      "defense": 3,
+      "maxHealth": 15,
+      "maxEnergy": 15,
+      "energyRegen": 1
+    },
+    "dialogue": [
+      [
+        "say Elena: Välkommen till vår by. Jag hoppas du känner dig hemma här."
+      ]
+    ],
+    "inventory": [
+      "book"
+    ],
+    "canDisengage": true,
+    "onDeathCommands": []
+  },
+  {
+    "name": "Carl",
+    "description": "En vanlig grabb",
+    "health": 10,
+    "energy": 10,
+    "stats": {
+      "attack": 100,
+      "defense": 1,
+      "maxHealth": 10,
+      "maxEnergy": 10,
+      "energyRegen": 1
+    },
+    "dialogue": [
+      [
+        "say Carl: Hej!",
+        "say Carl: Hoppas du mår bra :)",
+        "say Carl: Här får du ett svärd",
+        "giveItem sword",
+        "say \ndu fick ett svärd"
+      ],
+      [
+        "say Carl: försöker du kränga mig på fler items!?",
+        "say Carl: Fy skäms!"
+      ]
+    ],
+    "inventory": [
+      "potion"
+    ],
+    "canDisengage": true,
+    "onDeathCommands": []
+  },
+  {
+    "name": "Rufus",
+    "type": "Hund",
+    "description": "En lekfull hund som springer runt glatt och skäller vänligt när du kommer nära.",
+    "health": 15,
+    "energy": 15,
+    "stats": {
+      "attack": 8,
+      "defense": 3,
+      "maxHealth": 15,
+      "maxEnergy": 15,
+      "energyRegen": 1
+    },
+    "dialogue": [
+      [
+        "say Rufus: Voff voff!"
+      ]
+    ],
+    "inventory": [
+      "bone"
+    ],
+    "canDisengage": true,
+    "onDeathCommands": []
+  },
+  {
+    "name": "Milo",
+    "type": "Katt",
+    "description": "En lurvig katt som sitter på en sten och spanar på fåglarna.",
+    "health": 10,
+    "energy": 10,
+    "stats": {
+      "attack": 5,
+      "defense": 2,
+      "maxHealth": 10,
+      "maxEnergy": 10,
+      "energyRegen": 1
+    },
+    "dialogue": [
+      [
+        "say Milo: Mjau!"
+      ]
+    ],
+    "inventory": [
+      "fish"
+    ],
+    "canDisengage": true,
+    "onDeathCommands": []
+  }
+]

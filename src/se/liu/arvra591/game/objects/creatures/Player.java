@@ -112,7 +112,6 @@ public class Player extends Creature
 	}
 	((Consumable) item).use();
 	inventory.removeObject(item);
-	System.out.println("You used " + item.getName());
     }
 
     /**
