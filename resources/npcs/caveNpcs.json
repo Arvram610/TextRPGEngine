@@ -17,6 +17,10 @@
   ]
 ],
   "inventory": [],
-  "canDisengage": false
+  "canDisengage": false,
+  "onDeathCommands": [
+    "spawnexit BossRoom",
+    "say The Goblin dies and you see a door that leads to the next room."
+  ]
   }
 ]

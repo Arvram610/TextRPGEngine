@@ -19,7 +19,8 @@
     "inventory": [
       "bone"
     ],
-    "canDisengage": true
+    "canDisengage": true,
+    "onDeathCommands": []
   },
 
   {
@@ -42,6 +43,7 @@
   "inventory": [
   "potion"
   ],
-    "canDisengage": true
+    "canDisengage": true,
+    "onDeathCommands": []
   }
 ]

@@ -16,6 +16,7 @@ public class Npc extends Creature
     private final List<List<String>> npcDialogues;
     private boolean canDisengage;
     private static final int ENERGY_COST = 5;
+    private final List<String> onDeathCommands;
 
 
     private int timesTalked;
@@ -30,10 +31,11 @@ public class Npc extends Creature
      */
     public Npc(final String name, final String description,
 	       final int currentHealth, int currentEnergy, final CreatureStats stats, final List<List<String>> npcDialogues,
-	       CreatureInventory inventory, boolean canDisengage) {
+	       CreatureInventory inventory, boolean canDisengage, List<String> onDeathCommands) {
 	super(name, description, currentHealth, currentEnergy, stats, inventory);
 	this.npcDialogues = npcDialogues;
 	this.canDisengage = canDisengage;
+	this.onDeathCommands = onDeathCommands;
 	this.timesTalked = 0;
     }
 
@@ -64,6 +66,7 @@ public class Npc extends Creature
 	}
 	sendCommand("removenpc " + name);
 	sendCommand("disengage");
+	sendCommands(onDeathCommands);
     }
 
     /**

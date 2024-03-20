@@ -1,0 +1,26 @@
+[
+  {
+    "name": "Boss",
+    "description": "En stor boss",
+    "health": 5,
+    "energy": 10,
+    "stats": {
+      "attack": 8,
+      "defense": 3,
+      "maxHealth": 5,
+      "maxEnergy": 10,
+      "energyRegen": 1
+    },
+    "dialogue": [
+      [
+        "say Boss: Dödar du mig vinner du!"
+      ]
+    ],
+    "inventory": [],
+    "canDisengage": false,
+    "onDeathCommands": [
+      "say You killed the boss and won the game!",
+        "win"
+    ]
+  }
+]

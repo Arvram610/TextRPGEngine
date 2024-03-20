@@ -19,7 +19,8 @@
     "inventory": [
       "scroll"
     ],
-    "canDisengage": true
+    "canDisengage": true,
+    "onDeathCommands": []
   },
   {
     "name": "Elena",
@@ -41,7 +42,8 @@
     "inventory": [
       "book"
     ],
-    "canDisengage": true
+    "canDisengage": true,
+    "onDeathCommands": []
   },
   {
     "name": "Carl",
@@ -71,7 +73,8 @@
     "inventory": [
       "potion"
     ],
-    "canDisengage": true
+    "canDisengage": true,
+    "onDeathCommands": []
   },
   {
     "name": "Rufus",
@@ -94,7 +97,8 @@
     "inventory": [
       "bone"
     ],
-    "canDisengage": true
+    "canDisengage": true,
+    "onDeathCommands": []
   },
   {
     "name": "Milo",
@@ -117,6 +121,7 @@
     "inventory": [
       "fish"
     ],
-    "canDisengage": true
+    "canDisengage": true,
+    "onDeathCommands": []
   }
 ]
