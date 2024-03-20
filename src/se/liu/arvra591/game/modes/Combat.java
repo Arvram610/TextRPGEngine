@@ -132,7 +132,9 @@ public class Combat extends AbstractMode
 	currentTarget.printObject();
     }
 
-
+    /**
+     * Parser for the combat mode, contains commands that are used in the combat mode
+     */
     private class CombatParser extends InputParser
     {
 	private CombatParser() {
