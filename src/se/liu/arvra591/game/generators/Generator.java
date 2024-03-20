@@ -64,7 +64,7 @@ public abstract class Generator
 	JsonArray array = null;
 	try {
 	    array = jsonParser.parseArrayFile(url.getPath());
-	} catch (IOException e) {
+	} catch (FileNotFoundException e) {
 	    Logger.getLogger("MainLogger").log(Level.SEVERE, e.toString());
 	    System.out.println("An IOException ocurred");
 	    System.out.println(Arrays.toString(e.getStackTrace()));
@@ -78,7 +78,7 @@ public abstract class Generator
 	JsonObject object = null;
 	try {
 	    object = jsonParser.parseObjectFile(url.getPath());
-	} catch (IOException e) {
+	} catch (FileNotFoundException e) {
 	    Logger.getLogger("MainLogger").log(Level.SEVERE, e.toString());
 	    System.out.println("An IOException ocurred");
 	    System.out.println(Arrays.toString(e.getStackTrace()));
