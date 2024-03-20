@@ -71,12 +71,6 @@ public class Game implements EngageListener, CombatListener
 	return parser;
     }
 
-    /**
-     * @param input The input from the object gives the user stats, for example "give health 10"
-     */
-    public void giveStats(String input) { //example "give health (user) 10"
-	parseInput(input);// parsees the rest of the string example "health 10"
-    }
 
     /**
      * @param input The input from the object prints a description of the object
