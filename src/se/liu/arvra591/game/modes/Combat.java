@@ -62,9 +62,9 @@ public class Combat extends AbstractMode
      * This function is called when the player attacks a target The plauer will attack the target and the target will take damage based on
      * the players attack and the targets defense
      *
-     * @param name Will be empty string
+     * @param ignored Will be empty string
      */
-    public void attack(String name) {
+    public void attack(String ignored) {
 	PlayerStats stats = player.getPlayerStats();
 	int attack = stats.getAttack();
 	int targetDefense = currentTarget.getStats().getDefense();
@@ -88,9 +88,9 @@ public class Combat extends AbstractMode
     }
 
     /**
-     * @param name Will be empty string
+     * @param ignored Will be empty string
      */
-    public void rest(String name) {
+    public void rest(String ignored) {
 	player.addEnergy(REST_ENERGY_REGENERATION);
 	System.out.println("You slept and regained " + REST_ENERGY_REGENERATION + " energy \n");
 	combatEventHandler.notifyNpcLogic();
@@ -111,15 +111,15 @@ public class Combat extends AbstractMode
     }
 
     /**
-     * @param ignored Will be empty string
+     * @param emptyString Will be empty string
      */
-    public void disEngage(String ignored) {
+    public void disEngage(String emptyString) {
 	boolean canDisengage = currentTarget.getCanDisengage();
 	if (!canDisengage) {
 	    System.out.println("You cannot disengage from " + currentTarget.getName());
 	    return;
 	}
-	eventHandler.disEngage(ignored);
+	eventHandler.disEngage(emptyString);
 	System.out.println("You disengaged from combat with " + currentTarget.getName());
 	System.out.println("You are now in " + player.getCurrentLocation().getName());
     }

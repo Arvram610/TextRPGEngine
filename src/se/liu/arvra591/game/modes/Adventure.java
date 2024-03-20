@@ -57,9 +57,10 @@ public class Adventure extends AbstractMode
     }
 
     /**
-     * @param input The input from the player will be empty Prints the current location of the player
+     * @param ignored The input from the player will be empty
+     * Prints the current location of the player
      */
-    public void printLocation(String input) { //input kommer vara tom. Man kommer bara skriva "location"
+    public void printLocation(String ignored) {
 	player.getCurrentLocation().printObject();
     }
 
@@ -104,7 +105,7 @@ public class Adventure extends AbstractMode
 	    parseInputs.put("inventory", Adventure.this::printInventory);
 	    parseInputs.put("drop", Adventure.this::dropItem);
 	    parseInputs.put("stats", Adventure.this::printStats);
-	    parseInputs.put("talk", Adventure.this::talk); //input will be "talk npc" where npc is the name of the npc you want to talk to
+	    parseInputs.put("talk", Adventure.this::talk);
 	    parseInputs.put("engage", Adventure.this::engage);
 	    parseInputs.put("equip", Adventure.this::equipItem);
 	    parseInputs.put("use", Adventure.this::useItem);
