@@ -43,6 +43,9 @@ public class Combat extends AbstractMode
 			   currentTarget.getCurrentEnergy() + " energy");
     }
 
+    /**
+     * This function is called by game at the start of combat
+     */
     public void startOfCombat() {
 	System.out.println("You are in combat with " + currentTarget.getName());
 	System.out.println(currentTarget.getName() + " stats are: ");
@@ -64,7 +67,7 @@ public class Combat extends AbstractMode
      *
      * @param ignored Will be empty string
      */
-    public void attack(String ignored) {
+    private void attack(String ignored) {
 	PlayerStats stats = player.getPlayerStats();
 	int attack = stats.getAttack();
 	int targetDefense = currentTarget.getStats().getDefense();
@@ -90,7 +93,7 @@ public class Combat extends AbstractMode
     /**
      * @param ignored Will be empty string
      */
-    public void rest(String ignored) {
+    private void rest(String ignored) {
 	player.addEnergy(REST_ENERGY_REGENERATION);
 	System.out.println("You slept and regained " + REST_ENERGY_REGENERATION + " energy \n");
 	combatEventHandler.notifyNpcLogic();
@@ -113,7 +116,7 @@ public class Combat extends AbstractMode
     /**
      * @param emptyString Will be empty string
      */
-    public void disEngage(String emptyString) {
+    private void disEngage(String emptyString) {
 	boolean canDisengage = currentTarget.getCanDisengage();
 	if (!canDisengage) {
 	    System.out.println("You cannot disengage from " + currentTarget.getName());
@@ -127,7 +130,7 @@ public class Combat extends AbstractMode
     /**
      * @param ignored Will be empty string
      */
-    public void printEnemyInfo(String ignored) {
+    private void printEnemyInfo(String ignored) {
 	currentTarget.printObject();
     }
 

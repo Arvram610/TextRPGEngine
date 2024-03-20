@@ -25,7 +25,7 @@ public class Adventure extends AbstractMode
     /**
      * @param location The location to move to
      */
-    public void move(String location) {
+    private void move(String location) {
 	boolean success = player.move(location);
 	if (!success) {
 	    System.out.println("You cannot move to " + location);
@@ -37,7 +37,7 @@ public class Adventure extends AbstractMode
     /**
      * @param item The item to pick up
      */
-    public void pickUp(String item) {
+    private void pickUp(String item) {
 	boolean success = player.pickUpItem(item);
 	if (!success) {
 	    System.out.println("You cannot pick up " + item);
@@ -49,7 +49,7 @@ public class Adventure extends AbstractMode
     /**
      * @param name The name of the object to inspect
      */
-    public void inspect(String name) {
+    private void inspect(String name) {
 	boolean success = player.inspect(name);
 	if (!success) {
 	    System.out.println("You cannot inspect " + name);
@@ -60,14 +60,14 @@ public class Adventure extends AbstractMode
      * @param ignored The input from the player will be empty
      * Prints the current location of the player
      */
-    public void printLocation(String ignored) {
+    private void printLocation(String ignored) {
 	player.getCurrentLocation().printObject();
     }
 
     /**
      * @param item The item to drop
      */
-    public void dropItem(String item) {
+    private void dropItem(String item) {
 	boolean success = player.dropItem(item);
 	if (!success) {
 	    System.out.println("Couldnt find " + item + " in your inventory");
@@ -79,7 +79,7 @@ public class Adventure extends AbstractMode
     /**
      * @param input The input from the player will be the name of the npc to talk to
      */
-    public void talk(String input) {
+    private void talk(String input) {
 	boolean success = player.talkToNpc(input);
 	if (!success) {
 	    System.out.println("No creature with the name " + input);
@@ -90,7 +90,7 @@ public class Adventure extends AbstractMode
     /**
      * @param input The NPC to engage combat with
      */
-    public void engage(String input) {
+    private void engage(String input) {
 	eventHandler.engage(input);
     }
 
