@@ -8,6 +8,7 @@ import se.liu.arvra591.game.objects.creatures.Player;
 import se.liu.arvra591.game.objects.items.Item;
 import se.liu.arvra591.game.objects.locations.Location;
 
+import java.io.File;
 import java.io.IOException;
 import java.util.Arrays;
 import java.util.HashMap;
@@ -53,10 +54,10 @@ public class GameGenerator extends Generator
 	}
 	JsonObject game = null;
 	try {
-	    game = loadJsonObjectFile("games/" + gamePath);
+	    game = loadJsonObjectFile("games" + File.separator + gamePath);
 	} catch (IOException e) {
 	    logger.log(Level.SEVERE, e.toString());
-	    System.out.println("Could not open gamefile: games/" + gamePath);
+	    System.out.println("Could not open gamefile: games" + File.separator + gamePath);
 	    System.out.println(Arrays.toString(e.getStackTrace()));
 	    System.exit(1);
 	}
@@ -78,7 +79,7 @@ public class GameGenerator extends Generator
 		itemFactoryGenerator.generateObjects(path);
 	    } catch (IOException e) {
 		logger.log(Level.SEVERE, e.toString());
-		System.out.println("Could not open itemfile: items/" + path);
+		System.out.println("Could not open itemfile: items" + File.separator + path);
 		System.out.println(Arrays.toString(e.getStackTrace()));
 		System.exit(1);
 	    }
