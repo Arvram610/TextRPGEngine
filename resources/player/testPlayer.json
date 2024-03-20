@@ -4,7 +4,7 @@
     "description": "En stark grabb",
     "health": 100,
     "energy": 100,
-    "startLocation": "Rum1",
+    "startLocation": "Start Town",
     "stats":{
       "attack": 5,
       "defense": -1,

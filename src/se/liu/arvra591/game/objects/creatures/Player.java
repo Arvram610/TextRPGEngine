@@ -103,14 +103,12 @@ public class Player extends Creature
 
     public void useItem(String name){
 	Item item = inventory.getObject(name);
-	System.out.println(item.getClass());
 	if (!(item instanceof Consumable)){
 	    System.out.println("You can't use that item");
 	    return;
 	}
 	((Consumable) item).use();
 	inventory.removeObject(item);
-	System.out.println("You used " + item.getName());
     }
 
     /**
