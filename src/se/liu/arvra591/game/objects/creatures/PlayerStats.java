@@ -12,19 +12,9 @@ public class PlayerStats extends CreatureStats
     protected int carryWeight;
 
     /**
-     * @param maxHealth     how much maxHealth the player currently has
-     * @param attack        how much damage the player does
-     * @param defense       how much damage the player can mitigate
-     * @param carryWeight   the capacity for how many items the player can carry
-     * @param currentWeight the current weight of the items the player is carrying
-     * @param experience    the experience points the player has, this determines level
-     * @param maxEnergy     the energy of the player
+     * @param cStats The creaturestats the playerstats are based on
+     * @param carryWeight The amount of weight tha player can carry
      */
-    public PlayerStats(int maxHealth, int attack, int defense, int carryWeight, int maxEnergy, int energyRegen) {
-	super(maxHealth, attack, defense, maxEnergy, energyRegen);
-	this.carryWeight = carryWeight;
-    }
-
     public PlayerStats(CreatureStats cStats, int carryWeight) {
 	super(cStats.getMaxHealth(), cStats.getAttack(), cStats.getDefense(), cStats.getMaxEnergy(), cStats.getEnergyRegenerationRate());
 	this.carryWeight = carryWeight;

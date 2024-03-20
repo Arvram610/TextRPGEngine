@@ -59,13 +59,6 @@ public class Game implements EngageListener, CombatListener
 	combatEventHandler.setListener(this);
     }
 
-    /**
-     * @param input The input from the object
-     */
-    public void parseInput(String input) {
-	parser.parseInput(input);
-    }
-
 
     public InputParser getParser() {
 	return parser;

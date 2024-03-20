@@ -76,7 +76,7 @@ public abstract class AbstractMode implements Mode
     /**
      * @param input The input from the player
      */
-    public void parseInput(String input) {
+    @Override public void parseInput(String input) {
 	parser.parseInput(input);
     }
 }
