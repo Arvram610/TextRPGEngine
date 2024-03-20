@@ -30,7 +30,7 @@ public class Factory<T extends AbstractObject>
      *
      * @return Returns a copy of the object
      */
-    @SuppressWarnings("unchecked") public T generate() {
+    @SuppressWarnings("unchecked") public T generate() {  // checked with assistant
 	T object = (T) gson.fromJson(gson.toJson(targetObject), targetObject.getClass());
 	object.setCommandHandler(commandHandler);
 	return object;

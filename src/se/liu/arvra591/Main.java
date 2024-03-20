@@ -10,6 +10,7 @@ import se.liu.arvra591.game.objects.items.Item;
 import se.liu.arvra591.game.objects.locations.Location;
 
 import java.io.IOException;
+import java.util.Arrays;
 import java.util.Map;
 import java.util.Scanner;
 import java.util.logging.FileHandler;
@@ -37,7 +38,7 @@ public class Main
 	} catch (IOException e) {
 	    logger.log(Level.SEVERE, "Could not open log file\n" + e);
 	    System.out.println("Could not open log file");
-	    System.out.println(e.getStackTrace());
+	    System.out.println(Arrays.toString(e.getStackTrace()));
 	    System.exit(1);
 	}
 
