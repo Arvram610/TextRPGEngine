@@ -107,7 +107,7 @@ public class Game implements EngageListener, CombatListener
     /**
      * @param ignored will be empty string
      */
-    public void disEngage(String ignored) {
+    @Override public void disengage(String ignored) {
 	if (gameState == GameState.ADVENTURE) {
 	    System.out.println("You are not in combat");
 	    return;
@@ -174,21 +174,21 @@ public class Game implements EngageListener, CombatListener
     /**
      * @param input The input from the player will be empty
      */
-    public void currentMode(String input) {
+    public void currentMode(String ignored) {
 	System.out.println("Current mode is: " + gameState);
     }
 
     /**
      * @param input Will be empty
      */
-    public void win(String input) {
+    public void win(String ignored) {
 	gameState = GameState.WIN;
     }
 
     /**
      * @param input Will be empty
      */
-    public void lose(String input) {
+    public void lose(String ignored) {
 	gameState = GameState.GAME_OVER;
     }
 
@@ -305,7 +305,7 @@ public class Game implements EngageListener, CombatListener
 	    parseInputs.put("giveitem", Game.this::giveItem);
 
 	    parseInputs.put("engage", Game.this::engage);
-	    parseInputs.put("disengage", Game.this::disEngage);
+	    parseInputs.put("disengage", Game.this::disengage);
 	    parseInputs.put("currentmode", Game.this::currentMode);
 
 	    parseInputs.put("win", Game.this::win);

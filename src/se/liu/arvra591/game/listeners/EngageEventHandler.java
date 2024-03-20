@@ -17,8 +17,8 @@ public class EngageEventHandler
 	listener.engage(input);
     }
 
-    public void disEngage(String input)
+    public void disengage(String input)
     {
-	listener.disEngage(input);
+	listener.disengage(input);
     }
 }

@@ -120,7 +120,7 @@ public class Combat extends AbstractMode
 	    System.out.println("You cannot disengage from " + currentTarget.getName());
 	    return;
 	}
-	eventHandler.disEngage(emptyString);
+	eventHandler.disengage(emptyString);
 	System.out.println("You disengaged from combat with " + currentTarget.getName());
 	System.out.println("You are now in " + player.getCurrentLocation().getName());
     }
