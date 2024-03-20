@@ -53,7 +53,7 @@ public class GameGenerator extends Generator
 	}
 	JsonObject game = null;
 	try {
-	    game = loadJsonObjectFile("games/" + gamePath);
+	    game = loadJsonObjectFile("games/" + gamePath); //used in getResource()
 	} catch (IOException e) {
 	    logger.log(Level.SEVERE, e.toString());
 	    System.out.println("Could not open gamefile: games/" + gamePath);

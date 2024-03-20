@@ -11,7 +11,7 @@ public class CreatureStats
     private int attack;
     private int defense;
     private int maxEnergy;
-    private int energyRegenerationRate; //kodgranskning does not recoqnise "Regen" as a word, I do not agree
+    private int energyRegenerationRate;
 
     /**
      * Temporary field for testing purposes

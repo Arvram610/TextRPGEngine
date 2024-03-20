@@ -43,7 +43,7 @@ public class PlayerGenerator extends ObjectGenerator<Player>
      * @throws FileNotFoundException
      */
     @Override public void generateObjects(final String fileName) throws IOException, FileNotFoundException {
-	super.generateObjects("player/" + fileName);
+	super.generateObjects("player/" + fileName); //used in getResource()
     }
 
     @Override protected void generateObject(final JsonObject object) {

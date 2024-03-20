@@ -20,11 +20,9 @@ import java.util.logging.Logger;
  */
 public abstract class Generator
 {
-    protected JsonParser jsonParser; //= new JsonParser();
+    protected JsonParser jsonParser;
 
     protected CommandHandler commandHandler;
-
-    private Logger logger = Logger.getLogger("MainLogger");
 
     protected Generator(CommandHandler commandHandler) {
 	jsonParser = new JsonParser();

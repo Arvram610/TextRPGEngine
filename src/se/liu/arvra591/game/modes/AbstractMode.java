@@ -63,7 +63,7 @@ public abstract class AbstractMode implements Mode
 	    System.out.println("You already have that item equipped");
 	    return;
 	}
-	if (item instanceof Equipable equipable) {
+	if (item instanceof Equipable equipable) { //polymorfism är inte bästa lösningen i detta fall
 	    player.equipItem(equipable);
 	    System.out.println("You equiped " + item.getName());
 	    System.out.print("\nIt gave you: \n");
