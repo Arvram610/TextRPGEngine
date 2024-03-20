@@ -29,28 +29,28 @@ public abstract class AbstractMode implements Mode
      * @param ignored The input from the player will be empty
      * Prints the players inventory
      */
-    public void printInventory(String ignored) {
+    protected void printInventory(String ignored) {
 	player.printInventory();
     }
 
     /**
      * @param ignored The input from the player will be empty
      */
-    public void printStats(String ignored) {
+    protected void printStats(String ignored) {
 	player.printStats();
     }
 
     /**
      * @param item The item to use
      */
-    public void useItem(String item) {
+    protected void useItem(String item) {
 	player.useItem(item);
     }
 
     /**
      * @param input The item to equip
      */
-    public void equipItem(String input) {
+    protected void equipItem(String input) {
 	CreatureInventory inventory = player.getInventory();
 	Item item = inventory.getObject(input);
 	if (item == null) {
