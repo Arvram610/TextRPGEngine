@@ -44,7 +44,8 @@
     "npcs": [],
     "items": [],
     "exits": [
-      "Forest"
+      "Forest",
+      "Cave"
     ],
     "firstEnter": [
       "say Du står vid ingången till grottan. Ett kallt drag sveper ut från mörkret och får dig att darra.",
@@ -52,6 +53,22 @@
     ],
     "normalEnter": [
       "say Du återvänder till ingången av grottan."
+    ]
+  },
+  {
+    "name": "Cave",
+    "description": "Grottan är mörk och fylld av mystik. Vattnet droppar från taket och ekar i de mörka korridorerna. En kall vind sveper genom gångarna och får dig att darra.",
+    "npcs": ["Goblin"],
+    "items": [],
+    "exits": ["Cave Entrance"],
+    "firstEnter": [
+    "say Du beträder grottan och känner dig genast omsluten av mörkret.",
+    "say Vattnet droppar från taket och ekar i de mörka korridorerna. En kall vind sveper genom gångarna och får dig att darra.",
+    "say En goblin attackerar dig och stirrar hotfullt.",
+    "engage Goblin"
+    ],
+    "normalEnter": [
+    "say Du återvänder till grottan."
     ]
   }
 ]

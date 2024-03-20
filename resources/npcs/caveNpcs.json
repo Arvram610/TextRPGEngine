@@ -1,0 +1,22 @@
+[
+  {
+  "name": "Goblin",
+  "description": "En ful goblin.",
+  "health": 5,
+  "energy": 10,
+  "stats": {
+      "attack": 8,
+      "defense": 3,
+      "maxHealth": 5,
+      "maxEnergy": 10,
+      "energyRegen": 1
+          },
+  "dialogue": [
+  [
+    "say Goblin: Mig kan du inte komma undan!"
+  ]
+],
+  "inventory": [],
+  "canDisengage": false
+  }
+]
