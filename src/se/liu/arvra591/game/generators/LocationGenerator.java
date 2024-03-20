@@ -1,13 +1,11 @@
 package se.liu.arvra591.game.generators;
 
-import com.google.gson.JsonArray;
 import com.google.gson.JsonObject;
 import se.liu.arvra591.game.factories.Factory;
 import se.liu.arvra591.game.listeners.CommandHandler;
 import se.liu.arvra591.game.objects.creatures.Npc;
 import se.liu.arvra591.game.objects.items.Item;
 import se.liu.arvra591.game.objects.locations.Location;
-
 
 import java.io.FileNotFoundException;
 import java.util.List;
@@ -28,9 +26,9 @@ public class LocationGenerator extends ObjectGenerator<Location>
      * @param items A map containing itemfactories used to generate items for locations
      * @param npcs  A map containing npcfactories used to generate npcsc for locations
      */
-    public LocationGenerator(CommandHandler commandHandler,
-			     Map<String, Factory<? extends Item>> items,
-			     Map<String, Factory<? extends Npc>> npcs) {
+    public LocationGenerator(CommandHandler commandHandler, Map<String, Factory<? extends Item>> items,
+			     Map<String, Factory<? extends Npc>> npcs)
+    {
 	super(commandHandler);
 	this.items = items;
 	this.npcs = npcs;
@@ -45,8 +43,7 @@ public class LocationGenerator extends ObjectGenerator<Location>
 	List<String> firstEnteredCommands = generateStringListFromJson(object.get("firstEnter").getAsJsonArray());
 	List<String> normalEnterCommands = generateStringListFromJson(object.get("normalEnter").getAsJsonArray());
 
-	Location location = new Location(name, description, npcs, items,
-					 stringLocations, firstEnteredCommands, normalEnterCommands);
+	Location location = new Location(name, description, npcs, items, stringLocations, firstEnteredCommands, normalEnterCommands);
 
 	location.setCommandHandler(commandHandler);
 	objects.put(name, location);
@@ -72,7 +69,6 @@ public class LocationGenerator extends ObjectGenerator<Location>
      * @throws FileNotFoundException
      */
     @Override public void generateObjects(String fileName) throws FileNotFoundException {
-	JsonArray jsonObjects = loadJsonArrayFile("locations/" + fileName);
-	generateObjects(jsonObjects);
+	super.generateObjects("locations/" + fileName);
     }
 }

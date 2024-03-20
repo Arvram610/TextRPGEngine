@@ -30,12 +30,12 @@ public class HowToBorrow
      * @param args
      */
     @BorrowedCode(source = "Somewhere") public static void main(String[] args) {
-        System.out.println("Hello World!");
+	System.out.println("Hello World!");
     }
 
     @BorrowedCode(source = "Somewhere")
     private class Foo
     {
-        int y;
+	int y;
     }
 }

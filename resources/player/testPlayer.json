@@ -7,7 +7,7 @@
     "startLocation": "Start Town",
     "stats":{
       "attack": 5,
-      "defense": -1,
+      "defense": 100,
       "maxHealth": 100,
       "maxEnergy": 100,
       "energyRegen": 0,

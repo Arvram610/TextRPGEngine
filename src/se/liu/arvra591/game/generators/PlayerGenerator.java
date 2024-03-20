@@ -1,6 +1,5 @@
 package se.liu.arvra591.game.generators;
 
-import com.google.gson.JsonArray;
 import com.google.gson.JsonObject;
 import se.liu.arvra591.game.factories.Factory;
 import se.liu.arvra591.game.listeners.CommandHandler;
@@ -10,7 +9,6 @@ import se.liu.arvra591.game.objects.creatures.Player;
 import se.liu.arvra591.game.objects.creatures.PlayerStats;
 import se.liu.arvra591.game.objects.items.Item;
 import se.liu.arvra591.game.objects.locations.Location;
-
 
 import java.io.FileNotFoundException;
 import java.util.Map;
@@ -29,9 +27,8 @@ public class PlayerGenerator extends ObjectGenerator<Player>
      * @param items     A map containing all the itemfactories in the game
      * @param locations A map containing all the locations in the game
      */
-    public PlayerGenerator(CommandHandler commandHandler,
-			   Map<String, Factory<? extends Item>> items,
-			   Map<String, Location> locations) {
+    public PlayerGenerator(CommandHandler commandHandler, Map<String, Factory<? extends Item>> items, Map<String, Location> locations)
+    {
 	super(commandHandler);
 	this.items = items;
 	this.locations = locations;
@@ -45,8 +42,7 @@ public class PlayerGenerator extends ObjectGenerator<Player>
      * @throws FileNotFoundException
      */
     @Override public void generateObjects(final String fileName) throws FileNotFoundException {
-	JsonArray jsonObjects = loadJsonArrayFile("player/" + fileName);
-	generateObjects(jsonObjects);
+	super.generateObjects("player/" + fileName);
     }
 
     @Override protected void generateObject(final JsonObject object) {
@@ -56,8 +52,8 @@ public class PlayerGenerator extends ObjectGenerator<Player>
 	int energy = object.get("energy").getAsInt();
 	PlayerStats stats = generatePlayerStats(object.get("stats").getAsJsonObject());
 	Location location = locations.get(object.get("startLocation").getAsString());
-	PlayerInventory
-		inventory = new PlayerInventory(generateObjectListFromFactory(object.get("inventory").getAsJsonArray(), items), stats);
+	PlayerInventory inventory =
+		new PlayerInventory(generateObjectListFromFactory(object.get("inventory").getAsJsonArray(), items), stats);
 
 	Player player = new Player(name, description, health, energy, stats, location, inventory);
 	player.setCommandHandler(commandHandler);

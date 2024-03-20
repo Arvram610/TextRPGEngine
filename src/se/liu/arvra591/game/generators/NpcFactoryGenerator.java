@@ -9,7 +9,6 @@ import se.liu.arvra591.game.objects.creatures.CreatureStats;
 import se.liu.arvra591.game.objects.creatures.Npc;
 import se.liu.arvra591.game.objects.items.Item;
 
-
 import java.io.FileNotFoundException;
 import java.util.ArrayList;
 import java.util.List;
@@ -40,8 +39,7 @@ public class NpcFactoryGenerator extends ObjectGenerator<Factory<? extends Npc>>
      * @throws FileNotFoundException
      */
     @Override public void generateObjects(final String fileName) throws FileNotFoundException {
-	JsonArray jsonObjects = loadJsonArrayFile("npcs/" + fileName);
-	generateObjects(jsonObjects);
+	super.generateObjects("npcs/" + fileName);
     }
 
     @Override protected void generateObject(final JsonObject object) {
@@ -51,8 +49,7 @@ public class NpcFactoryGenerator extends ObjectGenerator<Factory<? extends Npc>>
 	int energy = object.get("energy").getAsInt();
 	CreatureStats stats = generateCreatureStats(object.getAsJsonObject("stats"));
 	List<List<String>> dialogues = new ArrayList<>();
-	object.getAsJsonArray("dialogue").forEach(element ->
-							  dialogues.add(generateStringListFromJson(element.getAsJsonArray())));
+	object.getAsJsonArray("dialogue").forEach(element -> dialogues.add(generateStringListFromJson(element.getAsJsonArray())));
 	CreatureInventory inventory = generateInventory(object.getAsJsonArray("inventory"));
 	boolean canDisengage = object.get("canDisengage").getAsBoolean();
 	List<String> onDeathCommands = generateStringListFromJson(object.getAsJsonArray("onDeathCommands"));

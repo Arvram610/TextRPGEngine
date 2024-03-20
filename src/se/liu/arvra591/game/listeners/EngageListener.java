@@ -6,5 +6,6 @@ package se.liu.arvra591.game.listeners;
 public interface EngageListener
 {
     void engage(String input);
+
     void disEngage(String input);
 }

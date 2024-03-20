@@ -9,8 +9,7 @@ import java.io.FileReader;
 import java.io.IOException;
 
 /**
- * A class that parses a json file
- * The class uses the gson library to parse the json file
+ * A class that parses a json file The class uses the gson library to parse the json file
  */
 public class JsonParser
 {
@@ -19,7 +18,7 @@ public class JsonParser
     /**
      * The constructor for the JsonParser
      */
-    public JsonParser(){
+    public JsonParser() {
 	gson = new Gson();
     }
 
@@ -32,11 +31,8 @@ public class JsonParser
     public JsonArray parseArrayFile(String path) throws IOException {
 	StringBuilder json = new StringBuilder();
 
-	try (BufferedReader br = new BufferedReader(
-		new FileReader(path))){
+	try (BufferedReader br = new BufferedReader(new FileReader(path))) {
 	    br.lines().forEach(json::append);
-	} catch (IOException e) {
-	    throw e;
 	}
 	return gson.fromJson(json.toString(), JsonArray.class);
     }
@@ -50,11 +46,8 @@ public class JsonParser
     public JsonObject parseObjectFile(final String path) throws IOException {
 	StringBuilder json = new StringBuilder();
 
-	try (BufferedReader br = new BufferedReader(
-		new FileReader(path))){
+	try (BufferedReader br = new BufferedReader(new FileReader(path))) {
 	    br.lines().forEach(json::append);
-	} catch (IOException e) {
-	    throw e;
 	}
 	return gson.fromJson(json.toString(), JsonObject.class);
     }

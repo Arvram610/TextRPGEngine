@@ -1,23 +1,24 @@
 package se.liu.arvra591;
 
-import se.liu.arvra591.game.listeners.CombatEventHandler;
-import se.liu.arvra591.game.listeners.EngageEventHandler;
 import se.liu.arvra591.game.Game;
 import se.liu.arvra591.game.factories.Factory;
+import se.liu.arvra591.game.generators.GameGenerator;
 import se.liu.arvra591.game.listeners.CommandHandler;
 import se.liu.arvra591.game.objects.creatures.Npc;
 import se.liu.arvra591.game.objects.creatures.Player;
 import se.liu.arvra591.game.objects.items.Item;
 import se.liu.arvra591.game.objects.locations.Location;
-import se.liu.arvra591.game.generators.GameGenerator;
 
+import java.io.IOException;
 import java.util.Map;
 import java.util.Scanner;
+import java.util.logging.FileHandler;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 /**
- * The main class for the game
- * This is the file you run to start the game
- * It handles logic on what mode the player is in (ex movement or combat)
+ * The main class for the game This is the file you run to start the game It handles logic on what mode the player is in (ex movement or
+ * combat)
  */
 public class Main
 {
@@ -27,7 +28,21 @@ public class Main
     /**
      * Constructor for the main class, initializes what is needed for the game to run
      */
-    public Main(){
+    public Main() {
+	FileHandler fileHandler = null;
+	Logger logger = Logger.getLogger("MainLogger");
+	logger.setLevel(Level.FINEST);
+	try {
+	    fileHandler = new FileHandler("log");
+	} catch (IOException e) {
+	    logger.log(Level.SEVERE, "Could not open log file\n" + e);
+	    System.out.println("Could not open log file");
+	    System.out.println(e.getStackTrace());
+	    System.exit(1);
+	}
+
+	logger.addHandler(fileHandler);
+
 	CommandHandler commandHandler = new CommandHandler();
 	GameGenerator gameGenerator = new GameGenerator(commandHandler);
 	gameGenerator.generateGame();
@@ -39,22 +54,9 @@ public class Main
 	game = new Game(player, locations, items, npcs);
 
 	commandHandler.setListener(game.getParser());
+
+	logger.log(Level.FINEST, "Game initialized");
     }
-
-    /**
-     * This method starts the game
-     */
-    public void startGame(){
-	game.start();
-
-
-	Scanner scanner = new Scanner(System.in);
-	while(game.gameOn()){
-	    System.out.print(": ");
-	    game.processInput(scanner.nextLine());
-	}
-    }
-
 
     /**
      * The method used to start the game
@@ -64,5 +66,21 @@ public class Main
     public static void main(String[] args) {
 	Main main = new Main();
 	main.startGame();
+    }
+
+    /**
+     * This method starts the game
+     */
+    public void startGame() {
+	game.start();
+
+
+	Logger.getLogger("MainLogger").log(Level.FINEST, "Started game");
+
+	Scanner scanner = new Scanner(System.in);
+	while (game.gameOn()) {
+	    System.out.print(": ");
+	    game.processInput(scanner.nextLine());
+	}
     }
 }
