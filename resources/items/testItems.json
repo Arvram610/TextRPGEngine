@@ -2,13 +2,67 @@
   {
     "type": "equipable",
     "name": "sword",
-    "description": "desc",
-    "weight": 3
+    "description": "Ett vanligt svärd.",
+    "weight": 3,
+    "stats": {
+      "attack": 5,
+      "defense": 0,
+      "maxHealth": 0,
+      "maxEnergy": 0,
+      "energyRegen": 0
+    }
   },
   {
     "type": "consumable",
     "name": "potion",
-    "description": "desc",
-    "weight": 1
+    "description": "En läkande dryck.",
+    "weight": 1,
+    "useCommands": [
+      "giveplayerhealth 10",
+      "say You drink the potion and gain 10 healthpoints"
+    ]
+  },
+  {
+    "type": "consumable",
+    "name": "scroll",
+    "description": "En magisk pergamentrulle.",
+    "weight": 0.5,
+    "useCommands": [
+      "giveplayerenergy 5",
+      "say You read the scroll and gain 5 energypoints"
+    ]
+  },
+  {
+    "type": "equipable",
+    "name": "bone",
+    "description": "Ett kraftigt ben.",
+    "weight": 2,
+    "stats": {
+      "attack": 3,
+      "defense": 1,
+      "maxHealth": 0,
+      "maxEnergy": 0,
+      "energyRegen": 0
+    }
+  },
+  {
+    "type": "consumable",
+    "name": "fish",
+    "description": "En färsk fisk.",
+    "weight": 1,
+    "useCommands": [
+      "giveplayerhealth 5",
+        "say You eat the fish and gain 5 healthpoints"
+    ]
+  },
+  {
+    "type": "consumable",
+    "name": "book",
+    "description": "En intressant bok att läsa.",
+    "weight": 2,
+    "useCommands": [
+      "giveplayerenergy 10",
+        "say You read the book and gain 10 energypoints"
+    ]
   }
 ]

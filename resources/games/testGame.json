@@ -1,7 +1,7 @@
 {
   "player": "testPlayer.json",
   "npcs": [
-    "testNpcs.json"
+    "startTownNpcs.json", "forestNpcs.json", "caveNpcs.json", "bossNpc.json"
   ],
   "items": [
     "testItems.json"
