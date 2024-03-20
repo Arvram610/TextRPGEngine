@@ -61,9 +61,9 @@ public abstract class Generator
 
     protected JsonArray loadJsonArrayFile(String filepath) throws FileNotFoundException {
 	URL url = getUrl(filepath);
-	JsonArray array = null;
+	JsonArray arr = null;
 	try {
-	    array = jsonParser.parseArrayFile(url.getPath());
+	    arr = jsonParser.parseArrayFile(url.getPath());
 	} catch (FileNotFoundException e) {
 	    Logger.getLogger("MainLogger").log(Level.SEVERE, e.toString());
 	    System.out.println("An FileNotFoundException ocurred");
@@ -75,14 +75,14 @@ public abstract class Generator
 	    System.out.println(Arrays.toString(e.getStackTrace()));
 	    System.exit(1);
 	}
-	return array;
+	return arr;
     }
 
     protected JsonObject loadJsonObjectFile(String filepath) throws FileNotFoundException {
 	URL url = getUrl(filepath);
-	JsonObject object = null;
+	JsonObject obj = null;
 	try {
-	    object = jsonParser.parseObjectFile(url.getPath());
+	    obj = jsonParser.parseObjectFile(url.getPath());
 	} catch (FileNotFoundException e) {
 	    Logger.getLogger("MainLogger").log(Level.SEVERE, e.toString());
 	    System.out.println("An FileNotFoundException ocurred");
@@ -94,6 +94,6 @@ public abstract class Generator
 	    System.out.println(Arrays.toString(e.getStackTrace()));
 	    System.exit(1);
 	}
-	return object;
+	return obj;
     }
 }
