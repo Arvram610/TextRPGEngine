@@ -66,6 +66,11 @@ public abstract class Generator
 	    array = jsonParser.parseArrayFile(url.getPath());
 	} catch (FileNotFoundException e) {
 	    Logger.getLogger("MainLogger").log(Level.SEVERE, e.toString());
+	    System.out.println("An FileNotFoundException ocurred");
+	    System.out.println(Arrays.toString(e.getStackTrace()));
+	    System.exit(1);
+	} catch (IOException e) {
+	    Logger.getLogger("MainLogger").log(Level.SEVERE, e.toString());
 	    System.out.println("An IOException ocurred");
 	    System.out.println(Arrays.toString(e.getStackTrace()));
 	    System.exit(1);
@@ -79,6 +84,11 @@ public abstract class Generator
 	try {
 	    object = jsonParser.parseObjectFile(url.getPath());
 	} catch (FileNotFoundException e) {
+	    Logger.getLogger("MainLogger").log(Level.SEVERE, e.toString());
+	    System.out.println("An FileNotFoundException ocurred");
+	    System.out.println(Arrays.toString(e.getStackTrace()));
+	    System.exit(1);
+	} catch (IOException e) {
 	    Logger.getLogger("MainLogger").log(Level.SEVERE, e.toString());
 	    System.out.println("An IOException ocurred");
 	    System.out.println(Arrays.toString(e.getStackTrace()));

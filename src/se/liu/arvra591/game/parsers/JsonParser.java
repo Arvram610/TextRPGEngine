@@ -8,6 +8,8 @@ import java.io.BufferedReader;
 import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.IOException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 /**
  * A class that parses a json file The class uses the gson library to parse the json file
@@ -29,13 +31,11 @@ public class JsonParser
      * @return Returns a jsonarray containing the data of the file specified in the path
      * @throws IOException
      */
-    public JsonArray parseArrayFile(String path) throws FileNotFoundException {
+    public JsonArray parseArrayFile(String path) throws IOException, FileNotFoundException {
 	StringBuilder json = new StringBuilder();
 
 	try (BufferedReader br = new BufferedReader(new FileReader(path))) {
 	    br.lines().forEach(json::append);
-	} catch (IOException e) {
-	    throw (FileNotFoundException) e;
 	}
 	return gson.fromJson(json.toString(), JsonArray.class);
     }
@@ -46,13 +46,11 @@ public class JsonParser
      * @return Returns a jsonobject containing the data of the file specified in the path
      * @throws IOException
      */
-    public JsonObject parseObjectFile(final String path) throws FileNotFoundException {
+    public JsonObject parseObjectFile(final String path) throws IOException, FileNotFoundException {
 	StringBuilder json = new StringBuilder();
 
 	try (BufferedReader br = new BufferedReader(new FileReader(path))) {
 	    br.lines().forEach(json::append);
-	} catch (IOException e) {
-	    throw (FileNotFoundException) e;
 	}
 	return gson.fromJson(json.toString(), JsonObject.class);
     }
