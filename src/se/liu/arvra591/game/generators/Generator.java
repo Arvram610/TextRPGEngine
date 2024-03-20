@@ -68,12 +68,12 @@ public abstract class Generator
 	} catch (FileNotFoundException e) {
 	    logger.log(Level.SEVERE, e.toString());
 	    System.out.println("An FileNotFoundException ocurred");
-	    System.out.println(Arrays.toString(e.getStackTrace()));
+	    e.printStackTrace();
 	    System.exit(1);
 	} catch (IOException e) {
 	    logger.log(Level.SEVERE, e.toString());
 	    System.out.println("An IOException ocurred");
-	    System.out.println(Arrays.toString(e.getStackTrace()));
+	    e.printStackTrace();
 	    System.exit(1);
 	}
 	return arr;
@@ -87,12 +87,12 @@ public abstract class Generator
 	} catch (FileNotFoundException e) {
 	    logger.log(Level.SEVERE, e.toString());
 	    System.out.println("An FileNotFoundException ocurred");
-	    System.out.println(Arrays.toString(e.getStackTrace()));
+	    e.printStackTrace();
 	    System.exit(1);
 	} catch (IOException e) {
 	    logger.log(Level.SEVERE, e.toString());
 	    System.out.println("An IOException ocurred");
-	    System.out.println(Arrays.toString(e.getStackTrace()));
+	    e.printStackTrace();
 	    System.exit(1);
 	}
 	return obj;

@@ -49,7 +49,7 @@ public class GameGenerator extends Generator
 	} catch (IOException e) {
 	    logger.log(Level.SEVERE, e.toString());
 	    System.out.println("Could not open game.json");
-	    System.out.println(Arrays.toString(e.getStackTrace()));
+	    e.printStackTrace();
 	    System.exit(1);
 	}
 	JsonObject game = null;
@@ -58,7 +58,7 @@ public class GameGenerator extends Generator
 	} catch (IOException e) {
 	    logger.log(Level.SEVERE, e.toString());
 	    System.out.println("Could not open gamefile: games" + File.separator + gamePath);
-	    System.out.println(Arrays.toString(e.getStackTrace()));
+	    e.printStackTrace();
 	    System.exit(1);
 	}
 
@@ -80,7 +80,7 @@ public class GameGenerator extends Generator
 	    } catch (IOException e) {
 		logger.log(Level.SEVERE, e.toString());
 		System.out.println("Could not open itemfile: items" + File.separator + path);
-		System.out.println(Arrays.toString(e.getStackTrace()));
+		e.printStackTrace();
 		System.exit(1);
 	    }
 	});
@@ -95,7 +95,7 @@ public class GameGenerator extends Generator
 	    } catch (IOException e) {
 		logger.log(Level.SEVERE, e.toString());
 		System.out.println("Could not open npcfile: npcs/" + path);
-		System.out.println(Arrays.toString(e.getStackTrace()));
+		e.printStackTrace();
 		System.exit(1);
 	    }
 	});
@@ -111,7 +111,7 @@ public class GameGenerator extends Generator
 	    } catch (IOException e) {
 		logger.log(Level.SEVERE, e.toString());
 		System.out.println("Could not open locationfile: location/" + path);
-		System.out.println(Arrays.toString(e.getStackTrace()));
+		e.printStackTrace();
 		System.exit(1);
 	    }
 	});
@@ -126,7 +126,7 @@ public class GameGenerator extends Generator
 	} catch (IOException e) {
 	    logger.log(Level.SEVERE, e.toString());
 	    System.out.println("Could not open playerfile: player/" + path);
-	    System.out.println(Arrays.toString(e.getStackTrace()));
+	    e.printStackTrace();
 	    System.exit(1);
 	}
 	player = playerGenerator.getObjects().get("player");

@@ -38,7 +38,7 @@ public class Main
 	} catch (IOException e) {
 	    logger.log(Level.SEVERE, "Could not open log file\n" + e);
 	    System.out.println("Could not open log file");
-	    System.out.println(Arrays.toString(e.getStackTrace()));
+	    e.printStackTrace();
 	    System.exit(1);
 	}
 
