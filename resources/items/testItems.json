@@ -52,7 +52,7 @@
     "weight": 1,
     "useCommands": [
       "giveplayerhealth 5",
-        "say You eat the fish and gain 5 healthpoints"
+      "say You eat the fish and gain 5 healthpoints"
     ]
   },
   {
@@ -62,7 +62,7 @@
     "weight": 2,
     "useCommands": [
       "giveplayerenergy 10",
-        "say You read the book and gain 10 energypoints"
+      "say You read the book and gain 10 energypoints"
     ]
   }
 ]

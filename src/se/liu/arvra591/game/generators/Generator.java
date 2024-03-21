@@ -7,11 +7,8 @@ import se.liu.arvra591.game.listeners.CommandHandler;
 import se.liu.arvra591.game.objects.AbstractObject;
 import se.liu.arvra591.game.parsers.JsonParser;
 
-import java.io.BufferedReader;
 import java.io.FileNotFoundException;
 import java.io.IOException;
-import java.io.Reader;
-import java.net.URL;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;

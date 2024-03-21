@@ -2,10 +2,14 @@
   {
     "name": "Forest",
     "description": "Skogen sträcker sig långt bortom horisonten, dess tätvuxna träd skapar en mörk och mystisk atmosfär. Ljuset som sipprar igenom lövverket kastar skuggor över marken och fåglarna sjunger sin sång bland grenarna.",
-    "npcs": ["Forest Troll", "Dark Wolf"],
+    "npcs": [
+      "Forest Troll",
+      "Dark Wolf"
+    ],
     "items": [],
     "exits": [
-      "Start Town", "Cave Entrance"
+      "Start Town",
+      "Cave Entrance"
     ],
     "firstEnter": [
       "say Du beträder skogens djup. Det knakar svagt under dina fötter när du går genom det täta underlaget av löv.",

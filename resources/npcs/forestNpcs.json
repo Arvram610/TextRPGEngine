@@ -22,27 +22,26 @@
     "canDisengage": true,
     "onDeathCommands": []
   },
-
   {
-  "name": "Dark Wolf",
-  "description": "En skrämmande varg med vassa tänder och röda ögon som glöder i mörkret.",
-  "health": 20,
-  "energy": 15,
-  "stats": {
-    "attack": 10,
-    "defense": 2,
-    "maxHealth": 20,
-    "maxEnergy": 15,
-    "energyRegen": 2
+    "name": "Dark Wolf",
+    "description": "En skrämmande varg med vassa tänder och röda ögon som glöder i mörkret.",
+    "health": 20,
+    "energy": 15,
+    "stats": {
+      "attack": 10,
+      "defense": 2,
+      "maxHealth": 20,
+      "maxEnergy": 15,
+      "energyRegen": 2
     },
-  "dialogue": [
-    [
-  "say Dark Wolf: Grrrrr..."
-    ]
-  ],
-  "inventory": [
-  "potion"
-  ],
+    "dialogue": [
+      [
+        "say Dark Wolf: Grrrrr..."
+      ]
+    ],
+    "inventory": [
+      "potion"
+    ],
     "canDisengage": true,
     "onDeathCommands": []
   }

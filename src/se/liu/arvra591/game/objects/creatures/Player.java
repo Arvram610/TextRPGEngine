@@ -54,7 +54,8 @@ public class Player extends Creature
 	stats.printStats();
 	System.out.println("Energy: " + currentEnergy);
 	System.out.println(("Health: " + currentHealth));
-	System.out.println("Current weight of items: " + inventory.getCurrentWeight() + "/" + stats.getCarryWeight()); // slash is used as a styring not file separator
+	System.out.println("Current weight of items: " + inventory.getCurrentWeight() + "/" +
+			   stats.getCarryWeight()); // slash is used as a styring not file separator
     }
 
     public PlayerStats getPlayerStats() {

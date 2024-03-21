@@ -38,10 +38,10 @@ public class Game implements EngageListener, CombatListener
 
 
     /**
-     * @param player The player object
+     * @param player    The player object
      * @param locations The locations in the game
-     * @param items The items in the game
-     * @param npcs The npcs in the game
+     * @param items     The items in the game
+     * @param npcs      The npcs in the game
      */
     public Game(Player player, Map<String, Location> locations, Map<String, Factory<? extends Item>> items,
 		Map<String, Factory<? extends Npc>> npcs)

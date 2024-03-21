@@ -12,7 +12,7 @@ public class PlayerStats extends CreatureStats
     protected int carryWeight;
 
     /**
-     * @param cStats The creaturestats the playerstats are based on
+     * @param cStats      The creaturestats the playerstats are based on
      * @param carryWeight The amount of weight tha player can carry
      */
     public PlayerStats(CreatureStats cStats, int carryWeight) {

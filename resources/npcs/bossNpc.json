@@ -20,7 +20,7 @@
     "canDisengage": false,
     "onDeathCommands": [
       "say You killed the boss and won the game!",
-        "win"
+      "win"
     ]
   }
 ]

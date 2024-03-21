@@ -1,12 +1,19 @@
 {
   "player": "testPlayer.json",
   "npcs": [
-    "startTownNpcs.json", "forestNpcs.json", "caveNpcs.json", "bossNpc.json"
+    "startTownNpcs.json",
+    "forestNpcs.json",
+    "caveNpcs.json",
+    "bossNpc.json"
   ],
   "items": [
     "testItems.json"
   ],
   "locations": [
-    "startTown.json", "forest.json", "caveEntrance.json", "cave.json", "bossRoom.json"
+    "startTown.json",
+    "forest.json",
+    "caveEntrance.json",
+    "cave.json",
+    "bossRoom.json"
   ]
 }

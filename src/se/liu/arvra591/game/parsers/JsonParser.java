@@ -5,8 +5,6 @@ import com.google.gson.JsonArray;
 import com.google.gson.JsonObject;
 
 import java.io.BufferedReader;
-import java.io.FileNotFoundException;
-import java.io.FileReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
 import java.nio.charset.StandardCharsets;
@@ -35,8 +33,7 @@ public class JsonParser
 	StringBuilder json = new StringBuilder();
 
 	try (BufferedReader br = new BufferedReader(
-		new InputStreamReader(ClassLoader.getSystemResourceAsStream(path), StandardCharsets.UTF_8))
-	) {
+		new InputStreamReader(ClassLoader.getSystemResourceAsStream(path), StandardCharsets.UTF_8))) {
 	    br.lines().forEach(json::append);
 	}
 	return gson.fromJson(json.toString(), JsonArray.class);

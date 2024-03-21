@@ -12,7 +12,7 @@ public class Adventure extends AbstractMode
 {
 
     /**
-     * @param player The player that is playing the game
+     * @param player       The player that is playing the game
      * @param eventHandler The event handler that is used to notify the game when it is time to enter combat or adventure mode
      */
     public Adventure(Player player, EngageEventHandler eventHandler) {

@@ -2,9 +2,13 @@
   {
     "name": "Cave",
     "description": "Grottan är mörk och fylld av mystik. Vattnet droppar från taket och ekar i de mörka korridorerna. En kall vind sveper genom gångarna och får dig att darra.",
-    "npcs": ["Goblin"],
+    "npcs": [
+      "Goblin"
+    ],
     "items": [],
-    "exits": ["Cave Entrance"],
+    "exits": [
+      "Cave Entrance"
+    ],
     "firstEnter": [
       "say Du beträder grottan och känner dig genast omsluten av mörkret.",
       "say Vattnet droppar från taket och ekar i de mörka korridorerna. En kall vind sveper genom gångarna och får dig att darra.",
