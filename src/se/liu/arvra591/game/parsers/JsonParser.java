@@ -48,7 +48,8 @@ public class JsonParser
     public JsonObject parseObjectFile(final String path) throws IOException {
 	StringBuilder json = new StringBuilder();
 
-	try (BufferedReader br = new BufferedReader(new InputStreamReader(ClassLoader.getSystemResourceAsStream(path)))) {
+	try (BufferedReader br = new BufferedReader(
+		new InputStreamReader(ClassLoader.getSystemResourceAsStream(path), StandardCharsets.UTF_8))) {
 	    br.lines().forEach(json::append);
 	}
 	return gson.fromJson(json.toString(), JsonObject.class);
