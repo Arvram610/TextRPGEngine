@@ -7,8 +7,10 @@ import se.liu.arvra591.game.listeners.CommandHandler;
 import se.liu.arvra591.game.objects.AbstractObject;
 import se.liu.arvra591.game.parsers.JsonParser;
 
+import java.io.BufferedReader;
 import java.io.FileNotFoundException;
 import java.io.IOException;
+import java.io.Reader;
 import java.net.URL;
 import java.util.ArrayList;
 import java.util.List;
@@ -26,14 +28,6 @@ public abstract class Generator
     protected Generator(CommandHandler commandHandler) {
 	jsonParser = new JsonParser();
 	this.commandHandler = commandHandler;
-    }
-
-    private static URL getUrl(final String filePath) throws FileNotFoundException {
-	URL url = ClassLoader.getSystemResource(filePath);
-	if (url == null) {
-	    throw new FileNotFoundException("File: " + filePath + "was not found");
-	}
-	return url;
     }
 
     protected <S extends AbstractObject> List<S> generateObjectListFromFactory(JsonArray jsonObjects, Map<String, Factory<? extends S>> map)
@@ -56,14 +50,12 @@ public abstract class Generator
     }
 
     protected JsonArray loadJsonArrayFile(String filePath) throws IOException, FileNotFoundException {
-	URL url = getUrl(filePath);
-	JsonArray arr = jsonParser.parseArrayFile(url.getPath());
+	JsonArray arr = jsonParser.parseArrayFile(filePath);
 	return arr;
     }
 
     protected JsonObject loadJsonObjectFile(String filePath) throws IOException, FileNotFoundException {
-	URL url = getUrl(filePath);
-	JsonObject obj = jsonParser.parseObjectFile(url.getPath());
+	JsonObject obj = jsonParser.parseObjectFile(filePath);
 	return obj;
     }
 }
